@@ -52,14 +52,26 @@ void ACombatDebugHUD::DrawHUD()
     }
     if(Lab->bDebug)DrawText(TEXT("F7  ")+TournamentGraphics::Profile,FColor(175,195,210),W-210,30);
     if(!Lab->bDebug)return;
+    const FMovementPresentationSignals Move=M?M->MovementSignals:FMovementPresentationSignals{};
+    auto GaitName=[](EMeleeGait Gait){
+        switch(Gait){
+        case EMeleeGait::Walk:return TEXT("WALK");
+        case EMeleeGait::Sprint:return TEXT("SPRINT");
+        case EMeleeGait::Crouch:return TEXT("CROUCH");
+        case EMeleeGait::Airborne:return TEXT("AIR");
+        case EMeleeGait::Disabled:return TEXT("DISABLED");
+        default:return TEXT("IDLE");
+        }
+    };
     DrawText(FString::Printf(TEXT("Strike release %.0f ms / damage active %.0f ms"),T.StrikeRelease*1000,T.StrikeRelease*(T.DamageEnd-T.DamageStart)*1000),FColor::White,34,390);
-    FString Debug=FString::Printf(TEXT("STATE %s | %s | angle %.1f | raw %.1f\nphase %.3f / %.3f | release %.3f | spin %.1f / %.1f\nweapon %.0f cm/s | angular %.0f deg/s | yaw cap %.0f | pitch cap %.0f\nfeint %d | morph %d | combo %d | queued %d | riposte %.3f\nparry active %d | remaining %.3f | guard yaw %.1f pitch %.1f\nchamber %d | remaining %.3f | incoming %.1f | difference %.1f / %.1f\nspeed %.0f | momentum %.2f | turn %.0f deg/s | loss %.3f\nlunge %.0f cm/s | displacement %.1f cm\ncombat steps %d | collision queries %d | overload %d"),
+    FString Debug=FString::Printf(TEXT("STATE %s | %s | angle %.1f | raw %.1f\nphase %.3f / %.3f | release %.3f | spin %.1f / %.1f\nweapon %.0f cm/s | angular %.0f deg/s | yaw cap %.0f | pitch cap %.0f\nfeint %d | morph %d | combo %d | queued %d | riposte %.3f\nparry active %d | remaining %.3f | guard yaw %.1f pitch %.1f\nchamber %d | remaining %.3f | incoming %.1f | difference %.1f / %.1f\nmove %.0f cm/s | gait %s | normalized %.2f | grounded %d\nlocal v F %.0f R %.0f | accel F %.0f R %.0f | brake %.2f | reverse %.2f\ncombat steps %d | collision queries %d | overload %d"),
         UTF8_TO_TCHAR(mcl::phaseName(State.phase)),State.attack.kind==mcl::AttackKind::Stab?TEXT("STAB"):TEXT("STRIKE"),State.attack.angle,State.attack.rawAngle,
         State.elapsed,State.duration(),State.phase==mcl::Phase::Release?State.progress():0,State.releaseRotation,T.AntiSpinThreshold,
         S.speed,S.angularSpeed,State.yawCap(T),T.PitchCap,State.canFeint(T),State.canMorph(T),State.canCombo(T),State.comboQueued,State.riposteRemaining,
         State.phase==mcl::Phase::Parry,State.phase==mcl::Phase::Parry?FMath::Max(0.,T.ParryDuration-State.elapsed):0,S.guard.yaw,S.guard.pitch,
         State.chamberActive(T),State.chamberActive(T)?FMath::Max(0.,T.ChamberDuration-State.attackAge):0,S.incomingAngle,S.chamberDifference,T.ChamberTolerance,
-        C->GetVelocity().Size2D(),M?M->Momentum.value:0,M?M->Momentum.turnRate:0,M?M->Momentum.loss:0,M?M->Lunge.velocity:0,M?M->Lunge.displacement:0,
+        C->GetVelocity().Size2D(),GaitName(Move.Gait),Move.SpeedNormalized,Move.bGrounded,
+        Move.LocalVelocity.X,Move.LocalVelocity.Y,Move.LocalAcceleration.X,Move.LocalAcceleration.Y,Move.BrakingIntensity,Move.ReversalSeverity,
         Lab->Combat.stepsLastFrame,Lab->Combat.queriesLastFrame,Lab->Combat.overload);
     DrawRect(FLinearColor(.015f,.025f,.04f,.88f),22,130,800,255);DrawText(Debug,FColor(190,220,230),34,140);
 }

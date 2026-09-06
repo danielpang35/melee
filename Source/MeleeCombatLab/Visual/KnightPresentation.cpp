@@ -4,7 +4,7 @@
 #include "Engine/SkeletalMesh.h"
 #include "Materials/MaterialInstanceDynamic.h"
 
-namespace {FVector V(mcl::Vec P){return {P.x,P.y,P.z};}}
+namespace {FVector KnightVec(mcl::Vec P){return {P.x,P.y,P.z};}}
 int32 UKnightPresentation::Bone(FName Name) const {const auto* Index=BoneIndices.Find(Name);return Index?*Index:INDEX_NONE;}
 void UKnightPresentation::BeginPlay()
 {
@@ -47,7 +47,7 @@ void UKnightPresentation::Present(const mcl::Combatant& State,const mcl::Tuning&
     if(!Body||Reference.IsEmpty())return;
     if(Alloy&&Blue!=bBlue){bBlue=Blue;Alloy->SetVectorParameterValue(TEXT("BaseColor"),Blue?FLinearColor(.66f,.78f,.91f):FLinearColor(.91f,.82f,.70f));}
     const auto Pose=mcl::presentation::evaluate(State,Tuning);
-    const FVector Position=V(State.position);
+    const FVector Position=KnightVec(State.position);
     FVector MoveDirection=Initialized?GetComponentTransform().InverseTransformVectorNoScale(Position-LastPosition).GetSafeNormal2D():FVector::ForwardVector;
     if(MoveDirection.IsNearlyZero())MoveDirection=FVector::ForwardVector;
     const double Distance=Initialized?FVector::Dist2D(Position,LastPosition):0.;
@@ -86,11 +86,11 @@ void UKnightPresentation::Present(const mcl::Combatant& State,const mcl::Tuning&
         if(Upper==INDEX_NONE||Lower==INDEX_NONE||Hand==INDEX_NONE)continue;
         const FTransform World=Body->GetComponentTransform();
         FVector Shoulder=ComponentPose[Upper].GetLocation();
-        const FVector Grip=World.InverseTransformPosition(V(Pose.arms[Side].hand));
+        const FVector Grip=World.InverseTransformPosition(KnightVec(Pose.arms[Side].hand));
         const FVector RefUpper=Reference[Lower].GetLocation()-Reference[Upper].GetLocation();
         const FVector RefLower=Reference[Hand].GetLocation()-Reference[Lower].GetLocation();
-        const FVector GripAxis=World.InverseTransformVectorNoScale(V(Pose.axis));
-        const FVector GripEdge=World.InverseTransformVectorNoScale(V(Pose.edge));
+        const FVector GripAxis=World.InverseTransformVectorNoScale(KnightVec(Pose.axis));
+        const FVector GripEdge=World.InverseTransformVectorNoScale(KnightVec(Pose.edge));
         const FVector RestEdge=(RefUpper+RefLower).GetSafeNormal2D();
         const FQuat SourceFrame=FRotationMatrix::MakeFromZX(FVector::UpVector,RestEdge).ToQuat();
         const FQuat TargetFrame=FRotationMatrix::MakeFromZX(GripAxis,GripEdge*(Side==0?1.:-1.)).ToQuat();
@@ -106,10 +106,10 @@ void UKnightPresentation::Present(const mcl::Combatant& State,const mcl::Tuning&
             const FVector Rest=Reference[Upper].GetLocation()-Reference[Clavicle].GetLocation();
             ComponentPose[Clavicle].SetRotation(FQuat::FindBetweenNormals(Rest.GetSafeNormal(),(Shoulder-Start).GetSafeNormal())*Reference[Clavicle].GetRotation());
         }
-        const FVector Pole=World.InverseTransformVectorNoScale(V(Pose.arms[Side].elbow-Pose.arms[Side].shoulder));
+        const FVector Pole=World.InverseTransformVectorNoScale(KnightVec(Pose.arms[Side].elbow-Pose.arms[Side].shoulder));
         const auto M=[](FVector P){return mcl::Vec{P.X,P.Y,P.Z};};
         const auto Arm=mcl::presentation::solveArm(M(Shoulder),M(Target),M(Pole),32.,28.);
-        const FVector Elbow=V(Arm.elbow);
+        const FVector Elbow=KnightVec(Arm.elbow);
         auto Link=[&](int32 Index,FVector Start,FVector End,FVector RestDirection){
             const FQuat Delta=FQuat::FindBetweenNormals(RestDirection.GetSafeNormal(),(End-Start).GetSafeNormal());
             ComponentPose[Index]=FTransform(Delta*Reference[Index].GetRotation(),Start,Reference[Index].GetScale3D());
@@ -133,7 +133,7 @@ void UKnightPresentation::Present(const mcl::Combatant& State,const mcl::Tuning&
         const FVector Upper=Reference[Calf].GetLocation()-Reference[Thigh].GetLocation(),Lower=Reference[Foot].GetLocation()-Reference[Calf].GetLocation();
         const auto M=[](FVector P){return mcl::Vec{P.X,P.Y,P.Z};};
         const auto Leg=mcl::presentation::solveArm(M(Hip),M(Ankle),{1,Side==0?.15:-.15,0},Upper.Size(),Lower.Size());
-        const FVector Knee=V(Leg.elbow);
+        const FVector Knee=KnightVec(Leg.elbow);
         ComponentPose[Thigh]=FTransform(FQuat::FindBetweenNormals(Upper.GetSafeNormal(),(Knee-Hip).GetSafeNormal())*Reference[Thigh].GetRotation(),Hip,Reference[Thigh].GetScale3D());
         ComponentPose[Calf]=FTransform(FQuat::FindBetweenNormals(Lower.GetSafeNormal(),(Ankle-Knee).GetSafeNormal())*Reference[Calf].GetRotation(),Knee,Reference[Calf].GetScale3D());
         ComponentPose[Foot]=FTransform(Reference[Foot].GetRotation(),Ankle,Reference[Foot].GetScale3D());

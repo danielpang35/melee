@@ -1,5 +1,6 @@
-param([switch]$Sanitize,[switch]$PresentationOnly)
+param([switch]$Sanitize,[switch]$PresentationOnly,[switch]$MovementOnly)
 $ErrorActionPreference = 'Stop'
+if ($PresentationOnly -and $MovementOnly) { throw 'Choose either -PresentationOnly or -MovementOnly.' }
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $vswhere = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio\Installer\vswhere.exe'
 $vsInstall = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
@@ -13,9 +14,14 @@ try {
     $source = Join-Path $projectRoot 'Source\MeleeCombatLab'
     $flags = @('/nologo','/std:c++20','/EHsc','/W4','/WX','/Zi','/Od',"/I$source")
     if ($Sanitize) { $flags += '/fsanitize=address' }
-    $testSource=if($PresentationOnly){'PresentationTests'}else{'CombatTests'}
-    & cl.exe @flags (Join-Path $projectRoot "Tests\$testSource.cpp") (Join-Path $source 'Combat\Attacks\AttackStateMachine.cpp') (Join-Path $source 'Combat\CombatSimulation.cpp') "/Fe:$testSource.exe"
-    if ($LASTEXITCODE -ne 0) { throw 'Native combat core compilation failed.' }
+    $testSource=if($MovementOnly){'MovementTests'}elseif($PresentationOnly){'PresentationTests'}else{'CombatTests'}
+    $sources=@((Join-Path $projectRoot "Tests\$testSource.cpp"))
+    if (!$MovementOnly) {
+        $sources += (Join-Path $source 'Combat\Attacks\AttackStateMachine.cpp')
+        $sources += (Join-Path $source 'Combat\CombatSimulation.cpp')
+    }
+    & cl.exe @flags @sources "/Fe:$testSource.exe"
+    if ($LASTEXITCODE -ne 0) { throw "Native $testSource compilation failed." }
     & ".\$testSource.exe"
-    if ($LASTEXITCODE -ne 0) { throw 'Native combat core tests failed.' }
+    if ($LASTEXITCODE -ne 0) { throw "Native $testSource tests failed." }
 } finally { Pop-Location }

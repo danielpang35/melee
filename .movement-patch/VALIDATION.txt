@@ -1,0 +1,44 @@
+Validation performed in this ChatGPT runtime
+==================================================
+
+Base audited:
+  danielpang35/melee @ 02d9d7ee97cfef4c58d20146ad89216b2de3f82b
+
+Pure movement core:
+  Compiler: g++ C++20
+  Flags: -Wall -Wextra -Werror
+  Result: PASS: 46 movement checks
+
+Covered by the isolated movement test:
+  - acceleration from rest
+  - forward/lateral/backward caps
+  - diagonal speed normalization
+  - sprint gait/cap
+  - sprint stopping distance
+  - frame-rate consistency under the 120 Hz movement-substep contract
+  - hard reversal severity and response
+  - small positional corrections
+  - sprint disengagement into combat
+  - bounded forward release drive
+  - no free attack lunge at zero movement input
+  - crouch scaling
+  - dead-state braking
+
+Patch syntax:
+  git apply --numstat parsed the complete patch successfully.
+
+Not performed here:
+  - Unreal Engine 5.8 compilation/link
+  - Unreal Automation
+  - rendered CombatPlaytest tour
+  - subjective human feel pass
+
+Reason:
+  This execution environment does not contain the user's UE 5.8 checkout, and the
+  GitHub integration rejected branch creation with HTTP 403. No Unreal-build claim
+  is made.
+
+Known checkout baseline before this movement change:
+  VALIDATION.md reports the full native combat suite already failing on the
+  stationary double-parry assertion, and the rendered tour at 34/38 with
+  accel, momentum_and_lunge, feint_baits_parry, and release_flinch failing.

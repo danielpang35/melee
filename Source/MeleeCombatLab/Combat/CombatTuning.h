@@ -56,25 +56,28 @@
  X(ChamberDuration,.225,.05,.4,"Chamber") \
  X(ChamberTolerance,32,5,65,"Chamber") \
  X(ChamberFacingAngle,80,30,89,"Chamber") \
- X(ForwardSpeed,306,100,700,"Movement") \
- X(LateralSpeed,261,100,700,"Movement") \
- X(BackwardSpeed,222,100,700,"Movement") \
- X(SprintSpeed,549.5,300,1000,"Movement") \
- X(Acceleration,4070,500,6000,"Movement") \
- X(Deceleration,5000,500,6000,"Movement") \
- X(GroundFriction,10,0,20,"Movement") \
+ X(ForwardSpeed,360,200,600,"Movement") \
+ X(LateralSpeed,315,180,550,"Movement") \
+ X(BackwardSpeed,255,150,500,"Movement") \
+ X(SprintSpeed,560,350,800,"Movement") \
+ X(Acceleration,2900,1000,6000,"Movement") \
+ X(PrecisionAcceleration,4300,1500,8000,"Movement") \
+ X(RedirectAcceleration,4300,1500,8000,"Movement") \
+ X(ReverseAcceleration,5000,2000,9000,"Movement") \
+ X(Deceleration,4000,1000,8000,"Movement") \
+ X(SprintDeceleration,4500,1200,9000,"Movement") \
+ X(PrecisionSpeedThreshold,120,20,250,"Movement") \
+ X(SprintForwardRequirement,.55,.2,.95,"Movement") \
+ X(CrouchMoveScale,.58,.3,.8,"Movement") \
+ X(WindupMoveScale,.96,.65,1.1,"Movement") \
+ X(ReleaseMoveScale,.90,.6,1.1,"Movement") \
+ X(RecoveryMoveScale,.94,.65,1.1,"Movement") \
+ X(ParryMoveScale,.92,.6,1.1,"Movement") \
+ X(ParryRecoveryMoveScale,.86,.5,1.05,"Movement") \
+ X(FlinchMoveScale,.72,.2,1,"Movement") \
+ X(ReleaseForwardBias,35,0,120,"Movement") \
  X(GravityScale,1.4,.5,3,"Movement") \
  X(JumpSpeed,500,250,750,"Movement") \
- X(MomentumBuild,1,.1,3,"Movement") \
- X(MomentumLoss,1.8,.1,5,"Movement") \
- X(SoftTurnThreshold,90,20,150,"Movement") \
- X(HardTurnThreshold,200,160,360,"Movement") \
- X(ReversePenalty,2.5,.1,6,"Movement") \
- X(LungeStrength,600,0,3000,"Lunge") \
- X(LungeDuration,.16,.05,.5,"Lunge") \
- X(LungeMaxDisplacement,42,0,120,"Lunge") \
- X(LungeMomentumScaling,.70,0,1,"Lunge") \
- X(LungeForwardRequirement,.20,0,1,"Lunge") \
  X(FeintCost,10,0,30,"Stamina") \
  X(MorphCost,7,0,30,"Stamina") \
  X(ChamberCost,15,0,40,"Stamina") \

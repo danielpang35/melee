@@ -1,0 +1,1085 @@
+diff --git a/Source/MeleeCombatLab/Character/MeleeCharacterMovementComponent.h b/Source/MeleeCombatLab/Character/MeleeCharacterMovementComponent.h
+--- a/Source/MeleeCombatLab/Character/MeleeCharacterMovementComponent.h
++++ b/Source/MeleeCombatLab/Character/MeleeCharacterMovementComponent.h
+@@ -1,9 +1,62 @@
+ #pragma once
+ #include "CoreMinimal.h"
+ #include "GameFramework/CharacterMovementComponent.h"
+-#include "Movement/MomentumModel.h"
+-#include "Movement/LungeModel.h"
++#include "Movement/LocomotionModel.h"
+ #include "MeleeCharacterMovementComponent.generated.h"
++
++UENUM(BlueprintType)
++enum class EMeleeGait : uint8
++{
++    Idle,
++    Walk,
++    Sprint,
++    Crouch,
++    Airborne,
++    Disabled
++};
++
++UENUM(BlueprintType)
++enum class EMeleeCombatMovementState : uint8
++{
++    Neutral,
++    Windup,
++    Release,
++    Recovery,
++    Parry,
++    ParryRecovery,
++    Flinch,
++    Dead
++};
++
++USTRUCT(BlueprintType)
++struct FMovementPresentationSignals
++{
++    GENERATED_BODY()
++
++    UPROPERTY(BlueprintReadOnly,Category="Movement|Presentation")
++    FVector LocalVelocity=FVector::ZeroVector;
++
++    UPROPERTY(BlueprintReadOnly,Category="Movement|Presentation")
++    FVector LocalAcceleration=FVector::ZeroVector;
++
++    UPROPERTY(BlueprintReadOnly,Category="Movement|Presentation")
++    float BrakingIntensity=0;
++
++    UPROPERTY(BlueprintReadOnly,Category="Movement|Presentation")
++    float SpeedNormalized=0;
++
++    UPROPERTY(BlueprintReadOnly,Category="Movement|Presentation")
++    float ReversalSeverity=0;
++
++    UPROPERTY(BlueprintReadOnly,Category="Movement|Presentation")
++    EMeleeGait Gait=EMeleeGait::Idle;
++
++    UPROPERTY(BlueprintReadOnly,Category="Movement|Presentation")
++    EMeleeCombatMovementState CombatState=EMeleeCombatMovementState::Neutral;
++
++    UPROPERTY(BlueprintReadOnly,Category="Movement|Presentation")
++    bool bGrounded=false;
++};
+ 
+ UCLASS()
+ class MELEECOMBATLAB_API UMeleeCharacterMovementComponent : public UCharacterMovementComponent
+@@ -11,15 +64,18 @@
+     GENERATED_BODY()
+ public:
+     UMeleeCharacterMovementComponent();
+-    mcl::MomentumModel Momentum;
+-    mcl::LungeModel Lunge;
+-    bool bSprint=false;
+-    double ForwardInput=0;
++
++    bool bSprintRequested=false;
++
++    UPROPERTY(BlueprintReadOnly,Category="Movement|Presentation")
++    FMovementPresentationSignals MovementSignals;
++
+     void ResetCombatMovement();
+     virtual float GetMaxSpeed() const override;
+     virtual void TickComponent(float DeltaTime,ELevelTick TickType,FActorComponentTickFunction* ThisTickFunction) override;
+     virtual void CalcVelocity(float DeltaTime,float Friction,bool bFluid,float BrakingDeceleration) override;
++
+ private:
+-    uint64 LungedSerial=0;
+-    FVector PreviousLunge=FVector::ZeroVector;
++    FVector InputIntent=FVector::ZeroVector;
++    void UpdateFallbackSignals(const FVector& PreviousVelocity,float DeltaTime);
+ };
+diff --git a/Source/MeleeCombatLab/Character/MeleeCharacterMovementComponent.cpp b/Source/MeleeCombatLab/Character/MeleeCharacterMovementComponent.cpp
+--- a/Source/MeleeCombatLab/Character/MeleeCharacterMovementComponent.cpp
++++ b/Source/MeleeCombatLab/Character/MeleeCharacterMovementComponent.cpp
+@@ -2,77 +2,165 @@
+ #include "MeleeCharacter.h"
+ #include "Combat/CombatComponent.h"
+ 
++namespace
++{
++EMeleeGait ToUnrealGait(mcl::Gait Gait)
++{
++    switch(Gait){
++    case mcl::Gait::Walk:return EMeleeGait::Walk;
++    case mcl::Gait::Sprint:return EMeleeGait::Sprint;
++    case mcl::Gait::Crouch:return EMeleeGait::Crouch;
++    case mcl::Gait::Airborne:return EMeleeGait::Airborne;
++    case mcl::Gait::Disabled:return EMeleeGait::Disabled;
++    default:return EMeleeGait::Idle;
++    }
++}
++
++EMeleeCombatMovementState ToUnrealCombatState(mcl::CombatMovementState State)
++{
++    switch(State){
++    case mcl::CombatMovementState::Windup:return EMeleeCombatMovementState::Windup;
++    case mcl::CombatMovementState::Release:return EMeleeCombatMovementState::Release;
++    case mcl::CombatMovementState::Recovery:return EMeleeCombatMovementState::Recovery;
++    case mcl::CombatMovementState::Parry:return EMeleeCombatMovementState::Parry;
++    case mcl::CombatMovementState::ParryRecovery:return EMeleeCombatMovementState::ParryRecovery;
++    case mcl::CombatMovementState::Flinch:return EMeleeCombatMovementState::Flinch;
++    case mcl::CombatMovementState::Dead:return EMeleeCombatMovementState::Dead;
++    default:return EMeleeCombatMovementState::Neutral;
++    }
++}
++}
++
+ UMeleeCharacterMovementComponent::UMeleeCharacterMovementComponent()
+ {
+-    bOrientRotationToMovement=false;AirControl=.25f;JumpZVelocity=460.f;
+-    GroundFriction=6.f;BrakingFrictionFactor=1.f;MaxWalkSpeedCrouched=190.f;
++    bOrientRotationToMovement=false;
++    AirControl=.25f;
++    JumpZVelocity=500.f;
++    GroundFriction=8.f;
++    BrakingFrictionFactor=1.f;
++    MaxWalkSpeedCrouched=210.f;
++    MaxSimulationTimeStep=static_cast<float>(mcl::LocomotionModel::MaxSimulationStep);
++    MaxSimulationIterations=8;
+     GetNavAgentPropertiesRef().bCanCrouch=true;
+ }
++
+ void UMeleeCharacterMovementComponent::ResetCombatMovement()
+ {
+-    StopMovementImmediately();Momentum={};Lunge={};LungedSerial=0;
+-    PreviousLunge=FVector::ZeroVector;ForwardInput=0;bSprint=false;
++    StopMovementImmediately();
++    InputIntent=FVector::ZeroVector;
++    bSprintRequested=false;
++    MovementSignals={};
+ }
++
+ float UMeleeCharacterMovementComponent::GetMaxSpeed() const
+ {
+     const auto* C=Cast<AMeleeCharacter>(CharacterOwner);
+     if(!C||!C->Combat)return Super::GetMaxSpeed();
+ 
+     const auto& T=C->Combat->Tuning();
++    const auto Phase=C->Combat->Simulation.state.phase;
++    if(Phase==mcl::Phase::Dead)return 0;
++
++    // The grounded solver owns the real directional cap. Return its absolute ceiling
++    // here so CharacterMovement never clips the release bias after CalcVelocity.
++    if(IsMovingOnGround()){
++        return static_cast<float>(std::max({T.ForwardSpeed,T.LateralSpeed,T.BackwardSpeed,T.SprintSpeed})+
++            T.ReleaseForwardBias);
++    }
++
+     const FVector Desired=Acceleration.GetSafeNormal2D();
+-    const double Forward=FVector::DotProduct(Desired,C->GetActorForwardVector());
+-    double Speed=Forward>=0?FMath::Lerp(T.LateralSpeed,T.ForwardSpeed,Forward):
+-        FMath::Lerp(T.LateralSpeed,T.BackwardSpeed,-Forward);
+-
+-    // Attack state never removes ordinary locomotion. Lunge is additive only.
+-    if(bSprint&&Forward>.7)Speed=FMath::Lerp(Speed,T.SprintSpeed,Momentum.value);
+-    if(IsCrouching())Speed*=.5;
++    if(Desired.IsNearlyZero())return static_cast<float>(T.ForwardSpeed);
++    const FVector Forward=C->GetActorForwardVector().GetSafeNormal2D();
++    const mcl::Vec D{Desired.X,Desired.Y,0},F{Forward.X,Forward.Y,0};
++    const mcl::Vec Local=mcl::LocomotionModel::local(D,F);
++    double Speed=mcl::LocomotionModel::directionalSpeed(Local,T)*mcl::LocomotionModel::phaseScale(Phase,T);
++    if(bSprintRequested&&Phase==mcl::Phase::Idle&&Local.x>=T.SprintForwardRequirement){
++        const double Alpha=mcl::clamp((Local.x-T.SprintForwardRequirement)/
++            std::max(1e-6,1.-T.SprintForwardRequirement),0.,1.);
++        Speed=mcl::mix(Speed,T.SprintSpeed,Alpha);
++    }
++    if(IsCrouching())Speed*=T.CrouchMoveScale;
+     return static_cast<float>(Speed);
+ }
++
+ void UMeleeCharacterMovementComponent::TickComponent(float Dt,ELevelTick TickType,FActorComponentTickFunction* TickFunction)
+ {
+-    if(auto* C=Cast<AMeleeCharacter>(CharacterOwner)){
++    InputIntent=GetPendingInputVector();
++    InputIntent.Z=0;
++    InputIntent=InputIntent.GetClampedToMaxSize(1.f);
++
++    if(auto* C=Cast<AMeleeCharacter>(CharacterOwner);C&&C->Combat){
+         const auto& T=C->Combat->Tuning();
+-        FVector Input=GetPendingInputVector();
+-        Momentum.update({Velocity.X,Velocity.Y,0},{Input.X,Input.Y,0},Dt,T);
+-
+-        GroundFriction=static_cast<float>(T.GroundFriction);
+         GravityScale=static_cast<float>(T.GravityScale);
+         JumpZVelocity=static_cast<float>(T.JumpSpeed);
+-        MaxAcceleration=static_cast<float>(T.Acceleration);
++        MaxAcceleration=static_cast<float>(T.PrecisionAcceleration);
+         BrakingDecelerationWalking=static_cast<float>(T.Deceleration);
+-
+-        const auto& S=C->Combat->Simulation;
+-        if(S.state.phase!=mcl::Phase::Release)Lunge={};
+-        if(S.state.phase==mcl::Phase::Release&&S.state.serial!=LungedSerial){
+-            LungedSerial=S.state.serial;
+-            Lunge.begin(S.view.forward(),ForwardInput,Momentum.value,T);
+-        }
++        MaxWalkSpeedCrouched=static_cast<float>(T.ForwardSpeed*T.CrouchMoveScale);
+     }
+     Super::TickComponent(Dt,TickType,TickFunction);
+ }
++
+ void UMeleeCharacterMovementComponent::CalcVelocity(float Dt,float Friction,bool bFluid,float Braking)
+ {
+-    // Strip only last frame's additive impulse before solving normal character
+-    // locomotion. Windup/release never lower the base movement solution.
+-    Velocity-=PreviousLunge;
+-    PreviousLunge=FVector::ZeroVector;
++    const FVector PreviousVelocity=Velocity;
++    auto* C=Cast<AMeleeCharacter>(CharacterOwner);
++    if(Dt<=SMALL_NUMBER||!C||!C->Combat||!IsMovingOnGround()){
++        Super::CalcVelocity(Dt,Friction,bFluid,Braking);
++        UpdateFallbackSignals(PreviousVelocity,Dt);
++        return;
++    }
+ 
+-    Super::CalcVelocity(Dt,Friction,bFluid,Braking);
++    const auto& T=C->Combat->Tuning();
++    const auto& State=C->Combat->Simulation.state;
++    const FVector Forward=C->GetActorForwardVector().GetSafeNormal2D();
+ 
+-    if(auto* C=Cast<AMeleeCharacter>(CharacterOwner)){
+-        if(IsMovingOnGround()){
+-            const FVector BaseVelocity=Velocity;
+-            const auto V=Lunge.step(Dt,C->Combat->Tuning());
+-            const FVector Add(static_cast<float>(V.x),static_cast<float>(V.y),static_cast<float>(V.z));
+-            const FVector Candidate=BaseVelocity+Add;
++    mcl::LocomotionInput In;
++    In.velocity={Velocity.X,Velocity.Y,Velocity.Z};
++    In.intent={InputIntent.X,InputIntent.Y,0};
++    In.forward={Forward.X,Forward.Y,0};
++    In.dt=Dt;
++    In.attackProgress=State.phase==mcl::Phase::Release?State.progress():0;
++    In.sprintRequested=bSprintRequested;
++    In.crouched=IsCrouching();
++    In.grounded=true;
++    In.phase=State.phase;
+ 
+-            // A lunge is a positive-only movement bonus. Direction changes or other
+-            // edge cases are never allowed to make the player slower than base movement.
+-            if(Candidate.SizeSquared2D()+.01f>=BaseVelocity.SizeSquared2D()){
+-                PreviousLunge=Add;
+-                Velocity=Candidate;
+-            }
+-        }
+-    }
++    const auto Out=mcl::LocomotionModel::step(In,T);
++    Velocity.X=static_cast<float>(Out.velocity.x);
++    Velocity.Y=static_cast<float>(Out.velocity.y);
++
++    MovementSignals.LocalVelocity=FVector(
++        static_cast<float>(Out.localVelocity.x),
++        static_cast<float>(Out.localVelocity.y),
++        static_cast<float>(Out.localVelocity.z));
++    MovementSignals.LocalAcceleration=FVector(
++        static_cast<float>(Out.localAcceleration.x),
++        static_cast<float>(Out.localAcceleration.y),
++        static_cast<float>(Out.localAcceleration.z));
++    MovementSignals.BrakingIntensity=static_cast<float>(Out.brakingIntensity);
++    MovementSignals.SpeedNormalized=static_cast<float>(Out.speedNormalized);
++    MovementSignals.ReversalSeverity=static_cast<float>(Out.reversalSeverity);
++    MovementSignals.Gait=ToUnrealGait(Out.gait);
++    MovementSignals.CombatState=ToUnrealCombatState(Out.combatState);
++    MovementSignals.bGrounded=true;
+ }
++
++void UMeleeCharacterMovementComponent::UpdateFallbackSignals(const FVector& PreviousVelocity,float Dt)
++{
++    auto* C=Cast<AMeleeCharacter>(CharacterOwner);
++    if(!C||!C->Combat)return;
++
++    const FRotator Yaw(0,C->GetActorRotation().Yaw,0);
++    const FVector Accel=Dt>SMALL_NUMBER?(Velocity-PreviousVelocity)/Dt:FVector::ZeroVector;
++    MovementSignals.LocalVelocity=Yaw.UnrotateVector(Velocity);
++    MovementSignals.LocalAcceleration=Yaw.UnrotateVector(Accel);
++    MovementSignals.BrakingIntensity=0;
++    MovementSignals.ReversalSeverity=0;
++    MovementSignals.SpeedNormalized=FMath::Clamp(
++        Velocity.Size2D()/static_cast<float>(FMath::Max(1.,C->Combat->Tuning().SprintSpeed)),0.f,1.f);
++    MovementSignals.Gait=C->Combat->Simulation.state.phase==mcl::Phase::Dead?
++        EMeleeGait::Disabled:EMeleeGait::Airborne;
++    MovementSignals.CombatState=ToUnrealCombatState(
++        mcl::LocomotionModel::combatState(C->Combat->Simulation.state.phase));
++    MovementSignals.bGrounded=IsMovingOnGround();
++}
+diff --git a/Source/MeleeCombatLab/Movement/LocomotionModel.h b/Source/MeleeCombatLab/Movement/LocomotionModel.h
+new file mode 100644
+--- /dev/null
++++ b/Source/MeleeCombatLab/Movement/LocomotionModel.h
+@@ -0,0 +1,171 @@
++#pragma once
++#include "Combat/CombatMath.h"
++#include "Combat/CombatTuning.h"
++#include "Combat/Attacks/AttackTypes.h"
++
++namespace mcl
++{
++enum class Gait { Idle,Walk,Sprint,Crouch,Airborne,Disabled };
++enum class CombatMovementState { Neutral,Windup,Release,Recovery,Parry,ParryRecovery,Flinch,Dead };
++
++struct LocomotionInput
++{
++    Vec velocity;
++    Vec intent;
++    Vec forward{1,0,0};
++    double dt=0;
++    double attackProgress=0;
++    bool sprintRequested=false;
++    bool crouched=false;
++    bool grounded=true;
++    Phase phase=Phase::Idle;
++};
++
++struct LocomotionOutput
++{
++    Vec velocity;
++    Vec acceleration;
++    Vec localVelocity;
++    Vec localAcceleration;
++    double brakingIntensity=0;
++    double speedNormalized=0;
++    double reversalSeverity=0;
++    double targetSpeed=0;
++    Gait gait=Gait::Idle;
++    CombatMovementState combatState=CombatMovementState::Neutral;
++};
++
++struct LocomotionModel
++{
++    static constexpr double MaxSimulationStep=1./120.;
++
++    static CombatMovementState combatState(Phase phase)
++    {
++        switch(phase){
++        case Phase::Windup:return CombatMovementState::Windup;
++        case Phase::Release:return CombatMovementState::Release;
++        case Phase::Recovery:return CombatMovementState::Recovery;
++        case Phase::Parry:return CombatMovementState::Parry;
++        case Phase::ParryRecovery:return CombatMovementState::ParryRecovery;
++        case Phase::Flinch:return CombatMovementState::Flinch;
++        case Phase::Dead:return CombatMovementState::Dead;
++        default:return CombatMovementState::Neutral;
++        }
++    }
++
++    static double phaseScale(Phase phase,const Tuning& t)
++    {
++        switch(phase){
++        case Phase::Windup:return t.WindupMoveScale;
++        case Phase::Release:return t.ReleaseMoveScale;
++        case Phase::Recovery:return t.RecoveryMoveScale;
++        case Phase::Parry:return t.ParryMoveScale;
++        case Phase::ParryRecovery:return t.ParryRecoveryMoveScale;
++        case Phase::Flinch:return t.FlinchMoveScale;
++        case Phase::Dead:return 0;
++        default:return 1;
++        }
++    }
++
++    static Vec right(Vec forward)
++    {
++        forward.z=0;forward=forward.normal();
++        return {-forward.y,forward.x,0};
++    }
++
++    static Vec local(Vec worldValue,Vec forward)
++    {
++        forward.z=0;forward=forward.normal();const Vec r=right(forward);
++        return {worldValue.dot(forward),worldValue.dot(r),worldValue.z};
++    }
++
++    static double directionalSpeed(Vec localDirection,const Tuning& t)
++    {
++        const double forwardAxis=localDirection.x>=0?t.ForwardSpeed:t.BackwardSpeed;
++        const double denominator=std::sqrt(
++            (localDirection.x/forwardAxis)*(localDirection.x/forwardAxis)+
++            (localDirection.y/t.LateralSpeed)*(localDirection.y/t.LateralSpeed));
++        return denominator>1e-9?1./denominator:0;
++    }
++
++    static Vec moveTowards(Vec current,Vec target,double maxDelta)
++    {
++        Vec delta=target-current;delta.z=0;const double distance=delta.length();
++        return distance<=maxDelta||distance<1e-9?target:current+delta*(maxDelta/distance);
++    }
++
++    static LocomotionOutput step(const LocomotionInput& input,const Tuning& t)
++    {
++        LocomotionOutput out;out.velocity=input.velocity;out.combatState=combatState(input.phase);
++        if(input.dt<=0)return out;
++
++        Vec forward=input.forward;forward.z=0;if(forward.length()<1e-6)forward={1,0,0};forward=forward.normal();
++        Vec intent=input.intent;intent.z=0;const double rawMagnitude=intent.length();
++        const double magnitude=clamp(rawMagnitude,0.,1.);
++        const Vec direction=rawMagnitude>1e-6?intent/rawMagnitude:Vec{};
++        const Vec localDirection=local(direction,forward);
++
++        const bool disabled=input.phase==Phase::Dead;
++        const bool hasIntent=magnitude>.01&&!disabled;
++        double targetSpeed=hasIntent?directionalSpeed(localDirection,t)*magnitude*phaseScale(input.phase,t):0;
++
++        bool sprinting=false;
++        if(hasIntent&&input.grounded&&!input.crouched&&input.phase==Phase::Idle&&input.sprintRequested&&
++            localDirection.x>=t.SprintForwardRequirement)
++        {
++            const double alpha=clamp((localDirection.x-t.SprintForwardRequirement)/
++                std::max(1e-6,1.-t.SprintForwardRequirement),0.,1.);
++            targetSpeed=mix(targetSpeed,t.SprintSpeed*magnitude,alpha);
++            sprinting=alpha>.01;
++        }
++        if(input.crouched)targetSpeed*=t.CrouchMoveScale;
++
++        Vec target=direction*targetSpeed;
++        if(hasIntent&&input.phase==Phase::Release&&localDirection.x>0){
++            const double p=clamp(input.attackProgress/.82,0.,1.);
++            const double envelope=std::sin(Pi*p);
++            target+=forward*(t.ReleaseForwardBias*localDirection.x*magnitude*envelope*envelope);
++        }
++
++        Vec planar=input.velocity;planar.z=0;
++        const double currentSpeed=planar.length();
++        const Vec velocityDirection=currentSpeed>1e-6?planar/currentSpeed:direction;
++        const double alignment=hasIntent?clamp(velocityDirection.dot(direction),-1.,1.):1;
++        out.reversalSeverity=hasIntent&&currentSpeed>30?clamp((-alignment-.05)/.95,0.,1.):0;
++
++        double authority=t.Deceleration;
++        if(hasIntent){
++            const double redirect=clamp((1.-alignment)/1.2,0.,1.);
++            authority=mix(t.Acceleration,t.RedirectAcceleration,redirect);
++            authority=mix(authority,t.ReverseAcceleration,out.reversalSeverity);
++            if(currentSpeed<t.PrecisionSpeedThreshold&&alignment>.25)
++                authority=std::max(authority,t.PrecisionAcceleration);
++            if(target.length()+1<currentSpeed&&alignment>.2)
++                authority=std::max(authority,t.Deceleration);
++        }else if(currentSpeed>t.ForwardSpeed*1.1){
++            authority=t.SprintDeceleration;
++        }
++
++        const Vec next=moveTowards(planar,target,authority*input.dt);
++        out.velocity={next.x,next.y,input.velocity.z};
++        out.acceleration=(next-planar)/input.dt;
++        out.targetSpeed=target.length();
++        out.localVelocity=local(out.velocity,forward);
++        out.localAcceleration=local(out.acceleration,forward);
++
++        const double decelDot=currentSpeed>1e-6?-out.acceleration.dot(velocityDirection):0;
++        out.brakingIntensity=clamp(decelDot/std::max(1.,t.SprintDeceleration),0.,1.);
++        const double normalization=sprinting?t.SprintSpeed:
++            std::max({t.ForwardSpeed,t.LateralSpeed,t.BackwardSpeed});
++        out.speedNormalized=clamp(next.length()/std::max(1.,normalization),0.,1.);
++
++        if(disabled)out.gait=Gait::Disabled;
++        else if(!input.grounded)out.gait=Gait::Airborne;
++        else if(input.crouched)out.gait=Gait::Crouch;
++        else if(sprinting)out.gait=Gait::Sprint;
++        else if(next.length()>5||hasIntent)out.gait=Gait::Walk;
++        else out.gait=Gait::Idle;
++        return out;
++    }
++};
++}
+diff --git a/Tests/MovementTests.cpp b/Tests/MovementTests.cpp
+new file mode 100644
+--- /dev/null
++++ b/Tests/MovementTests.cpp
+@@ -0,0 +1,150 @@
++#include "Movement/LocomotionModel.h"
++#include <algorithm>
++#include <cmath>
++#include <iostream>
++#include <stdexcept>
++#include <vector>
++
++using namespace mcl;
++
++namespace
++{
++int Checks=0;
++void expect(bool Ok,const char* Message){++Checks;if(!Ok)throw std::runtime_error(Message);}
++void near(double A,double B,double Tolerance,const char* Message){expect(std::abs(A-B)<=Tolerance,Message);}
++
++struct RunResult
++{
++    LocomotionOutput output;
++    Vec position;
++    double firstZero=-1;
++    double firstNinety=-1;
++};
++
++RunResult run(double Seconds,double FrameDt,LocomotionInput Input,const Tuning& T,Vec OppositeTarget={})
++{
++    RunResult Result;
++    double Age=0;
++    while(Age+1e-10<Seconds){
++        double Frame=std::min(FrameDt,Seconds-Age);
++        double Remaining=Frame;
++        while(Remaining>1e-10){
++            const double Dt=std::min(Remaining,LocomotionModel::MaxSimulationStep);
++            Input.dt=Dt;
++            Result.output=LocomotionModel::step(Input,T);
++            Result.position+=Result.output.velocity*Dt;
++            Input.velocity=Result.output.velocity;
++            Age+=Dt;Remaining-=Dt;
++
++            if(Result.firstZero<0&&OppositeTarget.length()>1&&
++                Result.output.velocity.dot(OppositeTarget.normal())>0)Result.firstZero=Age;
++            if(Result.firstNinety<0&&OppositeTarget.length()>1&&
++                Result.output.velocity.dot(OppositeTarget.normal())>=OppositeTarget.length()*.9)Result.firstNinety=Age;
++        }
++    }
++    return Result;
++}
++}
++
++int main()
++{
++    try{
++        Tuning T;
++
++        // Start from rest: immediate intent, bounded body acceleration.
++        for(double Fps:{30.,60.,120.,144.,240.}){
++            LocomotionInput In;In.intent={1,0,0};
++            auto R=run(.10,1./Fps,In,T);
++            expect(R.output.velocity.x>320&&R.output.velocity.x<=T.ForwardSpeed+.01,
++                "Forward start reaches useful speed without instant target-velocity teleport");
++        }
++
++        // Constant directional caps and no diagonal sqrt(2) exploit.
++        LocomotionInput Forward;Forward.intent={1,0,0};
++        near(run(1,1./240.,Forward,T).output.velocity.x,T.ForwardSpeed,.01,"Forward cap");
++        LocomotionInput Back;Back.intent={-1,0,0};
++        near(run(1,1./240.,Back,T).output.velocity.x,-T.BackwardSpeed,.01,"Backward cap");
++        LocomotionInput Side;Side.intent={0,1,0};
++        near(run(1,1./240.,Side,T).output.velocity.y,T.LateralSpeed,.01,"Lateral cap");
++        LocomotionInput Diagonal;Diagonal.intent={1,1,0};
++        expect(run(1,1./240.,Diagonal,T).output.velocity.length()<T.ForwardSpeed,
++            "Diagonal movement obeys directional ellipse");
++
++        // Sprint: gait is a target-velocity state, not a momentum scalar.
++        LocomotionInput Sprint;Sprint.intent={1,0,0};Sprint.sprintRequested=true;
++        auto SprintRun=run(1,1./240.,Sprint,T);
++        near(SprintRun.output.velocity.x,T.SprintSpeed,.01,"Sprint cap");
++        expect(SprintRun.output.gait==Gait::Sprint,"Sprint gait signal");
++
++        // Sprint stop distance should be substantial but not slippery and nearly frame independent.
++        std::vector<double> Stops;
++        for(double Fps:{30.,60.,120.,144.,240.}){
++            LocomotionInput Stop;Stop.velocity={T.SprintSpeed,0,0};
++            auto R=run(.25,1./Fps,Stop,T);
++            Stops.push_back(R.position.x);
++            expect(R.output.velocity.length()<.01,"Sprint stops within 250 ms");
++            expect(R.position.x>28&&R.position.x<40,"Sprint stop distance remains grounded and bounded");
++        }
++        const auto [MinStop,MaxStop]=std::minmax_element(Stops.begin(),Stops.end());
++        expect(*MaxStop-*MinStop<2.0,"Sprint stopping distance is frame-rate stable");
++
++        // Hard A/D or W/S reversal gets extra authority without snapping velocity.
++        for(double Fps:{30.,60.,120.,144.,240.}){
++            LocomotionInput Reverse;Reverse.velocity={T.LateralSpeed,0,0};Reverse.intent={-1,0,0};
++            Reverse.dt=std::min(1./Fps,LocomotionModel::MaxSimulationStep);
++            auto First=LocomotionModel::step(Reverse,T);
++            expect(First.reversalSeverity>.9,"Hard reversal severity is exposed");
++            auto R=run(.16,1./Fps,Reverse,T,{-T.BackwardSpeed,0,0});
++            expect(R.firstZero>0&&R.firstZero<=.075,"Reversal crosses zero quickly");
++            expect(R.firstNinety>0&&R.firstNinety<=.15,"Reversal reaches useful opposite speed");
++        }
++
++        // Tiny corrections receive precision authority.
++        LocomotionInput Precision;Precision.intent={.25,0,0};
++        auto P=run(.035,1./240.,Precision,T);
++        expect(P.output.velocity.x>70,"Small correction becomes perceptible immediately");
++        expect(P.output.velocity.x<=T.ForwardSpeed*.25+.01,"Analog correction remains proportional");
++
++        // Entering combat drops sprint but never zeros ordinary locomotion.
++        Sprint.phase=Phase::Windup;Sprint.velocity={T.SprintSpeed,0,0};Sprint.dt=1./120.;
++        auto Windup=LocomotionModel::step(Sprint,T);
++        expect(Windup.gait==Gait::Walk,"Attack disengages sprint gait");
++        expect(Windup.targetSpeed>300&&Windup.targetSpeed<T.ForwardSpeed,
++            "Windup keeps agency while lowering target speed");
++
++        // Release drive is input-authored and bounded: no automatic capsule lunge.
++        LocomotionInput Release;Release.velocity={T.ForwardSpeed*T.ReleaseMoveScale,0,0};
++        Release.intent={1,0,0};Release.phase=Phase::Release;Release.attackProgress=.41;Release.dt=1./120.;
++        auto Driven=LocomotionModel::step(Release,T);
++        expect(Driven.targetSpeed>T.ForwardSpeed*T.ReleaseMoveScale,"Forward release bias exists");
++        Release.intent={};
++        auto StationaryAttack=LocomotionModel::step(Release,T);
++        near(StationaryAttack.targetSpeed,0,.001,"Release never creates free motion without movement intent");
++
++        // Compare release displacement against the same combat movement with bias disabled.
++        auto DefaultT=T,NoBias=T;NoBias.ReleaseForwardBias=0;
++        LocomotionInput Attack;Attack.velocity={T.ForwardSpeed*T.WindupMoveScale,0,0};
++        Attack.intent={1,0,0};Attack.phase=Phase::Release;
++        Vec WithBias,WithoutBias;
++        auto A=Attack,B=Attack;
++        for(int I=0;I<60;++I){
++            A.attackProgress=(I+.5)/60.;A.dt=1./120.;auto OA=LocomotionModel::step(A,DefaultT);A.velocity=OA.velocity;WithBias+=OA.velocity*A.dt;
++            B.attackProgress=(I+.5)/60.;B.dt=1./120.;auto OB=LocomotionModel::step(B,NoBias);B.velocity=OB.velocity;WithoutBias+=OB.velocity*B.dt;
++        }
++        const double Extra=(WithBias-WithoutBias).length();
++        expect(Extra>5&&Extra<12,"Default release drive adds only a small footwork-scale displacement");
++
++        // Crouch and dead states are explicit.
++        LocomotionInput Crouch;Crouch.intent={1,0,0};Crouch.crouched=true;
++        near(run(1,1./240.,Crouch,T).output.velocity.x,T.ForwardSpeed*T.CrouchMoveScale,.01,"Crouch scale");
++        LocomotionInput Dead;Dead.velocity={200,0,0};Dead.intent={1,0,0};Dead.phase=Phase::Dead;
++        auto D=run(.1,1./240.,Dead,T);
++        expect(D.output.gait==Gait::Disabled&&D.output.velocity.length()<1,"Dead movement brakes to zero");
++
++        std::cout<<"PASS: "<<Checks<<" movement checks\n";
++        return 0;
++    }catch(const std::exception& E){
++        std::cerr<<"FAIL after "<<Checks<<" movement checks: "<<E.what()<<'\n';
++        return 1;
++    }
++}
+diff --git a/Docs/MOVEMENT_CONTRACT.md b/Docs/MOVEMENT_CONTRACT.md
+new file mode 100644
+--- /dev/null
++++ b/Docs/MOVEMENT_CONTRACT.md
+@@ -0,0 +1,131 @@
++# Grounded Movement Contract
++
++## Design goal
++
++Locomotion must communicate input intent immediately while allowing horizontal body velocity to respond over time. The player controls where the body is trying to go on the current frame; the controller owns how an armored body gets there.
++
++This system is intentionally not an animation controller. Camera, weapon presentation, footsteps and body animation may consume its signals later, but they must not alter authoritative capsule velocity.
++
++## Architecture
++
++`mcl::LocomotionModel` is the engine-independent movement law. `UMeleeCharacterMovementComponent` supplies Unreal input/collision state, executes the planar result through CharacterMovement, and exposes presentation signals.
++
++The model is stateless. Its complete authoritative inputs are:
++
++- current planar velocity
++- current movement intent
++- character forward
++- grounded/crouched/sprint-request state
++- combat phase and normalized release progress
++- delta time
++- `mcl::Tuning`
++
++The model outputs target-resolved planar velocity plus presentation telemetry. Unreal remains responsible for collision, floor finding, stepping, slopes, depenetration, jump/fall movement and final actor translation.
++
++## Core movement law
++
++### Immediate intent, physical velocity
++
++WASD intent is sampled every movement tick with no input smoothing. View yaw remains immediate. Horizontal velocity approaches a target under a bounded acceleration budget.
++
++Acceleration authority is contextual:
++
++- ordinary acceleration for sustained travel
++- stronger precision acceleration below `PrecisionSpeedThreshold`
++- stronger redirect acceleration when desired direction diverges from current velocity
++- strongest reversal acceleration for true opposite-direction changes
++- explicit deceleration when input is released or a lower gait target is entered
++
++This is velocity inertia, not input latency.
++
++### Directional speed envelope
++
++Forward, lateral and backward speeds are separate axes. Mixed directions use an elliptical envelope, so W+D cannot gain a `sqrt(2)` speed bonus.
++
++The directional caps are authoritative even when the camera turns. Fast circle-strafing therefore rotates intent immediately while velocity catches the new direction using redirect authority.
++
++### Sprint
++
++Shift requests sprint; it does not grant a speed multiplier directly.
++
++Sprint is legal only when:
++- grounded
++- not crouched
++- combat phase is neutral/idle
++- local forward intent exceeds `SprintForwardRequirement`
++
++The sprint target is strongest for straight-ahead input and fades toward ordinary directional speed near the forward requirement. Releasing W uses `SprintDeceleration`; releasing Shift or entering combat lowers the target and decelerates toward ordinary footwork instead of snapping speed.
++
++Attacking therefore disengages sprint automatically without an animation lock.
++
++### Combat footwork
++
++Combat phases scale ordinary target velocity, not input:
++
++- windup: small loss of travel speed
++- release: stronger commitment
++- recovery: modest commitment
++- parry: modest commitment
++- missed-parry recovery: stronger commitment
++- flinch: substantial movement loss
++- dead: zero target
++
++The player keeps steering authority during these states. Reversal and redirect acceleration are still available; combat scaling changes the target, not whether movement input is accepted.
++
++### Release drive
++
++There is no additive lunge velocity and no attack that moves a stationary player for free.
++
++During release, positive forward movement intent receives a small, front-loaded target-velocity bias. At default tuning this produces only footwork-scale extra displacement over the release, rather than a dash. Sideways, backward, and zero-input releases receive no forward injection.
++
++This keeps attack spacing coupled to the same collision-resolved locomotion law used everywhere else.
++
++### Frame-rate contract
++
++CharacterMovement is configured for a maximum 1/120 s simulation step with up to eight iterations per frame. The pure movement law is time-based and contains no frame-count constants.
++
++Very large hitches can still exceed that substep budget; that is an overload case, not a normal tuning target.
++
++## Presentation signals
++
++`FMovementPresentationSignals` exposes:
++
++- `LocalVelocity` — cm/s in character forward/right/up axes
++- `LocalAcceleration` — cm/s² in the same axes
++- `BrakingIntensity` — normalized opposing acceleration
++- `SpeedNormalized` — normalized gait speed
++- `ReversalSeverity` — 0..1 opposite-direction demand
++- `Gait` — idle, walk, sprint, crouch, airborne, disabled
++- `CombatState` — neutral, windup, release, recovery, parry, parry recovery, flinch, dead
++- `bGrounded`
++
++Later camera/animation specialists should consume these signals instead of recomputing movement state from raw input.
++
++## Collision and combat coupling
++
++The capsule remains authoritative for world movement. `ACombatLabGameMode` continues to copy the post-movement actor position into `Combatant::frameTarget`; the 240 Hz combat simulation interpolates that collision-resolved translation through its fixed steps. Footwork therefore advances/delays actual blade contact naturally without special attack-time teleportation.
++
++## Tuning order
++
++Tune in this order:
++
++1. `ForwardSpeed`, `LateralSpeed`, `BackwardSpeed`
++2. `Acceleration`, `PrecisionAcceleration`
++3. `Deceleration`, `SprintDeceleration`
++4. `RedirectAcceleration`, `ReverseAcceleration`
++5. `SprintSpeed`, `SprintForwardRequirement`
++6. combat movement scales
++7. `ReleaseForwardBias`
++
++Do not tune `ReleaseForwardBias` to solve a range problem first. Weapon reach, attack trajectory, normal footwork and collision should establish spacing. Release drive is only the final physical punctuation.
++
++## Remaining human-playtest questions
++
++- Is ~35 cm of sprint stopping distance enough mass without harming defensive spacing?
++- Is ~65–75 ms to cross zero on a hard reversal too strong for high-level A/D baiting?
++- Does lateral speed need to come down relative to forward speed once real duel AI/player opposition exists?
++- Should missed-parry recovery movement scale be harsher or should punishment come primarily from defense timing?
++- Is the default release forward bias perceptible enough, or should it remain effectively invisible and only affect contact timing?
++- Should crouch retain the same acceleration authority at its lower speed?
++- Does jumping need a separate air-acceleration contract once bunny-hop/air-strafe exploits can be tested?
++- Future multiplayer work must serialize sprint request and reproduce this solver in CharacterMovement prediction/saved moves; no networking contract is implemented here.
+diff --git a/Docs/MOVEMENT_AUDIT.md b/Docs/MOVEMENT_AUDIT.md
+new file mode 100644
+--- /dev/null
++++ b/Docs/MOVEMENT_AUDIT.md
+@@ -0,0 +1,69 @@
++# Locomotion Audit — September 6, 2026
++
++## What made the previous movement feel prototype-level
++
++1. **The scalar momentum model was not body momentum.** CharacterMovement solved velocity with its stock acceleration/friction model; a separate 0..1 scalar only influenced sprint and lunge. The player therefore had two unrelated notions of momentum.
++
++2. **Sprint depended on historical scalar state instead of one coherent gait transition.** A player who had already built the scalar could enter sprint differently from a player issuing the same current input from another history.
++
++3. **Attack movement was layered after ordinary locomotion.** Lunge removed the previous additive term, asked stock CharacterMovement for base velocity, then added a new positive-only release velocity. Because the candidate was rejected if it made the player slower, attack movement could not participate in braking, reversals, or the same physical law as normal footwork.
++
++4. **Directional speed and response were separate concerns.** Forward/lateral/backward caps existed, but acceleration, braking and redirection were generic stock-vector behavior. There was no explicit contract for A/D reversals, W/S reversals, circle-strafe redirection, precision taps, or sprint disengagement.
++
++5. **Stopping was dominated by stock friction + braking.** That can be tuned to a number, but it does not express the desired authored distinction between ordinary braking, high-speed sprint braking, redirection and hard reversal.
++
++6. **Combat states barely participated in locomotion.** Ordinary movement was deliberately preserved through attacks and lunge was purely additive. This protected agency, but it also made weapon commitment and body commitment feel disconnected.
++
++7. **Validation was coupled to implementation details.** The rendered movement case checked `Momentum.value` and `Lunge.displacement`, rather than player-facing outcomes such as reversal response or sprint-to-combat behavior.
++
++8. **Documentation had drifted.** README movement values no longer matched the checked-in tuning registry.
++
++## Approaches considered
++
++| Approach | Intent | Mass | Footwork | Stops/reversals | Combat integration | Risk |
++|---|---:|---:|---:|---:|---:|---|
++| Retuned stock CharacterMovement | Excellent | Fair | Good | Fair | Fair | Low |
++| Critically damped target-velocity spring | Good | Excellent | Fair | Good | Good | Medium |
++| Projected longitudinal/lateral momentum | Good | Excellent | Good | Good | Excellent | High |
++| **Immediate intent + bounded body-velocity solver** | **Excellent** | **Excellent** | **Excellent** | **Excellent** | **Excellent** | **Medium-low** |
++
++### 1. Retuned stock CharacterMovement
++
++Keep stock `CalcVelocity`, adjust acceleration/friction/braking and directional `GetMaxSpeed`.
++
++**Why it lost:** smallest code change, but it still leaves the core feel implicit inside a generic locomotion solver. It cannot cleanly distinguish precision acceleration, redirection, true reversal, sprint braking and combat target-speed changes without accumulating overrides around the stock model.
++
++### 2. Critically damped target-velocity spring
++
++Treat desired velocity as a spring target and solve a second-order response.
++
++**Why it lost:** excellent mass and smoothness, but a spring introduces a continuous lag/error state precisely where competitive footwork needs explicit stop and reversal guarantees. It is also easier to make small corrections feel syrupy and harder to express deterministic stopping-distance expectations.
++
++### 3. Projected longitudinal/lateral momentum
++
++Decompose velocity onto current intent or body axes and preserve/bleed components independently.
++
++**Why it lost:** powerful for surf-like or highly momentum-driven movement, but it can preserve tangential velocity too strongly during camera turns and produce ice-skating. It also creates more policy questions around basis changes than this prototype needs.
++
++### 4. Immediate intent + bounded body-velocity solver — selected
++
++Input establishes a target velocity immediately. Actual planar velocity moves toward that target with an acceleration budget selected from the current physical situation.
++
++**Why it won:** it creates the intended split directly:
++
++`immediate player intent + physical velocity response`
++
++without filtering input. The acceleration budget can be stronger for low-speed precision, redirection and true reversals while ordinary travel remains weighty. Sprint and combat become target-velocity states inside the same law. Attack movement no longer bypasses braking/collision with an additive impulse.
++
++## Default feel targets
++
++- Forward: 360 cm/s
++- Lateral: 315 cm/s
++- Backward: 255 cm/s
++- Sprint: 560 cm/s
++- Forward start to ~90% target: ~100 ms
++- Hard reversal crosses zero: ~65–75 ms
++- Sprint release stop: roughly 34–36 cm under the 120 Hz movement substep contract
++- Release drive: small forward-intent-only speed bias; roughly single-digit centimeters of extra release translation at defaults
++
++These are starting points for human playtesting, not balance constants.
+diff --git a/Source/MeleeCombatLab/Combat/CombatTuning.h b/Source/MeleeCombatLab/Combat/CombatTuning.h
+--- a/Source/MeleeCombatLab/Combat/CombatTuning.h
++++ b/Source/MeleeCombatLab/Combat/CombatTuning.h
+@@ -55,23 +55,26 @@
+  X(ChamberDuration,.225,.05,.4,"Chamber") \
+  X(ChamberTolerance,32,5,65,"Chamber") \
+  X(ChamberFacingAngle,80,30,89,"Chamber") \
+- X(ForwardSpeed,306,100,700,"Movement") \
+- X(LateralSpeed,261,100,700,"Movement") \
+- X(BackwardSpeed,222,100,700,"Movement") \
+- X(SprintSpeed,549.5,300,1000,"Movement") \
+- X(Acceleration,4070,500,6000,"Movement") \
+- X(Deceleration,5000,500,6000,"Movement") \
+- X(GroundFriction,10,0,20,"Movement") \
++ X(ForwardSpeed,360,200,600,"Movement") \
++ X(LateralSpeed,315,180,550,"Movement") \
++ X(BackwardSpeed,255,150,500,"Movement") \
++ X(SprintSpeed,560,350,800,"Movement") \
++ X(Acceleration,2900,1000,6000,"Movement") \
++ X(PrecisionAcceleration,4300,1500,8000,"Movement") \
++ X(RedirectAcceleration,4300,1500,8000,"Movement") \
++ X(ReverseAcceleration,5000,2000,9000,"Movement") \
++ X(Deceleration,4000,1000,8000,"Movement") \
++ X(SprintDeceleration,4500,1200,9000,"Movement") \
++ X(PrecisionSpeedThreshold,120,20,250,"Movement") \
++ X(SprintForwardRequirement,.55,.2,.95,"Movement") \
++ X(CrouchMoveScale,.58,.3,.8,"Movement") \
++ X(WindupMoveScale,.96,.65,1.1,"Movement") \
++ X(ReleaseMoveScale,.90,.6,1.1,"Movement") \
++ X(RecoveryMoveScale,.94,.65,1.1,"Movement") \
++ X(ParryMoveScale,.92,.6,1.1,"Movement") \
++ X(ParryRecoveryMoveScale,.86,.5,1.05,"Movement") \
++ X(FlinchMoveScale,.72,.2,1,"Movement") \
++ X(ReleaseForwardBias,35,0,120,"Movement") \
+  X(GravityScale,1.4,.5,3,"Movement") \
+  X(JumpSpeed,500,250,750,"Movement") \
+- X(MomentumBuild,1,.1,3,"Movement") \
+- X(MomentumLoss,1.8,.1,5,"Movement") \
+- X(SoftTurnThreshold,90,20,150,"Movement") \
+- X(HardTurnThreshold,200,160,360,"Movement") \
+- X(ReversePenalty,2.5,.1,6,"Movement") \
+- X(LungeStrength,600,0,3000,"Lunge") \
+- X(LungeDuration,.16,.05,.5,"Lunge") \
+- X(LungeMaxDisplacement,42,0,120,"Lunge") \
+- X(LungeMomentumScaling,.70,0,1,"Lunge") \
+- X(LungeForwardRequirement,.20,0,1,"Lunge") \
+  X(FeintCost,10,0,30,"Stamina") \
+diff --git a/Config/CombatDefaults.json b/Config/CombatDefaults.json
+--- a/Config/CombatDefaults.json
++++ b/Config/CombatDefaults.json
+@@ -58,23 +58,26 @@
+     "ChamberDuration":  0.225,
+     "ChamberTolerance":  32,
+     "ChamberFacingAngle":  80,
+-    "ForwardSpeed":  306,
+-    "LateralSpeed":  261,
+-    "BackwardSpeed":  222,
+-    "SprintSpeed":  549.5,
+-    "Acceleration":  4070,
+-    "Deceleration":  5000,
+-    "GroundFriction":  10,
++    "ForwardSpeed":  360,
++    "LateralSpeed":  315,
++    "BackwardSpeed":  255,
++    "SprintSpeed":  560,
++    "Acceleration":  2900,
++    "PrecisionAcceleration":  4300,
++    "RedirectAcceleration":  4300,
++    "ReverseAcceleration":  5000,
++    "Deceleration":  4000,
++    "SprintDeceleration":  4500,
++    "PrecisionSpeedThreshold":  120,
++    "SprintForwardRequirement":  0.55,
++    "CrouchMoveScale":  0.58,
++    "WindupMoveScale":  0.96,
++    "ReleaseMoveScale":  0.9,
++    "RecoveryMoveScale":  0.94,
++    "ParryMoveScale":  0.92,
++    "ParryRecoveryMoveScale":  0.86,
++    "FlinchMoveScale":  0.72,
++    "ReleaseForwardBias":  35,
+     "GravityScale":  1.4,
+     "JumpSpeed":  500,
+-    "MomentumBuild":  1,
+-    "MomentumLoss":  1.8,
+-    "SoftTurnThreshold":  90,
+-    "HardTurnThreshold":  200,
+-    "ReversePenalty":  2.5,
+-    "LungeStrength":  600,
+-    "LungeDuration":  0.16,
+-    "LungeMaxDisplacement":  42,
+-    "LungeMomentumScaling":  0.7,
+-    "LungeForwardRequirement":  0.2,
+     "FeintCost":  10,
+diff --git a/Source/MeleeCombatLab/Character/MeleeCharacter.cpp b/Source/MeleeCombatLab/Character/MeleeCharacter.cpp
+--- a/Source/MeleeCombatLab/Character/MeleeCharacter.cpp
++++ b/Source/MeleeCombatLab/Character/MeleeCharacter.cpp
+@@ -54,7 +54,11 @@
+ void AMeleeCharacter::Forward(const FInputActionValue& V)
+ {
+     if(Combat->Simulation.health<=0)return;
+-    const float Amount=V.Get<float>();CastChecked<UMeleeCharacterMovementComponent>(GetCharacterMovement())->ForwardInput=Amount;
++    const float Amount=V.Get<float>();
+     AddMovementInput(FRotator(0,GetControlRotation().Yaw,0).Vector(),Amount);
+ }
+-void AMeleeCharacter::Right(const FInputActionValue& V){AddMovementInput(FRotationMatrix(FRotator(0,GetControlRotation().Yaw,0)).GetUnitAxis(EAxis::Y),V.Get<float>());}
++void AMeleeCharacter::Right(const FInputActionValue& V)
++{
++    if(Combat->Simulation.health<=0)return;
++    AddMovementInput(FRotationMatrix(FRotator(0,GetControlRotation().Yaw,0)).GetUnitAxis(EAxis::Y),V.Get<float>());
++}
+@@ -76,5 +79,5 @@
+     Combat->Simulation.look(0,Delta*Combat->Tuning().MouseSensitivity,GetWorld()->GetDeltaSeconds(),Combat->Tuning());
+     if(Controller)Controller->SetControlRotation(FRotator(Combat->Simulation.view.pitch,Combat->Simulation.view.yaw,0));
+ }
+-void AMeleeCharacter::SprintStart(){CastChecked<UMeleeCharacterMovementComponent>(GetCharacterMovement())->bSprint=true;}
+-void AMeleeCharacter::SprintEnd(){CastChecked<UMeleeCharacterMovementComponent>(GetCharacterMovement())->bSprint=false;}
++void AMeleeCharacter::SprintStart(){CastChecked<UMeleeCharacterMovementComponent>(GetCharacterMovement())->bSprintRequested=true;}
++void AMeleeCharacter::SprintEnd(){CastChecked<UMeleeCharacterMovementComponent>(GetCharacterMovement())->bSprintRequested=false;}
+diff --git a/Source/MeleeCombatLab/Debug/CombatDebugHUD.cpp b/Source/MeleeCombatLab/Debug/CombatDebugHUD.cpp
+--- a/Source/MeleeCombatLab/Debug/CombatDebugHUD.cpp
++++ b/Source/MeleeCombatLab/Debug/CombatDebugHUD.cpp
+@@ -49,12 +49,24 @@
+     }
+     if(Lab->bDebug)DrawText(TEXT("F7  ")+TournamentGraphics::Profile,FColor(175,195,210),W-210,30);
+     if(!Lab->bDebug)return;
++    const FMovementPresentationSignals Move=M?M->MovementSignals:FMovementPresentationSignals{};
++    auto GaitName=[](EMeleeGait Gait){
++        switch(Gait){
++        case EMeleeGait::Walk:return TEXT("WALK");
++        case EMeleeGait::Sprint:return TEXT("SPRINT");
++        case EMeleeGait::Crouch:return TEXT("CROUCH");
++        case EMeleeGait::Airborne:return TEXT("AIR");
++        case EMeleeGait::Disabled:return TEXT("DISABLED");
++        default:return TEXT("IDLE");
++        }
++    };
+     DrawText(FString::Printf(TEXT("Strike release %.0f ms / damage active %.0f ms"),T.StrikeRelease*1000,T.StrikeRelease*(T.DamageEnd-T.DamageStart)*1000),FColor::White,34,390);
+-    FString Debug=FString::Printf(TEXT("STATE %s | %s | angle %.1f | raw %.1f\nphase %.3f / %.3f | release %.3f | spin %.1f / %.1f\nweapon %.0f cm/s | angular %.0f deg/s | yaw cap %.0f | pitch cap %.0f\nfeint %d | morph %d | combo %d | queued %d | riposte %.3f\nparry active %d | remaining %.3f | guard yaw %.1f pitch %.1f\nchamber %d | remaining %.3f | incoming %.1f | difference %.1f / %.1f\nspeed %.0f | momentum %.2f | turn %.0f deg/s | loss %.3f\nlunge %.0f cm/s | displacement %.1f cm\ncombat steps %d | collision queries %d | overload %d"),
++    FString Debug=FString::Printf(TEXT("STATE %s | %s | angle %.1f | raw %.1f\nphase %.3f / %.3f | release %.3f | spin %.1f / %.1f\nweapon %.0f cm/s | angular %.0f deg/s | yaw cap %.0f | pitch cap %.0f\nfeint %d | morph %d | combo %d | queued %d | riposte %.3f\nparry active %d | remaining %.3f | guard yaw %.1f pitch %.1f\nchamber %d | remaining %.3f | incoming %.1f | difference %.1f / %.1f\nmove %.0f cm/s | gait %s | normalized %.2f | grounded %d\nlocal v F %.0f R %.0f | accel F %.0f R %.0f | brake %.2f | reverse %.2f\ncombat steps %d | collision queries %d | overload %d"),
+         UTF8_TO_TCHAR(mcl::phaseName(State.phase)),State.attack.kind==mcl::AttackKind::Stab?TEXT("STAB"):TEXT("STRIKE"),State.attack.angle,State.attack.rawAngle,
+         State.elapsed,State.duration(),State.phase==mcl::Phase::Release?State.progress():0,State.releaseRotation,T.AntiSpinThreshold,
+         S.speed,S.angularSpeed,State.yawCap(T),T.PitchCap,State.canFeint(T),State.canMorph(T),State.canCombo(T),State.comboQueued,State.riposteRemaining,
+         State.phase==mcl::Phase::Parry,State.phase==mcl::Phase::Parry?FMath::Max(0.,T.ParryDuration-State.elapsed):0,S.guard.yaw,S.guard.pitch,
+         State.chamberActive(T),State.chamberActive(T)?FMath::Max(0.,T.ChamberDuration-State.attackAge):0,S.incomingAngle,S.chamberDifference,T.ChamberTolerance,
+-        C->GetVelocity().Size2D(),M?M->Momentum.value:0,M?M->Momentum.turnRate:0,M?M->Momentum.loss:0,M?M->Lunge.velocity:0,M?M->Lunge.displacement:0,
++        C->GetVelocity().Size2D(),GaitName(Move.Gait),Move.SpeedNormalized,Move.bGrounded,
++        Move.LocalVelocity.X,Move.LocalVelocity.Y,Move.LocalAcceleration.X,Move.LocalAcceleration.Y,Move.BrakingIntensity,Move.ReversalSeverity,
+         Lab->Combat.stepsLastFrame,Lab->Combat.queriesLastFrame,Lab->Combat.overload);
+diff --git a/Source/MeleeCombatLab/Tests/CombatPlaytest.cpp b/Source/MeleeCombatLab/Tests/CombatPlaytest.cpp
+--- a/Source/MeleeCombatLab/Tests/CombatPlaytest.cpp
++++ b/Source/MeleeCombatLab/Tests/CombatPlaytest.cpp
+@@ -20,3 +20,3 @@
+ const TCHAR* Names[]={TEXT("right"),TEXT("upper_right"),TEXT("upper_left"),TEXT("left"),TEXT("lower_left"),TEXT("lower_right"),TEXT("stab"),
+     TEXT("accel"),TEXT("drag"),TEXT("parry"),TEXT("chamber"),TEXT("wrong_chamber"),TEXT("microdrag_chamber"),TEXT("microdrag_parry"),
+-    TEXT("feint_to_parry"),TEXT("morph"),TEXT("combo"),TEXT("riposte"),TEXT("parry_look_up"),TEXT("parry_look_down"),TEXT("momentum_and_lunge"),TEXT("tuning_save_load"),
++    TEXT("feint_to_parry"),TEXT("morph"),TEXT("combo"),TEXT("riposte"),TEXT("parry_look_up"),TEXT("parry_look_down"),TEXT("combat_footwork"),TEXT("tuning_save_load"),
+@@ -45,3 +45,3 @@
+     if(Scenario==9||Scenario==10)Lab->bDebug=false;
+     if(Scenario==18||Scenario==19){P->Combat->Simulation.view.pitch=Scenario==18?45:-45;P->Combat->Simulation.desired=P->Combat->Simulation.view;P->Combat->Parry();Lab->ToggleInspection();}
+-    if(Scenario==20){D->ResetAt(FVector(900,600,90),FRotator(0,180,0));auto* M=CastChecked<UMeleeCharacterMovementComponent>(P->GetCharacterMovement());M->bSprint=true;}
++    if(Scenario==20){D->ResetAt(FVector(900,600,90),FRotator(0,180,0));auto* M=CastChecked<UMeleeCharacterMovementComponent>(P->GetCharacterMovement());M->bSprintRequested=true;}
+@@ -64,5 +64,7 @@
+     if(Scenario==35||Scenario==36){
+         Lab->bDebug=false;SpeedAt=-1;StopDistance=0;D->ResetAt(FVector(900,600,90),FRotator(0,180,0));
+-        if(Scenario==35){MovementTuning=Lab->Combat.tuning;Lab->Combat.tuning.ForwardSpeed=420;Lab->Combat.tuning.LateralSpeed=355;Lab->Combat.tuning.Acceleration=2400;Lab->Combat.tuning.Deceleration=2200;Lab->Combat.tuning.GroundFriction=6;}
++        if(Scenario==35){MovementTuning=Lab->Combat.tuning;Lab->Combat.tuning.ForwardSpeed=320;Lab->Combat.tuning.LateralSpeed=280;
++            Lab->Combat.tuning.Acceleration=1800;Lab->Combat.tuning.PrecisionAcceleration=2200;Lab->Combat.tuning.RedirectAcceleration=2600;
++            Lab->Combat.tuning.ReverseAcceleration=3200;Lab->Combat.tuning.Deceleration=2200;Lab->Combat.tuning.SprintDeceleration=2600;}
+         Key(P,EKeys::W,IE_Pressed);
+     }
+@@ -135,7 +137,7 @@
+     if(Scenario==16&&PS.state.last==mcl::Resolution::Combo)bObserved=PS.state.attack.angle==180;
+     if(Scenario==17&&bObserved&&PS.state.riposteRemaining>0){P->Combat->Strike(60,60);bObserved=PS.state.last==mcl::Resolution::Riposte;}
+     if(Scenario==20){auto* M=CastChecked<UMeleeCharacterMovementComponent>(P->GetCharacterMovement());
+-        P->AddMovementInput(FVector::ForwardVector,Age<1.7?1.f:-1.f);M->ForwardInput=Age<1.7?1:-1;
++        P->AddMovementInput(FVector::ForwardVector,Age<1.7?1.f:-1.f);
+         if(Age>1.1&&!bAction){P->Combat->Strike(0,0);bAction=true;}
+-        if(M->Lunge.displacement>10&&M->Momentum.value>.4)bObserved=true;
++        if(Age>1.7&&M->MovementSignals.ReversalSeverity>.75f&&M->MovementSignals.Gait!=EMeleeGait::Sprint)bObserved=true;
+     }
+diff --git a/Tools/TestCore.ps1 b/Tools/TestCore.ps1
+--- a/Tools/TestCore.ps1
++++ b/Tools/TestCore.ps1
+@@ -1,5 +1,6 @@
+-param([switch]$Sanitize,[switch]$PresentationOnly)
++param([switch]$Sanitize,[switch]$PresentationOnly,[switch]$MovementOnly)
+ $ErrorActionPreference = 'Stop'
++if ($PresentationOnly -and $MovementOnly) { throw 'Choose either -PresentationOnly or -MovementOnly.' }
+ $projectRoot = Split-Path -Parent $PSScriptRoot
+ $vswhere = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio\Installer\vswhere.exe'
+ $vsInstall = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+@@ -13,9 +14,14 @@
+     $source = Join-Path $projectRoot 'Source\MeleeCombatLab'
+     $flags = @('/nologo','/std:c++20','/EHsc','/W4','/WX','/Zi','/Od',"/I$source")
+     if ($Sanitize) { $flags += '/fsanitize=address' }
+-    $testSource=if($PresentationOnly){'PresentationTests'}else{'CombatTests'}
+-    & cl.exe @flags (Join-Path $projectRoot "Tests\$testSource.cpp") (Join-Path $source 'Combat\Attacks\AttackStateMachine.cpp') (Join-Path $source 'Combat\CombatSimulation.cpp') "/Fe:$testSource.exe"
+-    if ($LASTEXITCODE -ne 0) { throw 'Native combat core compilation failed.' }
++    $testSource=if($MovementOnly){'MovementTests'}elseif($PresentationOnly){'PresentationTests'}else{'CombatTests'}
++    $sources=@((Join-Path $projectRoot "Tests\$testSource.cpp"))
++    if (!$MovementOnly) {
++        $sources += (Join-Path $source 'Combat\Attacks\AttackStateMachine.cpp')
++        $sources += (Join-Path $source 'Combat\CombatSimulation.cpp')
++    }
++    & cl.exe @flags @sources "/Fe:$testSource.exe"
++    if ($LASTEXITCODE -ne 0) { throw "Native $testSource compilation failed." }
+     & ".\$testSource.exe"
+-    if ($LASTEXITCODE -ne 0) { throw 'Native combat core tests failed.' }
++    if ($LASTEXITCODE -ne 0) { throw "Native $testSource tests failed." }
+ } finally { Pop-Location }
+diff --git a/README.md b/README.md
+--- a/README.md
++++ b/README.md
+@@ -49,4 +49,4 @@
+ 
+ Parry lasts 365 ms with 550 ms punish recovery on a miss. Its oriented frontal box and extended cone follow a separately limited guard. Looking up lowers and tilts the box to protect the feet; looking down raises its lower edge. The cone applies a tunable pitch influence of 0.35 so it does not accidentally erase that foot exposure. Chambers require body contact, the incoming origin projected into the defender's view, within 32 degrees, and a 225 ms window at the start of an ordinary attack. Stabs chamber stabs. Chambers have no extended region. A legal drag can outlast a chamber while a normal parry catches it farther forward.
+ 
+-Momentum compares actual locomotion intent and velocity, never camera yaw alone. Lunge adds a short forward velocity contribution through collision-safe CharacterMovement. It requires forward commitment and is capped at 85 cm of commanded extra displacement.
++Ground locomotion separates immediate movement intent from physical planar velocity. Directional target speeds use an elliptical forward/lateral/backward envelope; acceleration authority increases for small corrections, redirects and hard reversals. Sprint is a gait target rather than a scalar momentum meter and automatically disengages when combat begins. Release movement has no additive lunge: positive forward input receives only a small, front-loaded target-velocity bias, and a stationary attack never moves the capsule for free. See `Docs/MOVEMENT_CONTRACT.md`.
+@@ -75,5 +75,5 @@
+ | `Combat/CombatTuning.h` | Single timing, defense, weapon, movement and presentation tuning registry |
+ 
+ | `Combat/CombatComponent.*` | Unreal ownership and combat input boundary |
+ 
+-| `Movement` / `Character` | Momentum, lunge, custom CharacterMovement and Enhanced Input |
++| `Movement` / `Character` | Engine-independent locomotion law, collision-safe custom CharacterMovement, movement telemetry and Enhanced Input |
+@@ -100,4 +100,4 @@
+ 
+ ```
+ 
+-The native suite compiles with MSVC `/W4 /WX`, and optionally AddressSanitizer. Its 461 checks cover state transitions, all 36 strike chamber pairings, continuous tolerance edges, complete pitch-dependent parry coverage, swept cone contact, curved blade sweeps, registration-order independence, exhausted defenses, once-per-target damage, spatial accel/drag contact, multiple frame rates, momentum and lunge.
++The native suite compiles with MSVC `/W4 /WX`, and optionally AddressSanitizer. `Tools/TestCore.ps1 -MovementOnly` runs the isolated locomotion contract even when an unrelated combat regression blocks the full suite. Movement coverage includes acceleration, directional caps, diagonal normalization, stopping distance, reversal response, sprint transitions, combat-state movement, bounded release drive and frame-rate consistency.
+@@ -139,4 +139,4 @@
+ 
+ The passive DAMAGE TARGET has infinite health and reports hit count and accumulated damage. R resets its counters. The attacking dummy retains normal health.
+ 
+-Movement responsiveness defaults: forward 450, lateral 380, backward 300, sprint 640 cm/s; acceleration 4200 and braking deceleration 5000 cm/s²; ground friction 10. Sprint momentum builds at 1.0/s. Gravity scale 1.4 and jump impulse 500 cm/s give approximately 0.73 s airborne on level ground, before capsule/landing details. All are exposed in F4 tuning. Previous saved movement settings are backed up in Saved/Config/CombatTuning.before-movement.json.
++Movement defaults: forward 360, lateral 315, backward 255, sprint 560 cm/s. Ordinary acceleration is 2900 cm/s², low-speed precision and redirect authority are 4300, hard reversals reach 5000, ordinary braking is 4000 and sprint braking is 4500. Combat phases retain most movement authority while lowering target speed; release forward bias is 35 cm/s and requires positive forward intent. CharacterMovement substeps ground physics to at most 1/120 s. Gravity scale remains 1.4 and jump impulse 500 cm/s. All gameplay tunables are exposed in F4.

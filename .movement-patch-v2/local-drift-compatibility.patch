@@ -1,0 +1,86 @@
+diff --git a/Source/MeleeCombatLab/Character/MeleeCharacterMovementComponent.cpp b/Source/MeleeCombatLab/Character/MeleeCharacterMovementComponent.cpp
+index 88e39fe..f04fda5 100644
+--- a/Source/MeleeCombatLab/Character/MeleeCharacterMovementComponent.cpp
++++ b/Source/MeleeCombatLab/Character/MeleeCharacterMovementComponent.cpp
+@@ -49,6 +49,10 @@ void UMeleeCharacterMovementComponent::ResetCombatMovement()
+     StopMovementImmediately();
+     InputIntent=FVector::ZeroVector;
+     bSprintRequested=false;
++    bSprint=false;
++    ForwardInput=0;
++    Momentum={};
++    Lunge={};
+     MovementSignals={};
+ }
+ 
+@@ -74,7 +78,7 @@ float UMeleeCharacterMovementComponent::GetMaxSpeed() const
+     const mcl::Vec D{Desired.X,Desired.Y,0},F{Forward.X,Forward.Y,0};
+     const mcl::Vec Local=mcl::LocomotionModel::local(D,F);
+     double Speed=mcl::LocomotionModel::directionalSpeed(Local,T)*mcl::LocomotionModel::phaseScale(Phase,T);
+-    if(bSprintRequested&&Phase==mcl::Phase::Idle&&Local.x>=T.SprintForwardRequirement){
++    if((bSprintRequested||bSprint)&&Phase==mcl::Phase::Idle&&Local.x>=T.SprintForwardRequirement){
+         const double Alpha=mcl::clamp((Local.x-T.SprintForwardRequirement)/
+             std::max(1e-6,1.-T.SprintForwardRequirement),0.,1.);
+         Speed=mcl::mix(Speed,T.SprintSpeed,Alpha);
+@@ -120,7 +124,7 @@ void UMeleeCharacterMovementComponent::CalcVelocity(float Dt,float Friction,bool
+     In.forward={Forward.X,Forward.Y,0};
+     In.dt=Dt;
+     In.attackProgress=State.phase==mcl::Phase::Release?State.progress():0;
+-    In.sprintRequested=bSprintRequested;
++    In.sprintRequested=bSprintRequested||bSprint;
+     In.crouched=IsCrouching();
+     In.grounded=true;
+     In.phase=State.phase;
+@@ -143,6 +147,15 @@ void UMeleeCharacterMovementComponent::CalcVelocity(float Dt,float Friction,bool
+     MovementSignals.Gait=ToUnrealGait(Out.gait);
+     MovementSignals.CombatState=ToUnrealCombatState(Out.combatState);
+     MovementSignals.bGrounded=true;
++
++    // Keep legacy diagnostics/playtest probes alive without letting them influence movement.
++    Momentum.value=MovementSignals.SpeedNormalized;
++    Momentum.turnRate=MovementSignals.ReversalSeverity*180.;
++    Momentum.loss=MovementSignals.BrakingIntensity;
++    if(State.phase==mcl::Phase::Release){
++        Lunge.velocity=FMath::Max(0.f,FVector::DotProduct(Velocity,Forward));
++        Lunge.displacement+=Lunge.velocity*Dt;
++    }else Lunge={};
+ }
+ 
+ void UMeleeCharacterMovementComponent::UpdateFallbackSignals(const FVector& PreviousVelocity,float Dt)
+diff --git a/Source/MeleeCombatLab/Character/MeleeCharacterMovementComponent.h b/Source/MeleeCombatLab/Character/MeleeCharacterMovementComponent.h
+index 6502413..2bfbbe7 100644
+--- a/Source/MeleeCombatLab/Character/MeleeCharacterMovementComponent.h
++++ b/Source/MeleeCombatLab/Character/MeleeCharacterMovementComponent.h
+@@ -58,6 +58,18 @@ struct FMovementPresentationSignals
+     bool bGrounded=false;
+ };
+ 
++// Transitional read-only compatibility telemetry for older debug/playtest code.
++// These fields no longer drive authoritative movement.
++struct FLegacyMomentumTelemetry
++{
++    double value=0,turnRate=0,loss=0;
++};
++
++struct FLegacyLungeTelemetry
++{
++    double velocity=0,displacement=0;
++};
++
+ UCLASS()
+ class MELEECOMBATLAB_API UMeleeCharacterMovementComponent : public UCharacterMovementComponent
+ {
+@@ -67,6 +79,13 @@ public:
+ 
+     bool bSprintRequested=false;
+ 
++    // Legacy API shims: retained so locally edited character/debug/playtest code
++    // can compile while the new locomotion solver becomes authoritative.
++    bool bSprint=false;
++    double ForwardInput=0;
++    FLegacyMomentumTelemetry Momentum;
++    FLegacyLungeTelemetry Lunge;
++
+     UPROPERTY(BlueprintReadOnly,Category="Movement|Presentation")
+     FMovementPresentationSignals MovementSignals;
+ 

@@ -20,7 +20,7 @@ namespace
 {
 const TCHAR* Names[]={TEXT("right"),TEXT("upper_right"),TEXT("upper_left"),TEXT("left"),TEXT("lower_left"),TEXT("lower_right"),TEXT("stab"),
     TEXT("accel"),TEXT("drag"),TEXT("parry"),TEXT("chamber"),TEXT("wrong_chamber"),TEXT("microdrag_chamber"),TEXT("microdrag_parry"),
-    TEXT("feint_to_parry"),TEXT("morph"),TEXT("combo"),TEXT("riposte"),TEXT("parry_look_up"),TEXT("parry_look_down"),TEXT("momentum_and_lunge"),TEXT("tuning_save_load"),
+    TEXT("feint_to_parry"),TEXT("morph"),TEXT("combo"),TEXT("riposte"),TEXT("parry_look_up"),TEXT("parry_look_down"),TEXT("combat_footwork"),TEXT("tuning_save_load"),
     TEXT("feint_baits_parry"),TEXT("chamber_punishes_feint"),TEXT("chamber_feint_parry"),TEXT("enhanced_strike_key"),TEXT("enhanced_mouse_direction"),
     TEXT("enhanced_move_sprint_jump"),TEXT("enhanced_crouch"),TEXT("enhanced_feint_parry"),TEXT("tuning_panel"),TEXT("lab_presentation"),TEXT("release_flinch"),TEXT("riposte_armor"),TEXT("infinite_damage_target"),TEXT("movement_baseline"),TEXT("movement_response"),TEXT("courtyard_readability")};
 void Key(AMeleeCharacter* P,FKey K,EInputEvent Event,float Amount=1)
@@ -42,7 +42,7 @@ void UCombatPlaytest::BeginScenario(ACombatLabGameMode* Lab,AMeleeCharacter* P,A
     else if(Scenario<=13||Scenario==17)D->Combat->Strike(0,0);
     if(Scenario==9||Scenario==10)Lab->bDebug=false;
     if(Scenario==18||Scenario==19){P->Combat->Simulation.view.pitch=Scenario==18?45:-45;P->Combat->Simulation.desired=P->Combat->Simulation.view;P->Combat->Parry();Lab->ToggleInspection();}
-    if(Scenario==20){D->ResetAt(FVector(900,600,90),FRotator(0,180,0));auto* M=CastChecked<UMeleeCharacterMovementComponent>(P->GetCharacterMovement());M->bSprint=true;}
+    if(Scenario==20){D->ResetAt(FVector(900,600,90),FRotator(0,180,0));auto* M=CastChecked<UMeleeCharacterMovementComponent>(P->GetCharacterMovement());M->bSprintRequested=true;}
     if(Scenario==21){const double Original=Lab->Combat.tuning.StrikeRelease;Lab->Combat.tuning.StrikeRelease=.51;
         bool Saved=Lab->SaveTuning();Lab->Combat.tuning.StrikeRelease=.4;bool Loaded=Lab->LoadTuning();
         bObserved=Saved&&Loaded&&FMath::Abs(Lab->Combat.tuning.StrikeRelease-.51)<1e-6;
@@ -60,7 +60,7 @@ void UCombatPlaytest::BeginScenario(ACombatLabGameMode* Lab,AMeleeCharacter* P,A
     if(Scenario==34){Lab->bDebug=false;D->ResetAt(FVector(900,600,90),FRotator(0,180,0));Lab->PassiveDummy->ResetAt(FVector(135,0,90),FRotator(0,180,0));P->Combat->Strike(0,0);}
     if(Scenario==35||Scenario==36){
         Lab->bDebug=false;SpeedAt=-1;StopDistance=0;D->ResetAt(FVector(900,600,90),FRotator(0,180,0));
-        if(Scenario==35){MovementTuning=Lab->Combat.tuning;Lab->Combat.tuning.ForwardSpeed=420;Lab->Combat.tuning.LateralSpeed=355;Lab->Combat.tuning.Acceleration=2400;Lab->Combat.tuning.Deceleration=2200;Lab->Combat.tuning.GroundFriction=6;}
+        if(Scenario==35){MovementTuning=Lab->Combat.tuning;Lab->Combat.tuning.ForwardSpeed=320;Lab->Combat.tuning.LateralSpeed=280;Lab->Combat.tuning.Acceleration=1800;Lab->Combat.tuning.PrecisionAcceleration=2200;Lab->Combat.tuning.RedirectAcceleration=2600;Lab->Combat.tuning.ReverseAcceleration=3200;Lab->Combat.tuning.Deceleration=2200;Lab->Combat.tuning.SprintDeceleration=2600;}
         Key(P,EKeys::W,IE_Pressed);
     }
     if(Scenario==37){
@@ -126,9 +126,9 @@ void UCombatPlaytest::TickComponent(float Dt,ELevelTick TickType,FActorComponent
     if(Scenario==16&&PS.state.last==mcl::Resolution::Combo)bObserved=PS.state.attack.angle==180;
     if(Scenario==17&&bObserved&&PS.state.riposteRemaining>0){P->Combat->Strike(60,60);bObserved=PS.state.last==mcl::Resolution::Riposte;}
     if(Scenario==20){auto* M=CastChecked<UMeleeCharacterMovementComponent>(P->GetCharacterMovement());
-        P->AddMovementInput(FVector::ForwardVector,Age<1.7?1.f:-1.f);M->ForwardInput=Age<1.7?1:-1;
+        P->AddMovementInput(FVector::ForwardVector,Age<1.7?1.f:-1.f);
         if(Age>1.1&&!bAction){P->Combat->Strike(0,0);bAction=true;}
-        if(M->Lunge.displacement>10&&M->Momentum.value>.4)bObserved=true;
+        if(Age>1.7&&M->MovementSignals.ReversalSeverity>.75f&&M->MovementSignals.Gait!=EMeleeGait::Sprint)bObserved=true;
     }
     if(Scenario==22&&Age>.2&&!bAction){D->Combat->Feint();D->Combat->Stab();bAction=true;}
     if(Scenario==23&&Age>.2&&!bAction){D->Combat->Feint();bAction=true;}
