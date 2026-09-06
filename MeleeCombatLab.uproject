@@ -1,0 +1,8 @@
+{
+  "FileVersion": 3,
+  "EngineAssociation": "5.8",
+  "Category": "Games",
+  "Description": "Simulation-authoritative first-person melee combat laboratory",
+  "Modules": [{ "Name": "MeleeCombatLab", "Type": "Runtime", "LoadingPhase": "Default" }],
+  "Plugins": [{ "Name": "EnhancedInput", "Enabled": true }, { "Name": "PythonScriptPlugin", "Enabled": true }]
+}
