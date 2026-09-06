@@ -1,0 +1,93 @@
+[
+  {
+    "file": "antique_estoc\\antique_estoc.gltf",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/2k/antique_estoc/antique_estoc_2k.gltf",
+    "md5": "08edf3b12176b3e1cb63ddea700a450f",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "antique_estoc\\textures\\antique_estoc_diff_2k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/antique_estoc/antique_estoc_diff_2k.jpg",
+    "md5": "db1ac5c06ec2fdc52253ba841589fc19",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "antique_estoc\\textures\\antique_estoc_arm_2k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/antique_estoc/antique_estoc_arm_2k.jpg",
+    "md5": "52c49a5ced94d6c755d0ca6c04132b25",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "antique_estoc\\antique_estoc.bin",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/antique_estoc/antique_estoc.bin",
+    "md5": "3b6fe4da7cb5b8dc322729c1980ae158",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "antique_estoc\\textures\\antique_estoc_nor_gl_2k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/antique_estoc/antique_estoc_nor_gl_2k.jpg",
+    "md5": "8080da48635bc0d755d229665f272b46",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "white_sandstone_blocks_02\\diff.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/white_sandstone_blocks_02/white_sandstone_blocks_02_diff_2k.jpg",
+    "md5": "141a8964984195586d2d6fac4ee34fef",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "white_sandstone_blocks_02\\nor_dx.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/white_sandstone_blocks_02/white_sandstone_blocks_02_nor_dx_2k.jpg",
+    "md5": "71688b39940e6670185a230c2ead74af",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "white_sandstone_blocks_02\\rough.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/white_sandstone_blocks_02/white_sandstone_blocks_02_rough_2k.jpg",
+    "md5": "8ab4fe8a2e489ea63f835a0d6bc5ecdf",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "cobblestone_floor_08\\diff.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_08/cobblestone_floor_08_diff_2k.jpg",
+    "md5": "56404e8a3cdf04c8697dbbc7f9ddd65c",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "cobblestone_floor_08\\nor_dx.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_08/cobblestone_floor_08_nor_dx_2k.jpg",
+    "md5": "44842d657ff90c71db8313b7d16858c1",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "cobblestone_floor_08\\rough.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_08/cobblestone_floor_08_rough_2k.jpg",
+    "md5": "caae39f3ea47e2c09ca897d8dffa00ea",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "roof_slates_02\\diff.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/roof_slates_02/roof_slates_02_diff_2k.jpg",
+    "md5": "2bd2c8593d8cbaea04878203be4bc7ad",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "roof_slates_02\\nor_dx.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/roof_slates_02/roof_slates_02_nor_dx_2k.jpg",
+    "md5": "ed6a78530ae1a73b358a01879dd951d9",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "roof_slates_02\\rough.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/roof_slates_02/roof_slates_02_rough_2k.jpg",
+    "md5": "925f6de5f84f351c8d061086a278c005",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "knight/source.zip",
+    "url": "https://opengameart.org/sites/default/files/armored%20knight.zip",
+    "sha256": "edea99305ea1dfffbe56434498693e325d909cf638845f1a473c6d0993aca100",
+    "license": "CC-BY-3.0",
+    "author": "piacenti"
+  }
+]

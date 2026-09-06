@@ -1,17 +1,18 @@
-# Visual backlog
+# Visual backlog — September 6, 2026
 
-| Priority | Area | Work / expected benefit | Performance risk | Status | Measured result |
-|---|---|---|---|---|---|
-| P0 | Environment composition | Instanced castle modules, arched entrances and central basin establish the tournament silhouette | Moderate shadow/primitive cost | Planned | Pending |
-| P0 | Character quality | Shared rounded armor, closed helmets, articulated limbs and heraldic cloth replace block figures | Moderate draw calls | Planned | Pending |
-| P0 | Animation presentation | Armored forearms, gloves and bounded riposte elbow pose preserve readable origins | Camera clipping; additional transforms | Planned | Pending |
-| P0 | Materials | Compact stone, steel, iron, leather, cloth, wood and water library | Shader complexity and texture residency | Planned | Pending |
-| P0 | Lighting | Single warm sun, cool ambient fill, stable exposure | Dynamic shadow cost | Planned | Pending |
-| P0 | Optimization | Same-route CPU/GPU/counter data and settings snapshots | Profiler/screenshot overhead must be reported | Implemented, capturing baseline | Pending |
-| P0 | Scalability | Competitive / High / Showcase with inexpensive fallback | Quality drift / unmeasured defaults | Planned | Pending |
-| P1 | Combat effects | Preserve thin gold parry and cyan chamber sparks in sunlight | Low; bounded 28-particle bursts | Existing | Screenshot-verified before visual pass |
-| P1 | Audio presentation | Quiet fountain loop and restrained footfalls beneath combat audio | Low; procedural mono buffers | Planned | Pending |
-| P1 | Environment composition | Banners, perimeter benches and racks without snag points | Instance counts / clutter | Planned | Pending |
-| P2 | Character quality | Authored rigged knight, gauntlet normal details and animation retargeting | Asset licensing and texture budgets | Asset gap | No licensed local knight located |
-| P2 | Materials | Artist-authored shared trim/normal sheet replacing procedural-only detail | Small fixed texture memory increase | Future | Pending |
-| P2 | Optimization | Packaged Development route on RTX 3060/4060-tier hardware | Hardware availability | Required before target certification | Local GPU is RTX 5070 |
+Current architecture and staged plan: [REHAUL.md](REHAUL.md). Earlier planned statuses were stale.
+
+| Priority | Area | Next work / benefit | Risk | Status |
+|---|---|---|---|---|
+| P0 | Presentation foundation | Exact blade frame and grip contacts; shared torso/elbow targets | Extreme-pitch reach | Implemented; portable invariant suite passes |
+| P0 | Material pipeline | Generate real shared materials, reject failed graph connections, enable instancing and cook assets | Shader permutations | Implemented; rendered verification required after each generator change |
+| P0 | Character quality | Authored knight rig, weighted hands, clavicle/spine reach compensation | Asset creation, skinning and clipping | Missing assets; procedural fallback retained |
+| P0 | Animation | Direction-specific authored load/carry poses layered under final hand IK | Must preserve authoritative weapon and timings | Adapter ready; AnimBP/Control Rig assets still missing |
+| P0 | Validation | Resolve the pre-existing double-parry native failure through a separately authorized combat decision | Frozen mechanics | Recorded, untouched |
+| P1 | First person | Camera-safe torso look-down mesh and finger grip articulation | Camera clipping | Full body in external views; first-person torso hidden |
+| P1 | Environment | Stone trim sheet, recessed arcade modules, shaped cloth banners | Draw calls and shadow cost | Existing court extended with shallow arches, plinths and basin inlay |
+| P1 | Lighting | Artist review of sunny/shaded backgrounds and reflection response | Shadow readability, GPU cost | Atmosphere skylight replaces unbuilt runtime reflection capture |
+| P1 | Effects | Preserve gold parry/cyan chamber; improve fountain stream geometry | Visual competition with combat | Combat feedback preserved; fountain still basic |
+| P1 | Materials | Real steel/cloth/leather normal and trim sheets | Texture budget | Generated shared micro-detail is a fallback |
+| P2 | Performance | Packaged route and RTX 3060/4060-tier measurement | Hardware availability | Local RTX 5070 measurements only |
+| P2 | Audio | Fountain ambience, footfalls and exertion | Cue masking | Synthesized combat placeholder retained |

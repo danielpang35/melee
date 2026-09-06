@@ -14,6 +14,6 @@ void Apply(const FString& Name)
     FString File=FPaths::ProjectConfigDir()/TEXT("GraphicsProfiles.ini");GConfig->LoadFile(File);TArray<FString> Lines;GConfig->GetSection(*Profile,Lines,File);
     for(const FString& Line:Lines){FString Key,Value;if(Line.Split(TEXT("="),&Key,&Value))if(auto* C=IConsoleManager::Get().FindConsoleVariable(*Key))C->Set(*Value,ECVF_SetByCode);}
 }
-void Initialize(){FString Name;FParse::Value(FCommandLine::Get(),TEXT("LabProfile="),Name);Apply(Name);}
+void Initialize(){FString Name=TEXT("High");FParse::Value(FCommandLine::Get(),TEXT("LabProfile="),Name);Apply(Name);}
 void Cycle(){Apply(Tier==0?TEXT("High"):Tier==1?TEXT("Showcase"):TEXT("Competitive"));}
 }

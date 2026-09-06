@@ -65,10 +65,10 @@ struct AttackTrajectory
         return release(a,p,Defaults);
     }
 
-    static LocalPose windup(const AttackIntent& a,double p,LocalPose start,const Tuning& t,bool combo=false)
+    static LocalPose windup(const AttackIntent& a,double p,LocalPose start,const Tuning& t,bool combo=false,bool riposte=false)
     {
         p=clamp(p,0.,1.);
-        const LocalPose loaded=release(a,0,t);
+        const LocalPose loaded=riposteRelease(a,0,riposte,t);
         Vec origin{0,std::cos(a.angle*Rad),std::sin(a.angle*Rad)};
 
         const double anticipationScale=combo?.25:1.;
@@ -80,10 +80,10 @@ struct AttackTrajectory
         return blend(anticipation,loaded,smooth((p-anticipationEnd)/(1.-anticipationEnd)));
     }
 
-    static LocalPose recovery(const AttackIntent& a,double p,const Tuning& t,Resolution result)
+    static LocalPose recovery(const AttackIntent& a,double p,const Tuning& t,Resolution result,bool riposte=false)
     {
         p=clamp(p,0.,1.);
-        const LocalPose end=release(a,1,t);
+        const LocalPose end=riposteRelease(a,1,riposte,t);
         const double side=std::cos(a.angle*Rad)>=0?1.:-1.;
         const double carry=result==Resolution::Miss?1.10:result==Resolution::Hit?.88:1.;
 
@@ -169,9 +169,9 @@ struct AttackTrajectory
 
     static LocalPose evaluate(const AttackStateMachine& s,LocalPose windupStart,const Tuning& t)
     {
-        if(s.phase==Phase::Windup)return windup(s.attack,s.progress(),windupStart,t,s.isCombo);
+        if(s.phase==Phase::Windup)return windup(s.attack,s.progress(),windupStart,t,s.isCombo,s.isRiposte);
         if(s.phase==Phase::Release)return riposteRelease(s.attack,s.progress(),s.isRiposte,t);
-        if(s.phase==Phase::Recovery)return recovery(s.attack,s.progress(),t,s.last);
+        if(s.phase==Phase::Recovery)return recovery(s.attack,s.progress(),t,s.last,s.isRiposte);
         if(s.phase==Phase::Parry)return {{35,0,-10},Vec{.12,.8,.58}.normal()};
         return rest();
     }

@@ -1,5 +1,6 @@
 #include "MeleeCharacter.h"
 #include "Visual/TournamentGraphics.h"
+#include "Visual/KnightPresentation.h"
 #include "MeleeCharacterMovementComponent.h"
 #include "Combat/CombatComponent.h"
 #include "Camera/CameraComponent.h"
@@ -19,6 +20,7 @@ AMeleeCharacter::AMeleeCharacter(const FObjectInitializer& O):Super(O.SetDefault
 {
     PrimaryActorTick.bCanEverTick=true;PrimaryActorTick.TickGroup=TG_PostUpdateWork;
     GetCapsuleComponent()->InitCapsuleSize(32,88);bUseControllerRotationYaw=true;
+    Knight=CreateDefaultSubobject<UKnightPresentation>(TEXT("KnightArmor"));Knight->SetupAttachment(GetCapsuleComponent());
     Combat=CreateDefaultSubobject<UCombatComponent>(TEXT("Combat"));
     Camera=CreateDefaultSubobject<UCameraComponent>(TEXT("CombatCamera"));Camera->SetupAttachment(GetCapsuleComponent());
     Camera->SetRelativeLocation(FVector(0,0,64));Camera->bUsePawnControlRotation=true;
@@ -98,12 +100,18 @@ void AMeleeCharacter::Direction4(){Combat->Strike(-120,-120);}void AMeleeCharact
 void AMeleeCharacter::Tick(float Dt)
 {
     Super::Tick(Dt);Presentation->Present(Combat->Simulation,Combat->Tuning(),Dt);
+    const auto* PC=GetWorld()->GetFirstPlayerController();
+    const bool bShowBody=!IsLocallyControlled()||(PC&&PC->GetViewTarget()!=this);
+    Knight->SetFirstPerson(!bShowBody);
+    BodyReaction=FMath::FInterpTo(BodyReaction,0,Dt,8);
+    Knight->Present(Combat->Simulation,Combat->Tuning(),bBlueArmor,BodyReaction,Dt);
     Camera->SetFieldOfView(static_cast<float>(Combat->Tuning().FOV));
     CameraKick=FMath::FInterpTo(CameraKick,0,Dt,22);
     Camera->ClearAdditiveOffset();Camera->AddAdditiveOffset(FTransform(FRotator(CameraKick,0,CameraKick*.2)),0);
 }
 void AMeleeCharacter::Feedback(mcl::Resolution R)
 {
+    BodyReaction=1.f;
     const auto& T=Combat->Tuning();CameraKick=static_cast<float>(R==mcl::Resolution::Parry?T.ParryRecoil:R==mcl::Resolution::Chamber?T.ChamberRecoil:T.CameraHitImpulse);
 }
 void AMeleeCharacter::ResetAt(FVector Position,FRotator Facing)

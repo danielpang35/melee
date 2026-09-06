@@ -11,11 +11,13 @@
 #include "Engine/DirectionalLight.h"
 #include "Engine/SkyLight.h"
 #include "Engine/ExponentialHeightFog.h"
+#include "Engine/PostProcessVolume.h"
 #include "Components/ExponentialHeightFogComponent.h"
 #include "Camera/CameraActor.h"
 #include "Materials/MaterialInterface.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/InstancedStaticMeshComponent.h"
 #include "Components/DirectionalLightComponent.h"
 #include "Components/SkyLightComponent.h"
 #include "Components/TextRenderComponent.h"
@@ -38,8 +40,6 @@
 #include "Visual/TournamentCourtyard.h"
 #include "Visual/TournamentGraphics.h"
 #include "Components/SkyAtmosphereComponent.h"
-#include "Engine/SphereReflectionCapture.h"
-#include "Components/SphereReflectionCaptureComponent.h"
 #include "Misc/CommandLine.h"
 #include "Misc/Parse.h"
 
@@ -83,14 +83,35 @@ void ACombatLabGameMode::StartPlay()
 }
 void ACombatLabGameMode::BuildArena()
 {
+    ImpactParticles=NewObject<UInstancedStaticMeshComponent>(this,TEXT("ImpactParticles"));
+    ImpactParticles->SetStaticMesh(LoadObject<UStaticMesh>(nullptr,TEXT("/Engine/BasicShapes/Sphere.Sphere")));
+    ImpactParticles->SetMaterial(0,LoadObject<UMaterialInterface>(nullptr,TEXT("/Game/Visual/Citadel/Materials/M_CitadelSparks.M_CitadelSparks")));
+    ImpactParticles->SetCollisionEnabled(ECollisionEnabled::NoCollision);ImpactParticles->SetCastShadow(false);
+    ImpactParticles->NumCustomDataFloats=4;ImpactParticles->RegisterComponent();
+    for(int I=0;I<128;++I)ImpactParticles->AddInstance(FTransform(FQuat::Identity,FVector::ZeroVector,FVector::ZeroVector));
     GetWorld()->SpawnActor<ATournamentCourtyard>();
     GetWorld()->SpawnActor<ASkyAtmosphere>();
-    auto* Light=GetWorld()->SpawnActor<ADirectionalLight>(FVector(0,0,700),FRotator(-48,-35,0));
-    auto* Sun=CastChecked<UDirectionalLightComponent>(Light->GetLightComponent());Sun->SetMobility(EComponentMobility::Movable);Sun->SetIntensity(4.f);Sun->SetLightColor(FLinearColor(1.f,.91f,.76f));Sun->SetAtmosphereSunLight(true);Sun->SetForwardShadingPriority(1);
-    Sun->DynamicShadowDistanceMovableLight=4000;Sun->DynamicShadowCascades=2;
-    auto* Sky=GetWorld()->SpawnActor<ASkyLight>();Sky->GetLightComponent()->SetMobility(EComponentMobility::Movable);Sky->GetLightComponent()->SetIntensity(.8f);Sky->GetLightComponent()->SetLightColor(FLinearColor(.72f,.84f,1.f));Sky->GetLightComponent()->RecaptureSky();
-    auto* Capture=GetWorld()->SpawnActor<ASphereReflectionCapture>(FVector(0,650,180),FRotator::ZeroRotator);
-    if(auto* Sphere=Cast<USphereReflectionCaptureComponent>(Capture->GetCaptureComponent())){Sphere->InfluenceRadius=2300;Sphere->MarkDirtyForRecapture();}
+    auto* Light=GetWorld()->SpawnActor<ADirectionalLight>(FVector(0,0,700),FRotator(-32,-38,0));
+    auto* Sun=CastChecked<UDirectionalLightComponent>(Light->GetLightComponent());Sun->SetMobility(EComponentMobility::Movable);Sun->SetIntensity(5.2f);Sun->SetLightColor(FLinearColor(1.f,.89f,.70f));Sun->SetAtmosphereSunLight(true);Sun->SetForwardShadingPriority(1);
+    Sun->DynamicShadowDistanceMovableLight=6500;Sun->DynamicShadowCascades=4;
+    // Runtime-spawned reflection captures have no baked cubemap in -game.
+    // The atmosphere skylight supplies diffuse fill AND steel reflections.
+    auto* Sky=GetWorld()->SpawnActor<ASkyLight>();
+    Sky->GetLightComponent()->SetMobility(EComponentMobility::Movable);
+    Sky->GetLightComponent()->SetIntensity(1.8f);
+    Sky->GetLightComponent()->SetLightColor(FLinearColor(.88f,.93f,1.f));
+    Sky->GetLightComponent()->SetRealTimeCapture(true);
+    auto* Mist=GetWorld()->SpawnActor<AExponentialHeightFog>();
+    Mist->GetComponent()->SetFogDensity(.008f);
+    Mist->GetComponent()->SetFogHeightFalloff(.25f);
+    Mist->GetComponent()->SetStartDistance(1200.f);
+    Mist->GetComponent()->SetFogMaxOpacity(.30f);
+    auto* Grade=GetWorld()->SpawnActor<APostProcessVolume>();Grade->bUnbound=true;
+    auto& Look=Grade->Settings;
+    Look.bOverride_BloomIntensity=true;Look.BloomIntensity=.18f;
+    Look.bOverride_VignetteIntensity=true;Look.VignetteIntensity=.16f;
+    Look.bOverride_AmbientOcclusionIntensity=true;Look.AmbientOcclusionIntensity=.8f;
+    Look.bOverride_AmbientOcclusionRadius=true;Look.AmbientOcclusionRadius=70.f;
     FActorSpawnParameters Params;Params.SpawnCollisionHandlingOverride=ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
     AttackingDummy=GetWorld()->SpawnActor<ATrainingDummy>(FVector(350,0,90),FRotator(0,180,0),Params);
     PassiveDummy=GetWorld()->SpawnActor<ATrainingDummy>(FVector(350,550,90),FRotator(0,180,0),Params);
@@ -112,7 +133,18 @@ void ACombatLabGameMode::Tick(float Dt)
         auto& S=Sparks[I];S.Life-=Dt;
         if(S.Life<=0){Sparks.RemoveAtSwap(I);continue;}
         S.Velocity.Z-=700.f*Dt;S.Position+=S.Velocity*Dt;
-        GetWorld()->GetLineBatcher(UWorld::ELineBatcherType::World)->DrawLine(S.Position,S.Position-S.Velocity*.025f,S.Color*FMath::Min(1.f,S.Life*8.f),0,.15f,0.f);
+    }
+    if(ImpactParticles){
+        for(int I=0;I<128;++I){
+            if(I<Sparks.Num()){
+                const auto& S=Sparks[I];const float Fade=FMath::Clamp(S.Life*8.f,0.f,1.f);
+                const FVector Scale(FMath::Clamp(S.Velocity.Size()*.00015,.018,.08),.0025*Fade,.0025*Fade);
+                ImpactParticles->UpdateInstanceTransform(I,FTransform(S.Velocity.Rotation(),S.Position,Scale),true,false,true);
+                ImpactParticles->SetCustomDataValue(I,0,S.Color.R);ImpactParticles->SetCustomDataValue(I,1,S.Color.G);
+                ImpactParticles->SetCustomDataValue(I,2,S.Color.B);ImpactParticles->SetCustomDataValue(I,3,Fade);
+            }else ImpactParticles->UpdateInstanceTransform(I,FTransform(FQuat::Identity,FVector::ZeroVector,FVector::ZeroVector),true,false,true);
+        }
+        ImpactParticles->MarkRenderStateDirty();
     }
     for(const auto& E:Combat.events){
         if(E.result==mcl::Resolution::Parry||E.result==mcl::Resolution::Chamber){
@@ -127,7 +159,7 @@ void ACombatLabGameMode::Tick(float Dt)
                 FVector Eye=V(Defender.position)+FVector(0,0,Defender.eyeHeight);
                 SparkOrigin+=Forward*FMath::Max(0.,55.-FVector::DotProduct(SparkOrigin-Eye,Forward));
             }
-            for(int I=0;I<28;++I)Sparks.Add({SparkOrigin,FMath::VRand()*FMath::FRandRange(110.f,360.f)+FVector(0,0,90),FMath::FRandRange(.18f,.4f),Color});
+            for(int I=0;I<28&&Sparks.Num()<128;++I)Sparks.Add({SparkOrigin,FMath::VRand()*FMath::FRandRange(110.f,360.f)+FVector(0,0,90),FMath::FRandRange(.18f,.4f),Color});
         }
         PlayImpact(E);
         for(const auto& C:Combatants)if(C->Simulation.id==E.attacker||C->Simulation.id==E.defender){

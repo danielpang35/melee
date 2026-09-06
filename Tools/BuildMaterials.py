@@ -13,24 +13,26 @@ noise=u.load_asset('/Game/Visual/Textures/T_SurfaceNoise');normal=u.load_asset('
 def master(name,water=False):
  path='/Game/Visual/Materials/'+name
  m=u.load_asset(path) if u.EditorAssetLibrary.does_asset_exist(path) else assets.create_asset(name,'/Game/Visual/Materials',u.Material,u.MaterialFactoryNew())
+ m.set_editor_property('used_with_instanced_static_meshes',True)
  lib.delete_all_material_expressions(m)
  def node(cls,x=0,y=0):return lib.create_material_expression(m,cls,x,y)
  def scalar(name,value,y):
   n=node(u.MaterialExpressionScalarParameter,-600,y);n.set_editor_property('parameter_name',name);n.set_editor_property('default_value',value);return n
  def vector(name,value,y):
   n=node(u.MaterialExpressionVectorParameter,-600,y);n.set_editor_property('parameter_name',name);n.set_editor_property('default_value',u.LinearColor(*value));return n
- def link(a,b,pin='A',out=''):lib.connect_material_expressions(a,out,b,pin)
+ def link(a,b,pin='A',out=''):
+  if not lib.connect_material_expressions(a,out,b,pin):raise RuntimeError(f'Material connection failed: {a.get_class().get_name()} -> {b.get_class().get_name()}:{pin}')
  color=vector('BaseColor',(.5,.5,.5,1),-500);tint=vector('Tint',(1,1,1,1),-400)
  rough=scalar('Roughness',.7,-300);metal=scalar('Metallic',0,-200);dirt=scalar('DirtAmount',.12,0);edge=scalar('EdgeWear',.03,100);scale=scalar('TextureScale',2,200);strength=scalar('NormalIntensity',.3,300)
  uv=node(u.MaterialExpressionTextureCoordinate,-800,500);mul=node(u.MaterialExpressionMultiply,-400,500);link(uv,mul);link(scale,mul,'B');coords=mul
  if water:
-  pan=node(u.MaterialExpressionPanner,-200,500);pan.set_editor_property('speed_x',.025);pan.set_editor_property('speed_y',.017);link(mul,pan,'Coordinate');coords=pan
- n=node(u.MaterialExpressionTextureSampleParameter2D,0,500);n.set_editor_property('parameter_name','SurfaceNoise');n.set_editor_property('texture',noise);n.set_editor_property('sampler_type',u.MaterialSamplerType.SAMPLERTYPE_MASKS);link(coords,n,'Coordinates')
- d=node(u.MaterialExpressionMultiply,200,300);link(n,d,out='R');link(dirt,d,'B');one=node(u.MaterialExpressionOneMinus,350,300);link(d,one,'Input')
+  pan=node(u.MaterialExpressionPanner,-200,500);pan.set_editor_property('speed_x',.025);pan.set_editor_property('speed_y',.017);link(mul,pan,'');coords=pan
+ n=node(u.MaterialExpressionTextureSampleParameter2D,0,500);n.set_editor_property('parameter_name','SurfaceNoise');n.set_editor_property('texture',noise);n.set_editor_property('sampler_type',u.MaterialSamplerType.SAMPLERTYPE_MASKS);link(coords,n,'')
+ d=node(u.MaterialExpressionMultiply,200,300);link(n,d,out='R');link(dirt,d,'B');one=node(u.MaterialExpressionOneMinus,350,300);link(d,one,'')
  ct=node(u.MaterialExpressionMultiply,-100,-500);link(color,ct);link(tint,ct,'B');shade=node(u.MaterialExpressionMultiply,500,-300);link(ct,shade);link(one,shade,'B')
  fres=node(u.MaterialExpressionFresnel,200,-100);em=node(u.MaterialExpressionMultiply,400,-100);link(fres,em);link(edge,em,'B');final=node(u.MaterialExpressionAdd,650,-200);link(shade,final);link(em,final,'B');lib.connect_material_property(final,'',u.MaterialProperty.MP_BASE_COLOR)
  lib.connect_material_property(rough,'',u.MaterialProperty.MP_ROUGHNESS);lib.connect_material_property(metal,'',u.MaterialProperty.MP_METALLIC)
- norm=node(u.MaterialExpressionTextureSampleParameter2D,0,800);norm.set_editor_property('parameter_name','SurfaceNormal');norm.set_editor_property('texture',normal);norm.set_editor_property('sampler_type',u.MaterialSamplerType.SAMPLERTYPE_NORMAL);link(coords,norm,'Coordinates')
+ norm=node(u.MaterialExpressionTextureSampleParameter2D,0,800);norm.set_editor_property('parameter_name','SurfaceNormal');norm.set_editor_property('texture',normal);norm.set_editor_property('sampler_type',u.MaterialSamplerType.SAMPLERTYPE_NORMAL);link(coords,norm,'')
  flat=vector('FlatNormal',(0,0,1,1),900);lerp=node(u.MaterialExpressionLinearInterpolate,400,700);link(flat,lerp);link(norm,lerp,'B');link(strength,lerp,'Alpha');lib.connect_material_property(lerp,'',u.MaterialProperty.MP_NORMAL)
  lib.recompile_material(m);u.EditorAssetLibrary.save_loaded_asset(m);return m
 solid=master('M_Surface');water=master('M_WaterSurface',True)

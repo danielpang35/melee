@@ -5,6 +5,7 @@
 #include "CombatLabGameMode.generated.h"
 
 class UCombatComponent;class ATrainingDummy;class SCombatTuningPanel;class USoundWaveProcedural;class ACameraActor;
+class UInstancedStaticMeshComponent;
 UCLASS()
 class MELEECOMBATLAB_API ACombatLabGameMode : public AGameModeBase
 {
@@ -34,5 +35,6 @@ private:
     TSharedPtr<SCombatTuningPanel> Panel;
     UPROPERTY() TArray<TObjectPtr<USoundWaveProcedural>> ActiveSounds;
     UPROPERTY() TObjectPtr<ACameraActor> InspectionCamera;
+    UPROPERTY() TObjectPtr<UInstancedStaticMeshComponent> ImpactParticles;
     void BuildArena();void PlayImpact(const mcl::CombatEvent& Event);
 };

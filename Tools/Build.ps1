@@ -1,4 +1,4 @@
-param([string]$EngineRoot,[switch]$Launch,[switch]$Automation)
+param([string]$EngineRoot,[switch]$Launch,[switch]$Automation,[int]$MaxParallelActions=0)
 $ErrorActionPreference='Stop'
 $projectRoot=Split-Path -Parent $PSScriptRoot
 $projectFile=Join-Path $projectRoot 'MeleeCombatLab.uproject'
@@ -25,13 +25,15 @@ if (!(Test-Path $ubt)) {
     throw "Could not locate UnrealBuildTool.dll at $ubt"
 }
 
+$extraBuildArgs=@()
+if ($MaxParallelActions -gt 0) { $extraBuildArgs += "-MaxParallelActions=$MaxParallelActions" }
 & $dotnet $ubt `
     MeleeCombatLabEditor `
     Win64 `
     Development `
     "-Project=$projectFile" `
     -WaitMutex `
-    -NoHotReloadFromIDE
+    -NoHotReloadFromIDE @extraBuildArgs
 
 if ($LASTEXITCODE -ne 0) {
     throw "Unreal editor target build failed (exit $LASTEXITCODE)."

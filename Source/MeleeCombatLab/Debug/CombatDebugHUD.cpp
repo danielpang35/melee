@@ -16,18 +16,20 @@ void ACombatDebugHUD::DrawHUD()
     const auto& S=C->Combat->Simulation;const auto& State=S.state;const auto& T=Lab->Combat.tuning;
     auto* M=Cast<UMeleeCharacterMovementComponent>(C->GetCharacterMovement());
     const float W=Canvas->SizeX,H=Canvas->SizeY;
-    DrawRect(FLinearColor(.02f,.03f,.05f,.8f),22,22,430,92);
-    DrawText(TEXT("MELEE / COMBAT LAB"),FColor(180,220,240),38,32,nullptr,1.35f);
-    DrawText(FString::Printf(TEXT("%s    %.0f HP    %.0f STAMINA%s"),UTF8_TO_TCHAR(mcl::phaseName(State.phase)),S.health,State.stamina,State.infiniteStamina?TEXT("  [INF]"):TEXT("")),FColor::White,38,63);
-    if(Lab->AttackingDummy)DrawText(FString::Printf(TEXT("F2  %s"),UTF8_TO_TCHAR(mcl::trainingName(Lab->AttackingDummy->Pattern.mode))),FColor(250,190,100),38,86);
+    const float BarX=W*.5f-110;
+    DrawRect(FLinearColor(.015f,.018f,.022f,.7f),BarX-2,H-65,224,15);
+    DrawRect(FLinearColor(.48f,.065f,.045f),BarX,H-63,220*FMath::Clamp(float(S.health/100.),0.f,1.f),5);
+    DrawRect(FLinearColor(.65f,.48f,.22f),BarX,H-55,220*FMath::Clamp(float(State.stamina/100.),0.f,1.f),3);
+    DrawText(TEXT("C I T A D E L"),FColor(205,187,146),36,30,nullptr,1.1f);
+    if(Lab->bDebug){
+        DrawText(FString::Printf(TEXT("%s    %.0f HP    %.0f STAMINA%s"),UTF8_TO_TCHAR(mcl::phaseName(State.phase)),S.health,State.stamina,State.infiniteStamina?TEXT("  [INF]"):TEXT("")),FColor::White,38,63);
+        if(Lab->AttackingDummy)DrawText(FString::Printf(TEXT("F2  %s"),UTF8_TO_TCHAR(mcl::trainingName(Lab->AttackingDummy->Pattern.mode))),FColor(250,190,100),38,86);
+    }
     FColor Cross=State.chamberActive(T)?FColor::Cyan:State.phase==mcl::Phase::Parry?FColor::Yellow:FColor::White;
     DrawLine(W*.5f-4,H*.5f,W*.5f+4,H*.5f,Cross);DrawLine(W*.5f,H*.5f-4,W*.5f,H*.5f+4,Cross);
-    DrawRect(FLinearColor(.05f,.06f,.08f,.8f),W*.5f-100,H-95,200,5);
-    DrawRect(FLinearColor(.25f,.7f,.85f),W*.5f-100,H-95,200*State.progress(),5);
-    DrawText(UTF8_TO_TCHAR(mcl::resultName(State.last)),FColor(180,225,240),W*.5f-35,H-82,nullptr,1.1f);
-    DrawRect(FLinearColor(.02f,.03f,.05f,.88f),0,H-58,W,58);
-    DrawText(TEXT("LMB strike  |  Wheel up / E stab  |  RMB parry  |  Q feint  |  Shift sprint  |  Ctrl crouch  |  Space jump"),FColor::White,24,H-48);
-    DrawText(TEXT("1-6 origins  |  F2 pattern  |  F3 geometry  |  F4 tuning  |  F5 inspection  |  F6 stamina  |  R reset"),FColor(170,195,210),24,H-27);
+    if(Lab->bDebug){
+        DrawText(TEXT("LMB strike | E stab | RMB parry | Q feint | F2 pattern | F4 tuning | F5 inspection | R reset"),FColor(170,185,195),24,H-27);
+    }
     if(State.isRiposte&&(State.phase==mcl::Phase::Windup||State.phase==mcl::Phase::Release))DrawText(TEXT("RIPOSTE"),FColor(255,195,65),W*.5f-45,H*.5f+68,nullptr,1.35f);
     if(S.health<=0)DrawText(TEXT("DOWNED - PRESS R TO RESET"),FColor::Red,W*.5f-160,H*.4f,nullptr,1.7f);
     if(Lab->FeedbackUntil>Lab->Combat.time){
@@ -38,7 +40,7 @@ void ACombatDebugHUD::DrawHUD()
         for(int I=0;I<4;++I){float A=(45.f+90.f*I)*PI/180.f;
             DrawLine(W*.5f+FMath::Cos(A)*Radius,H*.5f+FMath::Sin(A)*Radius,W*.5f+FMath::Cos(A)*(Radius+9),H*.5f+FMath::Sin(A)*(Radius+9),Color,2);}
     }
-    if(Lab->AttackingDummy){
+    if(Lab->bDebug&&Lab->AttackingDummy){
         const auto& Enemy=Lab->AttackingDummy->Combat->Simulation;
         if(Enemy.state.phase==mcl::Phase::Windup||Enemy.state.phase==mcl::Phase::Release){
             auto Incoming=mcl::ChamberSystem::inDefenderView(Enemy.state.attack,Enemy.view,S.view);
@@ -48,7 +50,7 @@ void ACombatDebugHUD::DrawHUD()
                 FString::Printf(TEXT("CHAMBER: %d just before contact (%.0f ms window)"),Sector+1,T.ChamberDuration*1000),FColor(130,210,220),W*.5f-175,H-125);
         }
     }
-    DrawText(TEXT("F7  ")+TournamentGraphics::Profile,FColor(175,195,210),W-210,30);
+    if(Lab->bDebug)DrawText(TEXT("F7  ")+TournamentGraphics::Profile,FColor(175,195,210),W-210,30);
     if(!Lab->bDebug)return;
     DrawText(FString::Printf(TEXT("Strike release %.0f ms / damage active %.0f ms"),T.StrikeRelease*1000,T.StrikeRelease*(T.DamageEnd-T.DamageStart)*1000),FColor::White,34,390);
     FString Debug=FString::Printf(TEXT("STATE %s | %s | angle %.1f | raw %.1f\nphase %.3f / %.3f | release %.3f | spin %.1f / %.1f\nweapon %.0f cm/s | angular %.0f deg/s | yaw cap %.0f | pitch cap %.0f\nfeint %d | morph %d | combo %d | queued %d | riposte %.3f\nparry active %d | remaining %.3f | guard yaw %.1f pitch %.1f\nchamber %d | remaining %.3f | incoming %.1f | difference %.1f / %.1f\nspeed %.0f | momentum %.2f | turn %.0f deg/s | loss %.3f\nlunge %.0f cm/s | displacement %.1f cm\ncombat steps %d | collision queries %d | overload %d"),

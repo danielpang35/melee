@@ -17,8 +17,6 @@ public:
     virtual void Tick(float DeltaTime) override;
     void React(mcl::Resolution Result);
 private:
-    UPROPERTY() TObjectPtr<UKnightPresentation> Knight;
     UPROPERTY() TObjectPtr<UTextRenderComponent> Label;
     FString LastLabel;
-    float Reaction=0;
 };

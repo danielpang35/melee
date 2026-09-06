@@ -9,5 +9,6 @@ public class MeleeCombatLab : ModuleRules
         PublicDependencyModuleNames.AddRange(new string[] {
             "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "Slate", "SlateCore", "Json", "RHI", "MeshDescription", "StaticMeshDescription"
         });
+        if (Target.bBuildEditor) PrivateDependencyModuleNames.Add("AssetRegistry");
     }
 }

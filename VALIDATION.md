@@ -62,3 +62,48 @@ Latest UE build succeeded with movement, benchmark component, isolated test tuni
 The previous 37-scenario tour used user tuning (150 cm blade, 500 ms windup), which caused two low-strike floor collisions and an incorrectly timed riposte fixture. The regression now runs on its explicit default fixture and restores the exact saved user tuning on EndPlay. The corrected rendered tour remains pending; do not report it as passed.
 
 Visual baseline launch was rejected at tool approval. Stage 1 baseline measurements and stages 2-6 are pending. No courtyard/knight visual replacement has been claimed or implemented yet. See Docs/Visual for brief, budgets, route design, style rules, asset audit and backlog.
+
+
+## September 6 aesthetic rehaul (current checkout)
+
+- Final UE 5.8 Development Editor build succeeded; Unreal automation 2/2, no test warnings (report 2026.09.06-09.32.16).
+- Native presentation suite with MSVC /W4 /WX and AddressSanitizer passes: 512,693 sampled invariant checks across six origins, stabs, four frame rates and extreme pitch, plus singular arm targets and sword-frame continuity. These are sampled assertions, not half a million independent scenarios. Run `Tools/TestCore.ps1 -Sanitize -PresentationOnly`.
+- The untouched native combat suite fails after 557 checks on `Stationary double-parry must be numerically impossible`. This was reproduced BEFORE presentation edits. Current second-parry-ready=0.915 s, second-threat=0.950 s. Historical 461-pass claims do not describe this checkout.
+- Rendered combat tour: **34/38 pass**, including six directions, stab, parry, chamber, morph/combo/riposte, inspection geometry, input, crouch/jump, tuning persistence, movement response and courtyard collision/readability. Failures: `accel` (0.7875 s contact), `momentum_and_lunge`, `feint_baits_parry`, `release_flinch`. Run via `Tools/Playtest.ps1`; preserved result at `Docs/Visual/Captures/rendered-results.json`.
+- Rendered failures are not claimed to be proven pre-existing: this session did not run the unmodified rendered tour. Simulation, movement, timing defaults and existing assertions are unchanged. Some fixtures contain fixed timestamps and immediate feint/re-attack assumptions that need reconciliation with the latest timing revision; this is a separate combat/fixture investigation.
+- The full tour was captured before the final cloth-panel/waist-shape and skylight-intensity adjustments. The final mesh/light revision and visibility optimization were rebuilt, passed Unreal automation and inspected on the rendered benchmark route.
+- Final rendered material compilation and static-component attachment warnings are cleared. Fixed the existing generator's disconnected OneMinus/UV inputs and missing instanced-mesh usage flags, plus the courtyard root mobility mismatch. Removed the unbuilt runtime sphere-reflection capture.
+- Combat/Movement source, Config/CombatDefaults.json and existing CombatTests.cpp have no diff. No combat rule was changed to force tests to pass.
+- Before/after captures and profile measurements are in Docs/Visual/Captures and STYLE_AND_PERFORMANCE.md. Native checks establish pose invariants; images and the scripted tour do not certify subjective animation quality, complete clipping coverage, a packaged build, or target-tier hardware performance.
+
+## Citadel replacement — September 6, 2026 (latest)
+
+This section supersedes the earlier presentation checkpoint. The user explicitly
+allowed combat improvements after the initial frozen-combat brief.
+
+- UE 5.8 Development Editor build succeeds (final build 10:48 UTC).
+- Fresh-process Unreal automation: **3/3 succeeded**, zero warnings/failures,
+  report 10:49 UTC. Includes persistent shared skeleton, materials, rig mapping,
+  facing, human scale and exact weapon calibration.
+- Native presentation: **615,111 sampled assertions pass** with MSVC /W4 /WX and
+  AddressSanitizer. Includes riposte phase continuity and calibrated grip depths.
+- Full native combat: still fails after **557 checks** on stationary double-parry.
+  Ready=0.915 s, threat=0.950 s. This failure was recorded before these changes.
+- Final rendered tour (10:52 UTC): **34/38 pass**. Failures remain `accel`,
+  `momentum_and_lunge`, `feint_baits_parry`, and `release_flinch`, matching the
+  prior presentation checkpoint. No assertions were weakened to hide failures.
+- Combat change: removed the 12 cm hilt discontinuity entering/leaving riposte
+  release by joining windup/recovery to the actual raised release trajectory.
+  Release timing and release curve are unchanged.
+- Final 1080p High clean benchmark (10:55 UTC): 7.20 ms mean, 9.91 ms p95,
+  13.78 ms p99 on Ryzen 1600 / RTX 5070. Development Editor -game, unpaced;
+  clean capture has unavailable unit timing counters, not zero CPU/GPU cost.
+  This does not establish packaged or target-hardware performance.
+- Reviewed final textured bodies, first-person parry and three courtyard route
+  captures. The lab-presentation fixture intentionally toggles clay inspection;
+  its grey screenshot is not a missing-material defect.
+- Preserved reports and images: `Docs/Visual/Captures/Citadel`. Architecture,
+  build process and remaining art gaps: `Docs/Visual/CITADEL.md`.
+- AAA quality remains unfinished: authored animation coverage, closed finger
+  grips, skin deformation, bespoke architecture and set dressing need further
+  production. Static screenshots and pose invariants do not certify motion.

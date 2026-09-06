@@ -1,0 +1,34 @@
+{
+	"route": "courtyard-eye-height-v1; 6s warmup, 24s sample; screenshot frames retained",
+	"label": "rehaul-optimized-showcase",
+	"build": "Development Editor executable -game; editor-linked overhead included; not packaged",
+	"cpu": "AMD Ryzen 5 1600 Six-Core Processor            ",
+	"gpu": "NVIDIA GeForce RTX 5070",
+	"physical_ram_gb": 15.937644958496094,
+	"width": 1920,
+	"height": 1080,
+	"samples": 3920,
+	"frame_mean_ms": 6.1224376279100472,
+	"fps_from_mean": 163.33363617153901,
+	"frame_p95_ms": 7.7049024403095245,
+	"frame_p99_ms": 8.8782012462615967,
+	"game_mean_ms": 4.180377779688154,
+	"render_mean_ms": 5.6488813791348012,
+	"gpu_mean_ms": 1.2036260458583734,
+	"draw_calls_mean": 234.93903061224489,
+	"primitives_mean": 25811.783673469388,
+	"limitations": "Zero counters mean unavailable. Shadow/translucency timing requires external GPU event capture; CSV GPU scopes are retained where supported. RTX 5070 is above target GPU tier; Ryzen 1600 is below modern target CPU tier. No target-hardware claim.",
+	"settings":
+	{
+		"r.ScreenPercentage": "100",
+		"r.ShadowQuality": "5",
+		"r.Shadow.Virtual.Enable": "0",
+		"r.DynamicGlobalIlluminationMethod": "0",
+		"r.ReflectionMethod": "2",
+		"r.AntiAliasingMethod": "2",
+		"r.VSync": "0",
+		"t.MaxFPS": "0",
+		"sg.EffectsQuality": "3",
+		"sg.PostProcessQuality": "3"
+	}
+}

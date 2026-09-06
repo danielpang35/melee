@@ -1,22 +1,14 @@
 # MeleeCombatLab
 
-
+Current presentation: [Citadel rebuild](Docs/Visual/CITADEL.md). Asset licenses and attribution: [Citadel credits](ArtSource/Citadel/CREDITS.md).
 
 A single-player first-person melee laboratory for studying spacing, spatial swing manipulation, timed defense and attack commitment. C++ combat simulation owns the sword; rendering follows its blade endpoints. No animation notifies, root-motion damage, aim assistance, lock-on or multiplayer.
 
-
-
 ## Build and launch
-
-
 
 Requires **Unreal Engine 5.8**, Visual Studio 2022 C++ x64 tools, a Windows SDK, and the **.NET Framework 4.8 SDK/targeting pack**. Engine installation must finish before building.
 
-
-
 From PowerShell in this project:
-
-
 
 ```powershell
 
@@ -24,19 +16,11 @@ From PowerShell in this project:
 
 ```
 
-
-
 The script discovers `C:\Program Files\Epic Games\UE_5.8` or `C:\Epic Games\UE_5.8`. For another location, pass `-EngineRoot 'X:\path\UE_5.8'`. Unreal needs normal access to its engine installation and user caches.
 
-
-
-Alternatively open `MeleeCombatLab.uproject`, allow the module build, and press Play. The configured engine Entry map runs `ACombatLabGameMode`, which constructs the arena, lighting and targets at runtime. No external art or generated binary content is required.
-
-
+Alternatively open `MeleeCombatLab.uproject`, allow the module build, and press Play. The configured engine Entry map runs `ACombatLabGameMode`, which constructs the arena, lighting and targets at runtime. The generated Citadel skeletal meshes, sword, architectural modules, and PBR materials under Content/Visual are required. The asset rebuild workflow is documented in Docs/Visual/CITADEL.md.
 
 ## Controls
-
-
 
 | Input | Action |
 
@@ -70,47 +54,25 @@ Alternatively open `MeleeCombatLab.uproject`, allow the module build, and press 
 
 | R | Reset health, positions and attacks |
 
-
-
 Strike and stab inputs during early opposite-type windup morph. Inputs during the latter release window queue combos. An attack immediately following a successful parry becomes a faster riposte.
-
-
 
 Directions name the **origin** of the strike. Right horizontal travels right-to-left. The input resolver keeps the raw continuous angle and quantizes to six 60-degree sectors. With insufficient recent mouse movement it retains the last sector.
 
-
-
 ## Mechanics and tuning
-
-
 
 The attack lifecycle is idle → windup → release → recovery. Strike defaults are 525 / 560 / 675 ms; stab defaults are 565 / 350 / 675 ms. Only 7–93% of release damages bodies. All points along the blade have identical gameplay rules.
 
-
-
 Turning changes the world-space weapon path. Accels and drags never change attack playback rate. Release yaw limits decrease from 260 to 190 to 135 degrees/sec. Cumulative release rotation beyond 135 degrees disables body damage. Excess mouse input is discarded.
-
-
 
 Parry lasts 365 ms with 550 ms punish recovery on a miss. Its oriented frontal box and extended cone follow a separately limited guard. Looking up lowers and tilts the box to protect the feet; looking down raises its lower edge. The cone applies a tunable pitch influence of 0.35 so it does not accidentally erase that foot exposure. Chambers require body contact, the incoming origin projected into the defender's view, within 32 degrees, and a 225 ms window at the start of an ordinary attack. Stabs chamber stabs. Chambers have no extended region. A legal drag can outlast a chamber while a normal parry catches it farther forward.
 
-
-
 Momentum compares actual locomotion intent and velocity, never camera yaw alone. Lunge adds a short forward velocity contribution through collision-safe CharacterMovement. It requires forward commitment and is capped at 85 cm of commanded extra displacement.
-
-
 
 F4 exposes the shared tuning registry. Durations use seconds, distances centimeters, and angular rates degrees/sec. SAVE/LOAD use `Saved/Config/CombatTuning.json`. RESET restores built-in defaults. PROMOTE TO PROJECT DEFAULTS writes `Config/CombatDefaults.json`; commit this file to share tuned defaults. Invalid JSON is rejected and numeric values are clamped to supported ranges. Attack definitions snapshot timing at attack start; changes affect subsequent attacks.
 
-
-
 Start human tuning with `ReleaseMidCap`, `StrikeRelease`, `ParryDuration`, `ChamberDuration`, and `LungeStrength`.
 
-
-
 ## Architecture
-
-
 
 | Location | Responsibility |
 
@@ -130,7 +92,7 @@ Start human tuning with `ReleaseMidCap`, `StrikeRelease`, `ParryDuration`, `Cham
 
 | `Movement` / `Character` | Momentum, lunge, custom CharacterMovement and Enhanced Input |
 
-| `Camera` | Sword and two-link procedural arm presentation |
+| `Camera` / `Visual` | Calibrated textured sword, weighted full-body/first-person rig, final grip IK, instanced Citadel courtyard |
 
 | `Training` | Runtime arena, targets, repeatable patterns and synthesized impact audio |
 
@@ -138,19 +100,11 @@ Start human tuning with `ReleaseMidCap`, `StrikeRelease`, `ParryDuration`, `Cham
 
 | `Tests` | Unreal Automation Tests and an opt-in in-engine regression tour |
 
-
-
 `Combat`, `Movement` and `TrainingPattern.h` contain engine-independent simulation logic. The same code is compiled into the native tests and Unreal module. The simulator retains fixed-step catch-up debt, caps work at 64 steps per frame and reports overload rather than silently dropping time. Blade sweeps subdivide further for large translation or rotation, up to 64 subdivisions, using spherical interpolation rather than cutting across the curved path. World collision delegates to Unreal sphere sweeps; hurt capsules and defenses use the shared mathematical geometry. Contacts are gathered before chamber → parry → world → body resolution.
-
-
 
 To move toward continuous/240 input, replace the resolver's quantization with the raw angle. Trajectory, chamber matching, contact detection and attack intent already use continuous angles. Future networking should serialize timestamped intents and authoritative events, then add server-side scheduling/reconciliation; no replication or prediction is implemented here.
 
-
-
 ## Verification
-
-
 
 ```powershell
 
@@ -160,15 +114,9 @@ To move toward continuous/240 input, replace the resolver's quantization with th
 
 ```
 
-
-
 The native suite compiles with MSVC `/W4 /WX`, and optionally AddressSanitizer. Its 461 checks cover state transitions, all 36 strike chamber pairings, continuous tolerance edges, complete pitch-dependent parry coverage, swept cone contact, curved blade sweeps, registration-order independence, exhausted defenses, once-per-target damage, spatial accel/drag contact, multiple frame rates, momentum and lunge.
 
-
-
 To run the scripted **in-engine** tour after building:
-
-
 
 ```powershell
 
@@ -180,19 +128,13 @@ To run the scripted **in-engine** tour after building:
 
 ```
 
-
-
 This uses actual actors, movement, world queries, rendering and feedback. It writes images and `results.json` to `Saved/Playtests`. It is a scripted regression tour, **not a replacement for human combat-feel testing**. See `VALIDATION.md` for recorded results and unfinished checks.
-
-
 
 ## Current scope and limitations
 
+- Imported textured knight with a project-built deformation skeleton and separate first-person arms. Runtime body posing and IK are implemented; a complete authored animation library, finger articulation, and production retargeting remain unfinished.
 
-
-- Original primitive art and procedural arms; no skeletal mannequin, authored animation or advanced IK rig.
-
-- Synthesized placeholder audio. No proprietary assets or external packs.
+- Synthesized placeholder audio. Knight by piacenti (CC-BY 3.0); sword and scanned environment surfaces from Poly Haven (CC0). Preserve the linked asset credits in distributions.
 
 - Simple health/stamina and flinch. No armor, dismemberment, weapon zones, optional clashes or NavMesh dueling AI.
 
@@ -202,14 +144,9 @@ This uses actual actors, movement, world queries, rendering and feedback. It wri
 
 - Human testing is required to judge responsiveness, swing readability, arm appearance and balance. Automated contact-time tests establish mechanics, not subjective feel.
 
-
-
 Combos always alternate left/right body side, preserving the requested strike height. Stab combos use visibly different left/right hilt origins. Chamber the side you see the attack coming from: an opponent's right horizontal requires your left horizontal (key 4). The HUD shows the matching key during incoming attacks. The 225 ms early-attack chamber window remains short; start just before impact. Successful defenses show gold parry or cyan chamber sparks and a central success indicator.
 
-
-
 Combo attacks cannot chamber, including when a combo is morphed to the other attack type. A fresh attack from idle can chamber normally.
-
 
 Hits reset ordinary attacks directly to idle, including release and queued combos. The visual weapon eases back to rest over 120 ms and an interrupted lunge stops. Active riposte windup/release resists flinch but still takes damage; lethal damage still kills. Riposte recovery, follow-up combos, and morphs are vulnerable normally.
 

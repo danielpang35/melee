@@ -5,3 +5,4 @@ DerivedDataCache/
 .vs/
 *.sln
 Tests/bin/
+ArtSource/Citadel/**/*.blend1

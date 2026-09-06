@@ -1,5 +1,7 @@
 # Visual development record
 
+Current audit: [REHAUL.md](REHAUL.md). Stage statuses below are historical; the September 6 rehaul record at the end supersedes them.
+
 Style: Sunlit low-fantasy tournament. Warm limestone (#C9B892), shadow blue-grey (#667785), muted heraldic blue (#294A68), red (#813D36), leather (#3C2B20), weathered steel (neutral cool grey, roughness 0.35â€“0.5). Stable exposure; no persistent combat-obscuring effects.
 
 ## Provisional Competitive budgets at 1080p
@@ -41,3 +43,55 @@ Preserve portable combat files and saved tuning during visual work. New render c
 ## Stage 1 observed baseline
 
 1920x1080, Development Editor executable -game, RTX 5070 / Ryzen 5 1600 / 16 GB. 3,043 samples: mean 7.887 ms (126.8 FPS), p95 9.990 ms, p99 11.258 ms. Stat-unit raw game/render/GPU means 4.946 / 7.200 / 1.013 ms. Thread timing can include waiting; these values are not independent additive CPU costs. Mean RHI draw calls 124.8, primitives 13,202. GPU CSV scopes (whole capture including warmup): base pass 0.050 ms, shadow depths 0.053 ms, shadow projection 0.019 ms, translucency 0.011 ms, postprocessing 0.156 ms; local GPU memory 636 MB. Nested scopes are not additive. Raw records and screenshots: Saved/VisualPerformance/stage1-baseline. CPU-side work and draw calls warrant attention; GPU headroom on this above-target GPU is not a target-tier certification.
+
+
+## September 6 rehaul — current measurements
+
+1920x1080, RTX 5070 / Ryzen 5 1600 / 16 GB, UE 5.8 Development Editor executable
+in game mode. Route v1 unchanged: 6 s warmup, 24 s sample, three screenshot
+frames retained, uncapped/no VSync. Profiles were run sequentially with no other
+lab or build running. These are single-run local observations, not target-tier
+certification or statistically established differences between High/Showcase.
+
+| Scene / profile | Mean frame ms | FPS from mean | p95 ms | Game ms | Render ms | GPU ms | Draw calls |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Before / Competitive | 5.614 | 178.1 | 7.746 | 4.080 | 5.244 | 0.831 | 174.3 |
+| After / Competitive | 5.855 | 170.8 | 7.799 | 4.099 | 5.399 | 0.884 | 211.4 |
+| After / High | 6.186 | 161.7 | 7.980 | 4.200 | 5.712 | 1.095 | 232.9 |
+| After / Showcase | 6.122 | 163.3 | 7.705 | 4.180 | 5.649 | 1.204 | 234.9 |
+
+Game/render/GPU counters are raw stat-unit values, can include waiting, and must
+not be added together. High and Showcase are close in total frame time despite
+Showcase's higher GPU cost; this is consistent with CPU limitation and run
+variance. Competitive p95 remains above the 6.94 ms budget, so a stable 144 FPS
+claim is not justified even though the local mean exceeds 144 FPS.
+
+The first final-art Competitive capture was 7.429 ms (134.6 FPS). Inspection
+found that recursively setting unchanged body visibility dirtied all child
+render states every frame. Updating only on visibility transitions reduced the
+same scene to 5.855 ms (170.8 FPS), versus 5.614 ms (178.1 FPS) before the rehaul.
+The final scene renders the player's body in external views in addition to the
+two original dummies. This adds visible geometry to the baseline comparison.
+
+Final generated library: 12 material/texture assets, approximately 229 KB on disk
+before cooking. Body has 22 render components, equipment/arms 12, total 34 per
+external knight, slightly above the provisional 32-component ceiling. Next
+optimization: combine static helmet/torso detail or use an authored skeletal
+mesh. No heavy translucent fountain effect or additional shadow-casting light
+was added. Existing graphics tiers remain available through F7.
+
+The initial `rehaul-after` capture used failed material shaders and is explicitly
+an intermediate diagnostic, NOT the delivered visual result. `rehaul-final-*`
+records precede the visibility optimization. Delivered measurements are
+`rehaul-optimized-*`; raw frame CSVs and route images remain under Saved/VisualPerformance.
+Portable summaries and before/after images are preserved in Docs/Visual/Captures.
+Per-pass GPU scopes, packaged build validation and RTX 3060/4060-tier results
+remain outstanding; no GPU-pass allocation is presented as measured here.
+
+Final screenshots were inspected at Competitive and Showcase settings. Material
+compilation, missing instancing flags, unbuilt reflection capture and courtyard
+attachment warnings seen earlier in the pass are resolved. Remaining visible
+limitations include procedural rigid joints, simple cloth panels, generic
+micro-textures, no authored locomotion/finger animation and basic fountain
+geometry. The artwork is a stronger fallback and integration foundation; the
+premium rigged-character stage remains necessary.

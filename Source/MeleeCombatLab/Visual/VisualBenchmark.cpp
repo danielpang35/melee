@@ -21,6 +21,10 @@
 #include "RHIStats.h"
 #include "Serialization/JsonSerializer.h"
 #include "Dom/JsonObject.h"
+#if WITH_EDITOR
+#include "AssetCompilingManager.h"
+#include "ShaderCompiler.h"
+#endif
 
 UVisualBenchmark::UVisualBenchmark(){PrimaryComponentTick.bCanEverTick=true;PrimaryComponentTick.TickGroup=TG_PostUpdateWork;}
 void UVisualBenchmark::TickComponent(float Dt,ELevelTick Type,FActorComponentTickFunction* Function)
@@ -29,10 +33,16 @@ void UVisualBenchmark::TickComponent(float Dt,ELevelTick Type,FActorComponentTic
     auto* Lab=Cast<ACombatLabGameMode>(GetOwner());auto* PC=GetWorld()->GetFirstPlayerController();if(!Lab||!PC)return;
     const double Now=FPlatformTime::Seconds();const double WallDt=LastClock>0?Now-LastClock:Dt;LastClock=Now;Age+=WallDt;
     if(!Started){
+#if WITH_EDITOR
+        // Captures and timing start only after the newly imported art is ready.
+        if(FAssetCompilingManager::Get().GetNumRemainingAssets()>0||(GShaderCompilingManager&&GShaderCompilingManager->IsCompiling())){Age=0;return;}
+#endif
         if(Age<1)return;Started=true;Label=TEXT("baseline");FParse::Value(FCommandLine::Get(),TEXT("VisualBenchmark="),Label);
-        Label=FPaths::MakeValidFileName(Label);Lab->bDebug=false;
+        Label=FPaths::MakeValidFileName(Label);Lab->bDebug=false;Lab->ResetLab();
         Camera=GetWorld()->SpawnActor<ACameraActor>();Camera->GetCameraComponent()->SetFieldOfView(100);PC->SetViewTarget(Camera);
-        PC->ConsoleCommand(TEXT("stat unit"),false);PC->ConsoleCommand(TEXT("csvprofile start"),false);
+        if(!FParse::Param(FCommandLine::Get(),TEXT("CitadelCapture")))PC->ConsoleCommand(TEXT("stat unit"),false);
+        else PC->ConsoleCommand(TEXT("DisableAllScreenMessages"),false);
+        PC->ConsoleCommand(TEXT("csvprofile start"),false);
         Rows=TEXT("elapsed_s,frame_ms,game_ms,render_ms,gpu_ms,draw_calls,primitives,process_mb\n");
     }
     // Frozen route v1: human eye-height tour of the duel lane and fountain ring.
@@ -57,6 +67,7 @@ void UVisualBenchmark::Finish()
 {
     Finished=true;auto* PC=GetWorld()->GetFirstPlayerController();if(PC)PC->ConsoleCommand(TEXT("csvprofile stop"),false);
     auto Root=MakeShared<FJsonObject>();Root->SetStringField(TEXT("route"),TEXT("courtyard-eye-height-v1; 6s warmup, 24s sample; screenshot frames retained"));
+    Root->SetStringField(TEXT("startup"),TEXT("Wait for asset and shader compilation, reset fixture, then start route warmup."));
     Root->SetStringField(TEXT("label"),Label);Root->SetStringField(TEXT("build"),TEXT("Development Editor executable -game; editor-linked overhead included; not packaged"));
     Root->SetStringField(TEXT("cpu"),FPlatformMisc::GetCPUBrand());Root->SetStringField(TEXT("gpu"),GRHIAdapterName);
     Root->SetNumberField(TEXT("physical_ram_gb"),FPlatformMemory::GetConstants().TotalPhysical/1073741824.);
