@@ -10,40 +10,69 @@ UMeleeCharacterMovementComponent::UMeleeCharacterMovementComponent()
 }
 void UMeleeCharacterMovementComponent::ResetCombatMovement()
 {
-    StopMovementImmediately();Momentum={};Lunge={};LungedSerial=0;PreviousLunge=FVector::ZeroVector;ForwardInput=0;bSprint=false;
+    StopMovementImmediately();Momentum={};Lunge={};LungedSerial=0;
+    PreviousLunge=FVector::ZeroVector;ForwardInput=0;bSprint=false;
 }
 float UMeleeCharacterMovementComponent::GetMaxSpeed() const
 {
     const auto* C=Cast<AMeleeCharacter>(CharacterOwner);
     if(!C||!C->Combat)return Super::GetMaxSpeed();
+
     const auto& T=C->Combat->Tuning();
     const FVector Desired=Acceleration.GetSafeNormal2D();
     const double Forward=FVector::DotProduct(Desired,C->GetActorForwardVector());
-    double Speed=Forward>=0?FMath::Lerp(T.LateralSpeed,T.ForwardSpeed,Forward):FMath::Lerp(T.LateralSpeed,T.BackwardSpeed,-Forward);
-    if(bSprint&&Forward>.7&&C->Combat->Simulation.state.phase==mcl::Phase::Idle)Speed=FMath::Lerp(Speed,T.SprintSpeed,Momentum.value);
+    double Speed=Forward>=0?FMath::Lerp(T.LateralSpeed,T.ForwardSpeed,Forward):
+        FMath::Lerp(T.LateralSpeed,T.BackwardSpeed,-Forward);
+
+    // Attack state never removes ordinary locomotion. Lunge is additive only.
+    if(bSprint&&Forward>.7)Speed=FMath::Lerp(Speed,T.SprintSpeed,Momentum.value);
     if(IsCrouching())Speed*=.5;
     return static_cast<float>(Speed);
 }
 void UMeleeCharacterMovementComponent::TickComponent(float Dt,ELevelTick TickType,FActorComponentTickFunction* TickFunction)
 {
     if(auto* C=Cast<AMeleeCharacter>(CharacterOwner)){
-        const auto& T=C->Combat->Tuning();FVector Input=GetPendingInputVector();
+        const auto& T=C->Combat->Tuning();
+        FVector Input=GetPendingInputVector();
         Momentum.update({Velocity.X,Velocity.Y,0},{Input.X,Input.Y,0},Dt,T);
-        GroundFriction=static_cast<float>(T.GroundFriction);GravityScale=static_cast<float>(T.GravityScale);JumpZVelocity=static_cast<float>(T.JumpSpeed);
-        MaxAcceleration=static_cast<float>(T.Acceleration);BrakingDecelerationWalking=static_cast<float>(T.Deceleration);
+
+        GroundFriction=static_cast<float>(T.GroundFriction);
+        GravityScale=static_cast<float>(T.GravityScale);
+        JumpZVelocity=static_cast<float>(T.JumpSpeed);
+        MaxAcceleration=static_cast<float>(T.Acceleration);
+        BrakingDecelerationWalking=static_cast<float>(T.Deceleration);
+
         const auto& S=C->Combat->Simulation;
         if(S.state.phase!=mcl::Phase::Release)Lunge={};
-        if(S.state.phase==mcl::Phase::Release&&S.state.serial!=LungedSerial){LungedSerial=S.state.serial;Lunge.begin(S.view.forward(),ForwardInput,Momentum.value,T);}
+        if(S.state.phase==mcl::Phase::Release&&S.state.serial!=LungedSerial){
+            LungedSerial=S.state.serial;
+            Lunge.begin(S.view.forward(),ForwardInput,Momentum.value,T);
+        }
     }
     Super::TickComponent(Dt,TickType,TickFunction);
 }
 void UMeleeCharacterMovementComponent::CalcVelocity(float Dt,float Friction,bool bFluid,float Braking)
 {
-    Velocity-=PreviousLunge;PreviousLunge=FVector::ZeroVector;
+    // Strip only last frame's additive impulse before solving normal character
+    // locomotion. Windup/release never lower the base movement solution.
+    Velocity-=PreviousLunge;
+    PreviousLunge=FVector::ZeroVector;
+
     Super::CalcVelocity(Dt,Friction,bFluid,Braking);
+
     if(auto* C=Cast<AMeleeCharacter>(CharacterOwner)){
         if(IsMovingOnGround()){
-            const auto V=Lunge.step(Dt,C->Combat->Tuning());PreviousLunge=FVector(V.x,V.y,V.z);Velocity+=PreviousLunge;
+            const FVector BaseVelocity=Velocity;
+            const auto V=Lunge.step(Dt,C->Combat->Tuning());
+            const FVector Add(static_cast<float>(V.x),static_cast<float>(V.y),static_cast<float>(V.z));
+            const FVector Candidate=BaseVelocity+Add;
+
+            // A lunge is a positive-only movement bonus. Direction changes or other
+            // edge cases are never allowed to make the player slower than base movement.
+            if(Candidate.SizeSquared2D()+.01f>=BaseVelocity.SizeSquared2D()){
+                PreviousLunge=Add;
+                Velocity=Candidate;
+            }
         }
     }
 }

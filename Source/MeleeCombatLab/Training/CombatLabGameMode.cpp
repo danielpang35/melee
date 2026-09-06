@@ -37,7 +37,7 @@
 #include "Visual/VisualBenchmark.h"
 #include "Visual/TournamentCourtyard.h"
 #include "Visual/TournamentGraphics.h"
-#include "Engine/SkyAtmosphere.h"
+#include "Components/SkyAtmosphereComponent.h"
 #include "Engine/SphereReflectionCapture.h"
 #include "Components/SphereReflectionCaptureComponent.h"
 #include "Misc/CommandLine.h"

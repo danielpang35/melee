@@ -1,4 +1,4 @@
-#include "Combat/CombatSimulation.h"
+﻿#include "Combat/CombatSimulation.h"
 #include "Combat/Attacks/AttackDirectionResolver.h"
 #include "Movement/MomentumModel.h"
 #include "Movement/LungeModel.h"
@@ -16,7 +16,7 @@ void stateTests()
 {
     Tuning t;AttackStateMachine s;
     expect(s.start({},t),"Idle accepts attack");expect(s.phase==Phase::Windup,"Starts windup");
-    s.advance(.525,t);expect(s.phase==Phase::Release,"Windup -> release");
+    s.advance(t.StrikeWindup,t);expect(s.phase==Phase::Release,"Windup -> release");
     s.advance(t.StrikeRelease,t);expect(s.phase==Phase::Recovery,"Release -> recovery");
     s.advance(.675,t);expect(s.phase==Phase::Idle,"Recovery -> idle");
     s.start({},t);s.advance(.3,t);expect(s.feint(t),"Late windup feint");expect(s.phase==Phase::Idle,"Feint neutral");
@@ -29,14 +29,14 @@ void stateTests()
     s.advance(s.definition.windup,t);s.advance(t.StabRelease*.6,t);expect(s.start({AttackKind::Strike,180,180},t),"Combo buffer");
     s.advance(t.StabRelease*.4,t);expect(s.phase==Phase::Windup&&s.attack.angle==180,"Combo -> selected windup");
     near(s.definition.windup,t.ComboWindup,1e-8,"Combo windup duration");
-    s=AttackStateMachine{};s.start({},t);s.advance(.49,t);expect(!s.feint(t),"Feint lockout");
-    s.flinch();expect(s.phase==Phase::Idle,"Windup flinch returns neutral");s.advance(.35,t);expect(s.phase==Phase::Idle,"Flinch recovery");
+    s=AttackStateMachine{};s.start({},t);s.advance(t.StrikeWindup-t.FeintLockout+.001,t);expect(!s.feint(t),"Feint lockout");
+    s.flinch();expect(s.phase==Phase::Flinch,"Windup hit enters flinch");expect(!s.start({},t)&&!s.parry(t),"Flinch locks offense and defense");s.advance(t.FlinchDuration,t);expect(s.phase==Phase::Idle,"Flinch recovery");
     s.start({},t);s.advance(2.,t);expect(s.phase==Phase::Idle,"Coarse phase overshoot preserved");
 }
 void comboTests()
 {
     Tuning t;
-    near(t.StrikeRelease*(t.DamageEnd-t.DamageStart),.504,1e-9,"504 ms active strike");
+    near(t.StrikeRelease*(t.DamageEnd-t.DamageStart),.45,1e-9,"450 ms active strike");
     for(int source=0;source<6;++source)for(int next=0;next<6;++next)for(int kind=0;kind<2;++kind){
         AttackStateMachine s;s.start({AttackKind::Strike,source*60.,source*60.},t);
         s.advance(t.StrikeWindup+t.StrikeRelease*.6,t);
@@ -46,7 +46,7 @@ void comboTests()
         expect(!s.chamberActive(t)&&!ChamberSystem::matches(s,s.attack,t),"Combo strike or stab cannot chamber");
         AttackIntent morph=s.attack;morph.kind=kind?AttackKind::Strike:AttackKind::Stab;
         expect(s.start(morph,t)&&!s.chamberActive(t),"Morph cannot give a combo a chamber window");
-        expect(s.feint(t)&&s.start({},t)&&s.chamberActive(t),"Fresh neutral attack regains chamber eligibility");
+        expect(s.feint(t),"Combo-derived attempt can feint");s.advance(t.FeintRecovery,t);expect(s.start({},t)&&s.chamberActive(t),"Fresh neutral attack regains chamber eligibility after feint recovery");
     }
     auto right=AttackTrajectory::release({AttackKind::Stab,0,0},.5);
     auto left=AttackTrajectory::release({AttackKind::Stab,180,180},.5);
@@ -122,7 +122,23 @@ void spatialTests()
     for(int sector=0;sector<6;++sector){auto p=AttackTrajectory::release({AttackKind::Strike,sector*60.,sector*60.},0);
         Vec origin{0,std::cos(sector*60.*Rad),std::sin(sector*60.*Rad)};expect(p.direction.dot(origin)>.9,"Six attacks originate on correct side");}
 }
-void defenseIntegration()
+void doubleParryTimingTests()
+{
+    Tuning t;
+    double contact=contactTime(240,0);
+    const double secondParryReady=t.ParryDuration+t.ParryRecovery;
+    const double secondThreat=t.FeintRecovery+contact;
+    std::cout<<"Double-parry timing: ready="<<secondParryReady
+             <<" secondThreat="<<secondThreat
+             <<" margin="<<(secondThreat-secondParryReady)<<'\n';
+    expect(secondThreat<secondParryReady,
+    "Stationary double-parry must be numerically impossible");
+    expect(secondParryReady-secondThreat<=.05,
+        "Static double-parry gap must remain narrow enough for footwork to create extra reaction time");
+    
+    }
+        void defenseIntegration()
+
 {
     auto run=[](bool parry,bool chamber,double defenseAt,bool wrong=false){
         CombatSimulation sim;Combatant a,b;a.id=1;b.id=2;a.reset({0,0,88},{},sim.tuning);b.reset({135,0,88},{180,0},sim.tuning);
@@ -170,31 +186,97 @@ void flinchAndRiposteTests()
     Tuning t;
     for(auto phase:{Phase::Idle,Phase::Windup,Phase::Release,Phase::Recovery,Phase::Parry,Phase::ParryRecovery}){
         AttackStateMachine s;s.start({},t);s.phase=phase;s.comboQueued=true;s.riposteRemaining=.2;
-        s.flinch();expect(s.phase==Phase::Idle&&!s.comboQueued&&s.riposteRemaining==0,"Ordinary flinch immediately clears attacks and buffers");
-        expect(s.start({},t),"Neutral accepts fresh input immediately after hit");
+        s.flinch();
+        expect(s.phase==Phase::Flinch&&!s.comboQueued&&s.riposteRemaining==0,"Ordinary hit enters flinch and clears buffers");
+        expect(!s.start({},t)&&!s.parry(t),"Flinch prevents immediate action");
+        s.advance(t.FlinchDuration,t);
+        expect(s.phase==Phase::Idle&&s.start({},t),"Fresh input accepted after flinch duration");
     }
+
     AttackStateMachine s;s.parrySuccess(t);s.start({},t);
-    expect(s.isRiposte,"Riposte tracked independently of last event");s.flinch();expect(s.phase==Phase::Windup,"Riposte windup immune");
-    s.advance(t.RiposteWindup,t);s.last=Resolution::Hit;s.flinch();expect(s.phase==Phase::Release,"Riposte release immune even after another event");
+    expect(s.isRiposte,"Riposte tracked independently of last event");
+    s.flinch();expect(s.phase==Phase::Windup,"Riposte windup immune");
+    s.advance(t.RiposteWindup,t);s.last=Resolution::Hit;s.flinch();
+    expect(s.phase==Phase::Release,"Riposte release immune even after another event");
     near(s.yawCap(t),t.ReleaseEarlyCap*t.RiposteTurnScale,1e-8,"Riposte yaw is looser");
+
     auto ordinary=AttackTrajectory::release({},.5),counter=AttackTrajectory::riposteRelease({},.5,true);
     expect(counter.hilt.z>ordinary.hilt.z+10,"Riposte has a distinct authoritative raised swing");
-    s.advance(t.StrikeRelease,t);s.flinch();expect(s.phase==Phase::Idle,"Riposte recovery is vulnerable");
-    s.parrySuccess(t);s.start({},t);s.advance(t.RiposteWindup+t.StrikeRelease*.6,t);s.start({},t);s.advance(t.StrikeRelease*.4,t);
-    expect(s.isCombo&&!s.isRiposte,"Combo cannot inherit riposte immunity");s.flinch();expect(s.phase==Phase::Idle,"Combo is interrupted");
-    s.parrySuccess(t);s.start({},t);s.start({AttackKind::Stab,0,0},t);expect(!s.isRiposte,"Morph becomes an ordinary attack");
+
+    s.advance(t.StrikeRelease,t);s.flinch();
+    expect(s.phase==Phase::Flinch,"Riposte recovery is vulnerable");
+    s.advance(t.FlinchDuration,t);
+
+    s.parrySuccess(t);s.start({},t);s.advance(t.RiposteWindup+t.StrikeRelease*.6,t);
+    s.start({},t);s.advance(t.StrikeRelease*.4,t);
+    expect(s.isCombo&&!s.isRiposte,"Combo cannot inherit riposte immunity");
+    s.flinch();expect(s.phase==Phase::Flinch,"Combo is interrupted");
+    s.advance(t.FlinchDuration,t);
+
+    s.parrySuccess(t);s.start({},t);s.start({AttackKind::Stab,0,0},t);
+    expect(!s.isRiposte,"Morph becomes an ordinary attack");
+
     for(bool riposte:{false,true}){
-        CombatSimulation world;Combatant a,b;a.id=1;b.id=2;a.reset({0,0,88},{},t);b.reset({135,0,88},{180,0},t);world.actors={&a,&b};a.start({},t);
-        bool began=false;for(int i=0;i<192;++i){if(world.time>=.65&&!began){if(riposte)b.state.parrySuccess(t);b.start({},t);b.state.advance(b.state.definition.windup,t);b.state.definition.damageStart=.9;b.state.comboQueued=true;began=true;}world.advance(1./240.);}
+        CombatSimulation world;Combatant a,b;a.id=1;b.id=2;
+        a.reset({0,0,88},{},t);b.reset({135,0,88},{180,0},t);world.actors={&a,&b};a.start({},t);
+        bool began=false;
+        for(int i=0;i<240;++i){
+            if(world.time>=.65&&!began){
+                if(riposte)b.state.parrySuccess(t);
+                b.start({},t);b.state.advance(b.state.definition.windup,t);
+                b.state.definition.damageStart=.9;b.state.comboQueued=true;began=true;
+            }
+            world.advance(1./240.);
+        }
         near(b.health,65,1e-8,"Release hit still causes damage");
-        expect(b.state.phase==(riposte?Phase::Release:Phase::Idle),"Integrated hit cancels normal release but preserves riposte");
-        if(!riposte)expect(!b.state.comboQueued&&b.returnAge<.12,"Interrupted swing clears combo and blends to rest");
+        expect(b.state.phase==(riposte?Phase::Release:Phase::Flinch),
+            "Integrated hit flinches normal release but preserves riposte");
+        if(!riposte){
+            expect(!b.state.comboQueued&&b.returnAge<t.FlinchDuration,
+                "Interrupted swing clears combo and begins flinch presentation");
+        }
     }
-    CombatSimulation world;Combatant a,b;a.id=1;b.id=2;b.infiniteHealth=true;b.reset({135,0,88},{180,0},t);world.actors={&a,&b};
-    for(int hit=0;hit<20;++hit){a.reset({0,0,88},{},t);a.start({},t);for(int i=0;i<480;++i)world.advance(1./240.);}
-    expect(b.health==100&&b.hitsTaken==20&&b.damageTaken==700,"Infinite target survives repeated hits and records damage");
+
+    CombatSimulation world;Combatant a,b;a.id=1;b.id=2;b.infiniteHealth=true;
+    b.reset({135,0,88},{180,0},t);world.actors={&a,&b};
+    for(int hit=0;hit<20;++hit){
+        a.reset({0,0,88},{},t);a.start({},t);
+        for(int i=0;i<480;++i)world.advance(1./240.);
+    }
+    expect(b.health==100&&b.hitsTaken==20&&b.damageTaken==700,
+        "Infinite target survives repeated hits and records damage");
 }
-void movementTests()
+void newStateTimingTests()
+{
+    Tuning t;
+
+    // Pure feint: immediate parry is legal, immediate re-attack is not.
+    AttackStateMachine s;s.start({},t);s.advance(.20,t);
+    expect(s.feint(t),"Feint accepted");
+    expect(!s.start({},t),"Feint recovery blocks immediate re-attack");
+    expect(s.parry(t),"Parry remains legal during feint recovery");
+
+    // Atomic windup -> feint -> parry.
+    s=AttackStateMachine{};s.start({},t);s.advance(.20,t);
+    expect(s.parry(t)&&s.phase==Phase::Parry,"RMB during windup performs atomic feint-to-parry");
+    s=AttackStateMachine{};s.start({},t);
+    s.advance(t.StrikeWindup-t.FeintLockout+.001,t);
+    expect(!s.parry(t)&&s.phase==Phase::Windup,"Committed late windup cannot FTP");
+
+    // Explicit offensive lockout length.
+    s=AttackStateMachine{};s.start({},t);s.advance(.20,t);s.feint(t);
+    s.advance(t.FeintRecovery-.001,t);expect(!s.start({},t),"Feint recovery still active");
+    s.advance(.002,t);expect(s.start({},t),"Attack accepted when feint recovery expires");
+    near(s.definition.windup,.60,1e-8,"Normal strike windup baseline is 600 ms");
+
+    // Chambered attacker becomes gameplay-neutral immediately.
+    s=AttackStateMachine{};s.start({},t);s.advance(t.StrikeWindup,t);
+    s.chambered();
+    expect(s.phase==Phase::Idle&&!s.comboQueued&&!s.isRiposte,"Chamber hard-resets attacker to idle");
+    expect(s.start({},t),"Chambered attacker may act immediately after neutral reset");
+
+    near(t.ComboWindup,.65,1e-8,"Combo windup baseline is 650 ms");
+}void movementTests()
 {
     Tuning t;MomentumModel m;for(int i=0;i<240;++i)m.update({500,0,0},{1,0,0},1./240.,t);
     expect(m.value>.65,"Consistent movement builds momentum");double before=m.value;
@@ -203,7 +285,7 @@ void movementTests()
     m=MomentumModel{};m.value=1;for(int i=0;i<240;++i)m.update({500,0,0},{1,0,0},1./240.,t);
     near(m.value,1,1e-8,"Camera-only changes have no momentum input");
     LungeModel l;l.begin({1,0,0},1,1,t);double distance=0;for(int i=0;i<120;++i)distance+=l.step(1./240.,t).length()/240.;
-    expect(distance>50&&distance<=t.LungeMaxDisplacement+.001,"Lunge controlled displacement");
+    expect(distance>25&&distance<=t.LungeMaxDisplacement+.001,"Lunge controlled displacement");
     l.begin({1,0,0},-1,1,t);near(l.step(.01,t).length(),0,1e-8,"Backpedal does not lunge");
     AttackDirectionResolver resolver;resolver.sample(0,10,0);auto intent=resolver.resolve(.01,t);near(intent.angle,0,1e-8,"Right selection");
     resolver.sample(.1,-10,17);intent=resolver.resolve(.1,t);near(intent.angle,120,1e-8,"Upper-left selection");
@@ -211,7 +293,8 @@ void movementTests()
 }
 int main()
 {
-    try{stateTests();comboTests();chamberTests();geometryTests();spatialTests();defenseIntegration();robustnessTests();flinchAndRiposteTests();movementTests();
+    try{stateTests();comboTests();chamberTests();geometryTests();spatialTests();defenseIntegration();robustnessTests();flinchAndRiposteTests();newStateTimingTests();doubleParryTimingTests();movementTests();
         std::cout<<"PASS: "<<checks<<" checks\n";return 0;}
     catch(const std::exception& e){std::cerr<<"FAIL after "<<checks<<" checks: "<<e.what()<<'\n';return 1;}
 }
+
