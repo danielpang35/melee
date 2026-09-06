@@ -3,13 +3,13 @@
 
 // Single registry used by simulation, Slate, JSON persistence and native tests.
 #define MCL_TUNABLES(X) \
- X(StrikeWindup,.60,.15,1.5,"Strike") \
+ X(StrikeWindup,.65,.15,1.5,"Strike") \
  X(StrikeRelease,.50,.15,1.5,"Strike") \
  X(StrikeRecovery,.675,.1,1.5,"Strike") \
  X(StabWindup,.565,.15,1.5,"Stab") \
  X(StabRelease,.35,.15,1.5,"Stab") \
  X(StabRecovery,.675,.1,1.5,"Stab") \
- X(ComboWindup,.65,.15,1.5,"Strike") \
+ X(ComboWindup,.70,.15,1.5,"Strike") \
  X(ComboStart,.50,0,1,"Strike") \
  X(ComboEnd,.96,0,1,"Strike") \
  X(DamageStart,.05,0,.45,"Strike") \
@@ -38,17 +38,17 @@
  X(MouseDeadzone,2,0,20,"Input") \
  X(ParryDuration,.365,.1,.7,"Parry") \
  X(ParryRecovery,.55,.1,1.2,"Parry") \
- X(ParryWidth,130,40,220,"Parry") \
- X(ParryHeight,190,70,260,"Parry") \
- X(ParryDepth,50,10,100,"Parry") \
+ X(ParryWidth,80,40,220,"Parry") \
+ X(ParryHeight,110,70,260,"Parry") \
+ X(ParryDepth,32,10,100,"Parry") \
  X(ParryForward,58,20,110,"Parry") \
  X(ParryVertical,0,-60,60,"Parry") \
  X(BoxPitchInfluence,-.30,-1,1,"Parry") \
  X(BoxZInfluence,-.70,-2,2,"Parry") \
  X(BoxForwardInfluence,.15,-1,1,"Parry") \
- X(ConeLength,175,40,260,"Parry") \
- X(ConeHalfAngle,36,10,65,"Parry") \
- X(ConeForward,24,0,70,"Parry") \
+ X(ConeLength,100,40,260,"Parry") \
+ X(ConeHalfAngle,18,10,65,"Parry") \
+ X(ConeForward,30,0,70,"Parry") \
  X(ConeVertical,20,-30,70,"Parry") \
  X(ConePitchInfluence,.35,0,1,"Parry") \
  X(ParryYawRate,180,30,600,"Parry") \

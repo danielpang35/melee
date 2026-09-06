@@ -1,4 +1,4 @@
-﻿#include "Combat/CombatSimulation.h"
+#include "Combat/CombatSimulation.h"
 #include "Combat/Attacks/AttackDirectionResolver.h"
 #include "Movement/MomentumModel.h"
 #include "Movement/LungeModel.h"
@@ -15,6 +15,9 @@ void near(double a,double b,double tolerance,const char* message){expect(std::ab
 void stateTests()
 {
     Tuning t;AttackStateMachine s;
+    near(t.StrikeWindup,.65,1e-12,"Strike windup baseline");
+    near(t.StrikeRelease,.50,1e-12,"Strike release baseline");
+    near(t.ComboWindup,.70,1e-12,"Combo windup baseline");
     expect(s.start({},t),"Idle accepts attack");expect(s.phase==Phase::Windup,"Starts windup");
     s.advance(t.StrikeWindup,t);expect(s.phase==Phase::Release,"Windup -> release");
     s.advance(t.StrikeRelease,t);expect(s.phase==Phase::Recovery,"Release -> recovery");
@@ -75,8 +78,18 @@ void geometryTests()
     Tuning t;auto neutral=ParryGeometry::make({}, {},t);
     expect(neutral.box({{100,0,0},{0,0,0}},4),"Front box sweep");
     expect(!neutral.catches({{-150,0,0},{-35,0,0}},4),"Rear attack bypasses guard");
-    expect(neutral.cone({{145,60,20},{150,70,20}},4),"Forward extended cone catches beyond box");
-    expect(!neutral.box({{145,60,20},{150,70,20}},4),"Extended cone test is outside main box");
+    near(t.ParryWidth,80,1e-12,"Parry width baseline");
+    near(t.ParryHeight,110,1e-12,"Parry height baseline");
+    near(t.ParryDepth,32,1e-12,"Parry depth baseline");
+    near(t.ConeLength,100,1e-12,"Parry cone length baseline");
+    near(t.ConeHalfAngle,18,1e-12,"Parry cone angle baseline");
+    near(t.ConeForward,30,1e-12,"Parry cone base offset baseline");
+    near(neutral.coneOrigin.x,t.ConeForward+t.ConeLength,1e-8,"Reversed cone apex is outward");
+    near(neutral.coneRotation.forward().x,-1.,1e-8,"Reversed cone points back toward defender");
+    Segment broadBase{{35,30,20},{36,30,20}};
+    expect(neutral.cone(broadBase,4),"Broad cone base catches near defender");
+    expect(!neutral.box(broadBase,4),"Broad cone base regression point is outside main box");
+    expect(!neutral.cone({{120,15,20},{121,15,20}},4),"Outward cone apex remains narrow");
     auto up=ParryGeometry::make({}, {0,45},t),down=ParryGeometry::make({}, {0,-45},t);
     Segment feet{{45,0,-84},{60,0,-84}};
     expect(up.box(feet,4),"Looking up protects feet through transformed box");
@@ -267,7 +280,7 @@ void newStateTimingTests()
     s=AttackStateMachine{};s.start({},t);s.advance(.20,t);s.feint(t);
     s.advance(t.FeintRecovery-.001,t);expect(!s.start({},t),"Feint recovery still active");
     s.advance(.002,t);expect(s.start({},t),"Attack accepted when feint recovery expires");
-    near(s.definition.windup,.60,1e-8,"Normal strike windup baseline is 600 ms");
+    near(s.definition.windup,.65,1e-8,"Normal strike windup baseline is 650 ms");
 
     // Chambered attacker becomes gameplay-neutral immediately.
     s=AttackStateMachine{};s.start({},t);s.advance(t.StrikeWindup,t);
@@ -275,7 +288,7 @@ void newStateTimingTests()
     expect(s.phase==Phase::Idle&&!s.comboQueued&&!s.isRiposte,"Chamber hard-resets attacker to idle");
     expect(s.start({},t),"Chambered attacker may act immediately after neutral reset");
 
-    near(t.ComboWindup,.65,1e-8,"Combo windup baseline is 650 ms");
+    near(t.ComboWindup,.7,1e-8,"Combo windup baseline is 700 ms");
 }void movementTests()
 {
     Tuning t;MomentumModel m;for(int i=0;i<240;++i)m.update({500,0,0},{1,0,0},1./240.,t);
