@@ -1,0 +1,27 @@
+{
+  "source": "C:\\Users\\Daniel Pang\\Videos\\Captures\\MORDHAU   2026-09-08 01-46-20.mp4",
+  "source_bytes": 34858979,
+  "sha256": "780f6e56a861e12f51c02c0b15ed09f04e3c9be2eb01169be593ed2f4fdf4a38",
+  "source_frame_size": [
+    1920,
+    1080
+  ],
+  "selection": {
+    "clip": "B",
+    "start": 0,
+    "end": 10000,
+    "step": 1,
+    "name": "overview",
+    "crop": null,
+    "columns": 4,
+    "tile_width": 480
+  },
+  "frames": 21,
+  "first_pts_s": 0.0449333,
+  "last_pts_s": 20.3835,
+  "sheets": [
+    "C:\\Users\\Daniel Pang\\OneDrive\\Documents\\ChatGPT\\swingmanipulation\\Docs\\ThirdPersonReference20260908\\B\\overview\\sheet-01.jpg",
+    "C:\\Users\\Daniel Pang\\OneDrive\\Documents\\ChatGPT\\swingmanipulation\\Docs\\ThirdPersonReference20260908\\B\\overview\\sheet-02.jpg"
+  ],
+  "method": "Decode source frames with FFmpeg select; labels are decoded source PTS, not index/fps. Aspect ratio preserved; optional fixed crop."
+}

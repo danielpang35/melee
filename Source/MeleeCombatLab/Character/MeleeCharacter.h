@@ -6,6 +6,7 @@
 
 class UKnightPresentation;class UCombatComponent;class UCameraComponent;class UWeaponPresentationComponent;class UInputAction;class UInputMappingContext;
 struct FInputActionValue;
+namespace mcl {struct CombatEvent;}
 UCLASS()
 class MELEECOMBATLAB_API AMeleeCharacter : public ACharacter
 {
@@ -17,15 +18,19 @@ public:
     UPROPERTY(VisibleAnywhere) TObjectPtr<UCombatComponent> Combat;
     UPROPERTY(VisibleAnywhere) TObjectPtr<UCameraComponent> Camera;
     UPROPERTY(VisibleAnywhere) TObjectPtr<UWeaponPresentationComponent> Presentation;
+    UPROPERTY(VisibleAnywhere) TObjectPtr<class UEXCombatPresentation> EXPresentation;
     virtual void SetupPlayerInputComponent(UInputComponent* Input) override;
     virtual void Tick(float DeltaTime) override;
+    virtual void CalcCamera(float DeltaTime,FMinimalViewInfo& OutResult) override;
     void Feedback(mcl::Resolution Result);
+    void Feedback(const mcl::CombatEvent& Event);
     void ResetAt(FVector Position,FRotator Facing);
 private:
     UPROPERTY() TObjectPtr<UInputMappingContext> Context;
     UPROPERTY() TArray<TObjectPtr<UInputAction>> Actions;
     mcl::AttackDirectionResolver Direction;
     float CameraKick=0;
+    float CameraRoll=0;
     float BodyReaction=0;
     void Forward(const FInputActionValue& Value);
     void Right(const FInputActionValue& Value);
@@ -34,6 +39,6 @@ private:
     void SprintStart();void SprintEnd();void CrouchStart();void CrouchEnd();
     void Strike();void Stab();void Parry();void Feint();
     void ToggleDebug();void ToggleTuning();void ResetLab();void NextPattern();void ToggleStamina();void ToggleInspection();
-    void CycleGraphics();
+    void CycleGraphics();void ToggleTracers();void ClearTracers();
     void Direction0();void Direction1();void Direction2();void Direction3();void Direction4();void Direction5();
 };

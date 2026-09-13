@@ -1,0 +1,15 @@
+{
+  "revision": "FP-readable-windup-a73c5e547b0c",
+  "source_sha256": "a73c5e547b0cad86a288fe5079369f83ec7f14d9de6d3ab4908996b5ba7ffe06",
+  "weapon_motion": "ArtSource/CharacterReset/EX_v002/Export/EX_v002_WeaponMotion.json",
+  "assets": [
+    {
+      "mesh": "/Game/EXPreview/EX_v002/EX_v002.EX_v002",
+      "animation": "/Game/Readability/FP_ecbebac5a534/FP_ReadableWindup.FP_ReadableWindup"
+    }
+  ],
+  "animation_package_sha256": "a669829b7f3c54ad93412b842ff8b991c5ecac06aa50c2243f154ebd396c0b2a",
+  "compression_profile": "BitwiseCompressOnly; native defaults; no key reduction",
+  "source_path": "ArtSource\\ReadabilityCorrection\\FP\\FP_ReadableWindup_v001.blend",
+  "animation_package_file": "Content/Readability/FP_ecbebac5a534/FP_ReadableWindup.uasset"
+}

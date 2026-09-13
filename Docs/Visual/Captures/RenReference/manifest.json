@@ -1,0 +1,20 @@
+{
+  "source": "D:\\Mordhau Montage VI.mp4",
+  "bytes": 76339804,
+  "sha256": "f71bde2385fdc5e4657314313fa279af546f607818deae2bda1835728852273f",
+  "method": "36 consecutive decoded source frames per sequence; 30 fps timestamp grid; no interpolation; sheets resize only",
+  "sequences": [
+    [
+      "R01",
+      2.4
+    ],
+    [
+      "R02",
+      164.1
+    ],
+    [
+      "R03",
+      260.3
+    ]
+  ]
+}

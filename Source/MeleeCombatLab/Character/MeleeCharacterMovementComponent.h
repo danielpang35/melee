@@ -96,5 +96,8 @@ public:
 
 private:
     FVector InputIntent=FVector::ZeroVector;
+    uint64 DriveSerial=0;
+    double InheritedForward=0;
+    bool bDriveCancelled=false;
     void UpdateFallbackSignals(const FVector& PreviousVelocity,float DeltaTime);
 };

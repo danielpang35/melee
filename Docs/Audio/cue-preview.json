@@ -1,0 +1,26 @@
+[
+  {
+    "cue": "Swing",
+    "preview_at_seconds": 0.0
+  },
+  {
+    "cue": "Stab",
+    "preview_at_seconds": 0.88
+  },
+  {
+    "cue": "Body",
+    "preview_at_seconds": 1.61
+  },
+  {
+    "cue": "Parry",
+    "preview_at_seconds": 2.45
+  },
+  {
+    "cue": "Chamber",
+    "preview_at_seconds": 3.43
+  },
+  {
+    "cue": "Wall",
+    "preview_at_seconds": 4.27
+  }
+]

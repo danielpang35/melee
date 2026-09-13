@@ -1,0 +1,15 @@
+# Workflow implementation checkpoint
+
+> **Dated record; active assignments and status superseded (12 September 2026).** Preserve the technical/design history below. [TP checkpoint](THIRD_PERSON_CHECKPOINT.md) owns current source, selection, pilot outcome and resume; [DEVELOPMENT](DEVELOPMENT.md) owns operational scope. Step 4 (parry/riposte, branch integration, full-exchange packaging and expansion) is deferred. [Documentation ownership](DOCUMENTATION_OWNERSHIP.md) and [audit](DOCUMENTATION_AUDIT.md) define current authority. Linear owns live execution.
+
+8 September 2026. Policy MCL-DEV-2026-09-08 implemented in root AGENTS.md; README/spec/development/tool guide/VALIDATION now point to the fast candidate loop. Global Codex instructions and all three registered additional worktrees contain scoped canonical-rule pointers. The active TP task acknowledged adoption and reported its children finished. Every future delegation must include the rules path.
+
+Notion Animation/home, Linear project and all 23 open issues were updated with mandatory references; MEL-6/MEL-15 implementation status was reconciled without claiming completion. Full receipts: Saved/WorkflowPolicy/receipt.json.
+
+Architecture change: isolated authoring snapshots and candidate directories are separate from selection/refinement and existing engine integration. AnimationLab.py offers new/render/select/refine, one comparison camera, shared sequential render locking, preview identities and protected output paths. No batch automatically changes production source, selectors or gameplay. PlayBenchmark.ps1 records accepted FP/native/module/defaults/user-tuning identity plus optional TP selection; -PrepareOnly was exercised without launching Unreal.
+
+Demonstrated batch: ArtSource/AnimationLab/workflow_demo_20260908/index.html. Three complete neutral-right drafts rendered at 512×416, 30 fps preserving source speed; observed time 49.91–51.64 seconds each. B_deeper_load is a provisional frame-based selection for its stronger preparation; E_refine_load is a separate rendered refinement with reduced torso overcoil. No continuous-play or human acceptance is claimed; production TP/FP selectors remain unchanged by this workflow.
+
+Focused independent tooling review found shared-lock, camera and provenance gaps; all were corrected and the same reviewer cleared those fixes. Representative creation/render/selection/refinement, source-speed decoding, rejection boundaries and launch preparation were exercised. No Unreal build/import, broad regression or pose matrix was run. Saved/WorkflowPolicy/smoke.json records focused checks.
+
+Next: current animation owner uses the batch gallery and Daniel's motion feedback to choose/refine choreography, then integrates only the selected winner with checks relevant to the changed contract. Current game candidate identity/limitations remain in THIRD_PERSON_CHECKPOINT.md; this checkpoint does not duplicate its moving state. ANIMATION_SPECIALIST_BRIEF.md is the prepared conditional fallback, not a commission.

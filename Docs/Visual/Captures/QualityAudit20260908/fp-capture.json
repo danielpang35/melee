@@ -1,0 +1,37 @@
+{
+  "tag": "EX_fp_review",
+  "pid": 7856,
+  "selection": {
+    "revision": "EX_v002-source-1615b76b-FBX-6a34514c-native-unreduced-v1",
+    "source_sha256": "1615b76b69fe19dab8973ef7a4cea6ebf6589fe5c05fc4674a089a2230b1c49e",
+    "weapon_motion": "ArtSource/CharacterReset/EX_v002/Export/EX_v002_WeaponMotion.json",
+    "assets": [
+      {
+        "mesh": "/Game/EXPreview/EX_v002/EX_v002.EX_v002",
+        "animation": "/Game/EXPreview/EX_v002/EX_v002_Anim.EX_v002_Anim"
+      }
+    ],
+    "animation_package_sha256": "c82d1a287a3e70fb7062188dc627b97f1ff3be16709b868b0f519f40835025ab",
+    "compression_profile": "BitwiseCompressOnly; native defaults; no key reduction"
+  },
+  "arguments": [
+    "\"C:\\Users\\Daniel Pang\\OneDrive\\Documents\\ChatGPT\\swingmanipulation/MeleeCombatLab.uproject\"",
+    "/Engine/Maps/Entry",
+    "-game",
+    "-windowed",
+    "-nosplash",
+    "-abslog=\"C:\\Users\\Daniel Pang\\OneDrive\\Documents\\ChatGPT\\swingmanipulation/Saved/MEL15/EX_fp_review.log\"",
+    "-ResX=640",
+    "-ResY=360",
+    "-ForceRes",
+    "-RenderOffscreen",
+    "-unattended",
+    "-usefixedtimestep",
+    "-fps=60",
+    "-EXGameplayCapture=EX_fp_review",
+    "-EXGameplayView=firstperson"
+  ],
+  "capture": true,
+  "view": "firstperson",
+  "module_sha256": "470DD1F3AE8A80FF18991B97A5811B5AF493D765A84E0219D69ECAF630744C50"
+}

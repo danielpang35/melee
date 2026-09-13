@@ -1,0 +1,122 @@
+[
+  {
+    "index": 1,
+    "source_pts_s": 6.450367,
+    "file": "frame-0001.jpg"
+  },
+  {
+    "index": 2,
+    "source_pts_s": 6.533733,
+    "file": "frame-0002.jpg"
+  },
+  {
+    "index": 3,
+    "source_pts_s": 6.617067,
+    "file": "frame-0003.jpg"
+  },
+  {
+    "index": 4,
+    "source_pts_s": 6.706033,
+    "file": "frame-0004.jpg"
+  },
+  {
+    "index": 5,
+    "source_pts_s": 6.789333,
+    "file": "frame-0005.jpg"
+  },
+  {
+    "index": 6,
+    "source_pts_s": 6.872633,
+    "file": "frame-0006.jpg"
+  },
+  {
+    "index": 7,
+    "source_pts_s": 6.955933,
+    "file": "frame-0007.jpg"
+  },
+  {
+    "index": 8,
+    "source_pts_s": 7.044833,
+    "file": "frame-0008.jpg"
+  },
+  {
+    "index": 9,
+    "source_pts_s": 7.128133,
+    "file": "frame-0009.jpg"
+  },
+  {
+    "index": 10,
+    "source_pts_s": 7.2171,
+    "file": "frame-0010.jpg"
+  },
+  {
+    "index": 11,
+    "source_pts_s": 7.300333,
+    "file": "frame-0011.jpg"
+  },
+  {
+    "index": 12,
+    "source_pts_s": 7.3893,
+    "file": "frame-0012.jpg"
+  },
+  {
+    "index": 13,
+    "source_pts_s": 7.472667,
+    "file": "frame-0013.jpg"
+  },
+  {
+    "index": 14,
+    "source_pts_s": 7.555967,
+    "file": "frame-0014.jpg"
+  },
+  {
+    "index": 15,
+    "source_pts_s": 7.639267,
+    "file": "frame-0015.jpg"
+  },
+  {
+    "index": 16,
+    "source_pts_s": 7.7226,
+    "file": "frame-0016.jpg"
+  },
+  {
+    "index": 17,
+    "source_pts_s": 7.8059,
+    "file": "frame-0017.jpg"
+  },
+  {
+    "index": 18,
+    "source_pts_s": 7.8892,
+    "file": "frame-0018.jpg"
+  },
+  {
+    "index": 19,
+    "source_pts_s": 7.9781,
+    "file": "frame-0019.jpg"
+  },
+  {
+    "index": 20,
+    "source_pts_s": 8.0615,
+    "file": "frame-0020.jpg"
+  },
+  {
+    "index": 21,
+    "source_pts_s": 8.1504,
+    "file": "frame-0021.jpg"
+  },
+  {
+    "index": 22,
+    "source_pts_s": 8.244867,
+    "file": "frame-0022.jpg"
+  },
+  {
+    "index": 23,
+    "source_pts_s": 8.3281,
+    "file": "frame-0023.jpg"
+  },
+  {
+    "index": 24,
+    "source_pts_s": 8.4115,
+    "file": "frame-0024.jpg"
+  }
+]

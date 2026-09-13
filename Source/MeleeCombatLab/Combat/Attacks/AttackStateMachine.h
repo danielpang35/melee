@@ -9,10 +9,14 @@ struct AttackStateMachine
     AttackIntent attack,queued;
     AttackDefinition definition=AttackDefinition::make(AttackKind::Strike,Tuning{});
     double elapsed=0,attackAge=0,releaseRotation=0,riposteRemaining=0,feintRecoveryRemaining=0;
-    double stamina=100,lastSpend=100;
+    double stamina=100,lastSpend=100,comboBaseWindup=0;
     bool infiniteStamina=true,comboQueued=false,isCombo=false,isRiposte=false,morphed=false,hitSomeone=false;
     std::uint64_t serial=0;
     Resolution last=Resolution::None;
+    // Binding selection is part of the transaction, including queued attacks.
+    bool exEnabled=false,exActive=false;
+    void selectMotion(const Tuning& t);
+    double boundary(const Tuning& t) const;
     double duration() const;
     double progress() const { return clamp(elapsed/duration(),0.,1.); }
     bool canFeint(const Tuning& t) const;
@@ -29,7 +33,7 @@ struct AttackStateMachine
     void flinch();
     void chambered();
     void cancel(Resolution result);
-    void advance(double dt,const Tuning& t);
+    void advance(double dt,const Tuning& t,bool deferTransitions=false);
     double yawCap(const Tuning& t) const;
 };
 }

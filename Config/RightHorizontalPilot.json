@@ -1,0 +1,14 @@
+{
+  "revision": "TP_v001-source-f77e1a5e-FBX-323f1b7d576e",
+  "mesh": "/Game/TPPreview/TP_v001_323f1b7d576e/TPBody.TPBody",
+  "animation": "/Game/TPPreview/TP_v001_323f1b7d576e/TPBody_Anim.TPBody_Anim",
+  "weapon_mesh": "/Game/TPPreview/TP_v001_323f1b7d576e/TPWeapon.TPWeapon",
+  "weapon_motion": "ArtSource\\Selected\\D_arc_weight_v08\\Runtime\\323f1b7d576e\\TP_v001_WeaponMotion.json",
+  "skeleton_motion": "ArtSource\\Selected\\D_arc_weight_v08\\Runtime\\323f1b7d576e\\TP_v001_SkeletonMotion.json",
+  "source_sha256": "f77e1a5e4edc28bb158b467964fed9a143413ec33dcc4d35a08325b7c9e1d70e",
+  "canonical_authority": false,
+  "profile": "TP_native_attack_age_v1",
+  "fps": 60,
+  "duration_s": 2.433333333333333,
+  "idle_source_s": 0
+}

@@ -1,0 +1,169 @@
+{
+  "snapshot_date": "2026-09-13",
+  "local_project_commit": "78a602d90f34c7735492ad983eaac19696055c50",
+  "animation_native_sha256": "a27fc7b3c2e43072e71711baa5724c4f7c0f21113a64605ea6aa6bea71c35cad",
+  "body_native_sha256": "67eeee22bd652e3ede89942a12621cd4dea103d9ca58309710adb158a1cfc319",
+  "media": [
+    {
+      "file": "Docs/Review/hound-style-anatomy.jpg",
+      "source": "ArtSource\\HunyuanHound\\Hound_v001\\Review\\01-style-anatomy.png",
+      "source_sha256": "d447b9f3380d2f8e85e619b49e243c83eddd74bd9a28abd4f39ff801b5adb952",
+      "sha256": "be72637ea7481279feb6b9a3496477a2e8746811c0c8b10519ba34797fea67f1",
+      "dimensions": [
+        1400,
+        1010
+      ],
+      "caption": "Selected surface-style exemplar and interpretation; not a runtime character.",
+      "operation": "JPEG review derivative; aspect preserved; original image/native source retained locally"
+    },
+    {
+      "file": "Docs/Review/hound-four-views.jpg",
+      "source": "ArtSource\\HunyuanHound\\Hound_v001\\Review\\02-four-views.png",
+      "source_sha256": "99832775012bd9d49e256973f6154daa8952bcc865859ff1e91eb4a6b9756bdd",
+      "sha256": "4f16c7f2266e9ca01d8725d8a79bd3901d9026d2a995723483b50a1cf28f84a8",
+      "dimensions": [
+        1100,
+        1240
+      ],
+      "caption": "Four named views of the Hunyuan style exemplar.",
+      "operation": "JPEG review derivative; aspect preserved; original image/native source retained locally"
+    },
+    {
+      "file": "Docs/Review/hound-channel-atlas.jpg",
+      "source": "ArtSource\\HunyuanHound\\Hound_v001\\Review\\03-channel-atlas.png",
+      "source_sha256": "d59d8f734bea117d000338d5c2c88db92abd86c12109d56fb5febe7cbb1bda23",
+      "sha256": "bbaa49a44a4e5bd12a6fbbdd7de6157e55dbf38e10856c1e749e6f4aa1ffde62",
+      "dimensions": [
+        1100,
+        1240
+      ],
+      "caption": "Supplied texture channels; painted lighting is part of the appearance.",
+      "operation": "JPEG review derivative; aspect preserved; original image/native source retained locally"
+    },
+    {
+      "file": "Docs/Review/hound-lighting.jpg",
+      "source": "ArtSource\\HunyuanHound\\Hound_v001\\Review\\04-lighting-diagnostic.png",
+      "source_sha256": "33728446a3330eeabf249a95f4756a98d35e4266ee36086de6a86a7b9df8425e",
+      "sha256": "52ae902da828b1bbf64c072899b85c16b6886e64639d66208a764fa736195dca",
+      "dimensions": [
+        1100,
+        1240
+      ],
+      "caption": "Controlled static lighting diagnostics; no engine acceptance.",
+      "operation": "JPEG review derivative; aspect preserved; original image/native source retained locally"
+    },
+    {
+      "file": "Docs/Review/hound-palette.jpg",
+      "source": "ArtSource\\HunyuanHound\\Hound_v001\\Review\\05-sampled-palette.png",
+      "source_sha256": "72fb02c2428fee1cf4625580e7f80b80fd0d4e593237a4239a729f156ca0a777",
+      "sha256": "98947645814354711afbbce59210f76dced471a6fedab90fa4e0386072872d0c",
+      "dimensions": [
+        1400,
+        1060
+      ],
+      "caption": "Measured appearance palette; not calibrated reflectance.",
+      "operation": "JPEG review derivative; aspect preserved; original image/native source retained locally"
+    },
+    {
+      "file": "Docs/Review/hound-distance.jpg",
+      "source": "ArtSource\\HunyuanHound\\Hound_v001\\Review\\06-distance-hierarchy.png",
+      "source_sha256": "c5c0d03fbfc368923afcfc12db2c2929570eff3fb6d056b4b11d4a3912b8ada4",
+      "sha256": "9053e25bbf07512ccd0e4b6dc977731d7049a5416966f2bd7331af1ae690c32c",
+      "dimensions": [
+        1100,
+        490
+      ],
+      "caption": "Image-size comparison; not measured runtime LOD performance.",
+      "operation": "JPEG review derivative; aspect preserved; original image/native source retained locally"
+    },
+    {
+      "file": "Docs/Review/hound-concept.jpg",
+      "source": "ArtSource\\HunyuanHound\\Hound_v001\\Source\\11-hound-bascinet.png",
+      "source_sha256": "9dc54bd6b4cccbe7b9410e2f5615ee533a658c947fc478d189321a577ae0545b",
+      "sha256": "a2bf45382e0119a61a449ac2de15462db463c7ac031c66fbfa21a7a494eabe43",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "caption": "Supporting Hound Bascinet concept; the generated model governs surface style.",
+      "operation": "JPEG review derivative; aspect preserved; original image/native source retained locally"
+    },
+    {
+      "file": "Docs/Review/working-body.jpg",
+      "source": "Saved\\WorkingBodyRepair\\textured-current-LOD0-sheet.png",
+      "source_sha256": "9b30cca8d2646fd836e0f69d09f0075d22cdea0a7f6496e27bd413c310dcd1df",
+      "sha256": "42d5d9b5f9a93b70dbe1d16d85f080f74a691de97d89a1f8c5fa6aaef2e6c9b1",
+      "dimensions": [
+        900,
+        952
+      ],
+      "caption": "Working MB_v005 rest body, four named views. Deep elbow-flexion findings remain open.",
+      "operation": "JPEG review derivative; aspect preserved; original image/native source retained locally"
+    },
+    {
+      "file": "Docs/Review/animation-views.jpg",
+      "source": "Saved\\Kimodo\\RH_20260913\\B_reference_extended_v003\\B_ArmLoad_v004\\inspection.jpg",
+      "source_sha256": "ab78b66ca7a2a397248b6b674af266a8fd3628810abc7a892f2e1187a63a77af",
+      "sha256": "677384cedc8649000cedccb6a83d76958f7516c4aa487188d7304947d1562a3b",
+      "dimensions": [
+        1536,
+        1200
+      ],
+      "caption": "Selected provisional B_ArmLoad_v004: primary/rear-quarter samples and four body views; sampled evidence only.",
+      "operation": "JPEG review derivative; aspect preserved; original image/native source retained locally"
+    },
+    {
+      "file": "Docs/Review/animation-intervals.jpg",
+      "source": "Saved\\Kimodo\\RH_20260913\\B_reference_extended_v003\\B_ArmLoad_v004\\interval-review.jpg",
+      "source_sha256": "408eb4e46e6c23faf08ae542550858802d584c19b3e38d394a34544397fe93b9",
+      "sha256": "bfbb06c68daf33f4e5ed9209dd2cdda78015c97c693cea2e8890e9bcf3a83ae1",
+      "dimensions": [
+        1536,
+        1600
+      ],
+      "caption": "Ordered selected-take samples, including windup, passage and recovery; not continuous viewing.",
+      "operation": "JPEG review derivative; aspect preserved; original image/native source retained locally"
+    },
+    {
+      "file": "Docs/Review/animation-load.jpg",
+      "source": "Saved\\Kimodo\\RH_20260913\\B_reference_extended_v003\\B_ArmLoad_v004\\primary-0030.png",
+      "source_sha256": "167bad8dbb27d7c9ba93d690579f9d6a1aac743e2b976e0000b024168d002ca5",
+      "sha256": "8eda892d8cefe6b9b04ec0b31ec19b28dced6aa164209fda7ece411c7110ddc0",
+      "dimensions": [
+        640,
+        640
+      ],
+      "caption": "Loaded pose at source frame30, 0.9667s. Upright torso and open winding elbow; rough fingers remain.",
+      "operation": "JPEG review derivative; aspect preserved; original image/native source retained locally"
+    },
+    {
+      "file": "Docs/Review/arm-load-reference.jpg",
+      "source": "Saved\\reference.jpg",
+      "source_sha256": "43d12355c40acb0ecf4af9653c184ee7d24722f52e63cb04bfc04efb960863ca",
+      "sha256": "786c026c954cb32caa94ad5543209990938337e4474ecab4f9d50457c90011d9",
+      "dimensions": [
+        640,
+        427
+      ],
+      "caption": "Daniel supplied this photograph as arm-windup direction; no baseball motion or timing inferred.",
+      "operation": "JPEG review derivative; aspect preserved; original image/native source retained locally"
+    },
+    {
+      "file": "Docs/Review/animation-primary.mp4",
+      "source": "Saved\\Kimodo\\RH_20260913\\B_reference_extended_v003\\B_ArmLoad_v004\\primary.mp4",
+      "source_sha256": "8f030b9b6f54335e080fafae24fa9de4f9c4d66323ae289060df44b5f8ef79a8",
+      "sha256": "8f030b9b6f54335e080fafae24fa9de4f9c4d66323ae289060df44b5f8ef79a8",
+      "operation": "Unchanged complete1x movie",
+      "caption": "B_ArmLoad_v004,92 frames at30fps; native500ms release; no human acceptance"
+    },
+    {
+      "file": "Docs/Review/animation-rear-quarter.mp4",
+      "source": "Saved\\Kimodo\\RH_20260913\\B_reference_extended_v003\\B_ArmLoad_v004\\rear-quarter.mp4",
+      "source_sha256": "0fa2c7542ba87102be965f74e3f1612122144ec94a37a4f6afbf15cfda1a0164",
+      "sha256": "0fa2c7542ba87102be965f74e3f1612122144ec94a37a4f6afbf15cfda1a0164",
+      "operation": "Unchanged complete1x movie",
+      "caption": "B_ArmLoad_v004,92 frames at30fps; native500ms release; no human acceptance"
+    }
+  ],
+  "limitations": "Dated review derivatives. Original native art, archive drafts, raw motion and runtime binary assets remain local; this is not a runnable asset-complete distribution."
+}

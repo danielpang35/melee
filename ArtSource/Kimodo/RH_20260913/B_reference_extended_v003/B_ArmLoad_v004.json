@@ -1,0 +1,1126 @@
+{
+  "source": "ArtSource\\Kimodo\\RH_20260913\\B_reference_extended_v003\\B_ArmLoad_v004.blend",
+  "source_sha256": "a27fc7b3c2e43072e71711baa5724c4f7c0f21113a64605ea6aa6bea71c35cad",
+  "input_native_source": "ArtSource\\Kimodo\\RH_20260913\\B_reference_extended_v003\\ReferencePullback.blend",
+  "raw_source_sha256": "44ac5c8f2f873127b38b801cf67a5293b82b95f721fa008da98a002f657ebc5c",
+  "targets": "ArtSource\\Kimodo\\RH_20260913\\B_reference_extended_v003\\native-elbow-guide.json",
+  "targets_sha256": "b004673eed48b212ca77d041bd8301a7e7a67b619b1f8130ca9d4d5a085ac107",
+  "tool_sha256": "b791592de1f7a472dbc201a9f178e23e761c07d5d4a1d09f72dea4eef10b9997",
+  "rest_mesh_weights_signature": "c5332cc4d3a8385c296444f69e3a47dcc107d484f4e89263463f6348f32219b2",
+  "target_adjustment": "Raise/open right elbow during winding via pole hint; preserve saved primary grasp, blade route, source clock, generated body and recovery. No regeneration.",
+  "unchanged_contract": "Reviewed native draft torso/clavicles/root/legs and rest/mesh/weights unchanged; both arm/hand curves authored; fingers/twists follow parents",
+  "method": "Existing nonstretch two-link native posing with stable outward elbow hints; primary wrist owns retained sword; no runtime solver",
+  "max_excess_reach_m": 0.0,
+  "max_target_error_m": 6.750077994409874e-07,
+  "max_support_gap_m": 1.3768866463329207e-06,
+  "unreachable_frames": [],
+  "reachable": true,
+  "save_reopen_max_matrix_error": 0.0,
+  "per_frame": [
+    {
+      "frame": 1,
+      "target_error_m": {
+        "r": 3.3127865307652516e-07,
+        "l": 2.7677678497145637e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 1.00649043652646e-06
+    },
+    {
+      "frame": 2,
+      "target_error_m": {
+        "r": 2.613285170092521e-07,
+        "l": 1.4370159448672764e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 7.020269784124501e-07
+    },
+    {
+      "frame": 3,
+      "target_error_m": {
+        "r": 5.05336693157734e-07,
+        "l": 1.4389461216202353e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 8.637854963469441e-07
+    },
+    {
+      "frame": 4,
+      "target_error_m": {
+        "r": 4.0733626284708513e-07,
+        "l": 2.4223698375432164e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 8.763087241403894e-07
+    },
+    {
+      "frame": 5,
+      "target_error_m": {
+        "r": 3.9319022899743203e-07,
+        "l": 1.6859768348751402e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 7.152193565913836e-07
+    },
+    {
+      "frame": 6,
+      "target_error_m": {
+        "r": 1.959941750461743e-07,
+        "l": 1.8566751173700558e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 3.607189189466895e-07
+    },
+    {
+      "frame": 7,
+      "target_error_m": {
+        "r": 5.101335873789695e-07,
+        "l": 1.0745380149674383e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 7.292820715927969e-07
+    },
+    {
+      "frame": 8,
+      "target_error_m": {
+        "r": 2.1542358837725164e-07,
+        "l": 1.5717016987300655e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 2.691506127743191e-07
+    },
+    {
+      "frame": 9,
+      "target_error_m": {
+        "r": 4.712160915387242e-08,
+        "l": 2.2351741790771484e-08
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 2.84393648564701e-07
+    },
+    {
+      "frame": 10,
+      "target_error_m": {
+        "r": 1.4057727354849284e-07,
+        "l": 6.664001874625056e-08
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 5.058170578626894e-07
+    },
+    {
+      "frame": 11,
+      "target_error_m": {
+        "r": 3.65306457046606e-07,
+        "l": 1.1944189326376765e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 4.261836304090944e-07
+    },
+    {
+      "frame": 12,
+      "target_error_m": {
+        "r": 3.819467311494439e-07,
+        "l": 2.6791028076954487e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 7.691078126766646e-07
+    },
+    {
+      "frame": 13,
+      "target_error_m": {
+        "r": 4.2199499185402084e-07,
+        "l": 9.06402249678704e-08
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 6.400564788256445e-07
+    },
+    {
+      "frame": 14,
+      "target_error_m": {
+        "r": 2.407356265396403e-07,
+        "l": 1.228781230931777e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 6.42653067494864e-07
+    },
+    {
+      "frame": 15,
+      "target_error_m": {
+        "r": 2.3934808975769594e-07,
+        "l": 2.407356265396403e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 4.786961795153919e-07
+    },
+    {
+      "frame": 16,
+      "target_error_m": {
+        "r": 4.989108157987358e-07,
+        "l": 8.024520884654677e-08
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 7.744304216019084e-07
+    },
+    {
+      "frame": 17,
+      "target_error_m": {
+        "r": 3.8628224721001747e-07,
+        "l": 1.4057727354849284e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 4.0699542414390036e-07
+    },
+    {
+      "frame": 18,
+      "target_error_m": {
+        "r": 4.933162140025749e-07,
+        "l": 1.2731557704981462e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 7.154109408949496e-07
+    },
+    {
+      "frame": 19,
+      "target_error_m": {
+        "r": 6.750077994409874e-07,
+        "l": 4.3392836387637365e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 1.3768866463329207e-06
+    },
+    {
+      "frame": 20,
+      "target_error_m": {
+        "r": 5.6722361775262e-07,
+        "l": 1.210576058124894e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 7.552698789521567e-07
+    },
+    {
+      "frame": 21,
+      "target_error_m": {
+        "r": 3.725290298461914e-07,
+        "l": 2.739545153208112e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 4.3724181506398946e-07
+    },
+    {
+      "frame": 22,
+      "target_error_m": {
+        "r": 5.339525004377638e-07,
+        "l": 2.862419592186592e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 6.023461500229757e-07
+    },
+    {
+      "frame": 23,
+      "target_error_m": {
+        "r": 2.846862848779976e-07,
+        "l": 6.664001874625056e-08
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 3.2236140449023154e-07
+    },
+    {
+      "frame": 24,
+      "target_error_m": {
+        "r": 3.1336755819340186e-07,
+        "l": 1.8005141576520461e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 4.933162140025749e-07
+    },
+    {
+      "frame": 25,
+      "target_error_m": {
+        "r": 1.50678667546486e-07,
+        "l": 1.4136482746161726e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 2.430305843099965e-07
+    },
+    {
+      "frame": 26,
+      "target_error_m": {
+        "r": 3.2236140449023154e-07,
+        "l": 2.79967400849699e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 5.889258636644335e-07
+    },
+    {
+      "frame": 27,
+      "target_error_m": {
+        "r": 4.329678483536135e-07,
+        "l": 3.129243850708008e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 8.765125971944774e-07
+    },
+    {
+      "frame": 28,
+      "target_error_m": {
+        "r": 3.7586683796731947e-07,
+        "l": 4.4728311955343587e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 9.723507226154478e-07
+    },
+    {
+      "frame": 29,
+      "target_error_m": {
+        "r": 3.322198766412816e-07,
+        "l": 1.892212793111845e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 5.874157948621221e-07
+    },
+    {
+      "frame": 30,
+      "target_error_m": {
+        "r": 1.834492720998098e-07,
+        "l": 1.5503653918716917e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 3.1150199413846245e-07
+    },
+    {
+      "frame": 31,
+      "target_error_m": {
+        "r": 2.1588209954878822e-07,
+        "l": 2.981163415870451e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 1.978265948198997e-07
+    },
+    {
+      "frame": 32,
+      "target_error_m": {
+        "r": 3.182017282256875e-07,
+        "l": 1.3328003749250113e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 6.664001874625056e-08
+    },
+    {
+      "frame": 33,
+      "target_error_m": {
+        "r": 3.886461661978059e-07,
+        "l": 1.9097336557472194e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 4.267693606501724e-07
+    },
+    {
+      "frame": 34,
+      "target_error_m": {
+        "r": 2.950279395762582e-07,
+        "l": 2.481166393361496e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 6.160147967515703e-07
+    },
+    {
+      "frame": 35,
+      "target_error_m": {
+        "r": 3.516800320507868e-07,
+        "l": 2.7161428531346e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 3.960037906741593e-07
+    },
+    {
+      "frame": 36,
+      "target_error_m": {
+        "r": 4.382721312700134e-07,
+        "l": 3.23821810068201e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 6.563280685408485e-07
+    },
+    {
+      "frame": 37,
+      "target_error_m": {
+        "r": 2.936133816128676e-07,
+        "l": 2.5288109106536417e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 3.68935418222545e-07
+    },
+    {
+      "frame": 38,
+      "target_error_m": {
+        "r": 3.488272401904948e-07,
+        "l": 1.0667607980427409e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 3.6598962816045095e-07
+    },
+    {
+      "frame": 39,
+      "target_error_m": {
+        "r": 1.5359765386647212e-07,
+        "l": 1.6858739404357614e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 3.8743019104003906e-07
+    },
+    {
+      "frame": 40,
+      "target_error_m": {
+        "r": 4.4728311955343587e-07,
+        "l": 4.868742071061875e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 9.695206670303057e-07
+    },
+    {
+      "frame": 41,
+      "target_error_m": {
+        "r": 3.8743019104003906e-07,
+        "l": 1.4057727354849284e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 3.80946226003508e-07
+    },
+    {
+      "frame": 42,
+      "target_error_m": {
+        "r": 4.844596447649258e-07,
+        "l": 2.768770482549376e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 5.82317213160568e-07
+    },
+    {
+      "frame": 43,
+      "target_error_m": {
+        "r": 6.636560492126982e-07,
+        "l": 1.0667607980427409e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 5.120919330192714e-07
+    },
+    {
+      "frame": 44,
+      "target_error_m": {
+        "r": 5.641324578579052e-07,
+        "l": 1.2202813740193247e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 7.196683336333394e-07
+    },
+    {
+      "frame": 45,
+      "target_error_m": {
+        "r": 2.573687650176268e-07,
+        "l": 2.3528386167642664e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 2.7516760397880357e-07
+    },
+    {
+      "frame": 46,
+      "target_error_m": {
+        "r": 1.6221062136499017e-07,
+        "l": 2.0009352269762433e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 1.9971169760346727e-07
+    },
+    {
+      "frame": 47,
+      "target_error_m": {
+        "r": 1.043081283569336e-07,
+        "l": 1.4975481660844222e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 1.666000468656264e-07
+    },
+    {
+      "frame": 48,
+      "target_error_m": {
+        "r": 2.219285221190226e-07,
+        "l": 1.2931641159735458e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 4.008280796689124e-07
+    },
+    {
+      "frame": 49,
+      "target_error_m": {
+        "r": 3.349448262600455e-07,
+        "l": 3.7726726833498965e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 5.660970553341993e-07
+    },
+    {
+      "frame": 50,
+      "target_error_m": {
+        "r": 7.450580596923828e-08,
+        "l": 7.337970883992392e-08
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 3.1407533449468003e-07
+    },
+    {
+      "frame": 51,
+      "target_error_m": {
+        "r": 1.519626234052415e-07,
+        "l": 3.819467311494439e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 6.133506924217452e-07
+    },
+    {
+      "frame": 52,
+      "target_error_m": {
+        "r": 1.8005141576520461e-07,
+        "l": 1.043081283569336e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 4.140941271659807e-07
+    },
+    {
+      "frame": 53,
+      "target_error_m": {
+        "r": 6.664001874625056e-08,
+        "l": 1.0745380149674383e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 1.6391277313232422e-07
+    },
+    {
+      "frame": 54,
+      "target_error_m": {
+        "r": 2.4027400458748785e-07,
+        "l": 1.7504900879369274e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 3.95372484964776e-07
+    },
+    {
+      "frame": 55,
+      "target_error_m": {
+        "r": 2.515605541487654e-07,
+        "l": 9.424321830774485e-08
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 2.7028258364226004e-07
+    },
+    {
+      "frame": 56,
+      "target_error_m": {
+        "r": 2.7516760397880357e-07,
+        "l": 3.264680847556389e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 2.640492490927778e-07
+    },
+    {
+      "frame": 57,
+      "target_error_m": {
+        "r": 1.4057727354849284e-07,
+        "l": 1.0536712127723508e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 3.816559456248789e-07
+    },
+    {
+      "frame": 58,
+      "target_error_m": {
+        "r": 4.887944301026084e-07,
+        "l": 1.9428737179048804e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 4.798544105322545e-07
+    },
+    {
+      "frame": 59,
+      "target_error_m": {
+        "r": 1.4901161193847656e-07,
+        "l": 2.515605541487654e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 1.999200562387517e-07
+    },
+    {
+      "frame": 60,
+      "target_error_m": {
+        "r": 2.5636927089222153e-07,
+        "l": 2.1542358837725164e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 3.7349634943885454e-07
+    },
+    {
+      "frame": 61,
+      "target_error_m": {
+        "r": 1.9082797281243946e-07,
+        "l": 1.3657139822709083e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 1.5269146510898468e-07
+    },
+    {
+      "frame": 62,
+      "target_error_m": {
+        "r": 3.9000071073479654e-07,
+        "l": 1.4057727354849284e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 1.9894584898380473e-07
+    },
+    {
+      "frame": 63,
+      "target_error_m": {
+        "r": 2.5636927089222153e-07,
+        "l": 1.3738191809196602e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 1.9726458631267736e-07
+    },
+    {
+      "frame": 64,
+      "target_error_m": {
+        "r": 2.669762502188819e-07,
+        "l": 8.429369702178807e-08
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 2.3383430878036045e-07
+    },
+    {
+      "frame": 65,
+      "target_error_m": {
+        "r": 4.034336319768692e-07,
+        "l": 6.322027276634104e-08
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 3.500980175873855e-07
+    },
+    {
+      "frame": 66,
+      "target_error_m": {
+        "r": 3.919883500923486e-07,
+        "l": 1.3657139822709083e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 2.476687750010887e-07
+    },
+    {
+      "frame": 67,
+      "target_error_m": {
+        "r": 4.308471767545033e-07,
+        "l": 4.7706993203109864e-08
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 1.0031757875225424e-06
+    },
+    {
+      "frame": 68,
+      "target_error_m": {
+        "r": 1.9082797281243946e-07,
+        "l": 1.4901161193847656e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 5.7519254283961e-07
+    },
+    {
+      "frame": 69,
+      "target_error_m": {
+        "r": 1.9371509552001953e-07,
+        "l": 2.4586915969848633e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 4.3187668163148874e-07
+    },
+    {
+      "frame": 70,
+      "target_error_m": {
+        "r": 5.075152625419617e-07,
+        "l": 2.0997555063727427e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 1.1414291906138676e-06
+    },
+    {
+      "frame": 71,
+      "target_error_m": {
+        "r": 4.026072050960748e-07,
+        "l": 1.299587156065733e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 7.069124848038764e-07
+    },
+    {
+      "frame": 72,
+      "target_error_m": {
+        "r": 2.9876735293512675e-07,
+        "l": 1.5454343343296305e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 6.878080463185838e-07
+    },
+    {
+      "frame": 73,
+      "target_error_m": {
+        "r": 2.1696418193818683e-07,
+        "l": 7.450580596923828e-08
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 7.277581287058434e-07
+    },
+    {
+      "frame": 74,
+      "target_error_m": {
+        "r": 3.4240261593687705e-07,
+        "l": 2.908590629092326e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 1.0787658570848861e-06
+    },
+    {
+      "frame": 75,
+      "target_error_m": {
+        "r": 4.012260442327338e-08,
+        "l": 2.6151431761360534e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 7.576181780628062e-07
+    },
+    {
+      "frame": 76,
+      "target_error_m": {
+        "r": 2.075491588888186e-07,
+        "l": 1.2065570608304177e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 5.624201432234757e-07
+    },
+    {
+      "frame": 77,
+      "target_error_m": {
+        "r": 1.4901161193847656e-07,
+        "l": 2.473603978907172e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 4.0959562596379e-07
+    },
+    {
+      "frame": 78,
+      "target_error_m": {
+        "r": 1.2013700229374393e-07,
+        "l": 2.407356265396403e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 3.2892435870534354e-07
+    },
+    {
+      "frame": 79,
+      "target_error_m": {
+        "r": 2.5506679368948475e-07,
+        "l": 1.0848209096909341e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 7.674459684978778e-07
+    },
+    {
+      "frame": 80,
+      "target_error_m": {
+        "r": 4.583166986474305e-07,
+        "l": 1.5200827839302395e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 4.148474980094578e-07
+    },
+    {
+      "frame": 81,
+      "target_error_m": {
+        "r": 3.2279162142328126e-07,
+        "l": 2.40533775945871e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 5.06872257759358e-07
+    },
+    {
+      "frame": 82,
+      "target_error_m": {
+        "r": 1.0745380149674383e-07,
+        "l": 8.971687092477304e-08
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 3.105203208949373e-07
+    },
+    {
+      "frame": 83,
+      "target_error_m": {
+        "r": 3.78442558622369e-07,
+        "l": 1.423431424389988e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 3.2115373108166914e-07
+    },
+    {
+      "frame": 84,
+      "target_error_m": {
+        "r": 1.9443017766922547e-07,
+        "l": 1.2036781326982014e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 1.4975481660844222e-07
+    },
+    {
+      "frame": 85,
+      "target_error_m": {
+        "r": 1.914088812271525e-07,
+        "l": 1.5997074956881917e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 6.450778770174315e-07
+    },
+    {
+      "frame": 86,
+      "target_error_m": {
+        "r": 9.215859231988326e-08,
+        "l": 2.6842778227704497e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 7.37607479095459e-07
+    },
+    {
+      "frame": 87,
+      "target_error_m": {
+        "r": 3.337203127736024e-07,
+        "l": 1.1590383340495858e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 7.322067321402392e-07
+    },
+    {
+      "frame": 88,
+      "target_error_m": {
+        "r": 4.18096418577379e-07,
+        "l": 6.409231772305538e-08
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 7.636754250567415e-07
+    },
+    {
+      "frame": 89,
+      "target_error_m": {
+        "r": 3.099163910119693e-07,
+        "l": 2.4268772415671244e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 9.258227077372061e-07
+    },
+    {
+      "frame": 90,
+      "target_error_m": {
+        "r": 4.087816568706256e-07,
+        "l": 1.2753339684474237e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 8.599209530832387e-07
+    },
+    {
+      "frame": 91,
+      "target_error_m": {
+        "r": 5.384172262450712e-07,
+        "l": 1.5997074956881917e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 7.966200354471004e-07
+    },
+    {
+      "frame": 92,
+      "target_error_m": {
+        "r": 3.3127865307652516e-07,
+        "l": 2.7677678497145637e-07
+      },
+      "excess_reach_m": {
+        "r": 0.0,
+        "l": 0.0
+      },
+      "support_gap_m": 1.00649043652646e-06
+    }
+  ],
+  "evidence_limit": "Numerical reach/persistence only; continuous viewing and human artistic/play acceptance not established"
+}

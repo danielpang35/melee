@@ -1,0 +1,51 @@
+{
+  "tag": "EX_fp_review",
+  "frames": 840,
+  "fps": 60,
+  "duration": 14,
+  "video": "C:\\Users\\Daniel Pang\\OneDrive\\Documents\\ChatGPT\\swingmanipulation\\Saved\\MEL15\\EX_fp_review.mp4",
+  "video_sha256": "a29b13ebca29e5cd92159809ebd66512b7729a0a6bc4593eccd90194fbde262a",
+  "max_blade_error_cm": 9.95e-07,
+  "max_pose_error_cm": 5.3034e-05,
+  "max_branch_grip_error_cm": 4.107e-06,
+  "max_branch_anchor_error_cm": 4.107e-06,
+  "max_branch_reach_scale": 1.10004491,
+  "events": [
+    {
+      "frame": "69",
+      "time": "2.654166667",
+      "result": "HIT",
+      "attacker": "1",
+      "defender": "2"
+    },
+    {
+      "frame": "238",
+      "time": "5.479166667",
+      "result": "HIT",
+      "attacker": "1",
+      "defender": "2"
+    },
+    {
+      "frame": "647",
+      "time": "12.291666667",
+      "result": "PARRY",
+      "attacker": "2",
+      "defender": "1"
+    },
+    {
+      "frame": "678",
+      "time": "12.816666667",
+      "result": "HIT",
+      "attacker": "1",
+      "defender": "2"
+    },
+    {
+      "frame": "807",
+      "time": "14.962500000",
+      "result": "HIT",
+      "attacker": "2",
+      "defender": "1"
+    }
+  ],
+  "scope": "production input replay; phase mapping and provisional first-person branch poses await human acceptance; third-person design deferred"
+}

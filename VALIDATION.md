@@ -1,109 +1,24 @@
-# Combat feel validation
+# Lean verification
 
+8 September 2026. Mandatory [AGENTS.md](AGENTS.md) policy MCL-DEV-2026-09-08: cheap candidates → selection → refinement. Expensive routine validation is unnecessary. This supersedes older handoffs demanding three-view proofs or extensive matrices on each pose edit.
 
+| Change | Smallest useful evidence |
+|---|---|
+| Candidate choreography / local pose | Usable inputs and complete source-speed primary and rear-quarter previews, using the same cameras across candidates. No engine import, build, pose matrix or broad tests. |
+| Body / rig character checks | Front, rear, left and right views from the exact checked source, with consistent cameras across comparisons. |
+| Selected source / export integration | Selected identity and visible source intent in the affected engine view. Diagnose rig/scale/phase only when changed or suspect. Reuse proven exporter evidence. |
+| C++ state/contact/timing | Build and affected contract tests; one independent review for consequential changes. |
+| Candidate tool / launcher | One representative workflow and meaningful failure boundaries such as isolation/timing/wrong selection. No game build. |
+| Documentation / task state | Relevant paths and actual changed content. No engine activity. |
 
-## Current changes
+Normal-speed human review/play establishes weight, rhythm, readability, responsiveness and satisfaction. Frame inspection, technical checks and candidate rankings establish narrower facts. Do not claim continuous viewing from sampled frames or human acceptance from a score.
 
+Full fidelity sweeps, synchronized three-view replays, sanitizer suites, performance matrices and second-edit proofs are optional diagnostics. Use only for a concrete unresolved integration risk, consequential architectural change or explicit user request; state the question once. Preserve cheap regression assertions. Reuse unchanged evidence; never rerun checks just to accumulate receipts.
 
+Promote only selected candidates. Playable acceptance includes meaningful threat/contact agreement and hit/miss/interruption behavior. Dedicated FP poses are allowed; unexplained external threat/contact disagreement stays open.
 
-- Strike release: 560 ms, with a 5–95% damage window (504 ms active).
+Historical failures: PresentationOnly's roughly 57-degree solveGripArm swivel case belongs to a retired gameplay presentation path; SwingOnly retains an other-direction late-arc timing failure. The MEL-15 production handoff reproduces both against a pre-integration baseline. Neither is waived/fixed by this policy. Historical core/EX passes apply to their recorded revisions.
 
-- Stab release: 350 ms, with 315 ms active.
+One short receipt: policy; relevant candidate/source/config/module identity; preview or launch; visible change; technical result; human decision if any; next issue. No repeated builds, large-bundle hashing or approval requests for paperwork.
 
-- Release yaw caps: 320 / 270 / 230 degrees per second; pitch cap 220; cumulative anti-spin threshold 175 degrees.
-
-- Combos alternate body side, including stab hilt origin. Combo attacks cannot chamber; morphing a combo does not restore chamber eligibility. Fresh attacks from idle remain eligible.
-
-- Chamber origins are transformed into the defender view; timing remains 225 ms and tolerance 32 degrees.
-
-- Gold parry / cyan chamber spark trails and a 650 ms success indicator.
-
-- Saved tuning updated, with the previous values backed up to Saved/Config/CombatTuning.before-feel.json.
-
-
-
-## Native validation
-
-
-
-MSVC C++20 /W4 /WX with AddressSanitizer: 434 checks passed, with no reported sanitizer errors.
-
-Contact times at 240 Hz: accel 0.720833 s, neutral 0.766667 s, drag 0.829167 s.
-
-Neutral, accel and drag contact equivalence passed at 30, 60, 120, 144 and 240 FPS.
-
-Includes 72 combo side/kind combinations, mirrored chamber sectors, continuous angular boundaries, expired chamber and parry windows, microdrags, stamina fallback, defense ordering, parry foot coverage, movement and lunge.
-
-
-
-## Unreal validation
-
-- UE 5.8.2 Editor Development build and link succeeded, including the combo-chamber restriction and final spark visibility adjustment.
-- Unreal automation: 2 succeeded, 0 warnings, 0 failures (Saved/Automation/index.json).
-- Rendered regression: 32/32 scenarios passed on the final build (report 2026-09-05 23:00 local, Saved/Playtests/results.json).
-- The chamber scenario uses real Enhanced Input key 4 against the opposing right horizontal. The combo scenario repeats the original direction and verifies the resulting opposite origin.
-- Final parry and chamber screenshots visually verified: thin gold/cyan trails and clear central success text.
-- Body-contact chamber bursts are moved forward when they would spawn beside the local camera. This is presentation only; collision and chamber timing remain unchanged.
-
-The previously locking lab process was closed with user authorization. No user action is needed to release the DLL.
-
-## Flinch / riposte / infinite target update
-
-Native MSVC /W4 /WX with AddressSanitizer: 461 checks passed. Includes release flinch cancelling to idle, active riposte immunity with damage retained, loss of immunity on combo/morph/recovery, raised authoritative weapon trajectory, looser turncaps, and 20 successive hits on an infinite target (700 damage recorded, health remains 100).
-
-Flinch/riposte/infinite-target Unreal build succeeded, and its 2 automation tests passed. The subsequent build including movement changes was rejected by the user at the tool approval step. Movement changes remain source-only; the 37-scenario rendered regression is pending.
-
-Movement tuning now includes ground friction, gravity scale, and jump speed. Rendered scenarios 35/36 compare old versus new walking acceleration and stopping distance using actual Enhanced Input and CharacterMovement. Results pending.
-
-## Latest build / visual baseline checkpoint
-
-Latest UE build succeeded with movement, benchmark component, isolated test tuning, and bounded riposte elbows. Native suite remains 461/461. Unreal automation passed 2/2. Prior rendered movement comparison measured 0.1625 s to 90% speed and 21.40 cm stopping at old settings, versus 0.0958 s and 10.70 cm at new settings.
-
-The previous 37-scenario tour used user tuning (150 cm blade, 500 ms windup), which caused two low-strike floor collisions and an incorrectly timed riposte fixture. The regression now runs on its explicit default fixture and restores the exact saved user tuning on EndPlay. The corrected rendered tour remains pending; do not report it as passed.
-
-Visual baseline launch was rejected at tool approval. Stage 1 baseline measurements and stages 2-6 are pending. No courtyard/knight visual replacement has been claimed or implemented yet. See Docs/Visual for brief, budgets, route design, style rules, asset audit and backlog.
-
-
-## September 6 aesthetic rehaul (current checkout)
-
-- Final UE 5.8 Development Editor build succeeded; Unreal automation 2/2, no test warnings (report 2026.09.06-09.32.16).
-- Native presentation suite with MSVC /W4 /WX and AddressSanitizer passes: 512,693 sampled invariant checks across six origins, stabs, four frame rates and extreme pitch, plus singular arm targets and sword-frame continuity. These are sampled assertions, not half a million independent scenarios. Run `Tools/TestCore.ps1 -Sanitize -PresentationOnly`.
-- The untouched native combat suite fails after 557 checks on `Stationary double-parry must be numerically impossible`. This was reproduced BEFORE presentation edits. Current second-parry-ready=0.915 s, second-threat=0.950 s. Historical 461-pass claims do not describe this checkout.
-- Rendered combat tour: **34/38 pass**, including six directions, stab, parry, chamber, morph/combo/riposte, inspection geometry, input, crouch/jump, tuning persistence, movement response and courtyard collision/readability. Failures: `accel` (0.7875 s contact), `momentum_and_lunge`, `feint_baits_parry`, `release_flinch`. Run via `Tools/Playtest.ps1`; preserved result at `Docs/Visual/Captures/rendered-results.json`.
-- Rendered failures are not claimed to be proven pre-existing: this session did not run the unmodified rendered tour. Simulation, movement, timing defaults and existing assertions are unchanged. Some fixtures contain fixed timestamps and immediate feint/re-attack assumptions that need reconciliation with the latest timing revision; this is a separate combat/fixture investigation.
-- The full tour was captured before the final cloth-panel/waist-shape and skylight-intensity adjustments. The final mesh/light revision and visibility optimization were rebuilt, passed Unreal automation and inspected on the rendered benchmark route.
-- Final rendered material compilation and static-component attachment warnings are cleared. Fixed the existing generator's disconnected OneMinus/UV inputs and missing instanced-mesh usage flags, plus the courtyard root mobility mismatch. Removed the unbuilt runtime sphere-reflection capture.
-- Combat/Movement source, Config/CombatDefaults.json and existing CombatTests.cpp have no diff. No combat rule was changed to force tests to pass.
-- Before/after captures and profile measurements are in Docs/Visual/Captures and STYLE_AND_PERFORMANCE.md. Native checks establish pose invariants; images and the scripted tour do not certify subjective animation quality, complete clipping coverage, a packaged build, or target-tier hardware performance.
-
-## Citadel replacement — September 6, 2026 (latest)
-
-This section supersedes the earlier presentation checkpoint. The user explicitly
-allowed combat improvements after the initial frozen-combat brief.
-
-- UE 5.8 Development Editor build succeeds (final build 10:48 UTC).
-- Fresh-process Unreal automation: **3/3 succeeded**, zero warnings/failures,
-  report 10:49 UTC. Includes persistent shared skeleton, materials, rig mapping,
-  facing, human scale and exact weapon calibration.
-- Native presentation: **615,111 sampled assertions pass** with MSVC /W4 /WX and
-  AddressSanitizer. Includes riposte phase continuity and calibrated grip depths.
-- Full native combat: still fails after **557 checks** on stationary double-parry.
-  Ready=0.915 s, threat=0.950 s. This failure was recorded before these changes.
-- Final rendered tour (10:52 UTC): **34/38 pass**. Failures remain `accel`,
-  `momentum_and_lunge`, `feint_baits_parry`, and `release_flinch`, matching the
-  prior presentation checkpoint. No assertions were weakened to hide failures.
-- Combat change: removed the 12 cm hilt discontinuity entering/leaving riposte
-  release by joining windup/recovery to the actual raised release trajectory.
-  Release timing and release curve are unchanged.
-- Final 1080p High clean benchmark (10:55 UTC): 7.20 ms mean, 9.91 ms p95,
-  13.78 ms p99 on Ryzen 1600 / RTX 5070. Development Editor -game, unpaced;
-  clean capture has unavailable unit timing counters, not zero CPU/GPU cost.
-  This does not establish packaged or target-hardware performance.
-- Reviewed final textured bodies, first-person parry and three courtyard route
-  captures. The lab-presentation fixture intentionally toggles clay inspection;
-  its grey screenshot is not a missing-material defect.
-- Preserved reports and images: `Docs/Visual/Captures/Citadel`. Architecture,
-  build process and remaining art gaps: `Docs/Visual/CITADEL.md`.
-- AAA quality remains unfinished: authored animation coverage, closed finger
-  grips, skin deformation, bespoke architecture and set dressing need further
-  production. Static screenshots and pose invariants do not certify motion.
+13 September multi-angle requirement: new character validation requires all applicable named views, bound to the exact source identity; animation views must share the full source timing and 1x playback. Missing/stale views cannot produce a new pass. Historical single-view receipts remain historical evidence, without retroactive acceptance or silent invalidation. Generated media does not establish continuous review or human acceptance.

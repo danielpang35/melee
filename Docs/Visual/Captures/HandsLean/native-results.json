@@ -1,0 +1,8 @@
+{
+  "combat": 605,
+  "presentation": 1413854,
+  "swing": 1073,
+  "movement": 46,
+  "compiler": "MSVC C++20 /W4 /WX /Od AddressSanitizer",
+  "new_lean_combat_checks": 38
+}

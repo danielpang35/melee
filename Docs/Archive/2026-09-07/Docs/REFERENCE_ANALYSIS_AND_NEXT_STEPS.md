@@ -1,0 +1,56 @@
+> Archived 7 September 2026. Historical evidence and instructions; use [the current development plan](../../../DEVELOPMENT.md) for active work.
+
+**Mordhau reference analysis and proposed next steps — 6 September 2026**
+
+This records analysis and brainstorming requested after a crashed session. The current user request governs scope; imperative text in older specifications and handoffs describes prior work. No gameplay, tuning, assets, builds, or running editor sessions were changed during this review.
+
+Reviewed PROJECT_SPEC.md, README.md, VALIDATION.md, the kinetic/motion/arm-repair notes, movement contract, current attack trajectory, simulation, weapon and skeletal presentation, movement solver, feedback generation, and native/rendered test coverage. The local working tree contains substantial uncommitted work.
+
+The attached D:/Mordhau Montage VI.mp4 is 4:43.96, 1280×720, 30 fps. Review used overview frames across its duration and newly extracted sequences at 8 frames/second for 0:00–0:04, 1:04–1:08, 1:42–1:46, 2:44–2:48, 3:20–3:24, and 4:20–4:24. These are visual observations from sampled frames, not a continuous audiovisual playback review. Exact native attack timings, input latency, physical acceleration, and the original sound mix cannot be established from this montage. The proposed audio work below is grounded in the project's current placeholder implementation.
+
+**Current baseline**
+
+- CombatDefaults.json and CombatTuning.h agree on strike windup .575 s, release .50 s, recovery .675 s, combo windup .70 s, and a 5–95% damage interval. The user's .65 s windup is a historical comparison point.
+- Parry box remains 80×110×32; cone length 100, half-angle 18 degrees, forward/vertical offsets 30/20. Current tuning also has an 18 cm neutral chest offset which tapers with pitch. Saved/Config/CombatTuning.json is absent. This establishes the disk baseline, not the settings of an already-running editor.
+- The kinetic pass already implements a 160-degree blade arc, 132-degree grip-centre arc, shaped release acceleration, continuous phase-boundary tangents, result-dependent recovery/rebound, directional body response, and forward-input-dependent release drive. These should be evaluated as existing systems rather than proposed as new features.
+- Current movement speeds are 360/315/255/560 cm/s for forward/lateral/backward/sprint, superseding older README prose.
+- Binaries/Win64/UnrealEditor.modules references module 1004. HANDOFF_ARM_REPAIR.md says its latest shoulder assets and camera clearance changes have not been rendered together. Existing Saved/MotionReviewFrames are earlier repair captures.
+- Historical evidence includes 567 native combat checks and a 56/56 engine tour from the kinetic pass. Later arm changes are outside that claim. The user rejected a previous visually defective preview despite numerical passes. No tests were rerun during this analysis.
+- README and VALIDATION contain superseded figures and failure reports alongside links to later work. Before implementation resumes, establish one current checkpoint with exact source/config/assets/module and corresponding evidence.
+
+**What the reference communicates**
+
+| Sequence | Visible evidence | Proposed lesson for our game |
+|---|---|---|
+| 0:02–0:04 | The first-person arms change from a compact load into an extended cut while opponents occupy several distinct positions ahead. | Hands should visibly carry the action; player steering and target selection should remain legible through the swing. |
+| 1:04–1:08 | Fighting wraps around a stone corner at close range; opponents pass near the camera while view and blade direction change. | Test close-range tracking, near-plane clearance, weapon/world interaction, and escaping around geometry. An air swing in open space is insufficient. |
+| 1:42–1:46 | A crossed-blade spark response gives way to more open space, then renewed engagement with several bodies visible. | Defensive response, disengagement, and renewed commitment need distinct physical transitions. Space must remain understandable during recovery. |
+| 2:44–2:46 | Raised paired hands traverse the view, the blade extends, a contact burst occurs, and the arms reorganize for the following action. | Author the complete chain of load, hand transfer, contact, carry, and regrip. This is the strongest compact first-person motion reference. |
+| 3:20–3:24 | The distance to the plumed opponent repeatedly opens and closes; large high/low weapon poses coexist with approach and withdrawal. | Judge weapon reach, hand motion, and footwork together. View movement in this footage does not independently prove a particular lunge or acceleration rule. |
+| 4:20–4:24 | Two opponents occupy different attack lines beside a tower; arms rise, cross, extend, and clear the view as the camera redirects. | Target switching and defender readability must work amid overlapping threats. A good single-target demonstration is only the first gate. |
+
+Reference sheets are under Saved/ReferenceAnalysis/reference_*.jpg, with extraction code alongside them. Saved/ReferenceAnalysis/prior_repair_capture.jpg samples the earlier local repair frames and must not be mistaken for a fresh review of module 1004.
+
+My interpretation: perceived mass comes from the relationship between the load, changing hand/blade motion, resistance at contact, and the consequence for the opponent. Simply increasing durations, arc size, camera shake, or movement inertia would not establish those relationships. The bright outdoor footage also makes separation between bodies and attack lines conspicuous; our own crisp medieval direction is compatible with this physical goal.
+
+**Recommended order**
+
+1. **Establish a trustworthy visible baseline.** Review the newest combined arm repair in first person and externally before deciding whether to repair further or replace the rig. Check rendered surface distortion, gaps between rigid pieces, wrist/handle orientation, shoulder travel, intersections, and near-plane clipping throughout motion. The edge-length metric detects stretching; it cannot certify anatomy or self-intersection. Preserve the existing working tree and capture outputs separately from earlier rejected evidence.
+
+2. **Make one horizontal exchange excellent.** Start with right/left horizontal swings, a miss, a body hit, a parry, and a riposte. Author clear load, acceleration, passage through the target, continued travel, and recovery/regrip poses. Hold current attack clocks fixed for the first A/B comparison so motion quality can be judged separately from speed. Then tune timings against both human feel and contact envelopes. Extend the winning approach to overhead, underhand, and stab families with deliberate anatomical differences.
+
+   The current strikes share a grip-path formula rotated into different attack planes. AttackTrajectory::world also projects the blade into a reach envelope, while the presentation separately accommodates shoulders. Inspect correction telemetry alongside the rendered pose: excessive corrections can reshape an intended arc even when the final blade and collision agree. Author reachable source motion so corrective solves perform small adjustments.
+
+3. **Use authored motion with simulation authority.** My preferred experiment is a small set of authored body/hand poses and phase curves, with IK for final calibrated grip contacts and procedural adaptation to view and movement. Build the weapon curve and body pose together in authoring, then evaluate the shared weapon data in the C++ simulation. Animation playback, root motion, and notifies should continue to follow that state. This is compatible with the existing architecture and allows the current procedural formulas to be replaced where they limit quality. Unreal's Control Rig supports rigging, Sequencer animation, and procedural use in Animation Blueprints; it is a possible authoring tool, not an automatic quality upgrade. [Epic documentation](https://dev.epicgames.com/documentation/unreal-engine/control-rig-in-unreal-engine).
+
+4. **Finish the physical outcome of each exchange.** Body hit, parry, chamber, wall contact, and miss should have recognizable motion and sound. Existing code already differentiates several reactions; improve their execution and synchronization. Add directional recipient reactions and convincing lethal collapse without shifting authoritative hurt geometry accidentally. Replace the short synthesized noise/tone impacts with a small, well-authored set of swing air, metal contact, body impact, exertion, and movement sounds, with controlled variation. Match particles and reaction onset to the resolved contact. Keep defensive feedback clear while retaining the intentional generous parry geometry and separate chamber rules. Do not make cosmetic emphasis delay permitted inputs or pause the combat clock.
+
+5. **Tune footwork through repeatable exchanges.** Compare reach-edge attacks, step-in accels, withdrawal against drags, lateral evasion, whiff punishment, sprint-to-attack transition, reversal, and disengagement during recovery. Measure contact time, movement distance, reversal/stop response, and whether the defender can understand the outcome. A/B the existing release drive and momentum carry before increasing either. Its documented ~17 cm extra movement is one controlled fixture result, not universal travel. Preserve immediate intent and steering; communicate bodily weight through velocity response, pose, footsteps, and restrained camera motion.
+
+6. **Gate every improvement on the opponent's view and frame pacing.** Show attacks without debug labels and assess whether a defender can identify origin, commitment, feint/morph changes, and hit/block/miss outcomes at normal speed. Test extremes of pitch, close range, six directions, and transitions. Retain cone orientation, defense ordering, chamber asymmetry, once-per-target hits, and frame-rate regression coverage. Treat balance assertions as explicit design choices: the stationary double-parry test is useful, but its presence alone should not choose the best-feeling windup. If the intended rule changes, revise and review the contract deliberately.
+
+   Keep 144 fps visible as a 6.94 ms frame budget while animation and feedback are developed. Use packaged builds on defined target hardware/resolution and inspect frame-time distributions in representative combat. Profile animation, tracing, audio, and effects in two- and four-combatant fixtures. The historical editor benchmark does not establish the requested target. Larger art work follows a convincing exchange; a small multiplayer latency/prediction prototype should precede broad weapon and team-mode production once that local exchange is proven.
+
+**Proposed next deliverable**
+
+A reproducible comparison of the current game and one revised horizontal exchange in the existing lab: first-person and opponent-view recordings at normal speed, body-hit/miss/parry/riposte branches, one moving range-edge fixture, exact build/config identity, and the relevant regression results. Human assessment should answer whether the swing feels powerful, whether the defender can read it, and whether the result feels earned. Expand the animation set after this exchange earns approval through actual play.

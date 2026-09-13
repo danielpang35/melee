@@ -6,3 +6,57 @@ DerivedDataCache/
 *.sln
 Tests/bin/
 ArtSource/Citadel/**/*.blend1
+__pycache__/
+*.py[cod]
+ArtSource/Cascadeur/*.blend1
+
+# Editor backups and local credentials
+*.blend[0-9]*
+*.log
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Animation experiments and archived comparison copies stay local.
+# Promote selected editable source into a stable ArtSource directory explicitly.
+/ArtSource/AnimationLab/
+/ArtSource/CharacterReset/TP_v001/Baseline_*/
+/ArtSource/StyleReference/
+/ArtSource/CombatAudio/Archives/
+/ArtSource/CombatAudio/Revisions/
+/ArtSource/CombatAudio/Palettes/
+
+# Generated previews; preserve source, export data, textures and runtime assets.
+/ArtSource/**/Preview/
+/ArtSource/**/Comparison/
+/ArtSource/**/*.mp4
+/ArtSource/**/*.gif
+/ArtSource/**/*.npz
+/Docs/Visual/Captures/**/*.png
+/Docs/Visual/Captures/**/*.jpg
+/Docs/Visual/Captures/**/*.jpeg
+/Docs/Visual/Captures/**/*.mp4
+/Docs/MordhauAnimationAtlas/**/*.png
+/Docs/MordhauAnimationAtlas/**/*.jpg
+/Docs/MordhauAnimationAtlas/**/*.mp4
+/Docs/MordhauRightReference/**/*.png
+/Docs/MordhauRightReference/**/*.jpg
+/Docs/MordhauRightReference/**/*.mp4
+/Docs/ThirdPersonReference20260908/**/*.png
+/Docs/ThirdPersonReference20260908/**/*.jpg
+/Docs/ThirdPersonReference20260908/**/*.mp4
+
+# Review publication: native assets stay in the full local authoring workspace.
+Content/
+*.blend
+*.fbx
+*.casc
+*.qrigcasc
+*.bvh
+*.npz
+*.uasset
+*.umap
+*.zip
+*.7z

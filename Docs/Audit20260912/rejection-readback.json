@@ -1,0 +1,69 @@
+{
+  "date": "2026-09-12",
+  "notion": [
+    {
+      "id": "3d32e3c3f8f88166821dcab5f044efa2",
+      "text_present": true
+    },
+    {
+      "id": "3d32e3c3f8f88197b6a2e266e34ae60c",
+      "text_present": true
+    },
+    {
+      "id": "3d32e3c3f8f881758692e453afcdecb4",
+      "text_present": true
+    },
+    {
+      "id": "3d32e3c3f8f8813c8883ed9e8bd1f299",
+      "text_present": true
+    },
+    {
+      "id": "3d32e3c3f8f881e08474defe7febb171",
+      "text_present": true
+    },
+    {
+      "id": "3d32e3c3f8f8814d8ae4d50347ac1c49",
+      "text_present": true
+    },
+    {
+      "id": "3d32e3c3f8f881469e06e14d281e5bee",
+      "text_present": true
+    },
+    {
+      "id": "3d32e3c3f8f88155a0a0c07ce3189264",
+      "text_present": true
+    },
+    {
+      "id": "3d32e3c3f8f881d9ad7ff5c5f389dc6e",
+      "text_present": true
+    }
+  ],
+  "communication_page": "https://app.notion.com/p/3d92e3c3f8f881bbaa96c9f4e800fd8b?pvs=204",
+  "linear": [
+    {
+      "id": "MEL-34",
+      "status": "In Progress",
+      "description": "Reopened after Daniel's 12 September TP/body rejection. Preserve the positively reviewed FP animations, swing feel, timing and inputs. Workflow efficiency is the top priority: reassess posing/critic and specialist tools before further authoring. The rejected take is retained as evidence; no neutral TP performance is accepted.\n\nCurrent diagnosis: Docs/READABILITY_REJECTION_DIAGNOSIS.md. Tool reassessment: Docs/ANIMATION_TOOL_REASSESSMENT.md. Human criteria: [https://app.notion.com/p/3d92e3c3f8f881bbaa96c9f4e800fd8b](<https://app.notion.com/p/3d92e3c3f8f881bbaa96c9f4e800fd8b>). Technical receipts remain valid within their measured limits; they do not establish artistic acceptance. No new parry/riposte choreography, branch integration, full-exchange packaging or expansion.\n\nRead D:/Projects/swingmanipulation-recovered-20260911/AGENTS.md and Docs/DEVELOPMENT.md; policy MCL-DEV-2026-09-08. Current source/results: Docs/THIRD_PERSON_CHECKPOINT.md. Documentation boundary: Docs/DOCUMENTATION_OWNERSHIP.md. Preserve accepted EX_v002 source/native/config, D_v08 rollback and unrelated work. Current user-approved runtime tuning remains unchanged. No child agents. Animation work additionally reads D:/Projects/swingmanipulation-recovered-20260911/Docs/ANIMATION_PROTOTYPE_PIPELINE.md.",
+      "passed": true
+    },
+    {
+      "id": "MEL-39",
+      "status": "In Progress",
+      "description": "Reopened after human review: endpoint/grip matching passed, but the binding distorts body performance. Diagnosis identifies canonical recovery hold plus unbounded arm fitting, forward idle placement and hip-pivot aim behavior. Preserve good FP feel and gameplay authority; determine a compatible TP ready/recovery and body contract before another correction.\n\nCurrent diagnosis: Docs/READABILITY_REJECTION_DIAGNOSIS.md. Tool reassessment: Docs/ANIMATION_TOOL_REASSESSMENT.md. Human criteria: [https://app.notion.com/p/3d92e3c3f8f881bbaa96c9f4e800fd8b](<https://app.notion.com/p/3d92e3c3f8f881bbaa96c9f4e800fd8b>). Technical receipts remain valid within their measured limits; they do not establish artistic acceptance. No new parry/riposte choreography, branch integration, full-exchange packaging or expansion.\n\nRead D:/Projects/swingmanipulation-recovered-20260911/AGENTS.md and Docs/DEVELOPMENT.md; policy MCL-DEV-2026-09-08. Current source/results: Docs/THIRD_PERSON_CHECKPOINT.md. Documentation boundary: Docs/DOCUMENTATION_OWNERSHIP.md. Preserve accepted EX_v002 source/native/config, D_v08 rollback and unrelated work. Current user-approved runtime tuning remains unchanged. No child agents.",
+      "passed": true
+    },
+    {
+      "id": "MEL-40",
+      "status": "In Progress",
+      "description": "Daniel's decision is REVISE TP/body presentation; FP animations and swing feel are good. Reported defects include forward idle sword, unbalanced torso/arm extension, unnatural look-down hips, sword stop/hand chase and absent leg movement. Improve opponent communication of windup, swing path, look and movement. Workflow/tool reassessment precedes another animation pass.\n\nCurrent diagnosis: Docs/READABILITY_REJECTION_DIAGNOSIS.md. Tool reassessment: Docs/ANIMATION_TOOL_REASSESSMENT.md. Human criteria: [https://app.notion.com/p/3d92e3c3f8f881bbaa96c9f4e800fd8b](<https://app.notion.com/p/3d92e3c3f8f881bbaa96c9f4e800fd8b>). Technical receipts remain valid within their measured limits; they do not establish artistic acceptance. No new parry/riposte choreography, branch integration, full-exchange packaging or expansion.\n\nRead D:/Projects/swingmanipulation-recovered-20260911/AGENTS.md and Docs/DEVELOPMENT.md; policy MCL-DEV-2026-09-08. Current source/results: Docs/THIRD_PERSON_CHECKPOINT.md. Documentation boundary: Docs/DOCUMENTATION_OWNERSHIP.md. Preserve accepted EX_v002 source/native/config, D_v08 rollback and unrelated work. Current user-approved runtime tuning remains unchanged. No child agents.",
+      "passed": true
+    },
+    {
+      "id": "MEL-6",
+      "status": "In Progress",
+      "description": "Current priority: streamline and optimize animation iteration while preserving the good FP swing/feel. The corrected TP/body pilot was rejected. <issue id=\"1afcfcf7-7d1f-48a5-8129-dad9d89b4da9\" href=\"https://linear.app/meleeslasher/issue/MEL-34/select-and-refine-the-strongest-complete-right-horizontal-performance\">MEL-34</issue> and <issue id=\"101a6b82-94cc-4c2a-ae82-8dbf41a14cf7\" href=\"https://linear.app/meleeslasher/issue/MEL-39/decide-the-selected-swings-fptp-timing-and-contact-binding\">MEL-39</issue> are reopened; <issue id=\"5f545fea-4d9e-4ea0-9355-7bcac461c7e0\" href=\"https://linear.app/meleeslasher/issue/MEL-40/integrate-and-play-review-the-selected-neutral-right-horizontal\">MEL-40</issue> records revise. Diagnose runtime distortion separately from source/rig and evaluate one bounded specialist-tool workflow. Combat communication is a central design pillar. Step 4 remains explicitly deferred.\n\nCurrent diagnosis: Docs/READABILITY_REJECTION_DIAGNOSIS.md. Tool reassessment: Docs/ANIMATION_TOOL_REASSESSMENT.md. Human criteria: [https://app.notion.com/p/3d92e3c3f8f881bbaa96c9f4e800fd8b](<https://app.notion.com/p/3d92e3c3f8f881bbaa96c9f4e800fd8b>). Technical receipts remain valid within their measured limits; they do not establish artistic acceptance. No new parry/riposte choreography, branch integration, full-exchange packaging or expansion.\n\nRead D:/Projects/swingmanipulation-recovered-20260911/AGENTS.md and Docs/DEVELOPMENT.md; policy MCL-DEV-2026-09-08. Current source/results: Docs/THIRD_PERSON_CHECKPOINT.md. Documentation boundary: Docs/DOCUMENTATION_OWNERSHIP.md. Preserve accepted EX_v002 source/native/config, D_v08 rollback and unrelated work. Current user-approved runtime tuning remains unchanged. No child agents.",
+      "passed": true
+    }
+  ],
+  "limits": "Targeted text readback; initial ownership audit separately checked children and attachments. Final single exact Notion priority/vision edits succeeded after this readback."
+}

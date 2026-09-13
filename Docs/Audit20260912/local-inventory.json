@@ -1,0 +1,1332 @@
+[
+  {
+    "path": "AGENTS.md",
+    "classification": "authority",
+    "notes": "local technical authority"
+  },
+  {
+    "path": "ArtSource/AnimationLab/KN_v002_body_pipeline/REJECTED_BODY.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/AnimationLab/KN_v002_ready/REJECTED_BODY.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/AnimationLab/MEL36_reference/camera-receipt.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/AnimationLab/MEL37_control_proof/implementation-receipt.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/AnimationLab/arm_brief_20260909_first/AUTHORING.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/AnimationLab/arm_chain_grip_20260909/REVIEW.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/AnimationLab/arm_driven_grip_20260909/REVIEW.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/AnimationLab/arm_pronation_grip_20260909/REVIEW.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/AnimationLab/mordhau_polish_20260909/source/Candidates/I_forward_shoulder/TP_v001/SELECTION.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/AnimationLab/mordhau_polish_20260909/source/Candidates/K_natural_grip/TP_v001/SELECTION.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/AnimationLab/power_delivery_20260909/source/Candidates/D_committed_cut/TP_v001/SELECTION.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/AnimationLab/power_delivery_20260909/source/Candidates/F_arm_driven/TP_v001/SELECTION.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/AnimationLab/power_delivery_20260909/source/Candidates/H_support_fold/TP_v001/SELECTION.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/AnimationLab/right_horizontal_compact_20260908/source/Candidates/E_blade_leads/TP_v001/SELECTION.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/AnimationLab/right_horizontal_compact_20260908/source/Candidates/G_apex_carry/TP_v001/SELECTION.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/AnimationLab/right_horizontal_compact_20260908/source/Candidates/I_progressive_drive/TP_v001/SELECTION.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/AnimationLab/shoulder_load_20260909/source/Candidates/D_neutral_shoulder/TP_v001/SELECTION.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/Cascadeur/Candidates/RC_v008/REVIEW.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/Cascadeur/Candidates/RC_v008/reload-evidence.txt",
+    "classification": "historical",
+    "notes": "former-host path retained as dated provenance; read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/Cascadeur/README.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/CF_v001/REVIEW.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/EX_v001/Export/MEL15-HANDOFF.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/EX_v001/MOTION.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/EX_v001/REVIEW.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/EX_v001/STAGING.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/EX_v002/AUTHORING_SPEC.md",
+    "classification": "reference",
+    "notes": "source-specific technical provenance; read-only here; TP checkpoint owns selection/resume"
+  },
+  {
+    "path": "ArtSource/CharacterReset/EX_v002/Comparison/README.md",
+    "classification": "reference",
+    "notes": "source-specific technical provenance; read-only here; TP checkpoint owns selection/resume"
+  },
+  {
+    "path": "ArtSource/CharacterReset/EX_v002/Comparison/REVIEW.md",
+    "classification": "reference",
+    "notes": "source-specific technical provenance; read-only here; TP checkpoint owns selection/resume"
+  },
+  {
+    "path": "ArtSource/CharacterReset/EX_v002/Comparison/comparison-decode.txt",
+    "classification": "reference",
+    "notes": "source-specific technical provenance; read-only here; TP checkpoint owns selection/resume"
+  },
+  {
+    "path": "ArtSource/CharacterReset/EX_v002/Export/MEL15-HANDOFF.md",
+    "classification": "reference",
+    "notes": "source-specific technical provenance; read-only here; TP checkpoint owns selection/resume"
+  },
+  {
+    "path": "ArtSource/CharacterReset/EX_v002/Export/REVIEW.md",
+    "classification": "reference",
+    "notes": "source-specific technical provenance; read-only here; TP checkpoint owns selection/resume"
+  },
+  {
+    "path": "ArtSource/CharacterReset/EX_v002/MOTION.md",
+    "classification": "reference",
+    "notes": "source-specific technical provenance; read-only here; TP checkpoint owns selection/resume"
+  },
+  {
+    "path": "ArtSource/CharacterReset/README.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/Reference/LICENSE.ASSETS.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/AUTHORING_CHECKPOINT.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/BLOCK06_SOURCE_REPAIR.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/BLOCK07_SOURCE_GRIP.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/BLOCK08_SOURCE_REPAIR.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/BLOCK09_SOURCE_REPAIR.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/BLOCK10_SOURCE_REPAIR.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/BLOCK11_SOURCE_REPAIR.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/BLOCK12_SOURCE_REPAIR.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/BLOCK13_SOURCE_REPAIR.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/Baseline_Block02/AUTHORING_CHECKPOINT.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/Baseline_Block04/AUTHORING_CHECKPOINT.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/Baseline_Block05/AUTHORING_CHECKPOINT.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/Baseline_Block06/AUTHORING_CHECKPOINT.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/Baseline_Block06/BLOCK06_SOURCE_REPAIR.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/Baseline_Block07/AUTHORING_CHECKPOINT.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/Baseline_Block07/BLOCK07_SOURCE_GRIP.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/Baseline_Block08/AUTHORING_CHECKPOINT.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/Baseline_Block08/BLOCK08_SOURCE_REPAIR.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/Baseline_Block09/AUTHORING_CHECKPOINT.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/Baseline_Block09/BLOCK09_SOURCE_REPAIR.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/Baseline_Block10/AUTHORING_CHECKPOINT.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/Baseline_Block10/BLOCK10_SOURCE_REPAIR.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/Baseline_Block11/AUTHORING_CHECKPOINT.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/Baseline_Block11/BLOCK11_SOURCE_REPAIR.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/Baseline_Block12/AUTHORING_CHECKPOINT.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CharacterReset/TP_v001/Baseline_Block12/BLOCK12_SOURCE_REPAIR.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/Citadel/CREDITS.md",
+    "classification": "reference",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CombatAudio/CREDITS.md",
+    "classification": "reference",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CombatAudio/Originals/qubodup/wet_towel_on_body/wet_towel_on_body-info.txt",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CombatAudio/Palettes/PrecisionSteel_v5/CREDITS.md",
+    "classification": "reference",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CombatAudio/Palettes/PrecisionSteel_v5/Licenses/impact-sounds-LICENSE.txt",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CombatAudio/Palettes/PrecisionSteel_v5/Licenses/rpg-audio-LICENSE.txt",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CombatAudio/Palettes/PrecisionSteel_v5/QC/summary.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CombatAudio/Palettes/PrecisionSteel_v5/README.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CombatAudio/Revisions/v2/CREDITS.md",
+    "classification": "reference",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CombatAudio/Revisions/v3/CREDITS.md",
+    "classification": "reference",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CombatAudio/impact-sounds-LICENSE.txt",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/CombatAudio/rpg-audio-LICENSE.txt",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/ReadabilityCorrection/TP/BRIEF.md",
+    "classification": "reference",
+    "notes": "source-specific technical provenance; read-only here; TP checkpoint owns selection/resume"
+  },
+  {
+    "path": "ArtSource/ReadabilityCorrection/TP/CHECKPOINT.md",
+    "classification": "reference",
+    "notes": "source-specific technical provenance; read-only here; TP checkpoint owns selection/resume"
+  },
+  {
+    "path": "ArtSource/Selected/D_arc_weight_v08/README.md",
+    "classification": "reference",
+    "notes": "source-specific technical provenance; read-only here; TP checkpoint owns selection/resume"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/AuthoredSteel/PROMPT.txt",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/AuthoredSteel/README.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/GeometryReview/Clay_v001/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/GeometryReview/Clay_v002/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/GeometryReview/Clay_v003/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/GeometryReview/Clay_v004/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/GeometryReview/Clay_v004/MODEL_RECEIPT.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/GeometryReview/Clay_v005/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/GeometryReview/Clay_v005/CriticHistory/Clay_v001.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/GeometryReview/Clay_v005/CriticHistory/Clay_v002.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/GeometryReview/Clay_v005/CriticHistory/Clay_v003.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/GeometryReview/Clay_v005/CriticHistory/Clay_v004.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/GeometryReview/Clay_v005/MODEL_RECEIPT.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/GeometryReview/Clay_v005/README.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/HELMET_ITERATIONS.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Helmet_v001/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Helmet_v002/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Helmet_v003/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Helmet_v004/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Helmet_v005/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Helmet_v006/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Helmet_v007/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Helmet_v008/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Helmet_v009/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Helmet_v009/README.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/ITERATION_LOG.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/PaintedSteel_v002/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/PaintedSteel_v002/REVIEW.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Steel_v009/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Steel_v010/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Steel_v011/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Steel_v012/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Steel_v013/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Steel_v014/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Steel_v015/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Steel_v016/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Steel_v017/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Steel_v019/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Steel_v020/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Steel_v021/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Steel_v022/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Steel_v024/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Steel_v025/CRITIC.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/Steel_v025/README.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/StyleReference/MEL17/UnrealProof/USP_v001/README.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "ArtSource/VisualDevelopment/TournamentFamilies_20260909_v001/README.md",
+    "classification": "historical",
+    "notes": "read-only source evidence; source owner controls edits"
+  },
+  {
+    "path": "Docs/ANIMATION_PROTOTYPE_PIPELINE.md",
+    "classification": "authority",
+    "notes": "local technical authority"
+  },
+  {
+    "path": "Docs/ANIMATION_SPECIALIST_BRIEF.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/ANIMATION_WORKFLOW.md",
+    "classification": "authority",
+    "notes": "local technical authority"
+  },
+  {
+    "path": "Docs/ART_CRITIC_REVIEW.md",
+    "classification": "derived",
+    "notes": "design translation; Notion owns intent/acceptance"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/ANIMATION_ARCHITECTURE_AUDIT.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/ARM_REPAIR.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/MeleeCombatLab.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/00 \u2014 Project Vision.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/01 \u2014 Design Principles.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/01 \u2014 Design Principles/Animation.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/01 \u2014 Design Principles/Camera & Input.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/01 \u2014 Design Principles/Combat.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/01 \u2014 Design Principles/Movement.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/01 \u2014 Design Principles/Visual Direction.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/02 \u2014 Systems.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/02 \u2014 Systems/Blocking & Parrying.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/02 \u2014 Systems/Game Structure.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/02 \u2014 Systems/Melee Swing Model.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/02 \u2014 Systems/Movement.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/03 \u2014 Current Development.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/03 \u2014 Current Development/Current Milestone.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/03 \u2014 Current Development/Task - Experiment Database.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/04 \u2014 Playtesting.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/04 \u2014 Playtesting/Balance - Tuning.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/04 \u2014 Playtesting/Findings.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/05 \u2014 Decision Log.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/05 \u2014 Decision Log/Accepted Decisions.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/05 \u2014 Decision Log/Rejected Experiments.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/Conversation excerpts.md",
+    "classification": "historical",
+    "notes": "former-host path retained as dated provenance"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Notion/MeleeCombatLab/Sources.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Bible/Sources/Conversation excerpts.md",
+    "classification": "historical",
+    "notes": "former-host path retained as dated provenance"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/COMBAT_MOTION_PASS.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/COMBAT_MOTION_REVISION.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/HANDOFF_ARM_REPAIR.md",
+    "classification": "historical",
+    "notes": "former-host path retained as dated provenance"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/HANDOFF_HANDS_AND_LEAN.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/HANDOFF_MEL15_NEXT_INSTANCE.md",
+    "classification": "historical",
+    "notes": "former-host path retained as dated provenance"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/HANDS_AND_LEAN.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/HAND_ANATOMY_CORRECTION.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/HAND_LINEAR_UPDATE_DRAFT.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/KINETIC_SWING_PASS.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/MEL15_ANIMATION_BRIEF.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/MEL15_DIRECTION_UPDATE_20260907.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/MEL15_IMPLEMENTATION_FRAMEWORK.md",
+    "classification": "historical",
+    "notes": "former-host path retained as dated provenance"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/MEL15_PAUSE_LINEAR_UPDATE_DRAFT.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/MEL15_REPAIR.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/MEL15_RESUME_PROGRESS.md",
+    "classification": "historical",
+    "notes": "former-host path retained as dated provenance"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/REFERENCE_ANALYSIS_AND_NEXT_STEPS.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Visual/BACKLOG.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Visual/BRIEF.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/Docs/Visual/REHAUL.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/LegacyMovement/.movement-patch-v2/README_APPLY.txt",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/LegacyMovement/.movement-patch/README_APPLY.txt",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/LegacyMovement/.movement-patch/VALIDATION.txt",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/PROJECT_SPEC.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/README.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/2026-09-07/VALIDATION.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Archive/README.md",
+    "classification": "reference",
+    "notes": "reference catalogue or retention evidence; no live selection/status authority"
+  },
+  {
+    "path": "Docs/Audio/MEL-7.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Audio/Revision2/README.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Audio/Revision3/README.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Audio/Revision4/README.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Audit20260912/LOCAL_INVENTORY.md",
+    "classification": "derived",
+    "notes": "audit navigation and coverage; no execution authority"
+  },
+  {
+    "path": "Docs/BLENDER_MCP_PIPELINE.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/CHARACTER_ANIMATION_RESET.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/CLEANUP_2026-09-11.md",
+    "classification": "historical",
+    "notes": "former-host path retained as dated provenance"
+  },
+  {
+    "path": "Docs/CLEANUP_AGENT_ALIGNMENT.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/DEVELOPMENT.md",
+    "classification": "derived",
+    "notes": "design translation; Notion owns intent/acceptance"
+  },
+  {
+    "path": "Docs/DISCARDED_ITEMS.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/DOCUMENTATION_AUDIT.md",
+    "classification": "derived",
+    "notes": "audit navigation and coverage; no execution authority"
+  },
+  {
+    "path": "Docs/DOCUMENTATION_OWNERSHIP.md",
+    "classification": "authority",
+    "notes": "local technical authority"
+  },
+  {
+    "path": "Docs/EXTERNAL_AUDIT_DISPOSITION.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/GITHUB_WORKSPACE.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/HANDOFF_ARM_BRIEF.md",
+    "classification": "historical",
+    "notes": "former-host path retained as dated provenance"
+  },
+  {
+    "path": "Docs/HANDOFF_TP_PULLBACK_ELBOW.md",
+    "classification": "historical",
+    "notes": "former-host path retained as dated provenance"
+  },
+  {
+    "path": "Docs/H_SUPPORT_FOLD_STANDARDS_REVIEW.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/KRONK_MORDHAU_REFERENCE_REPORT.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/LINEAR_ANIMATION_PLAN_CHECKPOINT.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/MEL15_PRODUCTION_HANDOFF.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/MEL17_IMPLEMENTATION_HANDOFF.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/MEL17_REFERENCE_ROUTE.md",
+    "classification": "derived",
+    "notes": "design translation; Notion owns intent/acceptance"
+  },
+  {
+    "path": "Docs/MEL17_TRANSFER_CRITIC.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/MEL17_UNREAL_STYLE_PLAN.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/MEL37_ELBOW_HANDOFF_2026-09-09.md",
+    "classification": "historical",
+    "notes": "former-host path retained as dated provenance"
+  },
+  {
+    "path": "Docs/MEL37_MANUAL_SWING_ANALYSIS_PROMPT.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/MEL6_CHECKPOINT.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/MORDHAU_ANIMATION_ARCHITECTURE_PLAN.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/MORDHAU_CONSOLE_EXPERIMENTS.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/MORDHAU_POLISH_PROCESS.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/MORDHAU_PROCESS_CRITIC.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/MORDHAU_REFERENCE_INDEX.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/MORDHAU_SWING_FINDINGS.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/MOVEMENT_AUDIT.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/MOVEMENT_CONTRACT.md",
+    "classification": "authority",
+    "notes": "local technical authority"
+  },
+  {
+    "path": "Docs/MordhauAnimationAtlas/CHECKPOINT.md",
+    "classification": "reference",
+    "notes": "reference catalogue or retention evidence; no live selection/status authority"
+  },
+  {
+    "path": "Docs/MordhauAnimationAtlas/MEL36_REFERENCE_PACKET.md",
+    "classification": "reference",
+    "notes": "reference catalogue or retention evidence; no live selection/status authority"
+  },
+  {
+    "path": "Docs/MordhauAnimationAtlas/README.md",
+    "classification": "reference",
+    "notes": "reference catalogue or retention evidence; no live selection/status authority"
+  },
+  {
+    "path": "Docs/MordhauRightReference/PROVISIONAL_REFERENCE.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/MordhauRightReference/REFERENCE.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/MordhauRightReference/STATS.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/PROJECT_AUDIT.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/PROJECT_STOCKTAKE.md",
+    "classification": "historical",
+    "notes": "former-host path retained as dated provenance"
+  },
+  {
+    "path": "Docs/PROMPT_MEL15_GAMEPLAY_INTEGRATION.md",
+    "classification": "historical",
+    "notes": "former-host path retained as dated provenance"
+  },
+  {
+    "path": "Docs/REN_MORDHAU_REFERENCE_REPORT.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/RIGHT_CUT_INTEGRATION.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/RIGHT_OVERHEAD_BASELINE.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/RIPOSTE_HEIGHT_REVIEW.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/THIRD_PERSON_ANIMATION_PROMPT.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/THIRD_PERSON_CHECKPOINT.md",
+    "classification": "authority",
+    "notes": "concurrent owner; current outcome deferred to checkpoint"
+  },
+  {
+    "path": "Docs/THIRD_PERSON_CHECKPOINT_HISTORY_20260909.md",
+    "classification": "historical",
+    "notes": "former-host path retained as dated provenance"
+  },
+  {
+    "path": "Docs/TUNING_PROVENANCE_CHECKPOINT.md",
+    "classification": "authority",
+    "notes": "former-host path retained as dated provenance; concurrent owner; current outcome deferred to checkpoint"
+  },
+  {
+    "path": "Docs/ThirdPersonReference20260908/ANIMATION_CRITIQUE.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/ThirdPersonReference20260908/BLOCK04_REVIEW.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/ThirdPersonReference20260908/BLOCK05_MOTION_REVIEW.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/ThirdPersonReference20260908/BLOCK05_REVIEW.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/ThirdPersonReference20260908/CLIP_A_ANALYSIS.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/ThirdPersonReference20260908/CLIP_B_ANALYSIS.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/ThirdPersonReference20260908/IMPLEMENTATION_HANDOFF.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/ThirdPersonReference20260908/IMPLEMENTATION_REVIEW.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/ThirdPersonReference20260908/REVIEW.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/ThirdPersonReference20260908/TECHNICAL_GAPS.md",
+    "classification": "reference",
+    "notes": "former-host path retained as dated provenance"
+  },
+  {
+    "path": "Docs/UNREAL_STYLE_CHECKPOINT.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/UNREAL_STYLE_CRITIC.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/UNREAL_STYLE_TECHNICAL_HANDOFF.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/USER_KNIGHT_CHECKPOINT.md",
+    "classification": "authority",
+    "notes": "local technical authority"
+  },
+  {
+    "path": "Docs/Visual/CITADEL.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Visual/Captures/README.md",
+    "classification": "reference",
+    "notes": "reference catalogue or retention evidence; no live selection/status authority"
+  },
+  {
+    "path": "Docs/Visual/Captures/TargetVision20260908/anubis-probe.txt",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Visual/Captures/TargetVision20260908/mirage-probe.txt",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Visual/Captures/TargetVision20260908/valorant-probe.txt",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Visual/Captures/TargetVision20260908/zelda-probe.txt",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Visual/Concepts/HoundBascinet/checkpoint.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "Docs/Visual/Concepts/HoundBascinet/prompt-v002.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/Visual/Concepts/HoundBascinet/prompt-v003.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/Visual/Concepts/HoundBascinet/prompt-v004.md",
+    "classification": "reference",
+    "notes": "reference evidence; no acceptance inferred"
+  },
+  {
+    "path": "Docs/Visual/STYLE_AND_PERFORMANCE.md",
+    "classification": "derived",
+    "notes": "design translation; Notion owns intent/acceptance"
+  },
+  {
+    "path": "Docs/Visual/UI_STYLE_GUIDE.md",
+    "classification": "derived",
+    "notes": "design translation; Notion owns intent/acceptance"
+  },
+  {
+    "path": "Docs/WORKFLOW_CHECKPOINT.md",
+    "classification": "historical",
+    "notes": "dated evidence; no live execution authority"
+  },
+  {
+    "path": "PROJECT_SPEC.md",
+    "classification": "derived",
+    "notes": "design translation; Notion owns intent/acceptance"
+  },
+  {
+    "path": "README.md",
+    "classification": "derived",
+    "notes": "design translation; Notion owns intent/acceptance"
+  },
+  {
+    "path": "RECOVERY.md",
+    "classification": "historical",
+    "notes": "former-host path retained as dated provenance"
+  },
+  {
+    "path": "Tools/AnimationAuthoring/README.md",
+    "classification": "authority",
+    "notes": "local technical authority"
+  },
+  {
+    "path": "Tools/README.md",
+    "classification": "authority",
+    "notes": "local technical authority"
+  },
+  {
+    "path": "VALIDATION.md",
+    "classification": "authority",
+    "notes": "local technical authority"
+  }
+]

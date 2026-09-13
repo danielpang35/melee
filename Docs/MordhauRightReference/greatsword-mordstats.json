@@ -1,0 +1,213 @@
+{
+  "type": "melee",
+  "pointCost": 21,
+  "attacks": [
+    {
+      "type": "strike",
+      "damage": {
+        "torso": [
+          75,
+          65,
+          43,
+          38
+        ],
+        "head": [
+          100,
+          80,
+          60,
+          48
+        ],
+        "legs": [
+          65,
+          55,
+          34,
+          34
+        ]
+      },
+      "speed": {
+        "windup": 575,
+        "combo": 775,
+        "release": 500,
+        "recovery": 700
+      },
+      "general": {
+        "length": 120,
+        "turnCapX": 245,
+        "turnCapY": 171.5,
+        "missCost": 10,
+        "feintCost": 10,
+        "morphCost": 7,
+        "staminaDrain": 19,
+        "parryDrainNeg": 13,
+        "stopOnHit": "No",
+        "canCombo": "Yes",
+        "knockback": 130,
+        "woodDamage": 25,
+        "stoneDamage": 20,
+        "blockHeld": "No",
+        "bMoveRest": 0,
+        "canFlinch": "Yes",
+        "feintLockOut": 350,
+        "chamberCost": 15,
+        "chamberFeintCost": 5,
+        "moveRest": 0
+      }
+    },
+    {
+      "type": "stab",
+      "damage": {
+        "torso": [
+          70,
+          60,
+          50,
+          35
+        ],
+        "head": [
+          100,
+          75,
+          65,
+          45
+        ],
+        "legs": [
+          60,
+          50,
+          35,
+          25
+        ]
+      },
+      "speed": {
+        "windup": 675,
+        "combo": 925,
+        "release": 325,
+        "recovery": 700
+      },
+      "general": {
+        "length": 120,
+        "turnCapX": 270,
+        "turnCapY": 189,
+        "missCost": 10,
+        "feintCost": 10,
+        "morphCost": 7,
+        "staminaDrain": 19,
+        "parryDrainNeg": 13,
+        "stopOnHit": "No",
+        "canCombo": "Yes",
+        "knockback": 125,
+        "woodDamage": 10,
+        "stoneDamage": 8,
+        "blockHeld": "No",
+        "bMoveRest": 0,
+        "canFlinch": "Yes",
+        "feintLockOut": 300,
+        "chamberCost": 15,
+        "chamberFeintCost": 5,
+        "moveRest": 0
+      }
+    },
+    {
+      "type": "altStrike",
+      "damage": {
+        "torso": [
+          60,
+          50,
+          34,
+          30
+        ],
+        "head": [
+          75,
+          65,
+          49,
+          45
+        ],
+        "legs": [
+          55,
+          40,
+          31,
+          27
+        ]
+      },
+      "speed": {
+        "windup": 575,
+        "combo": 775,
+        "release": 500,
+        "recovery": 550
+      },
+      "general": {
+        "length": 90,
+        "turnCapX": 262.5,
+        "turnCapY": 183.75,
+        "missCost": 9,
+        "feintCost": 10,
+        "morphCost": 7,
+        "staminaDrain": 18,
+        "parryDrainNeg": 13,
+        "stopOnHit": "No",
+        "canCombo": "Yes",
+        "knockback": 130,
+        "woodDamage": 20,
+        "stoneDamage": 22,
+        "blockHeld": "No",
+        "bMoveRest": 0,
+        "canFlinch": "Yes",
+        "feintLockOut": 375,
+        "chamberCost": 15,
+        "chamberFeintCost": 5,
+        "moveRest": 0
+      }
+    },
+    {
+      "type": "altStab",
+      "damage": {
+        "torso": [
+          75,
+          60,
+          51,
+          40
+        ],
+        "head": [
+          100,
+          75,
+          66,
+          45
+        ],
+        "legs": [
+          65,
+          50,
+          46,
+          35
+        ]
+      },
+      "speed": {
+        "windup": 600,
+        "combo": 725,
+        "release": 350,
+        "recovery": 400
+      },
+      "general": {
+        "length": 90,
+        "turnCapX": 300,
+        "turnCapY": 210,
+        "missCost": 9,
+        "feintCost": 10,
+        "morphCost": 7,
+        "staminaDrain": 18,
+        "parryDrainNeg": 13,
+        "stopOnHit": "No",
+        "canCombo": "Yes",
+        "knockback": 125,
+        "woodDamage": 12,
+        "stoneDamage": 15,
+        "blockHeld": "No",
+        "bMoveRest": 0,
+        "canFlinch": "Yes",
+        "feintLockOut": 350,
+        "chamberCost": 15,
+        "chamberFeintCost": 5,
+        "moveRest": 0
+      }
+    }
+  ],
+  "peasantOnly": false,
+  "isMisc": true,
+  "speedBonus": 0
+}

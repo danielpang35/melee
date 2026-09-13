@@ -1,0 +1,47 @@
+{
+  "revision": 2,
+  "native": {
+    "result": "pass",
+    "checks": 311,
+    "address_sanitizer": true
+  },
+  "build": {
+    "result": "pass",
+    "module": "UnrealEditor-MeleeCombatLab-1000.dll",
+    "log": "Saved\\CombatAudio\\Revision2\\build.log"
+  },
+  "import": {
+    "sounds": 21,
+    "errors": 0,
+    "warnings": 0,
+    "log": "Saved\\CombatAudio\\Revision2\\import.log"
+  },
+  "asset_automation": {
+    "succeeded": 1,
+    "failed": 0,
+    "not_run": 0
+  },
+  "runtime": {
+    "exit_code": 0,
+    "audio_device_created": true,
+    "created_voices_by_family": {
+      "Swing": 7,
+      "Head": 5,
+      "Body": 2,
+      "Stab": 1
+    },
+    "completed_scenarios": {
+      "right": "PASS",
+      "upper_right": "PASS",
+      "upper_left": "PASS",
+      "left": "PASS",
+      "lower_left": "PASS",
+      "lower_right": "PASS",
+      "stab": "PASS"
+    },
+    "scope": "17-second start of existing regression tour under NullRHI; not a full tour or rendered listening review.",
+    "warnings": "Editor widget registration and scalability messages; one startup movement iteration warning. No audio failures or logged errors.",
+    "log": "Saved\\CombatAudio\\Revision2\\runtime.log"
+  },
+  "listening_acceptance": "Pending user/in-game review; technical checks do not certify AAA audio quality."
+}

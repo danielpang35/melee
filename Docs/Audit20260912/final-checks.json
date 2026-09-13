@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-12",
+  "scope": "Active/new local operational Markdown links only; historical evidence and external URLs excluded. No runtime/source verification.",
+  "documents": [
+    "AGENTS.md",
+    "README.md",
+    "PROJECT_SPEC.md",
+    "VALIDATION.md",
+    "Docs/DEVELOPMENT.md",
+    "Docs/DOCUMENTATION_OWNERSHIP.md",
+    "Docs/DOCUMENTATION_AUDIT.md",
+    "Docs/ANIMATION_PROTOTYPE_PIPELINE.md",
+    "Tools/README.md",
+    "Tools/AnimationAuthoring/README.md"
+  ],
+  "local_links_checked": 78,
+  "missing": [],
+  "git_diff_check_exit": 0,
+  "git_diff_check_log": "final-diff-check.log",
+  "limits": [
+    "No fragment/line-number semantic validation.",
+    "Historical dead evidence remains preserved under existing superseded labels and inventory exceptions.",
+    "TP/tuning checkpoints and ArtSource are concurrent-owner material; not edited by this pass.",
+    "External audit sections are dated readbacks; coordinator owns rejection/status reconciliation."
+  ],
+  "latest_direction": "TP/body revise; FP swing feel explicitly positive and protected; defender communication/readability diagnosis before correction"
+}

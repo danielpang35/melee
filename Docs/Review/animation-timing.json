@@ -1,0 +1,20 @@
+{
+  "source": "ArtSource\\Kimodo\\RH_20260913\\B_reference_extended_v003\\B_ArmLoad_v004.blend",
+  "source_sha256": "a27fc7b3c2e43072e71711baa5724c4f7c0f21113a64605ea6aa6bea71c35cad",
+  "configured_release_seconds": 0.5,
+  "config_sha256": "bd783445230985e0aa2b26f2dcb2841ebcd83dd57bba77884d92e61a7bbe9ce6",
+  "fps": 30.0,
+  "frames": [
+    1,
+    92
+  ],
+  "release_frames": [
+    40,
+    55
+  ],
+  "release_frame_intervals": 15,
+  "release_seconds": 0.5,
+  "required_release_seconds": 0.5,
+  "passed": true,
+  "evidence_limit": "Native phase markers and preview binding; no runtime contact or artistic acceptance."
+}

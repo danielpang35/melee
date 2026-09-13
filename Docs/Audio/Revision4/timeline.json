@@ -1,0 +1,149 @@
+{
+  "description": "Edited audition, not captured gameplay. Full uncut air through contact; armor at actual quiet level.",
+  "sequence": [
+    {
+      "time": 0.3,
+      "cue": "S_Swing_00",
+      "gain": 0.68
+    },
+    {
+      "time": 1.3,
+      "cue": "S_Swing_01",
+      "gain": 0.68
+    },
+    {
+      "time": 2.4,
+      "cue": "S_Parry_00",
+      "gain": 0.68
+    },
+    {
+      "time": 3.1,
+      "cue": "S_Parry_01",
+      "gain": 0.68
+    },
+    {
+      "time": 4.0,
+      "cue": "S_Body_00",
+      "gain": 0.68
+    },
+    {
+      "time": 4.8,
+      "cue": "S_Head_00",
+      "gain": 0.68
+    },
+    {
+      "time": 5.6,
+      "cue": "S_Body_01",
+      "gain": 0.68
+    },
+    {
+      "time": 6.4,
+      "cue": "S_Head_01",
+      "gain": 0.68
+    },
+    {
+      "time": 7.3,
+      "cue": "S_Armor_00",
+      "gain": 0.68
+    },
+    {
+      "time": 7.8,
+      "cue": "S_Armor_01",
+      "gain": 0.68
+    },
+    {
+      "time": 8.37,
+      "cue": "S_Armor_02",
+      "gain": 0.68
+    },
+    {
+      "time": 8.6,
+      "cue": "S_Swing_02",
+      "gain": 0.68
+    },
+    {
+      "time": 8.78,
+      "cue": "S_Body_02",
+      "gain": 0.68
+    },
+    {
+      "time": 9.57,
+      "cue": "S_Armor_02",
+      "gain": 0.68
+    },
+    {
+      "time": 9.8,
+      "cue": "S_Swing_02",
+      "gain": 0.68
+    },
+    {
+      "time": 9.98,
+      "cue": "S_Head_02",
+      "gain": 0.68
+    },
+    {
+      "time": 10.77,
+      "cue": "S_Armor_02",
+      "gain": 0.68
+    },
+    {
+      "time": 11.0,
+      "cue": "S_Swing_02",
+      "gain": 0.68
+    },
+    {
+      "time": 11.18,
+      "cue": "S_Parry_02",
+      "gain": 0.68
+    },
+    {
+      "time": 11.969999999999999,
+      "cue": "S_Armor_01",
+      "gain": 0.68
+    },
+    {
+      "time": 12.2,
+      "cue": "S_Swing_01",
+      "gain": 0.68
+    },
+    {
+      "time": 12.379999999999999,
+      "cue": "S_Chamber_01",
+      "gain": 0.68
+    },
+    {
+      "time": 13.17,
+      "cue": "S_Armor_00",
+      "gain": 0.68
+    },
+    {
+      "time": 13.4,
+      "cue": "S_Swing_00",
+      "gain": 0.68
+    },
+    {
+      "time": 13.58,
+      "cue": "S_Body_00",
+      "gain": 0.68
+    },
+    {
+      "time": 14.35,
+      "cue": "S_Armor_01",
+      "gain": 0.68
+    },
+    {
+      "time": 14.6,
+      "cue": "S_Stab_01",
+      "gain": 0.68
+    },
+    {
+      "time": 14.72,
+      "cue": "S_Head_01",
+      "gain": 0.68
+    }
+  ],
+  "measured": {
+    "lufs": -23.71,
+    "true_peak_dbtp": -3.0
+  }
+}

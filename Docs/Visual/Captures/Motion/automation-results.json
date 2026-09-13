@@ -1,0 +1,53 @@
+{
+  "reportCreatedOn": "2026.09.06-12.43.01",
+  "succeeded": 3,
+  "failed": 0,
+  "notRun": 0,
+  "tests": [
+    {
+      "testDisplayName": "AssetContract",
+      "fullTestPath": "MeleeCombatLab.Citadel.AssetContract",
+      "tags": [],
+      "state": "Success",
+      "deviceInstance": [
+        "18CA971F4E89F18DCA4C06BC65D71714"
+      ],
+      "duration": 0.18701030313968658,
+      "dateTime": "2026.09.06-12.43.01",
+      "entries": [],
+      "warnings": 0,
+      "errors": 0,
+      "artifacts": []
+    },
+    {
+      "testDisplayName": "FrameRates",
+      "fullTestPath": "MeleeCombatLab.FrameRates",
+      "tags": [],
+      "state": "Success",
+      "deviceInstance": [
+        "18CA971F4E89F18DCA4C06BC65D71714"
+      ],
+      "duration": 0.01457269862294197,
+      "dateTime": "2026.09.06-12.43.01",
+      "entries": [],
+      "warnings": 0,
+      "errors": 0,
+      "artifacts": []
+    },
+    {
+      "testDisplayName": "StateFlow",
+      "fullTestPath": "MeleeCombatLab.StateFlow",
+      "tags": [],
+      "state": "Success",
+      "deviceInstance": [
+        "18CA971F4E89F18DCA4C06BC65D71714"
+      ],
+      "duration": 0.008014596998691559,
+      "dateTime": "2026.09.06-12.43.01",
+      "entries": [],
+      "warnings": 0,
+      "errors": 0,
+      "artifacts": []
+    }
+  ]
+}

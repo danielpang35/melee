@@ -1,0 +1,612 @@
+{
+  "identity": "HunyuanHound/Hound_v001",
+  "date": "2026-09-13",
+  "sources": {
+    "11-hound-bascinet.png": {
+      "sha256": "9dc54bd6b4cccbe7b9410e2f5615ee533a658c947fc478d189321a577ae0545b",
+      "bytes": 2398517
+    },
+    "exemplar_style.fbx": {
+      "sha256": "b17d0a1a06af68a3cfe423d0f862eff567442bf99b991311cdf9aab5a2630f17",
+      "bytes": 36680124
+    }
+  },
+  "authoring_provenance": "User states Hunyuan generation; exact version, settings and prompt unavailable. Texture filenames do not establish generation date.",
+  "mesh": {
+    "objects": 1,
+    "name": "node_0",
+    "vertices": 24878,
+    "polygons": 50004,
+    "triangles": 50004,
+    "uv_layers": [
+      "UVMap"
+    ],
+    "dimensions_imported_units": [
+      0.9566429853439331,
+      0.6265019774436951,
+      0.6342999935150146
+    ],
+    "material_slots": 1,
+    "note": "Both reference-sheet busts reconstructed in one mesh object; no production scale or rig acceptance."
+  },
+  "maps": {
+    "texture_pbr_20250901.png": {
+      "sha256": "fa1cb057cfd1fca7569a34e7ab356af4e65e0d2fb89a094feb719304324f37d5",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "sRGB",
+      "sample_method": "1024 UV coverage at cell centers; original 4K pixel (4*x+2,4*y+2); padding excluded",
+      "channel_quantiles_05_50_95": [
+        [
+          0.019608,
+          0.015686,
+          0.011765
+        ],
+        [
+          0.223529,
+          0.239216,
+          0.239216
+        ],
+        [
+          0.678431,
+          0.615686,
+          0.54902
+        ]
+      ]
+    },
+    "texture_pbr_20250901_metallic.png": {
+      "sha256": "7fb0a2f247719d73a7694f12c15bd4b77f25c2fb5f51912645ad851740815f16",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "sample_method": "1024 UV coverage at cell centers; original 4K pixel (4*x+2,4*y+2); padding excluded",
+      "channel_quantiles_05_50_95": [
+        [
+          0.031373,
+          0.031373,
+          0.031373
+        ],
+        [
+          0.043137,
+          0.043137,
+          0.043137
+        ],
+        [
+          0.062745,
+          0.062745,
+          0.062745
+        ]
+      ]
+    },
+    "texture_pbr_20250901_normal.png": {
+      "sha256": "2d150607f825a5dcaac63b75c2241a0f579c98a143a2aae272137426b4d91f7f",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "sample_method": "1024 UV coverage at cell centers; original 4K pixel (4*x+2,4*y+2); padding excluded",
+      "channel_quantiles_05_50_95": [
+        [
+          0.415686,
+          0.427451,
+          0.870588
+        ],
+        [
+          0.498039,
+          0.498039,
+          0.996078
+        ],
+        [
+          0.580392,
+          0.564706,
+          1.0
+        ]
+      ]
+    },
+    "texture_pbr_20250901_roughness.png": {
+      "sha256": "7dcce042bf161cb7460e698120bc2baf12e51edb025aac980395ad63667703ce",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "sample_method": "1024 UV coverage at cell centers; original 4K pixel (4*x+2,4*y+2); padding excluded",
+      "channel_quantiles_05_50_95": [
+        [
+          0.956863,
+          0.956863,
+          0.956863
+        ],
+        [
+          0.988235,
+          0.988235,
+          0.988235
+        ],
+        [
+          0.996078,
+          0.996078,
+          0.996078
+        ]
+      ]
+    }
+  },
+  "uv_sample_count": 564038,
+  "material": {
+    "shader": "Blender FBX-imported Principled BSDF",
+    "specular_ior_level": 1.0,
+    "normal_space": "TANGENT",
+    "links": [
+      [
+        "Normal Map",
+        "Normal",
+        "Principled BSDF",
+        "Normal"
+      ],
+      [
+        "Image Texture",
+        "Color",
+        "Principled BSDF",
+        "Base Color"
+      ],
+      [
+        "Image Texture.001",
+        "Color",
+        "Normal Map",
+        "Color"
+      ],
+      [
+        "Image Texture.002",
+        "Color",
+        "Principled BSDF",
+        "Roughness"
+      ],
+      [
+        "Image Texture.003",
+        "Color",
+        "Principled BSDF",
+        "Metallic"
+      ],
+      [
+        "Principled BSDF",
+        "BSDF",
+        "Material Output",
+        "Surface"
+      ]
+    ]
+  },
+  "render": {
+    "blender": "5.2.1 LTS",
+    "engine": "Cycles",
+    "samples": 24,
+    "seed": 0,
+    "resolution": [
+      900,
+      900
+    ],
+    "view_transform": "Standard",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "orthographic_scale": 1.12,
+    "orientation": "Front/rear/left/right refer approximately to the large bust; small bust has a different heading.",
+    "views": {
+      "front": {
+        "file": "Review/front.png",
+        "sha256": "2d2cade7046ea74ba2a718acecb82921b69a6baa9c5dd3c6dc62192417124b24",
+        "camera_location": [
+          1.4501845836639404,
+          -1.435912013053894,
+          0.5932509899139404
+        ],
+        "camera_rotation_euler": [
+          1.4316797256469727,
+          -8.74081393931192e-08,
+          0.7853981852531433
+        ],
+        "world_strength": 0.6000000238418579,
+        "lights": {
+          "key": {
+            "location": [
+              -0.9638155102729797,
+              -2.021912097930908,
+              3.31325101852417
+            ],
+            "energy": 180.0,
+            "color": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "diameter": 2.0
+          },
+          "fill": {
+            "location": [
+              2.036184549331665,
+              0.9780880212783813,
+              1.81325101852417
+            ],
+            "energy": 100.0,
+            "color": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "diameter": 2.0
+          }
+        }
+      },
+      "rear": {
+        "file": "Review/rear.png",
+        "sha256": "dfb78e4b935047e3d8607054d43388020617a30eaae122c96bbae41a15c2a556",
+        "camera_location": [
+          -1.3778154850006104,
+          1.3920880556106567,
+          0.5932509899139404
+        ],
+        "camera_rotation_euler": [
+          1.4316797256469727,
+          -4.306599077352757e-09,
+          -2.356194496154785
+        ],
+        "world_strength": 0.6000000238418579,
+        "lights": {
+          "key": {
+            "location": [
+              -0.9638155102729797,
+              -2.021912097930908,
+              3.31325101852417
+            ],
+            "energy": 180.0,
+            "color": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "diameter": 2.0
+          },
+          "fill": {
+            "location": [
+              2.036184549331665,
+              0.9780880212783813,
+              1.81325101852417
+            ],
+            "energy": 100.0,
+            "color": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "diameter": 2.0
+          }
+        }
+      },
+      "left": {
+        "file": "Review/left.png",
+        "sha256": "df7421b677589593ef8f86dac1c98150d2ae95cf28a4dc2ad6d8667a10bef93a",
+        "camera_location": [
+          1.4501845836639404,
+          1.3920880556106567,
+          0.5932509899139404
+        ],
+        "camera_rotation_euler": [
+          1.4316797256469727,
+          4.306599077352757e-09,
+          2.356194496154785
+        ],
+        "world_strength": 0.6000000238418579,
+        "lights": {
+          "key": {
+            "location": [
+              -0.9638155102729797,
+              -2.021912097930908,
+              3.31325101852417
+            ],
+            "energy": 180.0,
+            "color": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "diameter": 2.0
+          },
+          "fill": {
+            "location": [
+              2.036184549331665,
+              0.9780880212783813,
+              1.81325101852417
+            ],
+            "energy": 100.0,
+            "color": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "diameter": 2.0
+          }
+        }
+      },
+      "right": {
+        "file": "Review/right.png",
+        "sha256": "883d71ae165a49f10b83d493f9459e6cc42cae1976dd266537ba1ca1589e1eaf",
+        "camera_location": [
+          -1.3778154850006104,
+          -1.435912013053894,
+          0.5932509899139404
+        ],
+        "camera_rotation_euler": [
+          1.4316797256469727,
+          8.74081393931192e-08,
+          -0.7853981852531433
+        ],
+        "world_strength": 0.6000000238418579,
+        "lights": {
+          "key": {
+            "location": [
+              -0.9638155102729797,
+              -2.021912097930908,
+              3.31325101852417
+            ],
+            "energy": 180.0,
+            "color": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "diameter": 2.0
+          },
+          "fill": {
+            "location": [
+              2.036184549331665,
+              0.9780880212783813,
+              1.81325101852417
+            ],
+            "energy": 100.0,
+            "color": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "diameter": 2.0
+          }
+        }
+      },
+      "reference_three_quarter": {
+        "file": "Review/reference_three_quarter.png",
+        "sha256": "473b3f4c430510caad6788f9eb69ff49be8ff7b9f5f9c878aba7810dbb14129d",
+        "camera_location": [
+          0.036184489727020264,
+          -2.021912097930908,
+          0.8632509708404541
+        ],
+        "camera_rotation_euler": [
+          1.3024301528930664,
+          -0.0,
+          0.0
+        ],
+        "world_strength": 0.6000000238418579,
+        "lights": {
+          "key": {
+            "location": [
+              -0.9638155102729797,
+              -2.021912097930908,
+              3.31325101852417
+            ],
+            "energy": 180.0,
+            "color": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "diameter": 2.0
+          },
+          "fill": {
+            "location": [
+              2.036184549331665,
+              0.9780880212783813,
+              1.81325101852417
+            ],
+            "energy": 100.0,
+            "color": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "diameter": 2.0
+          }
+        }
+      },
+      "base_color_only": {
+        "file": "Review/base_color_only.png",
+        "sha256": "0ed07d295a765f68dbce03424c2c90a5f73b9a4c610bb461f8f2564b8c81aa09",
+        "camera_location": [
+          0.036184489727020264,
+          -2.021912097930908,
+          0.8632509708404541
+        ],
+        "camera_rotation_euler": [
+          1.3024301528930664,
+          -0.0,
+          0.0
+        ],
+        "world_strength": 0.6000000238418579,
+        "lights": {
+          "key": {
+            "location": [
+              -0.9638155102729797,
+              -2.021912097930908,
+              3.31325101852417
+            ],
+            "energy": 180.0,
+            "color": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "diameter": 2.0
+          },
+          "fill": {
+            "location": [
+              2.036184549331665,
+              0.9780880212783813,
+              1.81325101852417
+            ],
+            "energy": 100.0,
+            "color": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "diameter": 2.0
+          }
+        }
+      },
+      "warm_key": {
+        "file": "Review/warm_key.png",
+        "sha256": "6ecc5224f8e827801a768373522bcc8fe259deb7c00691e0a6d38e0d5e20009e",
+        "camera_location": [
+          0.036184489727020264,
+          -2.021912097930908,
+          0.8632509708404541
+        ],
+        "camera_rotation_euler": [
+          1.3024301528930664,
+          -0.0,
+          0.0
+        ],
+        "world_strength": 0.25,
+        "lights": {
+          "key": {
+            "location": [
+              -0.9638155102729797,
+              -2.021912097930908,
+              2.31325101852417
+            ],
+            "energy": 220.0,
+            "color": [
+              1.0,
+              0.8199999928474426,
+              0.6499999761581421
+            ],
+            "diameter": 2.0
+          },
+          "fill": {
+            "location": [
+              2.036184549331665,
+              0.9780880212783813,
+              1.81325101852417
+            ],
+            "energy": 30.0,
+            "color": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "diameter": 2.0
+          }
+        }
+      },
+      "opposite_key": {
+        "file": "Review/opposite_key.png",
+        "sha256": "666302771d7f5001a5412c2b3c7920cd3a26735c459cf853e0b6b39af2830eca",
+        "camera_location": [
+          0.036184489727020264,
+          -2.021912097930908,
+          0.8632509708404541
+        ],
+        "camera_rotation_euler": [
+          1.3024301528930664,
+          -0.0,
+          0.0
+        ],
+        "world_strength": 0.25,
+        "lights": {
+          "key": {
+            "location": [
+              1.036184549331665,
+              1.9780880212783813,
+              2.31325101852417
+            ],
+            "energy": 220.0,
+            "color": [
+              1.0,
+              0.8199999928474426,
+              0.6499999761581421
+            ],
+            "diameter": 2.0
+          },
+          "fill": {
+            "location": [
+              2.036184549331665,
+              0.9780880212783813,
+              1.81325101852417
+            ],
+            "energy": 30.0,
+            "color": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "diameter": 2.0
+          }
+        }
+      },
+      "cool_fill": {
+        "file": "Review/cool_fill.png",
+        "sha256": "e7501392c6df545baa409bd9a27a332a32cc61bc0021a10fa541a606f1057c2b",
+        "camera_location": [
+          0.036184489727020264,
+          -2.021912097930908,
+          0.8632509708404541
+        ],
+        "camera_rotation_euler": [
+          1.3024301528930664,
+          -0.0,
+          0.0
+        ],
+        "world_strength": 0.18000000715255737,
+        "lights": {
+          "key": {
+            "location": [
+              -0.9638155102729797,
+              -2.021912097930908,
+              2.31325101852417
+            ],
+            "energy": 0.0,
+            "color": [
+              0.6499999761581421,
+              0.7799999713897705,
+              1.0
+            ],
+            "diameter": 2.0
+          },
+          "fill": {
+            "location": [
+              2.036184549331665,
+              0.9780880212783813,
+              1.81325101852417
+            ],
+            "energy": 35.0,
+            "color": [
+              0.6499999761581421,
+              0.7799999713897705,
+              1.0
+            ],
+            "diameter": 2.0
+          }
+        }
+      }
+    }
+  },
+  "native_inspection_sha256": "f1714d6d653bc0e59d03c6d9dda2b10dea80f4b64ad1bac7f499c7e81b21759b",
+  "limitations": [
+    "Static inspection only; no animation, continuous viewing, Unreal transfer, performance or new character acceptance.",
+    "Lighting variants are diagnostic Blender conditions, not calibrated game sun/shade.",
+    "Map quantiles describe UV-area samples, not material-separated production settings."
+  ],
+  "script_sha256": "73933f840d790a1bf7d4605abf05a6924e6834102fc32dd2a1dfce787db82f6f"
+}

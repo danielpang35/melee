@@ -1,0 +1,99 @@
+{
+  "description": "Edited sample audition; not a gameplay recording",
+  "sequence": [
+    {
+      "time": 0.3,
+      "cue": "S_Swing_00",
+      "contact_after": null
+    },
+    {
+      "time": 1.2,
+      "cue": "S_Swing_01",
+      "contact_after": null
+    },
+    {
+      "time": 2.2,
+      "cue": "S_Body_00",
+      "contact_after": null
+    },
+    {
+      "time": 3.1,
+      "cue": "S_Head_00",
+      "contact_after": null
+    },
+    {
+      "time": 4.0,
+      "cue": "S_Body_01",
+      "contact_after": null
+    },
+    {
+      "time": 4.9,
+      "cue": "S_Head_01",
+      "contact_after": null
+    },
+    {
+      "time": 6.0,
+      "cue": "S_Swing_02",
+      "contact_after": 0.17
+    },
+    {
+      "time": 6.17,
+      "cue": "S_Body_02",
+      "contact_after": null
+    },
+    {
+      "time": 7.2,
+      "cue": "S_Swing_02",
+      "contact_after": 0.17
+    },
+    {
+      "time": 7.37,
+      "cue": "S_Head_02",
+      "contact_after": null
+    },
+    {
+      "time": 8.4,
+      "cue": "S_Swing_00",
+      "contact_after": 0.17
+    },
+    {
+      "time": 8.57,
+      "cue": "S_Parry_00",
+      "contact_after": null
+    },
+    {
+      "time": 9.5,
+      "cue": "S_Swing_01",
+      "contact_after": 0.17
+    },
+    {
+      "time": 9.67,
+      "cue": "S_Chamber_01",
+      "contact_after": null
+    },
+    {
+      "time": 10.5,
+      "cue": "S_Swing_00",
+      "contact_after": 0.17
+    },
+    {
+      "time": 10.67,
+      "cue": "S_Body_00",
+      "contact_after": null
+    },
+    {
+      "time": 11.65,
+      "cue": "S_Stab_01",
+      "contact_after": 0.12
+    },
+    {
+      "time": 11.77,
+      "cue": "S_Head_01",
+      "contact_after": null
+    }
+  ],
+  "measured": {
+    "lufs": -23.23,
+    "true_peak_dbtp": -5.5
+  }
+}

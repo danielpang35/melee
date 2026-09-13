@@ -1,0 +1,13 @@
+{
+  "inventory_count": 266,
+  "class_counts": {
+    "authority": 11,
+    "derived": 9,
+    "reference": 39,
+    "historical": 207
+  },
+  "new_links_checked": 10,
+  "missing_new_links": [],
+  "scope": "local authored documentation and source instructions; external coverage belongs to coordinator",
+  "git_diff_check": "passed"
+}

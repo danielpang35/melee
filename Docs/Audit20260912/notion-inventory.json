@@ -1,0 +1,279 @@
+[
+  {
+    "id": "3d32e3c3f8f881e79049c5a8df9a147a",
+    "title": "📄 05 — Decision Log",
+    "url": "https://app.notion.com/p/3d32e3c3f8f881e79049c5a8df9a147a?pvs=204",
+    "classification": "derived navigation",
+    "disposition": "retained; no boundary correction required",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f88166821dcab5f044efa2",
+    "title": "⚔️ MeleeCombatLab",
+    "url": "https://app.notion.com/p/3d32e3c3f8f88166821dcab5f044efa2?pvs=204",
+    "classification": "derived navigation",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f881b78103c766e7018898",
+    "title": "📄 01 — Design Principles",
+    "url": "https://app.notion.com/p/3d32e3c3f8f881b78103c766e7018898?pvs=204",
+    "classification": "derived navigation",
+    "disposition": "retained; no boundary correction required",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f881938403e062c5a57cba",
+    "title": "📄 02 — Systems",
+    "url": "https://app.notion.com/p/3d32e3c3f8f881938403e062c5a57cba?pvs=204",
+    "classification": "derived navigation",
+    "disposition": "retained; no boundary correction required",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f88197b6a2e266e34ae60c",
+    "title": "📄 03 — Current Development",
+    "url": "https://app.notion.com/p/3d32e3c3f8f88197b6a2e266e34ae60c?pvs=204",
+    "classification": "derived navigation",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f881d9ad7ff5c5f389dc6e",
+    "title": "📄 00 — Project Vision",
+    "url": "https://app.notion.com/p/3d32e3c3f8f881d9ad7ff5c5f389dc6e?pvs=204",
+    "classification": "design authority",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f8810ca927d148f7eccff6",
+    "title": "📄 04 — Playtesting",
+    "url": "https://app.notion.com/p/3d32e3c3f8f8810ca927d148f7eccff6?pvs=204",
+    "classification": "derived navigation",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f881469e06e14d281e5bee",
+    "title": "📄 Accepted Decisions",
+    "url": "https://app.notion.com/p/3d32e3c3f8f881469e06e14d281e5bee?pvs=204",
+    "classification": "design authority",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f881e08474defe7febb171",
+    "title": "📄 Animation",
+    "url": "https://app.notion.com/p/3d32e3c3f8f881e08474defe7febb171?pvs=204",
+    "classification": "design authority",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f8813c8883ed9e8bd1f299",
+    "title": "📄 Current Milestone",
+    "url": "https://app.notion.com/p/3d32e3c3f8f8813c8883ed9e8bd1f299?pvs=204",
+    "classification": "design authority",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f88121bb01f4d381024731",
+    "title": "📄 Movement",
+    "url": "https://app.notion.com/p/3d32e3c3f8f88121bb01f4d381024731?pvs=204",
+    "classification": "design authority",
+    "disposition": "retained; no boundary correction required",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f8817198edfdf4958f2661",
+    "title": "📄 Movement",
+    "url": "https://app.notion.com/p/3d32e3c3f8f8817198edfdf4958f2661?pvs=204",
+    "classification": "design authority",
+    "disposition": "retained; no boundary correction required",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d52e3c3f8f88192ababd9338ad3797b",
+    "title": "SWING-01 — Mordhau defender animation atlas and implementation details",
+    "url": "https://app.notion.com/p/3d52e3c3f8f88192ababd9338ad3797b?pvs=204",
+    "classification": "reference",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f88155a0a0c07ce3189264",
+    "title": "📄 Combat",
+    "url": "https://app.notion.com/p/3d32e3c3f8f88155a0a0c07ce3189264?pvs=204",
+    "classification": "design authority",
+    "disposition": "retained; no boundary correction required",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f88190af64e1320e3f810d",
+    "title": "📄 Rejected Experiments",
+    "url": "https://app.notion.com/p/3d32e3c3f8f88190af64e1320e3f810d?pvs=204",
+    "classification": "historical",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f88167bf5af9dc509089a0",
+    "title": "📚 Sources",
+    "url": "https://app.notion.com/p/3d32e3c3f8f88167bf5af9dc509089a0?pvs=204",
+    "classification": "historical",
+    "disposition": "retained; no boundary correction required",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f881028f05c2a960248ff1",
+    "title": "📄 Melee Swing Model",
+    "url": "https://app.notion.com/p/3d32e3c3f8f881028f05c2a960248ff1?pvs=204",
+    "classification": "design authority",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d42e3c3f8f88199b54eed401936acac",
+    "title": "REN-01 — Ren’s Mordhau: economical motion and deliberate manipulation",
+    "url": "https://app.notion.com/p/3d42e3c3f8f88199b54eed401936acac?pvs=204",
+    "classification": "reference",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f88147bcaeffd4e1764989",
+    "title": "📄 Game Structure",
+    "url": "https://app.notion.com/p/3d32e3c3f8f88147bcaeffd4e1764989?pvs=204",
+    "classification": "design authority",
+    "disposition": "retained; no boundary correction required",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f881149047ee9c11b8ea7a",
+    "title": "📄 Blocking & Parrying",
+    "url": "https://app.notion.com/p/3d32e3c3f8f881149047ee9c11b8ea7a?pvs=204",
+    "classification": "design authority",
+    "disposition": "retained; no boundary correction required",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d42e3c3f8f881d8b2e7d845679e8eb7",
+    "title": "KRONK-01 — Kronk’s Mordhau: expressive control and coherent weapon motion",
+    "url": "https://app.notion.com/p/3d42e3c3f8f881d8b2e7d845679e8eb7?pvs=204",
+    "classification": "reference",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f88175a858fb42fb9795f6",
+    "title": "📄 Camera & Input",
+    "url": "https://app.notion.com/p/3d32e3c3f8f88175a858fb42fb9795f6?pvs=204",
+    "classification": "design authority",
+    "disposition": "retained; no boundary correction required",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f881758692e453afcdecb4",
+    "title": "🧪 Execution — Linear",
+    "url": "https://app.notion.com/p/3d32e3c3f8f881758692e453afcdecb4?pvs=204",
+    "classification": "derived navigation",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f8811da443dc42bfa9c94a",
+    "title": "📄 Balance - Tuning",
+    "url": "https://app.notion.com/p/3d32e3c3f8f8811da443dc42bfa9c94a?pvs=204",
+    "classification": "design authority",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f8816d9ebff561e011a0cb",
+    "title": "💬 Conversation excerpts",
+    "url": "https://app.notion.com/p/3d32e3c3f8f8816d9ebff561e011a0cb?pvs=204",
+    "classification": "historical",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f8814d8ae4d50347ac1c49",
+    "title": "📄 Findings",
+    "url": "https://app.notion.com/p/3d32e3c3f8f8814d8ae4d50347ac1c49?pvs=204",
+    "classification": "design authority",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d32e3c3f8f881dabc3be8eff5b29360",
+    "title": "📄 Visual Direction",
+    "url": "https://app.notion.com/p/3d32e3c3f8f881dabc3be8eff5b29360?pvs=204",
+    "classification": "design authority",
+    "disposition": "retained; no boundary correction required",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d42e3c3f8f881cea3b7e1dedffe38c4",
+    "title": "CF_v001 — fresh character and shoulder study",
+    "url": "https://app.notion.com/p/3d42e3c3f8f881cea3b7e1dedffe38c4?pvs=204",
+    "classification": "historical",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d42e3c3f8f881abb5c1c356dc68ee07",
+    "title": "Chosen Art Direction — Playable Slice Implementation Brief",
+    "url": "https://app.notion.com/p/3d42e3c3f8f881abb5c1c356dc68ee07?pvs=204",
+    "classification": "design authority",
+    "disposition": "reconciled; readback verified",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d52e3c3f8f881d3b133c0eb2a243f3f",
+    "title": "🎨 Armor Studies — 16 Alternative Designs",
+    "url": "https://app.notion.com/p/3d52e3c3f8f881d3b133c0eb2a243f3f?pvs=204",
+    "classification": "reference",
+    "disposition": "retained; no boundary correction required",
+    "reported_truncation": false,
+    "reported_unknown": 0
+  },
+  {
+    "id": "3d92e3c3f8f8814ebf9ece3d9937e720",
+    "title": "Documentation ownership",
+    "url": "https://app.notion.com/p/3d92e3c3f8f8814ebf9ece3d9937e720",
+    "classification": "derived navigation",
+    "disposition": "created; points to canonical local standard; readback verified"
+  }
+]

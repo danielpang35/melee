@@ -1,0 +1,170 @@
+[
+  {
+    "id": "MEL-40",
+    "status": "In Progress",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-6",
+    "status": "In Progress",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-21",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-39",
+    "status": "Done",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-23",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-33",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-37",
+    "status": "Done",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-44",
+    "status": "Done",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-34",
+    "status": "Done",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-35",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-25",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-8",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-27",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-11",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-12",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-10",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-20",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-22",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-16",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-43",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-7",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-42",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-15",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  },
+  {
+    "id": "MEL-13",
+    "status": "Backlog",
+    "status_matches": true,
+    "current_rules_path": true,
+    "obsolete_rules_path": false
+  }
+]

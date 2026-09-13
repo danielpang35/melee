@@ -1,0 +1,181 @@
+{
+  "result": "pass",
+  "sounds": [
+    {
+      "name": "S_Swing_00",
+      "lufs": -22.0,
+      "true_peak_dbtp": -6.09,
+      "spectral_centroid_hz": 1000.7,
+      "energy_90_600_hz_percent": 63.57
+    },
+    {
+      "name": "S_Stab_00",
+      "lufs": -22.03,
+      "true_peak_dbtp": -5.03,
+      "spectral_centroid_hz": 1428.8,
+      "energy_90_600_hz_percent": 41.3
+    },
+    {
+      "name": "S_Body_00",
+      "lufs": -21.57,
+      "true_peak_dbtp": -3.74,
+      "spectral_centroid_hz": 2868.5,
+      "energy_90_600_hz_percent": 22.58
+    },
+    {
+      "name": "S_Head_00",
+      "lufs": -21.55,
+      "true_peak_dbtp": -3.73,
+      "spectral_centroid_hz": 5413.5,
+      "energy_90_600_hz_percent": 14.57
+    },
+    {
+      "name": "S_Parry_00",
+      "lufs": -21.75,
+      "true_peak_dbtp": -3.74,
+      "spectral_centroid_hz": 2342.5,
+      "energy_90_600_hz_percent": 27.41,
+      "energy_after_200ms_percent": 0.0
+    },
+    {
+      "name": "S_Chamber_00",
+      "lufs": -22.05,
+      "true_peak_dbtp": -3.74,
+      "spectral_centroid_hz": 3845.1,
+      "energy_90_600_hz_percent": 2.48
+    },
+    {
+      "name": "S_Wall_00",
+      "lufs": -22.05,
+      "true_peak_dbtp": -3.74,
+      "spectral_centroid_hz": 1012.0,
+      "energy_90_600_hz_percent": 39.19
+    },
+    {
+      "name": "S_Armor_00",
+      "lufs": -34.46,
+      "true_peak_dbtp": -15.2,
+      "spectral_centroid_hz": 1011.3,
+      "energy_90_600_hz_percent": 57.83
+    },
+    {
+      "name": "S_Swing_01",
+      "lufs": -21.99,
+      "true_peak_dbtp": -6.09,
+      "spectral_centroid_hz": 1089.3,
+      "energy_90_600_hz_percent": 55.58
+    },
+    {
+      "name": "S_Stab_01",
+      "lufs": -22.03,
+      "true_peak_dbtp": -6.28,
+      "spectral_centroid_hz": 1461.9,
+      "energy_90_600_hz_percent": 38.35
+    },
+    {
+      "name": "S_Body_01",
+      "lufs": -21.55,
+      "true_peak_dbtp": -3.73,
+      "spectral_centroid_hz": 3050.9,
+      "energy_90_600_hz_percent": 15.33
+    },
+    {
+      "name": "S_Head_01",
+      "lufs": -21.55,
+      "true_peak_dbtp": -3.73,
+      "spectral_centroid_hz": 5941.1,
+      "energy_90_600_hz_percent": 11.53
+    },
+    {
+      "name": "S_Parry_01",
+      "lufs": -21.75,
+      "true_peak_dbtp": -3.74,
+      "spectral_centroid_hz": 3185.8,
+      "energy_90_600_hz_percent": 19.07,
+      "energy_after_200ms_percent": 0.0
+    },
+    {
+      "name": "S_Chamber_01",
+      "lufs": -22.05,
+      "true_peak_dbtp": -3.74,
+      "spectral_centroid_hz": 3981.4,
+      "energy_90_600_hz_percent": 0.46
+    },
+    {
+      "name": "S_Wall_01",
+      "lufs": -22.15,
+      "true_peak_dbtp": -3.74,
+      "spectral_centroid_hz": 620.6,
+      "energy_90_600_hz_percent": 52.71
+    },
+    {
+      "name": "S_Armor_01",
+      "lufs": -34.46,
+      "true_peak_dbtp": -16.1,
+      "spectral_centroid_hz": 848.5,
+      "energy_90_600_hz_percent": 59.86
+    },
+    {
+      "name": "S_Swing_02",
+      "lufs": -21.99,
+      "true_peak_dbtp": -5.85,
+      "spectral_centroid_hz": 1033.0,
+      "energy_90_600_hz_percent": 58.97
+    },
+    {
+      "name": "S_Stab_02",
+      "lufs": -22.02,
+      "true_peak_dbtp": -5.52,
+      "spectral_centroid_hz": 1453.1,
+      "energy_90_600_hz_percent": 42.18
+    },
+    {
+      "name": "S_Body_02",
+      "lufs": -21.55,
+      "true_peak_dbtp": -3.74,
+      "spectral_centroid_hz": 2970.9,
+      "energy_90_600_hz_percent": 10.0
+    },
+    {
+      "name": "S_Head_02",
+      "lufs": -21.55,
+      "true_peak_dbtp": -3.74,
+      "spectral_centroid_hz": 6473.6,
+      "energy_90_600_hz_percent": 12.33
+    },
+    {
+      "name": "S_Parry_02",
+      "lufs": -21.85,
+      "true_peak_dbtp": -3.74,
+      "spectral_centroid_hz": 3121.5,
+      "energy_90_600_hz_percent": 15.94,
+      "energy_after_200ms_percent": 0.0
+    },
+    {
+      "name": "S_Chamber_02",
+      "lufs": -22.05,
+      "true_peak_dbtp": -3.74,
+      "spectral_centroid_hz": 4047.0,
+      "energy_90_600_hz_percent": 0.18
+    },
+    {
+      "name": "S_Wall_02",
+      "lufs": -22.05,
+      "true_peak_dbtp": -3.74,
+      "spectral_centroid_hz": 546.1,
+      "energy_90_600_hz_percent": 66.26
+    },
+    {
+      "name": "S_Armor_02",
+      "lufs": -34.45,
+      "true_peak_dbtp": -15.05,
+      "spectral_centroid_hz": 975.4,
+      "energy_90_600_hz_percent": 60.21
+    }
+  ],
+  "audition": {
+    "lufs": -23.71,
+    "true_peak_dbtp": -3.0
+  },
+  "scope": "Format, fidelity, sources, balance and signal checks; not a listening verdict."
+}

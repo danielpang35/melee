@@ -1,0 +1,65 @@
+{
+  "capture_count": 4,
+  "arm_samples": 8,
+  "max_wrist_axis_angle_degrees": 105.712,
+  "max_rigid_fit_error_cm": 2.1e-05,
+  "max_open_arm_boundary_edges": 120,
+  "samples": [
+    {
+      "pose": "38_air_fp_right_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 69.529,
+      "rigid_fit_error_cm": 1.8e-05,
+      "open_arm_boundary_edges": 115
+    },
+    {
+      "pose": "38_air_fp_right_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 99.07,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 120
+    },
+    {
+      "pose": "38_air_fp_right_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 77.845,
+      "rigid_fit_error_cm": 1.8e-05,
+      "open_arm_boundary_edges": 115
+    },
+    {
+      "pose": "38_air_fp_right_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 70.004,
+      "rigid_fit_error_cm": 2.1e-05,
+      "open_arm_boundary_edges": 120
+    },
+    {
+      "pose": "38_air_fp_right_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 95.705,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 115
+    },
+    {
+      "pose": "38_air_fp_right_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 63.637,
+      "rigid_fit_error_cm": 2.1e-05,
+      "open_arm_boundary_edges": 120
+    },
+    {
+      "pose": "38_air_fp_right_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 105.712,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 115
+    },
+    {
+      "pose": "38_air_fp_right_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 51.502,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 120
+    }
+  ]
+}

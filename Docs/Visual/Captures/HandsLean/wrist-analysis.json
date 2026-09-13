@@ -1,0 +1,1017 @@
+{
+  "capture_count": 72,
+  "arm_samples": 144,
+  "max_wrist_axis_angle_degrees": 70.025,
+  "max_rigid_fit_error_cm": 2.2e-05,
+  "max_open_arm_boundary_edges": 0,
+  "samples": [
+    {
+      "pose": "38_air_fp_right_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 16.478,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "38_air_fp_right_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 29.722,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "38_air_fp_right_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 24.605,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "38_air_fp_right_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 15.236,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "38_air_fp_right_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 14.774,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "38_air_fp_right_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 38.973,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "38_air_fp_right_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 27.719,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "38_air_fp_right_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 36.058,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "39_air_fp_upper_right_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 9.916,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "39_air_fp_upper_right_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 22.78,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "39_air_fp_upper_right_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 52.589,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "39_air_fp_upper_right_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 28.382,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "39_air_fp_upper_right_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 38.383,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "39_air_fp_upper_right_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 51.091,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "39_air_fp_upper_right_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 45.034,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "39_air_fp_upper_right_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 37.658,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "40_air_fp_upper_left_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 25.357,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "40_air_fp_upper_left_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 2.387,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "40_air_fp_upper_left_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 26.137,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "40_air_fp_upper_left_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 24.602,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "40_air_fp_upper_left_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 41.556,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "40_air_fp_upper_left_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 31.688,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "40_air_fp_upper_left_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 27.514,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "40_air_fp_upper_left_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 16.977,
+      "rigid_fit_error_cm": 1.8e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "41_air_fp_left_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 23.076,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "41_air_fp_left_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 34.445,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "41_air_fp_left_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 19.4,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "41_air_fp_left_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 8.284,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "41_air_fp_left_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 28.899,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "41_air_fp_left_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 27.35,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "41_air_fp_left_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 24.852,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "41_air_fp_left_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 17.862,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "42_air_fp_lower_left_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 36.576,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "42_air_fp_lower_left_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 45.394,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "42_air_fp_lower_left_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 37.071,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "42_air_fp_lower_left_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 35.832,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "42_air_fp_lower_left_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 7.843,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "42_air_fp_lower_left_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 17.764,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "42_air_fp_lower_left_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 6.772,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "42_air_fp_lower_left_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 8.54,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "43_air_fp_lower_right_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 37.631,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "43_air_fp_lower_right_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 28.012,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "43_air_fp_lower_right_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 25.676,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "43_air_fp_lower_right_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 32.309,
+      "rigid_fit_error_cm": 2.1e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "43_air_fp_lower_right_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 28.447,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "43_air_fp_lower_right_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 18.149,
+      "rigid_fit_error_cm": 2.1e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "43_air_fp_lower_right_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 7.65,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "43_air_fp_lower_right_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 15.172,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "44_air_fp_stab_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 40.06,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "44_air_fp_stab_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 26.712,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "44_air_fp_stab_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 31.462,
+      "rigid_fit_error_cm": 2.1e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "44_air_fp_stab_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 11.148,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "44_air_fp_stab_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 32.473,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "44_air_fp_stab_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 22.722,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "44_air_fp_stab_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 25.724,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "44_air_fp_stab_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 13.931,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "45_air_external_right_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 35.686,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "45_air_external_right_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 4.171,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "45_air_external_right_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 8.64,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "45_air_external_right_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 9.584,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "45_air_external_right_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 12.82,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "45_air_external_right_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 67.102,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "45_air_external_right_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 10.289,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "45_air_external_right_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 58.665,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "46_air_external_upper_right_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 14.726,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "46_air_external_upper_right_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 33.247,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "46_air_external_upper_right_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 43.435,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "46_air_external_upper_right_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 34.235,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "46_air_external_upper_right_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 16.312,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "46_air_external_upper_right_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 70.025,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "46_air_external_upper_right_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 33.429,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "46_air_external_upper_right_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 44.103,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "47_air_external_upper_left_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 32.994,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "47_air_external_upper_left_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 29.468,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "47_air_external_upper_left_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 33.474,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "47_air_external_upper_left_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 31.905,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "47_air_external_upper_left_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 62.401,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "47_air_external_upper_left_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 21.153,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "47_air_external_upper_left_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 36.975,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "47_air_external_upper_left_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 54.434,
+      "rigid_fit_error_cm": 1.8e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "48_air_external_left_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 5.538,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "48_air_external_left_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 55.235,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "48_air_external_left_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 11.729,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "48_air_external_left_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 8.901,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "48_air_external_left_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 49.031,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "48_air_external_left_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 2.005,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "48_air_external_left_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 43.494,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "48_air_external_left_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 16.202,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "49_air_external_lower_left_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 21.436,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "49_air_external_lower_left_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 59.834,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "49_air_external_lower_left_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 32.843,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "49_air_external_lower_left_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 35.948,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "49_air_external_lower_left_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 29.533,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "49_air_external_lower_left_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 31.989,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "49_air_external_lower_left_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 32.376,
+      "rigid_fit_error_cm": 2.1e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "49_air_external_lower_left_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 34.679,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "50_air_external_lower_right_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 53.355,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "50_air_external_lower_right_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 24.719,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "50_air_external_lower_right_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 32.531,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "50_air_external_lower_right_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 44.526,
+      "rigid_fit_error_cm": 2.1e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "50_air_external_lower_right_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 33.325,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "50_air_external_lower_right_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 37.06,
+      "rigid_fit_error_cm": 2.1e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "50_air_external_lower_right_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 25.531,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "50_air_external_lower_right_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 36.928,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "51_air_external_stab_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 33.869,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "51_air_external_stab_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 28.551,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "51_air_external_stab_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 18.36,
+      "rigid_fit_error_cm": 2.1e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "51_air_external_stab_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 14.223,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "51_air_external_stab_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 23.079,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "51_air_external_stab_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 21.256,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "51_air_external_stab_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 13.449,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "51_air_external_stab_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 31.806,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "52_air_fp_up_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 7.134,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "52_air_fp_up_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 23.997,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "52_air_fp_up_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 38.612,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "52_air_fp_up_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 28.166,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "52_air_fp_up_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 25.359,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "52_air_fp_up_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 50.676,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "52_air_fp_up_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 46.818,
+      "rigid_fit_error_cm": 2.2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "52_air_fp_up_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 35.86,
+      "rigid_fit_error_cm": 1.7e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "53_air_fp_down_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 23.673,
+      "rigid_fit_error_cm": 1.8e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "53_air_fp_down_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 29.289,
+      "rigid_fit_error_cm": 1.8e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "53_air_fp_down_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 38.714,
+      "rigid_fit_error_cm": 1.7e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "53_air_fp_down_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 27.241,
+      "rigid_fit_error_cm": 1.8e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "53_air_fp_down_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 28.289,
+      "rigid_fit_error_cm": 1.7e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "53_air_fp_down_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 23.706,
+      "rigid_fit_error_cm": 1.8e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "53_air_fp_down_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 23.729,
+      "rigid_fit_error_cm": 1.7e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "53_air_fp_down_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 21.376,
+      "rigid_fit_error_cm": 1.7e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "54_air_external_up_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 25.883,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "54_air_external_up_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 32.415,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "54_air_external_up_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 36.27,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "54_air_external_up_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 33.836,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "54_air_external_up_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 18.188,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "54_air_external_up_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 65.914,
+      "rigid_fit_error_cm": 2e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "54_air_external_up_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 34.43,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "54_air_external_up_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 48.761,
+      "rigid_fit_error_cm": 1.7e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "55_air_external_down_pose_0",
+      "side": "r",
+      "wrist_axis_angle_degrees": 9.981,
+      "rigid_fit_error_cm": 1.9e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "55_air_external_down_pose_0",
+      "side": "l",
+      "wrist_axis_angle_degrees": 37.29,
+      "rigid_fit_error_cm": 1.8e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "55_air_external_down_pose_1",
+      "side": "r",
+      "wrist_axis_angle_degrees": 16.812,
+      "rigid_fit_error_cm": 1.7e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "55_air_external_down_pose_1",
+      "side": "l",
+      "wrist_axis_angle_degrees": 33.909,
+      "rigid_fit_error_cm": 1.7e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "55_air_external_down_pose_2",
+      "side": "r",
+      "wrist_axis_angle_degrees": 10.34,
+      "rigid_fit_error_cm": 1.7e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "55_air_external_down_pose_2",
+      "side": "l",
+      "wrist_axis_angle_degrees": 35.551,
+      "rigid_fit_error_cm": 1.8e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "55_air_external_down_pose_3",
+      "side": "r",
+      "wrist_axis_angle_degrees": 16.064,
+      "rigid_fit_error_cm": 1.7e-05,
+      "open_arm_boundary_edges": 0
+    },
+    {
+      "pose": "55_air_external_down_pose_3",
+      "side": "l",
+      "wrist_axis_angle_degrees": 33.605,
+      "rigid_fit_error_cm": 1.7e-05,
+      "open_arm_boundary_edges": 0
+    }
+  ]
+}

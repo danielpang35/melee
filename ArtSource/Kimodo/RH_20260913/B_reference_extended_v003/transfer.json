@@ -1,0 +1,620 @@
+{
+  "source": "ArtSource\\Kimodo\\RH_20260913\\B_reference_extended_v003\\MB_Kimodo_Transfer.blend",
+  "source_sha256": "6cf2efdb13542d32d54cd9a170964d7528233927d3a5f684a7e1fdc08912ac23",
+  "tool_sha256": "812c34240b7973c43ade2e554343bb9e918ef141892eb4b6c41fd69539f99ed3",
+  "protected": {
+    "ArtSource\\UserMaleBody\\MB_v005_SurfaceRepair\\Male_Body_SurfaceRepair.blend": "67eeee22bd652e3ede89942a12621cd4dea103d9ca58309710adb158a1cfc319",
+    "ArtSource\\Cascadeur\\KN_v002_20260912\\Kit\\KN_v002_ImportKit.blend": "37ff2d04b0e0f4abec6f6c2a875cdb29496a649389a7b5e944861685c0e04937",
+    "Config\\WorkingCharacter.json": "975d8ab42d3800e653bd93d6f03438e21bdb161ac623a46f0f7b195efdff7b55",
+    "Config\\EXPreview.json": "fbb2cae992bcb7daff8a2398893cb23e7593611203e095bc4d6e854f7e282205",
+    "ArtSource\\Kimodo\\RH_20260913\\B_reference_extended_v003\\transfer-standard-tpose.bvh": "0a9a0f91f99e18da2a4da0e8012d774ca1b4fbf61d87fa6d20c0396d1f4ac9a3"
+  },
+  "mapping": {
+    "pelvis": [
+      "Hips",
+      "Spine1",
+      "spine_01"
+    ],
+    "spine_01": [
+      "Spine1",
+      "Spine2",
+      "spine_02"
+    ],
+    "spine_02": [
+      "Spine1",
+      "Spine2",
+      "spine_03"
+    ],
+    "spine_03": [
+      "Spine2",
+      "Chest",
+      "spine_04"
+    ],
+    "spine_04": [
+      "Chest",
+      "Neck1",
+      "spine_05"
+    ],
+    "spine_05": [
+      "Chest",
+      "Neck1",
+      "neck_01"
+    ],
+    "neck_01": [
+      "Neck1",
+      "Neck2",
+      "neck_02"
+    ],
+    "neck_02": [
+      "Neck2",
+      "Head",
+      "head"
+    ],
+    "head": [
+      "Head",
+      "HeadEnd",
+      null
+    ],
+    "clavicle_l": [
+      "LeftShoulder",
+      "LeftArm",
+      "upperarm_l"
+    ],
+    "upperarm_l": [
+      "LeftArm",
+      "LeftForeArm",
+      "lowerarm_l"
+    ],
+    "lowerarm_l": [
+      "LeftForeArm",
+      "LeftHand",
+      "hand_l"
+    ],
+    "hand_l": [
+      "LeftHand",
+      "LeftHandMiddle2",
+      "middle_01_l"
+    ],
+    "thigh_l": [
+      "LeftLeg",
+      "LeftShin",
+      "calf_l"
+    ],
+    "calf_l": [
+      "LeftShin",
+      "LeftFoot",
+      "foot_l"
+    ],
+    "foot_l": [
+      "LeftFoot",
+      "LeftToeBase",
+      "ball_l"
+    ],
+    "ball_l": [
+      "LeftToeBase",
+      "LeftToeEnd",
+      null
+    ],
+    "thumb_01_l": [
+      "LeftHandThumb1",
+      "LeftHandThumb2",
+      "thumb_02_l"
+    ],
+    "thumb_02_l": [
+      "LeftHandThumb2",
+      "LeftHandThumb3",
+      "thumb_03_l"
+    ],
+    "thumb_03_l": [
+      "LeftHandThumb3",
+      "LeftHandThumbEnd",
+      null
+    ],
+    "index_metacarpal_l": [
+      "LeftHandIndex1",
+      "LeftHandIndex2",
+      "index_01_l"
+    ],
+    "index_01_l": [
+      "LeftHandIndex2",
+      "LeftHandIndex3",
+      "index_02_l"
+    ],
+    "index_02_l": [
+      "LeftHandIndex3",
+      "LeftHandIndex4",
+      "index_03_l"
+    ],
+    "index_03_l": [
+      "LeftHandIndex4",
+      "LeftHandIndexEnd",
+      null
+    ],
+    "middle_metacarpal_l": [
+      "LeftHandMiddle1",
+      "LeftHandMiddle2",
+      "middle_01_l"
+    ],
+    "middle_01_l": [
+      "LeftHandMiddle2",
+      "LeftHandMiddle3",
+      "middle_02_l"
+    ],
+    "middle_02_l": [
+      "LeftHandMiddle3",
+      "LeftHandMiddle4",
+      "middle_03_l"
+    ],
+    "middle_03_l": [
+      "LeftHandMiddle4",
+      "LeftHandMiddleEnd",
+      null
+    ],
+    "ring_metacarpal_l": [
+      "LeftHandRing1",
+      "LeftHandRing2",
+      "ring_01_l"
+    ],
+    "ring_01_l": [
+      "LeftHandRing2",
+      "LeftHandRing3",
+      "ring_02_l"
+    ],
+    "ring_02_l": [
+      "LeftHandRing3",
+      "LeftHandRing4",
+      "ring_03_l"
+    ],
+    "ring_03_l": [
+      "LeftHandRing4",
+      "LeftHandRingEnd",
+      null
+    ],
+    "pinky_metacarpal_l": [
+      "LeftHandPinky1",
+      "LeftHandPinky2",
+      "pinky_01_l"
+    ],
+    "pinky_01_l": [
+      "LeftHandPinky2",
+      "LeftHandPinky3",
+      "pinky_02_l"
+    ],
+    "pinky_02_l": [
+      "LeftHandPinky3",
+      "LeftHandPinky4",
+      "pinky_03_l"
+    ],
+    "pinky_03_l": [
+      "LeftHandPinky4",
+      "LeftHandPinkyEnd",
+      null
+    ],
+    "clavicle_r": [
+      "RightShoulder",
+      "RightArm",
+      "upperarm_r"
+    ],
+    "upperarm_r": [
+      "RightArm",
+      "RightForeArm",
+      "lowerarm_r"
+    ],
+    "lowerarm_r": [
+      "RightForeArm",
+      "RightHand",
+      "hand_r"
+    ],
+    "hand_r": [
+      "RightHand",
+      "RightHandMiddle2",
+      "middle_01_r"
+    ],
+    "thigh_r": [
+      "RightLeg",
+      "RightShin",
+      "calf_r"
+    ],
+    "calf_r": [
+      "RightShin",
+      "RightFoot",
+      "foot_r"
+    ],
+    "foot_r": [
+      "RightFoot",
+      "RightToeBase",
+      "ball_r"
+    ],
+    "ball_r": [
+      "RightToeBase",
+      "RightToeEnd",
+      null
+    ],
+    "thumb_01_r": [
+      "RightHandThumb1",
+      "RightHandThumb2",
+      "thumb_02_r"
+    ],
+    "thumb_02_r": [
+      "RightHandThumb2",
+      "RightHandThumb3",
+      "thumb_03_r"
+    ],
+    "thumb_03_r": [
+      "RightHandThumb3",
+      "RightHandThumbEnd",
+      null
+    ],
+    "index_metacarpal_r": [
+      "RightHandIndex1",
+      "RightHandIndex2",
+      "index_01_r"
+    ],
+    "index_01_r": [
+      "RightHandIndex2",
+      "RightHandIndex3",
+      "index_02_r"
+    ],
+    "index_02_r": [
+      "RightHandIndex3",
+      "RightHandIndex4",
+      "index_03_r"
+    ],
+    "index_03_r": [
+      "RightHandIndex4",
+      "RightHandIndexEnd",
+      null
+    ],
+    "middle_metacarpal_r": [
+      "RightHandMiddle1",
+      "RightHandMiddle2",
+      "middle_01_r"
+    ],
+    "middle_01_r": [
+      "RightHandMiddle2",
+      "RightHandMiddle3",
+      "middle_02_r"
+    ],
+    "middle_02_r": [
+      "RightHandMiddle3",
+      "RightHandMiddle4",
+      "middle_03_r"
+    ],
+    "middle_03_r": [
+      "RightHandMiddle4",
+      "RightHandMiddleEnd",
+      null
+    ],
+    "ring_metacarpal_r": [
+      "RightHandRing1",
+      "RightHandRing2",
+      "ring_01_r"
+    ],
+    "ring_01_r": [
+      "RightHandRing2",
+      "RightHandRing3",
+      "ring_02_r"
+    ],
+    "ring_02_r": [
+      "RightHandRing3",
+      "RightHandRing4",
+      "ring_03_r"
+    ],
+    "ring_03_r": [
+      "RightHandRing4",
+      "RightHandRingEnd",
+      null
+    ],
+    "pinky_metacarpal_r": [
+      "RightHandPinky1",
+      "RightHandPinky2",
+      "pinky_01_r"
+    ],
+    "pinky_01_r": [
+      "RightHandPinky2",
+      "RightHandPinky3",
+      "pinky_02_r"
+    ],
+    "pinky_02_r": [
+      "RightHandPinky3",
+      "RightHandPinky4",
+      "pinky_03_r"
+    ],
+    "pinky_03_r": [
+      "RightHandPinky4",
+      "RightHandPinkyEnd",
+      null
+    ]
+  },
+  "rest_mesh_weights_signature": "c5332cc4d3a8385c296444f69e3a47dcc107d484f4e89263463f6348f32219b2",
+  "target_bones": 118,
+  "bvh_joints": 78,
+  "unit_conversion": "BVH centimeters * 0.01 -> meters; Y-up rotated +90 degrees X -> Blender Z-up; target retains 0.01 scale",
+  "root_policy": "Initial horizontal Hips origin removed; horizontal displacement on root, vertical pelvis offset and full pelvis turn; no double application",
+  "source_standing_height_m": 0.9887084066867828,
+  "target_pelvis_height_m": 0.9983643293380737,
+  "root_proportion_ratio": 1.0097661985940307,
+  "source_initial_hip_m": [
+    -2.1827872842550278e-10,
+    4.010764342865514e-08,
+    0.949999988079071
+  ],
+  "frames": 92,
+  "fps": 30.0,
+  "frame_time_seconds": 0.03333333333333333,
+  "sample_span_seconds": 3.033333333333333,
+  "playback_duration_seconds": 3.0666666666666664,
+  "frame_convention": "BVH sample 0 -> scene frame 1; N samples occupy N frame periods; last sample at (N-1)*dt; no retiming or added endpoint",
+  "save_reopen_max_matrix_error": 0.0,
+  "native_action": "Kimodo_B_reference_extended_v003_EditableFK",
+  "support_gap_m": {
+    "max": 0.35171964464525046,
+    "mean": 0.10155988200099975,
+    "mid": 0.16759566038037121,
+    "per_frame": [
+      0.06422415570420581,
+      0.06782901698043134,
+      0.08542066914593631,
+      0.09102463426941795,
+      0.08912815692800793,
+      0.08133744741599136,
+      0.06908464468459946,
+      0.05892434740491767,
+      0.05653320947960228,
+      0.05852905044183315,
+      0.06417725621313815,
+      0.07447670413699528,
+      0.08471819937614165,
+      0.09631332906166598,
+      0.10556616017137206,
+      0.11241979670803283,
+      0.11681940336138617,
+      0.11840770677703374,
+      0.11733176421368029,
+      0.11497629895173257,
+      0.10913271150361412,
+      0.08949839289119467,
+      0.08902888746708079,
+      0.08421142273384952,
+      0.08771004404404795,
+      0.0934026605573904,
+      0.10086081096493464,
+      0.1097641921883192,
+      0.11654322764823571,
+      0.11280216968049263,
+      0.113166023919815,
+      0.10848588680871558,
+      0.10961954630753314,
+      0.11398167334721804,
+      0.11780762607164769,
+      0.10839194738015276,
+      0.09460308566124602,
+      0.08365097307186217,
+      0.08617580221137937,
+      0.11396369921249283,
+      0.15500804124631376,
+      0.20882272024734108,
+      0.30255756617880036,
+      0.35171964464525046,
+      0.28160824080268826,
+      0.16759566038037121,
+      0.09093716999689644,
+      0.11404448284976303,
+      0.16667594544682604,
+      0.1818679606591754,
+      0.1501477296707801,
+      0.10433276644381874,
+      0.08911006760032292,
+      0.06136090754365351,
+      0.06148658251230369,
+      0.07540004599480364,
+      0.06358401912923126,
+      0.05832414477928354,
+      0.05919713785569346,
+      0.06358218575290264,
+      0.07914198987340261,
+      0.08419138324853873,
+      0.09115244172327822,
+      0.09462624499743925,
+      0.09197240961580062,
+      0.087689612252203,
+      0.08966735570627818,
+      0.09559594692394373,
+      0.10269834431431273,
+      0.1086696087503561,
+      0.11481332660801175,
+      0.12022621742445411,
+      0.12440839084373805,
+      0.12431722250788056,
+      0.11787534756340746,
+      0.10469458822017345,
+      0.08785643177353562,
+      0.08158213851032142,
+      0.07316300522689025,
+      0.06559739930306957,
+      0.06838468962082861,
+      0.07788017971092027,
+      0.07447626255695634,
+      0.061822570851970224,
+      0.05090130757965501,
+      0.05627640112231424,
+      0.05166742242158651,
+      0.07671919602353797,
+      0.09611541813403411,
+      0.08473251386615084,
+      0.06296386627921673,
+      0.06422415570420581
+    ]
+  },
+  "support_excess_reach_m": {
+    "max": 0.0,
+    "mid": 0.0
+  },
+  "grasp_calibration": {
+    "wrist_local_cm": {
+      "r": [
+        [
+          -0.9781155586242676,
+          -0.01718306913971901,
+          0.2073328047990799,
+          -7.490246772766113
+        ],
+        [
+          0.016507910564541817,
+          -0.9998506307601929,
+          -0.004985946696251631,
+          2.5267698764801025
+        ],
+        [
+          0.20738719403743744,
+          -0.0014542083954438567,
+          0.9782559275627136,
+          1.600388526916504
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "l": [
+        [
+          -0.975553035736084,
+          0.02122531458735466,
+          -0.2187366634607315,
+          7.562697410583496
+        ],
+        [
+          0.020295118913054466,
+          0.9997730255126953,
+          0.006498805247247219,
+          2.243175745010376
+        ],
+        [
+          0.21882493793964386,
+          0.001900642761029303,
+          -0.9757623076438904,
+          -1.6803913116455078
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "support_from_primary_cm": [
+      0,
+      0,
+      -12.5
+    ],
+    "hilt_from_primary_cm": [
+      0,
+      0,
+      7
+    ],
+    "target_rest_joints_cm": {
+      "pelvis": [
+        -0.0013548675924539566,
+        -2.6584854125976562,
+        99.83643341064453
+      ],
+      "upperarm_r": [
+        -19.445072174072266,
+        2.607006072998047,
+        143.4141845703125
+      ],
+      "lowerarm_r": [
+        -34.124229431152344,
+        1.9827810525894165,
+        123.6378402709961
+      ],
+      "hand_r": [
+        -45.140167236328125,
+        -11.400400161743164,
+        110.6614990234375
+      ],
+      "upperarm_l": [
+        19.427785873413086,
+        2.622023582458496,
+        143.37535095214844
+      ],
+      "lowerarm_l": [
+        32.239036560058594,
+        2.077244520187378,
+        126.25482177734375
+      ],
+      "hand_l": [
+        45.303077697753906,
+        -13.930092811584473,
+        110.6270751953125
+      ],
+      "middle_01_r": [
+        -51.05767822265625,
+        -19.207839965820312,
+        103.13341522216797
+      ],
+      "index_01_r": [
+        -49.547752380371094,
+        -21.250608444213867,
+        103.10613250732422
+      ],
+      "pinky_01_r": [
+        -52.54747772216797,
+        -14.832172393798828,
+        102.19676971435547
+      ],
+      "middle_01_l": [
+        50.624717712402344,
+        -21.18199920654297,
+        103.7912368774414
+      ],
+      "index_01_l": [
+        49.10605239868164,
+        -23.31084442138672,
+        103.93384552001953
+      ],
+      "pinky_01_l": [
+        51.78291702270508,
+        -16.798416137695312,
+        102.71353912353516
+      ]
+    }
+  },
+  "grip": "Right primary grasp owns retained actual sword; left grasp marker is editable diagnostic, no continuous support solver; rough radial finger closure reused from existing AccuRig diagnostic, native curves editable; generated finger performance unproven",
+  "cameras": {
+    "primary": [
+      3.1,
+      -5.4,
+      2.6
+    ],
+    "rear-quarter": [
+      -3.1,
+      5.4,
+      2.6
+    ],
+    "front": [
+      0,
+      -5.4,
+      1.0
+    ],
+    "rear": [
+      0,
+      5.4,
+      1.0
+    ],
+    "left": [
+      5.4,
+      0,
+      1.0
+    ],
+    "right": [
+      -5.4,
+      0,
+      1.0
+    ]
+  },
+  "evidence_limit": "Numerical transfer/persistence only; full source-speed multi-angle previews and visible grip/body review required; no artistic/play acceptance"
+}

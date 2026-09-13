@@ -1,0 +1,94 @@
+{
+  "job": {
+    "candidate": "B_reference_extended_v003",
+    "purpose": "attack",
+    "frame_count": 92,
+    "duration_seconds": 3.066666666666667,
+    "seed": 91362,
+    "attack_timing": {
+      "fps": 30,
+      "release_start_index": 39,
+      "release_end_index": 54,
+      "required_release_seconds": 0.5
+    },
+    "constraints": "constraints.json",
+    "prompt": "A standing person performs one powerful two-handed sword slash from right to left. The person makes an exaggerated wide arm-led windup, extending both arms farther to the right and backward while keeping the torso upright, drives a weighty horizontal strike across the front, absorbs the follow-through through the hips and bent knees, and returns to the same ready stance. Both hands hold one sword handle together."
+  },
+  "attack_timing_validation": {
+    "fps": 30,
+    "frame_count": 92,
+    "release_start_index": 39,
+    "release_end_index": 54,
+    "release_seconds": 0.5,
+    "config_sha256": "bd783445230985e0aa2b26f2dcb2841ebcd83dd57bba77884d92e61a7bbe9ce6"
+  },
+  "model": "Kimodo-SOMA-RP-v1.1",
+  "model_snapshot": "6c9233af1180b8151e3c4703477104af5dce9dd5",
+  "weights_and_config_sha256": {
+    ".gitattributes": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361",
+    "config.yaml": "905664ad05779b0e28c391b85dc81c9de166418bd5f471ef605f75ab746ce391",
+    "LICENSE": "11ccdcb47db87ac30b63765b5e5154403026c4fbb52c19919d99d912ec454e19",
+    "model.safetensors": "ef0a0ca45a6089ab4532dde609785771ae3f38755b4ae6cf314b0213e07cd4a3",
+    "README.md": "9854ebe176e78755a44cc4a74ae842c2a2874f24aa94f28f04929a0cc3d27b09"
+  },
+  "generator_sha256": "9243256515225652927af64e7369e111ba2afca42e1a1785183ad02404c2cec0",
+  "installed_package": "D:\\AI\\Kimodo\\venv\\Lib\\site-packages\\kimodo",
+  "installed_generator_sha256": "b9e3395a495dff1af91d7ffd516c0a842b2145bf16a2f281c33a20960cd1be5e",
+  "package_versions": {
+    "kimodo": "1.0.0",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.1.0",
+    "peft": "0.20.0"
+  },
+  "job_sha256": "8733ff465cf7feec87094eb657b438318f5164c565d28c8f36d14e95f64fa440",
+  "constraints_sha256": "5baf5c9d60eba0866ba33f8a522b7aac471e886c2bf57495209c6d0140a03f18",
+  "raw_sha256": "5be29d0a8fd54c7293f0270a04d866cbe486075e02d28a0b91f18f9b4ab3c2d3",
+  "effective_constraints_sha256": "ab81d97e7c34957b91814f8307bc4965000682b5f3f034cbd72840b6a75ae60a",
+  "fps": 30.0,
+  "frames": 92,
+  "sample_span_seconds": 3.033333333333333,
+  "display_duration_seconds": 3.066666666666667,
+  "first_sample": 0,
+  "endpoint": "N samples at i/FPS; final sample displays for one frame interval; no added endpoint",
+  "post_processing": true,
+  "diffusion_steps": 100,
+  "cfg": "model defaults",
+  "generation_seconds": 26.563000000000102,
+  "elapsed_since_load_seconds": 222.48400000000038,
+  "shapes": {
+    "local_rot_mats": [
+      92,
+      77,
+      3,
+      3
+    ],
+    "global_rot_mats": [
+      92,
+      77,
+      3,
+      3
+    ],
+    "posed_joints": [
+      92,
+      77,
+      3
+    ],
+    "root_positions": [
+      92,
+      3
+    ],
+    "smooth_root_pos": [
+      92,
+      3
+    ],
+    "foot_contacts": [
+      92,
+      6
+    ],
+    "global_root_heading": [
+      92,
+      2
+    ]
+  },
+  "human_acceptance": false
+}

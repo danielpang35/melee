@@ -1,0 +1,62 @@
+{
+  "selection": {
+    "revision": "TP_v001-source-47a71a84-FBX-dd9f6fbd8721",
+    "mesh": "/Game/TPPreview/TP_v001_dd9f6fbd8721/TPBody.TPBody",
+    "animation": "/Game/TPPreview/TP_v001_dd9f6fbd8721/TPBody_Anim.TPBody_Anim",
+    "weapon_mesh": "/Game/TPPreview/TP_v001_dd9f6fbd8721/TPWeapon.TPWeapon",
+    "weapon_motion": "Saved\\TPProof\\revisions\\dd9f6fbd8721\\TP_v001_WeaponMotion.json",
+    "skeleton_motion": "Saved\\TPProof\\revisions\\dd9f6fbd8721\\TP_v001_SkeletonMotion.json",
+    "source_sha256": "47a71a844dcfd37b11404b9c5fe85aee8d83be79e0a1f36c51c328f834a5c790",
+    "canonical_authority": false
+  },
+  "baseline": {
+    "unchanged_files": 10,
+    "revision": "EX_v002-source-1615b76b-FBX-6a34514c-native-unreduced-v1"
+  },
+  "focused_native": {
+    "passed": true,
+    "max_position_error_cm": 0.00037610280870518134,
+    "max_relative_rotation_error_degrees": 0.00021877272902939712,
+    "max_component_scale_ratio_error": 6.256722946851312e-06
+  },
+  "replays": [
+    {
+      "tag": "TP_block13_external_v001",
+      "frames": 480,
+      "fps": 60,
+      "comparison": {
+        "tag": "TP_baseline_fp_v002",
+        "combat_control_fields_identical": true,
+        "events_identical": true
+      },
+      "max_release_canonical_base_error_cm": 22.600832334,
+      "max_release_canonical_tip_error_cm": 22.600838761
+    },
+    {
+      "tag": "TP_block13_fp_v001",
+      "frames": 480,
+      "fps": 60,
+      "comparison": {
+        "tag": "TP_baseline_fp_v002",
+        "combat_control_fields_identical": true,
+        "events_identical": true
+      },
+      "max_release_canonical_base_error_cm": null,
+      "max_release_canonical_tip_error_cm": null
+    },
+    {
+      "tag": "TP_block13_defender_v001",
+      "frames": 480,
+      "fps": 60,
+      "comparison": {
+        "tag": "TP_baseline_fp_v002",
+        "combat_control_fields_identical": true,
+        "events_identical": true
+      },
+      "max_release_canonical_base_error_cm": 22.600832334,
+      "max_release_canonical_tip_error_cm": 22.600838761
+    }
+  ],
+  "synchronized": "Saved/TPProof/TP_Block13_v001_synchronized_views.mp4",
+  "scope": "Attempt C backswing and lateral sweep; earlier arm opening, body coil, grip rotation, extended delivery and carry. Frame-sequence review only; human normal-speed acceptance pending, stiffness remains a review concern. Source release direction matches authority; cosmetic endpoint offset remains under review. Transform fidelity does not prove vertex-level contact."
+}

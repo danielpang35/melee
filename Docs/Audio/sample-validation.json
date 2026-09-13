@@ -1,0 +1,92 @@
+[
+  {
+    "cue": "S_Swing_00",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 2.69
+  },
+  {
+    "cue": "S_Stab_00",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 2.52
+  },
+  {
+    "cue": "S_Body_00",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 0.02
+  },
+  {
+    "cue": "S_Parry_00",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 0.0
+  },
+  {
+    "cue": "S_Chamber_00",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 0.0
+  },
+  {
+    "cue": "S_Wall_00",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 0.0
+  },
+  {
+    "cue": "S_Swing_01",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 4.44
+  },
+  {
+    "cue": "S_Stab_01",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 3.77
+  },
+  {
+    "cue": "S_Body_01",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 0.02
+  },
+  {
+    "cue": "S_Parry_01",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 0.0
+  },
+  {
+    "cue": "S_Chamber_01",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 0.0
+  },
+  {
+    "cue": "S_Wall_01",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 0.0
+  },
+  {
+    "cue": "S_Swing_02",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 2.6
+  },
+  {
+    "cue": "S_Stab_02",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 2.46
+  },
+  {
+    "cue": "S_Body_02",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 0.02
+  },
+  {
+    "cue": "S_Parry_02",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 0.02
+  },
+  {
+    "cue": "S_Chamber_02",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 0.0
+  },
+  {
+    "cue": "S_Wall_02",
+    "peak_dbfs": -4.01,
+    "first_signal_ms": 0.0
+  }
+]

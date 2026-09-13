@@ -10,5 +10,6 @@ public class MeleeCombatLab : ModuleRules
             "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "Slate", "SlateCore", "Json", "RHI", "MeshDescription", "StaticMeshDescription"
         });
         if (Target.bBuildEditor) PrivateDependencyModuleNames.Add("AssetRegistry");
+        RuntimeDependencies.Add(System.IO.Path.Combine(ModuleDirectory, "../../Config/AttackPerformance.csv"), StagedFileType.NonUFS);
     }
 }

@@ -1,0 +1,12 @@
+{
+  "revision": "MB_v005_SurfaceRepair",
+  "native_source": "ArtSource/UserMaleBody/MB_v005_SurfaceRepair/Male_Body_SurfaceRepair.blend",
+  "texture_directory": "ArtSource/UserMaleBody/MB_v005_SurfaceRepair/Textures",
+  "scene": "Rigged body - working",
+  "armature": "MB_AccuRig",
+  "body": "MB_Rigged_LOD0",
+  "runtime_mesh": "/Game/UserMaleBody/MB_v004_Project/SK_MB_Body.SK_MB_Body",
+  "animation_adapter": null,
+  "animation_status": "Native rig ready; existing TP attacks require separate retargeting",
+  "checkpoint": "ArtSource/UserMaleBody/MB_v005_SurfaceRepair/CHECKPOINT.md"
+}

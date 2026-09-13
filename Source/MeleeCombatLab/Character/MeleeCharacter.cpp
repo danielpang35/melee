@@ -1,6 +1,8 @@
 #include "MeleeCharacter.h"
+#include "Debug/CombatDrawTracers.h"
 #include "Visual/TournamentGraphics.h"
 #include "Visual/KnightPresentation.h"
+#include "Visual/EXCombatPresentation.h"
 #include "MeleeCharacterMovementComponent.h"
 #include "Combat/CombatComponent.h"
 #include "Camera/CameraComponent.h"
@@ -23,8 +25,9 @@ AMeleeCharacter::AMeleeCharacter(const FObjectInitializer& O):Super(O.SetDefault
     Knight=CreateDefaultSubobject<UKnightPresentation>(TEXT("KnightArmor"));Knight->SetupAttachment(GetCapsuleComponent());
     Combat=CreateDefaultSubobject<UCombatComponent>(TEXT("Combat"));
     Camera=CreateDefaultSubobject<UCameraComponent>(TEXT("CombatCamera"));Camera->SetupAttachment(GetCapsuleComponent());
-    Camera->SetRelativeLocation(FVector(0,0,64));Camera->bUsePawnControlRotation=true;
+    Camera->SetRelativeLocation(FVector(0,0,82));Camera->bUsePawnControlRotation=true;
     Presentation=CreateDefaultSubobject<UWeaponPresentationComponent>(TEXT("WeaponPresentation"));Presentation->SetupAttachment(GetCapsuleComponent());
+    EXPresentation=CreateDefaultSubobject<UEXCombatPresentation>(TEXT("EXGameplayPresentation"));
 }
 void AMeleeCharacter::SetupPlayerInputComponent(UInputComponent* Input)
 {
@@ -45,6 +48,8 @@ void AMeleeCharacter::SetupPlayerInputComponent(UInputComponent* Input)
         auto* A=Make(Name,EInputActionValueType::Boolean);Context->MapKey(A,Key);Enhanced->BindAction(A,ETriggerEvent::Started,this,Fn);return A;
     };
     Button(TEXT("GraphicsProfile"),EKeys::F7,&AMeleeCharacter::CycleGraphics);
+    Button(TEXT("DrawTracers"),EKeys::F8,&AMeleeCharacter::ToggleTracers);
+    Button(TEXT("ClearTracers"),EKeys::F9,&AMeleeCharacter::ClearTracers);
     Button(TEXT("Strike"),EKeys::LeftMouseButton,&AMeleeCharacter::Strike);
     auto* StabAction=Button(TEXT("Stab"),EKeys::MouseScrollUp,&AMeleeCharacter::Stab);Context->MapKey(StabAction,EKeys::E);
     Button(TEXT("Parry"),EKeys::RightMouseButton,&AMeleeCharacter::Parry);Button(TEXT("Feint"),EKeys::Q,&AMeleeCharacter::Feint);
@@ -99,20 +104,52 @@ void AMeleeCharacter::Direction2(){Combat->Strike(120,120);}void AMeleeCharacter
 void AMeleeCharacter::Direction4(){Combat->Strike(-120,-120);}void AMeleeCharacter::Direction5(){Combat->Strike(-60,-60);}
 void AMeleeCharacter::Tick(float Dt)
 {
-    Super::Tick(Dt);Presentation->Present(Combat->Simulation,Combat->Tuning(),Dt);
+    Super::Tick(Dt);
     const auto* PC=GetWorld()->GetFirstPlayerController();
-    const bool bShowBody=!IsLocallyControlled()||(PC&&PC->GetViewTarget()!=this);
+    const bool bShowBody=!PC||PC->GetViewTarget()!=this;
+    const bool bEX=EXPresentation->Present(Combat->Simulation,Dt,!bShowBody);
+    if(!bEX)Presentation->Present(Combat->Simulation,Combat->Tuning(),Dt,!bShowBody);
+    Presentation->SetVisibility(!bEX,true);
     Knight->SetFirstPerson(!bShowBody);
     BodyReaction=FMath::FInterpTo(BodyReaction,0,Dt,8);
-    Knight->Present(Combat->Simulation,Combat->Tuning(),bBlueArmor,BodyReaction,Dt);
-    Camera->SetFieldOfView(static_cast<float>(Combat->Tuning().FOV));
+    if(!bEX||bShowBody)Knight->Present(Combat->Simulation,Combat->Tuning(),bBlueArmor,BodyReaction,Dt,bEX?mcl::Vec{}:Presentation->ViewOffset);
+    if(bEX&&!bShowBody)Knight->SetVisibility(false,true);
+    const auto Eye=bEX?Combat->Simulation.exSampleEye:Combat->Simulation.eye();
+    Camera->SetWorldLocation(FVector(Eye.x,Eye.y,Eye.z));
+    Camera->SetFieldOfView(bEX?FMath::RadiansToDegrees(2.f*FMath::Atan(36.f/40.f)):static_cast<float>(Combat->Tuning().FOV));
     CameraKick=FMath::FInterpTo(CameraKick,0,Dt,22);
-    Camera->ClearAdditiveOffset();Camera->AddAdditiveOffset(FTransform(FRotator(CameraKick,0,CameraKick*.2)),0);
+    CameraRoll=FMath::FInterpTo(CameraRoll,0,Dt,22);
+    Camera->ClearAdditiveOffset();Camera->AddAdditiveOffset(FTransform(FRotator(CameraKick,0,CameraRoll)),0);
+}
+void AMeleeCharacter::CalcCamera(float Dt,FMinimalViewInfo& OutResult)
+{
+    Super::CalcCamera(Dt,OutResult);
+    // Raised glove surfaces remain 5+ cm ahead of the shared eye, but the
+    // engine's 10 cm default slices them. Use a first-person near plane inside
+    // the existing 6 cm camera world-clearance sphere.
+    OutResult.PerspectiveNearClipPlane=2.f;
+    if(EXPresentation&&EXPresentation->Ready()){
+        const auto& S=Combat->Simulation;
+        OutResult.Location=FVector(S.exSampleEye.x,S.exSampleEye.y,S.exSampleEye.z);
+        OutResult.Rotation=FRotator(S.exSampleView.pitch,S.exSampleView.yaw,0);
+    }
 }
 void AMeleeCharacter::Feedback(mcl::Resolution R)
 {
     BodyReaction=1.f;
     const auto& T=Combat->Tuning();CameraKick=static_cast<float>(R==mcl::Resolution::Parry?T.ParryRecoil:R==mcl::Resolution::Chamber?T.ChamberRecoil:T.CameraHitImpulse);
+}
+void AMeleeCharacter::Feedback(const mcl::CombatEvent& Event)
+{
+    const auto& T=Combat->Tuning();
+    const bool Victim=Combat->Simulation.id==Event.defender;
+    const mcl::Vec Local=Combat->Simulation.view.local(Event.normal*(Victim?-1.:1.));
+    const double scale=(Event.result==mcl::Resolution::Chamber?T.ChamberRecoil:
+        Event.result==mcl::Resolution::Parry?T.ParryRecoil:T.CameraHitImpulse)*
+        (.35+.65*Event.energy)*(Victim?.6:.35);
+    CameraKick=static_cast<float>(-Local.x*scale);CameraRoll=static_cast<float>(Local.y*scale);
+    // Directional skeletal shock is driven by the contact-time simulation.
+    BodyReaction=0;
 }
 void AMeleeCharacter::ResetAt(FVector Position,FRotator Facing)
 {
@@ -123,3 +160,6 @@ void AMeleeCharacter::ResetAt(FVector Position,FRotator Facing)
 }
 
 void AMeleeCharacter::CycleGraphics(){TournamentGraphics::Cycle();}
+
+void AMeleeCharacter::ToggleTracers(){if(auto* Lab=GetWorld()->GetAuthGameMode<ACombatLabGameMode>())if(Lab->Tracers)Lab->Tracers->Toggle();}
+void AMeleeCharacter::ClearTracers(){if(auto* Lab=GetWorld()->GetAuthGameMode<ACombatLabGameMode>())if(Lab->Tracers)Lab->Tracers->Clear();}

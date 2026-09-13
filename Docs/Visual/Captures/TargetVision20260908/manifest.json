@@ -1,0 +1,78 @@
+[
+  {
+    "id": "valorant",
+    "source": "C:\\Users\\Daniel Pang\\Videos\\Captures\\10 Minutes of Satisfying Gameplay - YouTube - Google Chrome 2026-09-08 10-38-30.mp4",
+    "bytes": 32423004,
+    "sha256": "ace1646015de0f6b7a83d4f38ccb80bceb4c8469f9d046e8269e8ebb58aa3e67",
+    "duration_seconds": 20.28,
+    "sample_seconds": [
+      0.0,
+      2.473,
+      4.945,
+      7.418,
+      9.89,
+      12.363,
+      14.835,
+      17.308,
+      19.78
+    ],
+    "method": "Nine timestamped frames; not continuous playback or audio review."
+  },
+  {
+    "id": "anubis",
+    "source": "C:\\Users\\Daniel Pang\\Videos\\Captures\\Counter Strike 2 Anubis Ranked Gameplay 4K - YouTube - Google Chrome 2026-09-08 10-51-58.mp4",
+    "bytes": 52826444,
+    "sha256": "8e9215d4391c872a4e3bbcff83689cbe782a907baf63fd31559b0981b870b34f",
+    "duration_seconds": 32.82,
+    "sample_seconds": [
+      0.0,
+      4.04,
+      8.08,
+      12.12,
+      16.16,
+      20.2,
+      24.24,
+      28.28,
+      32.32
+    ],
+    "method": "Nine timestamped frames; not continuous playback or audio review."
+  },
+  {
+    "id": "mirage",
+    "source": "C:\\Users\\Daniel Pang\\Videos\\Captures\\Mirage Map _ Counter Strike 2 Gameplay 4K (No Commentary) - YouTube - Google Chrome 2026-09-08 10-37-32.mp4",
+    "bytes": 15845088,
+    "sha256": "80bc595f1a126d495e5744aad1d992a6eec5f3c1ed04ca1a7d2c2369118d6a06",
+    "duration_seconds": 9.76,
+    "sample_seconds": [
+      0.0,
+      1.157,
+      2.315,
+      3.473,
+      4.63,
+      5.787,
+      6.945,
+      8.102,
+      9.26
+    ],
+    "method": "Nine timestamped frames; not continuous playback or audio review."
+  },
+  {
+    "id": "zelda",
+    "source": "C:\\Users\\Daniel Pang\\Videos\\Captures\\ZELDA_ TEARS OF THE KINGDOM Full Gameplay Walkthrough _ No Commentary \u3010FULL GAME\u3011HD - YouTube - Google Chrome 2026-09-08 10-48-08.mp4",
+    "bytes": 75475958,
+    "sha256": "7bdb86d5b3f927b3a00970a27659cbb6a47e98e6c7a8f83d5e7c2aa520ac1f93",
+    "duration_seconds": 47.77,
+    "sample_seconds": [
+      0.0,
+      5.909,
+      11.818,
+      17.726,
+      23.635,
+      29.544,
+      35.453,
+      41.361,
+      47.27
+    ],
+    "method": "Nine timestamped frames; not continuous playback or audio review."
+  }
+]

@@ -1,0 +1,239 @@
+{
+  "source": "C:/Users/Daniel Pang/Videos/Captures/MORDHAU   2026-09-07 12-27-58.mp4",
+  "source_bytes": 34324182,
+  "width": 1920,
+  "height": 1080,
+  "timing": {
+    "container_reported_duration_s": 20.84,
+    "metadata_avg_fps": 36.26,
+    "metadata_tbr": 59.94,
+    "native_timebase": "1/30000",
+    "frame_timing": "VFR; use source_pts_s; chosen interval approximately 36 frames/s",
+    "onset_bracket_s": [
+      15.747967,
+      15.775733
+    ],
+    "observed_onset_s": 15.775733,
+    "near_idle_return_s": 17.7755,
+    "excerpt_in_s": 15.470167,
+    "excerpt_out_exclusive_s": 18.025767,
+    "engine_release_observed": false,
+    "stats_crosscheck": "Build26.1 normal strike 0.575 windup/0.500 release/0.700 recovery are external values, not observed phase boundaries",
+    "excerpt_actual_first_pts_s": 15.470167,
+    "excerpt_actual_last_pts_s": 17.997933,
+    "excerpt_frames": 92
+  },
+  "classification": {
+    "weapon": "Greatsword",
+    "direction": "RIGHT",
+    "attack": "horizontal",
+    "basis": "User explicitly identifies capture sequence; complete neutral repetition visibly corroborated",
+    "confidence": "high with user provenance"
+  },
+  "repeat": {
+    "onset_approx_s": 12.831333,
+    "delivery_s": [
+      13.553533,
+      13.803533
+    ],
+    "near_idle_return_s": 14.886867,
+    "finding": "same right/offscreen load, center passage, left exit and delayed left return"
+  },
+  "excluded": "opening partial left, moving/combo section, final right feint beginning around18.220133",
+  "coordinates": "u=x/1920 v=y/1080; manual approximate \u00b10.03 UV; null=not independently visible; visible blade end may be frame boundary not tip; palms overlap so left palm unmeasurable",
+  "camera": "stone skyline and horizon essentially stable during selected swing; no camera subtraction applied",
+  "keys": [
+    {
+      "native_extract_index": 72,
+      "source_pts_s": 15.775733,
+      "relative_to_observed_onset_s": 0.0,
+      "beat": "early departure from idle",
+      "hilt_guard_center_uv": [
+        0.6,
+        0.73
+      ],
+      "right_visible_grip_center_uv": [
+        0.58,
+        0.79
+      ],
+      "left_palm_center_uv": null,
+      "blade_visible_end_uv": [
+        0.8,
+        0
+      ],
+      "orientation_visibility": "up-right; tip clipped"
+    },
+    {
+      "native_extract_index": 76,
+      "source_pts_s": 15.886867,
+      "relative_to_observed_onset_s": 0.111134,
+      "beat": "rightward load",
+      "hilt_guard_center_uv": [
+        0.88,
+        0.7
+      ],
+      "right_visible_grip_center_uv": [
+        0.88,
+        0.76
+      ],
+      "left_palm_center_uv": null,
+      "blade_visible_end_uv": null,
+      "orientation_visibility": "right/up; tip clipped"
+    },
+    {
+      "native_extract_index": 79,
+      "source_pts_s": 15.9702,
+      "relative_to_observed_onset_s": 0.194467,
+      "beat": "edge load",
+      "hilt_guard_center_uv": null,
+      "right_visible_grip_center_uv": null,
+      "left_palm_center_uv": null,
+      "blade_visible_end_uv": null,
+      "orientation_visibility": "hands partly clipped at right; blade invisible"
+    },
+    {
+      "native_extract_index": 89,
+      "source_pts_s": 16.247967,
+      "relative_to_observed_onset_s": 0.472234,
+      "beat": "offscreen load",
+      "hilt_guard_center_uv": null,
+      "right_visible_grip_center_uv": null,
+      "left_palm_center_uv": null,
+      "blade_visible_end_uv": null,
+      "orientation_visibility": "weapon and palms offscreen right; sleeve lower right"
+    },
+    {
+      "native_extract_index": 98,
+      "source_pts_s": 16.497967,
+      "relative_to_observed_onset_s": 0.722234,
+      "beat": "delivery reentry",
+      "hilt_guard_center_uv": [
+        0.98,
+        0.66
+      ],
+      "right_visible_grip_center_uv": [
+        0.92,
+        0.66
+      ],
+      "left_palm_center_uv": null,
+      "blade_visible_end_uv": null,
+      "orientation_visibility": "blade offscreen right; close broad sleeve"
+    },
+    {
+      "native_extract_index": 100,
+      "source_pts_s": 16.5535,
+      "relative_to_observed_onset_s": 0.777767,
+      "beat": "right passage",
+      "hilt_guard_center_uv": [
+        0.7,
+        0.59
+      ],
+      "right_visible_grip_center_uv": [
+        0.68,
+        0.58
+      ],
+      "left_palm_center_uv": null,
+      "blade_visible_end_uv": [
+        1,
+        0.5
+      ],
+      "orientation_visibility": "blade right, tip clipped"
+    },
+    {
+      "native_extract_index": 102,
+      "source_pts_s": 16.609067,
+      "relative_to_observed_onset_s": 0.833334,
+      "beat": "central passage",
+      "hilt_guard_center_uv": [
+        0.53,
+        0.56
+      ],
+      "right_visible_grip_center_uv": [
+        0.52,
+        0.55
+      ],
+      "left_palm_center_uv": null,
+      "blade_visible_end_uv": [
+        0.61,
+        0.49
+      ],
+      "orientation_visibility": "foreshortened blade up-right"
+    },
+    {
+      "native_extract_index": 106,
+      "source_pts_s": 16.720167,
+      "relative_to_observed_onset_s": 0.944434,
+      "beat": "left passage",
+      "hilt_guard_center_uv": [
+        0.23,
+        0.66
+      ],
+      "right_visible_grip_center_uv": [
+        0.22,
+        0.65
+      ],
+      "left_palm_center_uv": null,
+      "blade_visible_end_uv": [
+        0.3,
+        0.56
+      ],
+      "orientation_visibility": "blade up-right, shortened by perspective"
+    },
+    {
+      "native_extract_index": 109,
+      "source_pts_s": 16.803533,
+      "relative_to_observed_onset_s": 1.0278,
+      "beat": "exit",
+      "hilt_guard_center_uv": null,
+      "right_visible_grip_center_uv": null,
+      "left_palm_center_uv": null,
+      "blade_visible_end_uv": null,
+      "orientation_visibility": "hands and blade offscreen left; sleeve lower left"
+    },
+    {
+      "native_extract_index": 128,
+      "source_pts_s": 17.331233,
+      "relative_to_observed_onset_s": 1.5555,
+      "beat": "clear hold",
+      "hilt_guard_center_uv": null,
+      "right_visible_grip_center_uv": null,
+      "left_palm_center_uv": null,
+      "blade_visible_end_uv": null,
+      "orientation_visibility": "weapon and arms essentially clear"
+    },
+    {
+      "native_extract_index": 132,
+      "source_pts_s": 17.442367,
+      "relative_to_observed_onset_s": 1.666634,
+      "beat": "return blade",
+      "hilt_guard_center_uv": null,
+      "right_visible_grip_center_uv": null,
+      "left_palm_center_uv": null,
+      "blade_visible_end_uv": [
+        0.34,
+        0.04
+      ],
+      "orientation_visibility": "blade rises from lower-left; hilt clipped"
+    },
+    {
+      "native_extract_index": 144,
+      "source_pts_s": 17.7757,
+      "relative_to_observed_onset_s": 1.999967,
+      "beat": "near idle return",
+      "hilt_guard_center_uv": [
+        0.54,
+        0.73
+      ],
+      "right_visible_grip_center_uv": [
+        0.5,
+        0.81
+      ],
+      "left_palm_center_uv": null,
+      "blade_visible_end_uv": [
+        0.74,
+        0
+      ],
+      "orientation_visibility": "diagonal up-right"
+    }
+  ]
+}

@@ -1,0 +1,323 @@
+{
+  "pages": [
+    {
+      "id": "3d32e3c3f8f88166821dcab5f044efa2",
+      "title": "⚔️ MeleeCombatLab",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true
+      ]
+    },
+    {
+      "id": "3d42e3c3f8f881abb5c1c356dc68ee07",
+      "title": "Chosen Art Direction — Playable Slice Implementation Brief",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true
+      ]
+    },
+    {
+      "id": "3d42e3c3f8f881d8b2e7d845679e8eb7",
+      "title": "KRONK-01 — Kronk’s Mordhau: expressive control and coherent weapon motion",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "3d32e3c3f8f8811da443dc42bfa9c94a",
+      "title": "📄 Balance - Tuning",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true
+      ]
+    },
+    {
+      "id": "3d32e3c3f8f881d9ad7ff5c5f389dc6e",
+      "title": "📄 00 — Project Vision",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true
+      ]
+    },
+    {
+      "id": "3d32e3c3f8f881e08474defe7febb171",
+      "title": "📄 Animation",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "3d32e3c3f8f881469e06e14d281e5bee",
+      "title": "📄 Accepted Decisions",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true
+      ]
+    },
+    {
+      "id": "3d42e3c3f8f88199b54eed401936acac",
+      "title": "REN-01 — Ren’s Mordhau: economical motion and deliberate manipulation",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "3d32e3c3f8f88197b6a2e266e34ae60c",
+      "title": "📄 03 — Current Development",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true
+      ]
+    },
+    {
+      "id": "3d52e3c3f8f88192ababd9338ad3797b",
+      "title": "SWING-01 — Mordhau defender animation atlas and implementation details",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "3d32e3c3f8f8810ca927d148f7eccff6",
+      "title": "📄 04 — Playtesting",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true
+      ]
+    },
+    {
+      "id": "3d32e3c3f8f881758692e453afcdecb4",
+      "title": "🧪 Execution — Linear",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true
+      ]
+    },
+    {
+      "id": "3d32e3c3f8f8813c8883ed9e8bd1f299",
+      "title": "📄 Current Milestone",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true
+      ]
+    },
+    {
+      "id": "3d32e3c3f8f881028f05c2a960248ff1",
+      "title": "📄 Melee Swing Model",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true
+      ]
+    },
+    {
+      "id": "3d42e3c3f8f881cea3b7e1dedffe38c4",
+      "title": "CF_v001 — fresh character and shoulder study",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "3d32e3c3f8f8814d8ae4d50347ac1c49",
+      "title": "📄 Findings",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true
+      ]
+    },
+    {
+      "id": "3d92e3c3f8f8814ebf9ece3d9937e720",
+      "title": "Documentation ownership",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true
+      ]
+    },
+    {
+      "id": "3d32e3c3f8f88190af64e1320e3f810d",
+      "title": "📄 Rejected Experiments",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true
+      ]
+    },
+    {
+      "id": "3d32e3c3f8f8816d9ebff561e011a0cb",
+      "title": "💬 Conversation excerpts",
+      "children_preserved": true,
+      "truncated": false,
+      "unknown": 0,
+      "edits_present": [
+        true
+      ]
+    }
+  ],
+  "attachmentChecks": [
+    {
+      "id": "3d32e3c3f8f88166821dcab5f044efa2",
+      "before": [],
+      "after": []
+    },
+    {
+      "id": "3d42e3c3f8f881abb5c1c356dc68ee07",
+      "before": [
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/3435c2ba-4215-49a8-be17-59c270090151/06-riot-inspired.png"
+      ],
+      "after": [
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/3435c2ba-4215-49a8-be17-59c270090151/06-riot-inspired.png"
+      ]
+    },
+    {
+      "id": "3d42e3c3f8f881d8b2e7d845679e8eb7",
+      "before": [
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/4e69ae3f-f90b-4258-ba09-4ed70d8ce110/K18-04-2.jpg",
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/7de742db-6194-42b3-bab8-8acdc053adc5/K18-02-2.jpg",
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/dcdf129b-0df2-483d-bcab-a3512371cc7f/K14-03-native-1.jpg"
+      ],
+      "after": [
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/4e69ae3f-f90b-4258-ba09-4ed70d8ce110/K18-04-2.jpg",
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/7de742db-6194-42b3-bab8-8acdc053adc5/K18-02-2.jpg",
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/dcdf129b-0df2-483d-bcab-a3512371cc7f/K14-03-native-1.jpg"
+      ]
+    },
+    {
+      "id": "3d32e3c3f8f8811da443dc42bfa9c94a",
+      "before": [],
+      "after": []
+    },
+    {
+      "id": "3d32e3c3f8f881d9ad7ff5c5f389dc6e",
+      "before": [],
+      "after": []
+    },
+    {
+      "id": "3d32e3c3f8f881e08474defe7febb171",
+      "before": [],
+      "after": []
+    },
+    {
+      "id": "3d32e3c3f8f881469e06e14d281e5bee",
+      "before": [],
+      "after": []
+    },
+    {
+      "id": "3d42e3c3f8f88199b54eed401936acac",
+      "before": [
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/2feccc05-d3e9-4e02-bf77-7580b97d8e24/Ren-Mordhau-R02-hilt-transfer.jpg",
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/58087032-1cc9-4610-bdb9-a4c6de88a644/Ren-Mordhau-R01-hand-delivery.jpg",
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/d3288151-746b-4c70-9903-566c09eba90e/Ren-Mordhau-R03-aim-and-delivery.jpg"
+      ],
+      "after": [
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/2feccc05-d3e9-4e02-bf77-7580b97d8e24/Ren-Mordhau-R02-hilt-transfer.jpg",
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/58087032-1cc9-4610-bdb9-a4c6de88a644/Ren-Mordhau-R01-hand-delivery.jpg",
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/d3288151-746b-4c70-9903-566c09eba90e/Ren-Mordhau-R03-aim-and-delivery.jpg"
+      ]
+    },
+    {
+      "id": "3d32e3c3f8f88197b6a2e266e34ae60c",
+      "before": [],
+      "after": []
+    },
+    {
+      "id": "3d52e3c3f8f88192ababd9338ad3797b",
+      "before": [
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/bb3a06c0-6f25-44f1-91ba-c6ec5f0e73a1/SWING-01-RH-A-corrected.jpg"
+      ],
+      "after": [
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/bb3a06c0-6f25-44f1-91ba-c6ec5f0e73a1/SWING-01-RH-A-corrected.jpg"
+      ]
+    },
+    {
+      "id": "3d32e3c3f8f8810ca927d148f7eccff6",
+      "before": [],
+      "after": []
+    },
+    {
+      "id": "3d32e3c3f8f881758692e453afcdecb4",
+      "before": [],
+      "after": []
+    },
+    {
+      "id": "3d32e3c3f8f8813c8883ed9e8bd1f299",
+      "before": [],
+      "after": []
+    },
+    {
+      "id": "3d32e3c3f8f881028f05c2a960248ff1",
+      "before": [],
+      "after": []
+    },
+    {
+      "id": "3d42e3c3f8f881cea3b7e1dedffe38c4",
+      "before": [
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/077b92f3-4da5-4ac8-80e8-213cd5f4b3d9/CF_v001_proportions.jpg",
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/9a577056-ab1e-4ed8-b47d-aaaa5006c06d/CF_v001_shoulders.jpg"
+      ],
+      "after": [
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/077b92f3-4da5-4ac8-80e8-213cd5f4b3d9/CF_v001_proportions.jpg",
+        "https://prod-files-secure.s3.us-west-2.amazonaws.com/3762e3c3-f8f8-81ad-8034-000357ef3099/9a577056-ab1e-4ed8-b47d-aaaa5006c06d/CF_v001_shoulders.jpg"
+      ]
+    },
+    {
+      "id": "3d32e3c3f8f8814d8ae4d50347ac1c49",
+      "before": [],
+      "after": []
+    },
+    {
+      "id": "3d32e3c3f8f88190af64e1320e3f810d",
+      "before": [],
+      "after": []
+    },
+    {
+      "id": "3d32e3c3f8f8816d9ebff561e011a0cb",
+      "before": [],
+      "after": []
+    }
+  ]
+}

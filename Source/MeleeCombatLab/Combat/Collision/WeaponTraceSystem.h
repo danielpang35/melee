@@ -9,7 +9,10 @@ struct WeaponTraceSystem
     // Overlapping equal-radius samples cover the ENTIRE blade without gameplay zones.
     static std::vector<Segment> sweeps(Pose previous,Pose current,const Tuning& t)
     {
-        int count=static_cast<int>(std::ceil(t.BladeLength/(t.BladeRadius*1.25)));
+        // Exported endpoints own weapon extent. Tuning must not add invisible
+        // reach or leave gaps when a selected weapon differs from the default.
+        const double length=std::max((previous.tip-previous.hilt).length(),(current.tip-current.hilt).length());
+        int count=std::max(1,static_cast<int>(std::ceil(length/(t.BladeRadius*1.25))));
         std::vector<Segment> out;out.reserve(count+3);
         for(int i=0;i<=count;++i){double p=double(i)/count;out.push_back({lerp(previous.hilt,previous.tip,p),lerp(current.hilt,current.tip,p)});}
         out.push_back(previous.blade());out.push_back(current.blade());return out;
@@ -27,7 +30,8 @@ struct WeaponTraceSystem
         std::vector<Segment> out;Pose start=previous;
         for(int i=1;i<=count;++i){double alpha=double(i)/count;Vec hilt=lerp(previous.hilt,current.hilt,alpha);
             Vec direction=slerp(previous.tip-previous.hilt,current.tip-current.hilt,alpha);
-            Pose end{hilt,hilt+direction*t.BladeLength};auto batch=sweeps(start,end,t);
+            const double length=mix((previous.tip-previous.hilt).length(),(current.tip-current.hilt).length(),alpha);
+            Pose end{hilt,hilt+direction*length};auto batch=sweeps(start,end,t);
             out.insert(out.end(),batch.begin(),batch.end());start=end;
         }
         return out;

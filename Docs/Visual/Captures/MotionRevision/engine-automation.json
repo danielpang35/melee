@@ -1,0 +1,74 @@
+﻿{
+	"devices": [
+		{
+			"deviceName": "DANIEL-COMPUTER",
+			"instance": "F7E125A04C7862D35CF63CB8C0BB6ABE",
+			"instanceName": "DANIEL-COMPUTER-8060",
+			"platform": "WindowsEditor",
+			"oSVersion": "Windows 10 (22H2) [10.0.19045.7663] ",
+			"model": "Default",
+			"gPU": "NVIDIA GeForce RTX 5070",
+			"cPUModel": "AMD Ryzen 5 1600 Six-Core Processor            ",
+			"rAMInGB": 16,
+			"renderMode": "SM6",
+			"rHI": "",
+			"appInstanceLog": ""
+		}
+	],
+	"reportCreatedOn": "2026.09.06-13.36.17",
+	"succeeded": 3,
+	"succeededWithWarnings": 0,
+	"failed": 0,
+	"notRun": 0,
+	"inProcess": 0,
+	"totalDuration": 0.13105098903179169,
+	"comparisonExported": false,
+	"comparisonExportDirectory": "",
+	"tests": [
+		{
+			"testDisplayName": "AssetContract",
+			"fullTestPath": "MeleeCombatLab.Citadel.AssetContract",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"F7E125A04C7862D35CF63CB8C0BB6ABE"
+			],
+			"duration": 0.10833549499511719,
+			"dateTime": "2026.09.06-13.36.17",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FrameRates",
+			"fullTestPath": "MeleeCombatLab.FrameRates",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"F7E125A04C7862D35CF63CB8C0BB6ABE"
+			],
+			"duration": 0.01622840017080307,
+			"dateTime": "2026.09.06-13.36.17",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "StateFlow",
+			"fullTestPath": "MeleeCombatLab.StateFlow",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"F7E125A04C7862D35CF63CB8C0BB6ABE"
+			],
+			"duration": 0.0064870975911617279,
+			"dateTime": "2026.09.06-13.36.17",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		}
+	]
+}

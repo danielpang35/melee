@@ -1,0 +1,108 @@
+[
+  {
+    "clip": "A",
+    "source": "C:\\Users\\Daniel Pang\\Videos\\Captures\\MORDHAU   2026-09-08 01-36-39.mp4",
+    "source_sha256": "7d660e1dea557a8b053f12206f466d16d6f9ab7f7454daf5496402a8b657b4b0",
+    "excerpt": "C:\\Users\\Daniel Pang\\OneDrive\\Documents\\ChatGPT\\swingmanipulation\\Docs\\ThirdPersonReference20260908\\A\\selected-source-speed.mp4",
+    "excerpt_sha256": "75eb8889e80648362521205f0e2b1e93b8e5105980e9ea4e83eb16c81483423a",
+    "trim_start_inclusive_s": 5.3839,
+    "trim_end_exclusive_s": 7.306,
+    "actual_source_first_pts_s": 5.3839,
+    "actual_source_last_pts_s": 7.278233,
+    "frames": 67,
+    "max_relative_pts_error_s": 2.999999998837266e-07,
+    "audio": "omitted",
+    "continuous_playback_review": "not performed by model; decoded frame inspection only",
+    "keys": [
+      {
+        "beat": "Ready",
+        "index": 6,
+        "source_pts_s": 5.528333,
+        "file": "frame-0006.jpg"
+      },
+      {
+        "beat": "Right-side load",
+        "index": 26,
+        "source_pts_s": 6.106067,
+        "file": "frame-0026.jpg"
+      },
+      {
+        "beat": "Delivery",
+        "index": 35,
+        "source_pts_s": 6.361567,
+        "file": "frame-0035.jpg"
+      },
+      {
+        "beat": "Left-side carry",
+        "index": 47,
+        "source_pts_s": 6.706067,
+        "file": "frame-0047.jpg"
+      },
+      {
+        "beat": "Return",
+        "index": 60,
+        "source_pts_s": 7.078333,
+        "file": "frame-0060.jpg"
+      },
+      {
+        "beat": "Ready restored",
+        "index": 67,
+        "source_pts_s": 7.278233,
+        "file": "frame-0067.jpg"
+      }
+    ]
+  },
+  {
+    "clip": "B",
+    "source": "C:\\Users\\Daniel Pang\\Videos\\Captures\\MORDHAU   2026-09-08 01-46-20.mp4",
+    "source_sha256": "780f6e56a861e12f51c02c0b15ed09f04e3c9be2eb01169be593ed2f4fdf4a38",
+    "excerpt": "C:\\Users\\Daniel Pang\\OneDrive\\Documents\\ChatGPT\\swingmanipulation\\Docs\\ThirdPersonReference20260908\\B\\selected-source-speed.mp4",
+    "excerpt_sha256": "ddd8b31aa73725c4f09d6a5111a660cb7aa88794b9c24bf1db411d66b292d557",
+    "trim_start_inclusive_s": 0.456067,
+    "trim_end_exclusive_s": 2.22,
+    "actual_source_first_pts_s": 0.456067,
+    "actual_source_last_pts_s": 2.206033,
+    "frames": 63,
+    "max_relative_pts_error_s": 1.000000000139778e-06,
+    "audio": "omitted",
+    "continuous_playback_review": "not performed by model; decoded frame inspection only",
+    "keys": [
+      {
+        "beat": "Ready",
+        "index": 2,
+        "source_pts_s": 0.5394,
+        "file": "frame-0002.jpg"
+      },
+      {
+        "beat": "Right-shoulder load",
+        "index": 8,
+        "source_pts_s": 1.061567,
+        "file": "frame-0008.jpg"
+      },
+      {
+        "beat": "Delivery",
+        "index": 12,
+        "source_pts_s": 1.394867,
+        "file": "frame-0012.jpg"
+      },
+      {
+        "beat": "Left-side carry",
+        "index": 16,
+        "source_pts_s": 1.728267,
+        "file": "frame-0016.jpg"
+      },
+      {
+        "beat": "Return",
+        "index": 18,
+        "source_pts_s": 1.900433,
+        "file": "frame-0018.jpg"
+      },
+      {
+        "beat": "Ready restored",
+        "index": 20,
+        "source_pts_s": 2.0671,
+        "file": "frame-0020.jpg"
+      }
+    ]
+  }
+]

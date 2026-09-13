@@ -1,0 +1,146 @@
+{
+  "revision": 4,
+  "verified_utc": "2026-09-06T19:11:32.3053186Z",
+  "result": "pass",
+  "samples": {
+    "sample_rate": 48000,
+    "format": "PCM16",
+    "manifest": "ArtSource/CombatAudio/manifest.json",
+    "audition_true_peak_dbtp": -3.0,
+    "channels": 1,
+    "measurements": "Docs/Audio/Revision4/sample-validation.json",
+    "import_warnings": 0,
+    "import_errors": 0,
+    "count": 24
+  },
+  "native": {
+    "result": "pass",
+    "address_sanitizer": true,
+    "checks": 322,
+    "basis": "Current shared source including resumed hip-lean integration",
+    "log": "Saved/CombatAudio/Revision4/native-combined.log"
+  },
+  "build": {
+    "build_id": "55116800",
+    "log": "Saved/HandsLean/build-camera.log",
+    "sha256": "20c857740115384d39fd1d2e2756c0d61e7ef336e9bb8998ec91f4c70ed5b065",
+    "initial_isolated_basis": "Prior combat headers while concurrent lean integration was incomplete; superseded by successful combined validation",
+    "basis": "Current shared build from concurrent hands/lean task; its module mapping preserved",
+    "initial_isolated_build": "Saved/CombatAudio/Revision4/build.log",
+    "module": "UnrealEditor-MeleeCombatLab.dll",
+    "later_shared_build": {
+      "sha256": "f256141258f6bb41781e8882f7a18395b2d455dc3f66b92a4c0b16c1cff756c1",
+      "log": "Saved/HandsLean/build-fixtures.log",
+      "note": "Concurrent task rebuilt playtest fixtures after audio runtime verification. Audio implementation and asset-test source hashes are unchanged. Current module mapping preserved; runtime result above belongs to the preceding camera build."
+    }
+  },
+  "asset_automation": {
+    "checked": "All 24 SoundWaves, valid duration, mono, ForceInline, persisted uncompressed PCM",
+    "warnings": 0,
+    "report": "Saved/HandsLean/AutomationRelease/index.json",
+    "result": "Success",
+    "errors": 0,
+    "test": "MeleeCombatLab.Audio.AssetBank"
+  },
+  "runtime": {
+    "air_playing_80ms_after_contact_checks": 14,
+    "mode": "Headless NullRHI with active audio mixer, 29-second limit at 60 fps",
+    "scenarios": [
+      {
+        "name": "right",
+        "result": "PASS"
+      },
+      {
+        "name": "upper_right",
+        "result": "PASS"
+      },
+      {
+        "name": "upper_left",
+        "result": "PASS"
+      },
+      {
+        "name": "left",
+        "result": "PASS"
+      },
+      {
+        "name": "lower_left",
+        "result": "PASS"
+      },
+      {
+        "name": "lower_right",
+        "result": "PASS"
+      },
+      {
+        "name": "stab",
+        "result": "PASS"
+      },
+      {
+        "name": "accel",
+        "result": "PASS"
+      },
+      {
+        "name": "drag",
+        "result": "PASS"
+      },
+      {
+        "name": "parry",
+        "result": "PASS"
+      },
+      {
+        "name": "chamber",
+        "result": "PASS"
+      },
+      {
+        "name": "wrong_chamber",
+        "result": "PASS"
+      }
+    ],
+    "errors": 0,
+    "warning_scope": "21 editor widget registration warnings, four render-scaling priority warnings, one startup character movement timestep warning; no audio warnings",
+    "coverage_limit": "12 completed scenarios; final microdrag_chamber began but was not completed before the time limit. Wall playback is covered by routing and asset validation, not this runtime excerpt.",
+    "exit_code": 0,
+    "voice_creation_failures": 0,
+    "voice_counts": [
+      {
+        "cue": "Armor",
+        "count": 17
+      },
+      {
+        "cue": "Body",
+        "count": 2
+      },
+      {
+        "cue": "Chamber",
+        "count": 1
+      },
+      {
+        "cue": "Head",
+        "count": 10
+      },
+      {
+        "cue": "Parry",
+        "count": 1
+      },
+      {
+        "cue": "Stab",
+        "count": 1
+      },
+      {
+        "cue": "Swing",
+        "count": 13
+      }
+    ],
+    "warnings": 26,
+    "air_check_failures": 0,
+    "log": "Saved/CombatAudio/Revision4/runtime-combined.log"
+  },
+  "listening": {
+    "audition": "Docs/Audio/Revision4/combat-audition.wav",
+    "status": "Authored preview supplied for user listening; no subjective quality certification",
+    "remaining": "First-person/opponent mix acceptance and broader paired-exchange review in MEL-7"
+  },
+  "documentation": {
+    "notion": "Visual Direction reflects latest weighted steel request",
+    "performance": "Dedicated optimization remains deferred"
+  }
+}

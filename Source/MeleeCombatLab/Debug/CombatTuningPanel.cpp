@@ -22,7 +22,7 @@ void SCombatTuningPanel::Construct(const FArguments& Args)
             +SHorizontalBox::Slot().AutoWidth()[SNew(SBox).WidthOverride(150)[SNew(SSpinBox<double>)
                 .MinValue(E.minimum).MaxValue(E.maximum).Delta((E.maximum-E.minimum)/200.)
                 .Value_Lambda([Weak=Lab,Name=FString(UTF8_TO_TCHAR(E.name))](){if(Weak.IsValid())for(auto Entry:Weak->Combat.tuning.entries())if(Name==UTF8_TO_TCHAR(Entry.name))return *Entry.value;return 0.;})
-                .OnValueChanged_Lambda([Weak=Lab,Name=FString(UTF8_TO_TCHAR(E.name))](double Value){if(Weak.IsValid())for(auto Entry:Weak->Combat.tuning.entries())if(Name==UTF8_TO_TCHAR(Entry.name))*Entry.value=FMath::Clamp(Value,Entry.minimum,Entry.maximum);})]]];
+                .OnValueChanged_Lambda([Weak=Lab,Name=FString(UTF8_TO_TCHAR(E.name))](double Value){if(Weak.IsValid())Weak->SetTuningValue(Name,Value);})]]];
     }
     auto Button=[this](const TCHAR* Text,TFunction<void(ACombatLabGameMode*)> Action){return SNew(SButton).Text(FText::FromString(Text)).OnClicked_Lambda([Weak=Lab,Action](){if(Weak.IsValid())Action(Weak.Get());return FReply::Handled();});};
     ChildSlot.HAlign(HAlign_Right).VAlign(VAlign_Center).Padding(24)[SNew(SBox).WidthOverride(520).HeightOverride(760)
@@ -36,6 +36,6 @@ void SCombatTuningPanel::Construct(const FArguments& Args)
                 +SHorizontalBox::Slot()[Button(TEXT("LOAD"),[](auto* L){L->LoadTuning();})]
                 +SHorizontalBox::Slot()[Button(TEXT("CLOSE"),[](auto* L){L->ToggleTuning();})]]
             +SVerticalBox::Slot().AutoHeight()[Button(TEXT("PROMOTE TO PROJECT DEFAULTS"),[](auto* L){L->SaveTuning(true);})]
-            +SVerticalBox::Slot().AutoHeight().Padding(0,8)[SNew(STextBlock).AutoWrapText(true).Text_Lambda([Weak=Lab](){return FText::FromString(Weak.IsValid()?Weak->TuningStatus:FString());})]
+            +SVerticalBox::Slot().AutoHeight().Padding(0,8)[SNew(SBox).MaxDesiredHeight(220)[SNew(SScrollBox)+SScrollBox::Slot()[SNew(STextBlock).AutoWrapText(true).Text_Lambda([Weak=Lab](){return FText::FromString(Weak.IsValid()?Weak->TuningStatus:FString());})]]]
         ]]];
 }

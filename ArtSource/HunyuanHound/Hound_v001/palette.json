@@ -1,0 +1,202 @@
+[
+  {
+    "name": "Steel cool",
+    "role": "Painted cool plane",
+    "locator_rect_1000": [
+      560,
+      78,
+      16,
+      16
+    ],
+    "rect_xywh_top_left": [
+      2294,
+      319,
+      66,
+      66
+    ],
+    "source": "Textures/texture_pbr_20250901.png",
+    "rgb": [
+      84,
+      97,
+      112
+    ],
+    "hex": "#546170",
+    "uv_covered_samples": 4356,
+    "method": "Per-channel upper median of UV-covered original PNG byte values inside the rectangle; atlas padding excluded"
+  },
+  {
+    "name": "Steel warm",
+    "role": "Painted warm plane",
+    "locator_rect_1000": [
+      453,
+      348,
+      12,
+      12
+    ],
+    "rect_xywh_top_left": [
+      1855,
+      1425,
+      49,
+      49
+    ],
+    "source": "Textures/texture_pbr_20250901.png",
+    "rgb": [
+      143,
+      129,
+      113
+    ],
+    "hex": "#8F8171",
+    "uv_covered_samples": 267,
+    "method": "Per-channel upper median of UV-covered original PNG byte values inside the rectangle; atlas padding excluded"
+  },
+  {
+    "name": "Steel pale",
+    "role": "Painted highlight",
+    "locator_rect_1000": [
+      598,
+      635,
+      12,
+      12
+    ],
+    "rect_xywh_top_left": [
+      2449,
+      2601,
+      49,
+      49
+    ],
+    "source": "Textures/texture_pbr_20250901.png",
+    "rgb": [
+      217,
+      205,
+      192
+    ],
+    "hex": "#D9CDC0",
+    "uv_covered_samples": 2134,
+    "method": "Per-channel upper median of UV-covered original PNG byte values inside the rectangle; atlas padding excluded"
+  },
+  {
+    "name": "Cloth blue",
+    "role": "Quiet color block",
+    "locator_rect_1000": [
+      68,
+      143,
+      18,
+      18
+    ],
+    "rect_xywh_top_left": [
+      279,
+      586,
+      74,
+      74
+    ],
+    "source": "Textures/texture_pbr_20250901.png",
+    "rgb": [
+      47,
+      63,
+      85
+    ],
+    "hex": "#2F3F55",
+    "uv_covered_samples": 5476,
+    "method": "Per-channel upper median of UV-covered original PNG byte values inside the rectangle; atlas padding excluded"
+  },
+  {
+    "name": "Padding",
+    "role": "Matte dark fabric",
+    "locator_rect_1000": [
+      20,
+      630,
+      16,
+      16
+    ],
+    "rect_xywh_top_left": [
+      82,
+      2580,
+      66,
+      66
+    ],
+    "source": "Textures/texture_pbr_20250901.png",
+    "rgb": [
+      66,
+      58,
+      50
+    ],
+    "hex": "#423A32",
+    "uv_covered_samples": 3299,
+    "method": "Per-channel upper median of UV-covered original PNG byte values inside the rectangle; atlas padding excluded"
+  },
+  {
+    "name": "Mail field",
+    "role": "Ring/recess mixture",
+    "locator_rect_1000": [
+      330,
+      710,
+      16,
+      16
+    ],
+    "rect_xywh_top_left": [
+      1352,
+      2908,
+      66,
+      66
+    ],
+    "source": "Textures/texture_pbr_20250901.png",
+    "rgb": [
+      30,
+      27,
+      24
+    ],
+    "hex": "#1E1B18",
+    "uv_covered_samples": 4356,
+    "method": "Per-channel upper median of UV-covered original PNG byte values inside the rectangle; atlas padding excluded"
+  },
+  {
+    "name": "Leather",
+    "role": "Small warm accent",
+    "locator_rect_1000": [
+      778,
+      125,
+      7,
+      15
+    ],
+    "rect_xywh_top_left": [
+      3187,
+      512,
+      29,
+      61
+    ],
+    "source": "Textures/texture_pbr_20250901.png",
+    "rgb": [
+      75,
+      50,
+      32
+    ],
+    "hex": "#4B3220",
+    "uv_covered_samples": 972,
+    "method": "Per-channel upper median of UV-covered original PNG byte values inside the rectangle; atlas padding excluded"
+  },
+  {
+    "name": "Visor gap",
+    "role": "Construction recess",
+    "locator_rect_1000": [
+      155,
+      846,
+      8,
+      3
+    ],
+    "rect_xywh_top_left": [
+      635,
+      3465,
+      33,
+      12
+    ],
+    "source": "Textures/texture_pbr_20250901.png",
+    "rgb": [
+      8,
+      6,
+      2
+    ],
+    "hex": "#080602",
+    "uv_covered_samples": 314,
+    "method": "Per-channel upper median of UV-covered original PNG byte values inside the rectangle; atlas padding excluded"
+  }
+]

@@ -1,4 +1,5 @@
-param([string]$EngineRoot,[switch]$Launch,[switch]$Automation,[int]$MaxParallelActions=0)
+# Bound compiler concurrency after commit-memory failures; 0 restores automatic selection.
+param([string]$EngineRoot,[switch]$Launch,[switch]$Automation,[ValidateRange(0,128)][int]$MaxParallelActions=2,[int]$ModuleSuffix=0,[switch]$NoUBA)
 $ErrorActionPreference='Stop'
 $projectRoot=Split-Path -Parent $PSScriptRoot
 $projectFile=Join-Path $projectRoot 'MeleeCombatLab.uproject'
@@ -26,7 +27,26 @@ if (!(Test-Path $ubt)) {
 }
 
 $extraBuildArgs=@()
+# UBT may delete any hot-reload output, including suffixed modules. Never
+# launch a build that is already known to fail, or terminate an editor session.
+$moduleDir=Join-Path $projectRoot 'Binaries/Win64'
+$locked=@()
+foreach($module in Get-ChildItem -LiteralPath $moduleDir -Filter 'UnrealEditor-MeleeCombatLab*.dll' -ErrorAction SilentlyContinue){
+    try {
+        $probe=[System.IO.File]::Open($module.FullName,[System.IO.FileMode]::Open,[System.IO.FileAccess]::ReadWrite,[System.IO.FileShare]::None)
+        $probe.Dispose()
+    } catch [System.IO.IOException] { $locked+=$module.FullName }
+}
+if($locked.Count){
+    $owners=@(Get-Process UnrealEditor* -ErrorAction SilentlyContinue | ForEach-Object {
+        $process=$_
+        try {$process.Modules | Where-Object {$locked -contains $_.FileName} | ForEach-Object {"PID $($process.Id): $($_.FileName)"}} catch {}
+    })
+    throw ("Build blocked by loaded/locked gameplay modules. Save and close the matching Unreal session, then rerun Tools/Build.ps1. A fresh suffix cannot bypass UBT cleanup. No process was closed.`n"+($owners+$locked -join "`n"))
+}
 if ($MaxParallelActions -gt 0) { $extraBuildArgs += "-MaxParallelActions=$MaxParallelActions" }
+if ($NoUBA) { $extraBuildArgs += '-NoUBA' }
+if ($ModuleSuffix -gt 0) { $extraBuildArgs += "-ModuleWithSuffix=MeleeCombatLab,$ModuleSuffix" }
 & $dotnet $ubt `
     MeleeCombatLabEditor `
     Win64 `
@@ -39,7 +59,7 @@ if ($LASTEXITCODE -ne 0) {
     throw "Unreal editor target build failed (exit $LASTEXITCODE)."
 }
 if ($Automation) {
-    & (Join-Path $EngineRoot 'Engine\Binaries\Win64\UnrealEditor-Cmd.exe') $projectFile -unattended -nop4 -NullRHI '-ExecCmds=Automation RunTests MeleeCombatLab;Quit' '-TestExit=Automation Test Queue Empty' "-ReportExportPath=$projectRoot\Saved\Automation"
+    & (Join-Path $EngineRoot 'Engine\Binaries\Win64\UnrealEditor-Cmd.exe') $projectFile -unattended -nop4 -NullRHI '-ExecCmds=Automation RunTests MeleeCombatLab' '-TestExit=Automation Test Queue Empty' "-ReportExportPath=$projectRoot\Saved\Automation"
     if ($LASTEXITCODE -ne 0) { throw 'Unreal automation process failed; inspect Saved/Automation and Saved/Logs.' }
 }
 if ($Launch) {

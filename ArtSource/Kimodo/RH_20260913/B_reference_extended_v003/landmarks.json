@@ -1,0 +1,172 @@
+{
+  "keys": [
+    0,
+    12,
+    29,
+    39,
+    54,
+    66,
+    91
+  ],
+  "controls": {
+    "hilts": [
+      [
+        0,
+        1.27,
+        0.19
+      ],
+      [
+        -0.27,
+        1.43,
+        0.24
+      ],
+      [
+        -0.38,
+        1.45,
+        -0.035
+      ],
+      [
+        -0.385,
+        1.44,
+        -0.060000000000000005
+      ],
+      [
+        0.3,
+        1.29,
+        0.29
+      ],
+      [
+        0.25,
+        1.21,
+        0.16
+      ],
+      [
+        0,
+        1.27,
+        0.19
+      ]
+    ],
+    "blades": [
+      [
+        -0.38,
+        0.82,
+        0.43
+      ],
+      [
+        -0.75,
+        0.56,
+        0.35
+      ],
+      [
+        -0.66,
+        0.42,
+        -0.62
+      ],
+      [
+        -0.91,
+        0.1,
+        -0.4
+      ],
+      [
+        0.78,
+        -0.08,
+        0.62
+      ],
+      [
+        0.9,
+        -0.35,
+        0.22
+      ],
+      [
+        -0.38,
+        0.82,
+        0.43
+      ]
+    ],
+    "hips": [
+      [
+        0,
+        0.95,
+        0
+      ],
+      [
+        -0.025,
+        0.94,
+        0
+      ],
+      [
+        -0.045,
+        0.925,
+        -0.025
+      ],
+      [
+        -0.04,
+        0.93,
+        -0.02
+      ],
+      [
+        0.045,
+        0.925,
+        0.04
+      ],
+      [
+        0.05,
+        0.91,
+        0.025
+      ],
+      [
+        0,
+        0.95,
+        0
+      ]
+    ],
+    "hipyaw": [
+      -6,
+      -13,
+      -24,
+      -21,
+      22,
+      26,
+      -6
+    ],
+    "chestyaw": [
+      -8,
+      -22,
+      -49,
+      -46,
+      38,
+      43,
+      -8
+    ],
+    "lean": [
+      0,
+      0.0,
+      0,
+      0.0,
+      0,
+      2,
+      0
+    ],
+    "feet": {
+      "l": [
+        0.175,
+        0.062,
+        0.14
+      ],
+      "r": [
+        -0.18,
+        0.062,
+        -0.16
+      ]
+    }
+  },
+  "author_sha256": "8bfa75c2a7dea47527b61bce7104cd4cf0407f1891cd0d00650954b64b992e2e",
+  "reference": "Saved/reference.jpg",
+  "reference_sha256": "43d12355c40acb0ecf4af9653c184ee7d24722f52e63cb04bfc04efb960863ca",
+  "lineage": "Fresh SOMA rest-based poses; prior C animation, poses and trajectories not loaded.",
+  "max_soma_reach_fraction": 0.6925054784205517,
+  "reference_limit": "Single photograph directs raised hands, visible rearward arm load and elbow separation; it does not establish sword path or timing.",
+  "timing": "92 samples at30fps; zero-based release39-54=500ms; full source1x",
+  "contact_status": "Exploratory weapon route, not accepted EX contact",
+  "human_acceptance": false
+}

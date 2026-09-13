@@ -1,4 +1,5 @@
 #include "CombatDebugHUD.h"
+#include "CombatDrawTracers.h"
 #include "Visual/TournamentGraphics.h"
 #include "Character/MeleeCharacter.h"
 #include "Character/MeleeCharacterMovementComponent.h"
@@ -8,6 +9,7 @@
 #include "GameFramework/PlayerController.h"
 #include "Engine/Canvas.h"
 #include "Engine/World.h"
+#include "Camera/WeaponPresentationComponent.h"
 
 void ACombatDebugHUD::DrawHUD()
 {
@@ -20,6 +22,8 @@ void ACombatDebugHUD::DrawHUD()
     DrawRect(FLinearColor(.015f,.018f,.022f,.7f),BarX-2,H-65,224,15);
     DrawRect(FLinearColor(.48f,.065f,.045f),BarX,H-63,220*FMath::Clamp(float(S.health/100.),0.f,1.f),5);
     DrawRect(FLinearColor(.65f,.48f,.22f),BarX,H-55,220*FMath::Clamp(float(State.stamina/100.),0.f,1.f),3);
+    if(S.exMotion)DrawText(State.exActive?TEXT("EX_v002 | right horizontal | phase mapping candidate"):
+        TEXT("EX_v002 ready | other attacks / defense: provisional"),FColor(205,187,146),36,52,nullptr,.8f);
     DrawText(TEXT("C I T A D E L"),FColor(205,187,146),36,30,nullptr,1.1f);
     if(Lab->bDebug){
         DrawText(FString::Printf(TEXT("%s    %.0f HP    %.0f STAMINA%s"),UTF8_TO_TCHAR(mcl::phaseName(State.phase)),S.health,State.stamina,State.infiniteStamina?TEXT("  [INF]"):TEXT("")),FColor::White,38,63);
@@ -51,6 +55,16 @@ void ACombatDebugHUD::DrawHUD()
         }
     }
     if(Lab->bDebug)DrawText(TEXT("F7  ")+TournamentGraphics::Profile,FColor(175,195,210),W-210,30);
+    if(Lab->Tracers&&Lab->Tracers->Enabled()){
+        const float X=W-345,Y=65;
+        DrawRect(FLinearColor(.01f,.015f,.02f,.88f),X-10,Y-7,335,125);
+        DrawText(TEXT("DRAW TRACERS | F8 toggle | F9 clear"),FColor::White,X,Y);
+        DrawText(TEXT("Orange: damaging sweep centerlines"),FColor(255,145,25),X,Y+20);
+        DrawText(TEXT("Cyan: rendered blade during release"),FColor(30,225,255),X,Y+40);
+        DrawText(TEXT("Magenta: same-frame endpoint gaps >0.5cm"),FColor(255,45,210),X,Y+60,nullptr,.85f);
+        DrawText(FString::Printf(TEXT("Current max gap %.1f cm | %d visible releasing"),Lab->Tracers->MaxGapCm,Lab->Tracers->VisibleActors),FColor::White,X,Y+80,nullptr,.85f);
+        DrawText(FString::Printf(TEXT("Sweep radius %.1f cm; line width is symbolic"),T.BladeRadius),FColor(185,195,205),X,Y+98,nullptr,.8f);
+    }
     if(!Lab->bDebug)return;
     const FMovementPresentationSignals Move=M?M->MovementSignals:FMovementPresentationSignals{};
     auto GaitName=[](EMeleeGait Gait){
@@ -64,6 +78,12 @@ void ACombatDebugHUD::DrawHUD()
         }
     };
     DrawText(FString::Printf(TEXT("Strike release %.0f ms / damage active %.0f ms"),T.StrikeRelease*1000,T.StrikeRelease*(T.DamageEnd-T.DamageStart)*1000),FColor::White,34,390);
+    const TCHAR* Family=State.attack.kind==mcl::AttackKind::Stab?TEXT("STAB"):
+        std::sin(State.attack.angle*mcl::Rad)>.4?TEXT("OVERHEAD"):
+        std::sin(State.attack.angle*mcl::Rad)<-.4?TEXT("UNDERHAND"):TEXT("HORIZONTAL");
+    DrawText(FString::Printf(TEXT("%s | acceleration %.0f cm/s2 | body yaw %.1f pitch %.1f\nreach correction %.2f cm | rendered blade error %.4f cm | mcl.MotionDebug 1"),
+        Family,S.tipAcceleration.length(),S.bodyMotion.chestYaw,S.bodyMotion.chestPitch,
+        S.reachCorrection,C->Presentation->BladeError),FColor::Cyan,34,416);
     FString Debug=FString::Printf(TEXT("STATE %s | %s | angle %.1f | raw %.1f\nphase %.3f / %.3f | release %.3f | spin %.1f / %.1f\nweapon %.0f cm/s | angular %.0f deg/s | yaw cap %.0f | pitch cap %.0f\nfeint %d | morph %d | combo %d | queued %d | riposte %.3f\nparry active %d | remaining %.3f | guard yaw %.1f pitch %.1f\nchamber %d | remaining %.3f | incoming %.1f | difference %.1f / %.1f\nmove %.0f cm/s | gait %s | normalized %.2f | grounded %d\nlocal v F %.0f R %.0f | accel F %.0f R %.0f | brake %.2f | reverse %.2f\ncombat steps %d | collision queries %d | overload %d"),
         UTF8_TO_TCHAR(mcl::phaseName(State.phase)),State.attack.kind==mcl::AttackKind::Stab?TEXT("STAB"):TEXT("STRIKE"),State.attack.angle,State.attack.rawAngle,
         State.elapsed,State.duration(),State.phase==mcl::Phase::Release?State.progress():0,State.releaseRotation,T.AntiSpinThreshold,

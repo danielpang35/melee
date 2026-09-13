@@ -19,7 +19,8 @@ struct ParryGeometry
             + Vec{
                 0,
                 0,
-                t.ParryVertical + t.BoxZInfluence * guard.pitch
+                t.ParryVertical + t.BoxZInfluence * guard.pitch+
+                    t.GuardChestOffset*(1.-smooth(std::abs(guard.pitch)/45.))
             };
 
         const Orientation outward{

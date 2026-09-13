@@ -1,0 +1,89 @@
+﻿{
+	"devices": [
+		{
+			"deviceName": "DANIEL-COMPUTER",
+			"instance": "2DF616B449803A4CBC40E5A5C749A398",
+			"instanceName": "DANIEL-COMPUTER-8936",
+			"platform": "WindowsEditor",
+			"oSVersion": "Windows 10 (22H2) [10.0.19045.7663] ",
+			"model": "Default",
+			"gPU": "NVIDIA GeForce RTX 5070",
+			"cPUModel": "AMD Ryzen 5 1600 Six-Core Processor            ",
+			"rAMInGB": 16,
+			"renderMode": "SM6",
+			"rHI": "",
+			"appInstanceLog": ""
+		}
+	],
+	"reportCreatedOn": "2026.09.06-19.05.56",
+	"succeeded": 4,
+	"succeededWithWarnings": 0,
+	"failed": 0,
+	"notRun": 0,
+	"inProcess": 0,
+	"totalDuration": 0.35278308391571045,
+	"comparisonExported": false,
+	"comparisonExportDirectory": "",
+	"tests": [
+		{
+			"testDisplayName": "AssetBank",
+			"fullTestPath": "MeleeCombatLab.Audio.AssetBank",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"2DF616B449803A4CBC40E5A5C749A398"
+			],
+			"duration": 0.056405700743198395,
+			"dateTime": "2026.09.06-19.05.56",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "AssetContract",
+			"fullTestPath": "MeleeCombatLab.Citadel.AssetContract",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"2DF616B449803A4CBC40E5A5C749A398"
+			],
+			"duration": 0.22854730486869812,
+			"dateTime": "2026.09.06-19.05.56",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FrameRates",
+			"fullTestPath": "MeleeCombatLab.FrameRates",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"2DF616B449803A4CBC40E5A5C749A398"
+			],
+			"duration": 0.059789396822452545,
+			"dateTime": "2026.09.06-19.05.56",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "StateFlow",
+			"fullTestPath": "MeleeCombatLab.StateFlow",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"2DF616B449803A4CBC40E5A5C749A398"
+			],
+			"duration": 0.0080407001078128815,
+			"dateTime": "2026.09.06-19.05.56",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		}
+	]
+}

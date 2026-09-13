@@ -24,6 +24,16 @@ USkeleton* UCitadelAssetTools::EnsureSkeleton(USkeletalMesh* Mesh)
     TArray<FSkeletalMaterial> Surfaces=Mesh->GetMaterials();
     if(Surfaces.IsEmpty())Surfaces.Add(FSkeletalMaterial(Material));
     for(auto& Surface:Surfaces){Surface.MaterialInterface=Material;Surface.MaterialSlotName=TEXT("KnightPBR");}
+    if(Mesh->GetName().StartsWith(TEXT("SK_Combat"))&&Surfaces.Num()>=2){
+        auto* Glove=LoadObject<UMaterialInterface>(nullptr,TEXT("/Game/Visual/Citadel/Materials/M_CitadelGlove.M_CitadelGlove"));
+        if(!Glove)return nullptr;
+        Surfaces[1].MaterialInterface=Glove;Surfaces[1].MaterialSlotName=TEXT("GripLeather");
+        if(Surfaces.Num()==3){
+            auto* Steel=LoadObject<UMaterialInterface>(nullptr,TEXT("/Game/Visual/Citadel/Materials/M_CitadelArmSteel.M_CitadelArmSteel"));
+            if(!Steel)return nullptr;
+            Surfaces[2].MaterialInterface=Steel;Surfaces[2].MaterialSlotName=TEXT("ArmSteel");
+        }
+    }
     // SetMaterials updates the serialized material information cache; writing
     // the reflected transient Materials array from Python does not.
     Mesh->SetMaterials(Surfaces);

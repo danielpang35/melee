@@ -1,7 +1,5 @@
 #include "Combat/CombatSimulation.h"
 #include "Combat/Attacks/AttackDirectionResolver.h"
-#include "Movement/MomentumModel.h"
-#include "Movement/LungeModel.h"
 #include "Training/TrainingPattern.h"
 #include <iostream>
 #include <stdexcept>
@@ -15,9 +13,11 @@ void near(double a,double b,double tolerance,const char* message){expect(std::ab
 void stateTests()
 {
     Tuning t;AttackStateMachine s;
-    near(t.StrikeWindup,.65,1e-12,"Strike windup baseline");
+    near(t.StrikeWindup,.575,1e-12,"Strike windup baseline");
     near(t.StrikeRelease,.50,1e-12,"Strike release baseline");
-    near(t.ComboWindup,.70,1e-12,"Combo windup baseline");
+    near(t.ComboWindup,.80,1e-12,"Combo windup baseline");
+    expect(t.ComboWindup>t.StrikeWindup&&t.ComboWindup>t.StabWindup,
+        "Combo windup remains slower than every normal windup");
     expect(s.start({},t),"Idle accepts attack");expect(s.phase==Phase::Windup,"Starts windup");
     s.advance(t.StrikeWindup,t);expect(s.phase==Phase::Release,"Windup -> release");
     s.advance(t.StrikeRelease,t);expect(s.phase==Phase::Recovery,"Release -> recovery");
@@ -59,6 +59,43 @@ void comboTests()
         near(wrap(incoming.angle-(180.-sector*60.)),0,1e-6,"Chamber origin mirrors into defender view");
     }
 }
+void stanceTests()
+{
+    Tuning t;
+    for(double source:{0.,60.,120.,180.,240.,300.})for(double next:{0.,60.,120.,180.,240.,300.}){
+        AttackStateMachine s;s.start({AttackKind::Strike,source,source},t);
+        const Stance sourceSide=std::cos(source*Rad)>0?Stance::Right:Stance::Left;
+        expect(s.attack.stance==sourceSide,"Auto latches the ordinary direction's body side");
+        s.advance(t.StrikeWindup+t.StrikeRelease*.6,t);
+        expect(s.start({AttackKind::Strike,next,next},t),"Ordinary combo queues");
+        const double legacy=std::cos(next*Rad)*std::cos(source*Rad)>=0?wrap(180.-next):next;
+        near(wrap(s.queued.angle-legacy),0,1e-10,"Six-direction combo angle compatibility");
+        expect(s.queued.stance==oppositeStance(sourceSide),"Combo side latched in queue");
+    }
+    for(double vertical:{90.,-90.})for(Stance initial:{Stance::Auto,Stance::Right,Stance::Left}){
+        AttackStateMachine s;s.start({AttackKind::Strike,vertical,vertical,initial},t);
+        Stance side=initial==Stance::Auto?Stance::Right:initial;
+        expect(s.attack.stance==side,"Vertical stance resolves deterministically or respects explicit input");
+        for(int chain=0;chain<3;++chain){
+            s.advance(s.definition.windup+t.StrikeRelease*.6,t);
+            expect(s.start({AttackKind::Strike,vertical,vertical},t),"Vertical combo queues");
+            near(wrap(s.queued.angle-vertical),0,1e-10,"Vertical combo retains cut angle");
+            expect(s.queued.stance==oppositeStance(side),"Vertical combo explicitly changes body side");
+            s.advance(t.StrikeRelease*.4,t);side=oppositeStance(side);
+            expect(s.attack.stance==side&&s.phase==Phase::Windup,"Queued vertical stance survives transition");
+            near(s.definition.windup,t.ComboWindup,1e-10,"Stance does not retime combo");
+            expect(!s.chamberActive(t),"Stance does not restore combo chamber eligibility");
+        }
+    }
+    AttackStateMachine s;
+    s.start({AttackKind::Strike,0,0,Stance::Left},t);
+    expect(s.attack.stance==Stance::Left&&s.attack.angle==0,"Explicit stance is independent of angle");
+    expect(s.start({AttackKind::Stab,180,180,Stance::Right},t),"Committed action morphs");
+    expect(s.attack.stance==Stance::Left,"Morph retains the committed body side");
+    s.advance(s.definition.windup+t.StabRelease*.6,t);
+    expect(s.start({AttackKind::Strike,180,180,Stance::Left},t),"Explicit-angle combo queues");
+    expect(s.queued.stance==Stance::Right&&s.queued.angle==180,"Combo enforces opposite stance without changing explicit angle");
+}
 void chamberTests()
 {
     Tuning t;
@@ -77,6 +114,7 @@ void geometryTests()
 {
     Tuning t;auto neutral=ParryGeometry::make({}, {},t);
     expect(neutral.box({{100,0,0},{0,0,0}},4),"Front box sweep");
+    expect(neutral.box({{45,0,66},{60,0,66}},4),"Neutral guard covers the raised chest-level hand path");
     expect(!neutral.catches({{-150,0,0},{-35,0,0}},4),"Rear attack bypasses guard");
     near(t.ParryWidth,80,1e-12,"Parry width baseline");
     near(t.ParryHeight,110,1e-12,"Parry height baseline");
@@ -162,8 +200,8 @@ void doubleParryTimingTests()
     };
     expect(run(true,false,.5)==Resolution::Parry,"Integrated active parry blocks");
     expect(run(true,false,0)==Resolution::Hit,"Expired parry fails");
-    expect(run(false,true,.60)==Resolution::Chamber,"Integrated matching chamber");
-    expect(run(false,true,.60,true)==Resolution::Hit,"Integrated wrong chamber fails");
+    expect(run(false,true,contactTime(240,0)-.1)==Resolution::Chamber,"Integrated matching chamber");
+    expect(run(false,true,contactTime(240,0)-.1,true)==Resolution::Hit,"Integrated wrong chamber fails");
 }
 void robustnessTests()
 {
@@ -190,7 +228,7 @@ void robustnessTests()
     auto order=[](bool reverse){CombatSimulation world;Combatant attacker,defender;attacker.id=1;defender.id=2;
         attacker.reset({0,0,88},{},world.tuning);defender.reset({135,0,88},{180,0},world.tuning);
         world.actors=reverse?std::vector<Combatant*>{&defender,&attacker}:std::vector<Combatant*>{&attacker,&defender};attacker.start({},world.tuning);
-        bool defending=false;int count=0;for(int i=0;i<240;++i){if(world.time>=.6&&!defending){defender.start({AttackKind::Strike,180,180},world.tuning);defending=true;}
+        const double defenseAt=contactTime(240,0)-.1;bool defending=false;int count=0;for(int i=0;i<240;++i){if(world.time>=defenseAt&&!defending){defender.start({AttackKind::Strike,180,180},world.tuning);defending=true;}
             world.advance(1./240.);for(auto e:world.events)if(e.result==Resolution::Chamber)++count;}return count;};
     expect(order(false)==1&&order(true)==1,"Defense independent of registration order");
 }
@@ -213,8 +251,17 @@ void flinchAndRiposteTests()
     expect(s.phase==Phase::Release,"Riposte release immune even after another event");
     near(s.yawCap(t),t.ReleaseEarlyCap*t.RiposteTurnScale,1e-8,"Riposte yaw is looser");
 
-    auto ordinary=AttackTrajectory::release({},.5),counter=AttackTrajectory::riposteRelease({},.5,true);
-    expect(counter.hilt.z>ordinary.hilt.z+10,"Riposte has a distinct authoritative raised swing");
+    // Compare at the riposte's linear phase map: ordinary acceleration is
+    // intentionally different. Countering must not add a second high guard.
+    for(double direction:{0.,60.,90.,180.,270.}){
+        AttackIntent intent{AttackKind::Strike,direction,direction};
+        for(double p:{0.,.25,.5,.75,1.}){
+            const auto base=AttackTrajectory::release(intent,p,t,true);
+            const auto counter=AttackTrajectory::riposteRelease(intent,p,true,t);
+            near(counter.hilt.z,base.hilt.z,1e-8,"Riposte follows selected attack height without added lift");
+            near(angle(counter.direction,base.direction),0.,1e-6,"Riposte preserves selected cutting plane");
+        }
+    }
 
     s.advance(t.StrikeRelease,t);s.flinch();
     expect(s.phase==Phase::Flinch,"Riposte recovery is vulnerable");
@@ -280,7 +327,7 @@ void newStateTimingTests()
     s=AttackStateMachine{};s.start({},t);s.advance(.20,t);s.feint(t);
     s.advance(t.FeintRecovery-.001,t);expect(!s.start({},t),"Feint recovery still active");
     s.advance(.002,t);expect(s.start({},t),"Attack accepted when feint recovery expires");
-    near(s.definition.windup,.65,1e-8,"Normal strike windup baseline is 650 ms");
+    near(s.definition.windup,.575,1e-8,"Normal strike windup baseline is 575 ms");
 
     // Chambered attacker becomes gameplay-neutral immediately.
     s=AttackStateMachine{};s.start({},t);s.advance(t.StrikeWindup,t);
@@ -288,25 +335,71 @@ void newStateTimingTests()
     expect(s.phase==Phase::Idle&&!s.comboQueued&&!s.isRiposte,"Chamber hard-resets attacker to idle");
     expect(s.start({},t),"Chambered attacker may act immediately after neutral reset");
 
-    near(t.ComboWindup,.7,1e-8,"Combo windup baseline is 700 ms");
+    near(t.ComboWindup,.80,1e-8,"Combo transfer windup is 800 ms");
 }void movementTests()
 {
-    Tuning t;MomentumModel m;for(int i=0;i<240;++i)m.update({500,0,0},{1,0,0},1./240.,t);
-    expect(m.value>.65,"Consistent movement builds momentum");double before=m.value;
-    for(int i=0;i<24;++i)m.update({500,0,0},{-1,0,0},1./240.,t);
-    expect(m.value<before-.1,"Reversal loses momentum");
-    m=MomentumModel{};m.value=1;for(int i=0;i<240;++i)m.update({500,0,0},{1,0,0},1./240.,t);
-    near(m.value,1,1e-8,"Camera-only changes have no momentum input");
-    LungeModel l;l.begin({1,0,0},1,1,t);double distance=0;for(int i=0;i<120;++i)distance+=l.step(1./240.,t).length()/240.;
-    expect(distance>25&&distance<=t.LungeMaxDisplacement+.001,"Lunge controlled displacement");
-    l.begin({1,0,0},-1,1,t);near(l.step(.01,t).length(),0,1e-8,"Backpedal does not lunge");
+    // Grounded locomotion is covered by MovementTests.cpp.
+    Tuning t;
     AttackDirectionResolver resolver;resolver.sample(0,10,0);auto intent=resolver.resolve(.01,t);near(intent.angle,0,1e-8,"Right selection");
     resolver.sample(.1,-10,17);intent=resolver.resolve(.1,t);near(intent.angle,120,1e-8,"Upper-left selection");
     near(resolver.resolve(1,t).angle,120,1e-8,"Deadzone stable fallback");
 }
-int main()
+void leanTests()
 {
-    try{stateTests();comboTests();chamberTests();geometryTests();spatialTests();defenseIntegration();robustnessTests();flinchAndRiposteTests();newStateTimingTests();doubleParryTimingTests();movementTests();
+    Tuning t;
+    auto contact=[&](double pitch,Segment trace,bool crouch=false){
+        CombatSimulation sim;Combatant attacker,defender;attacker.id=1;defender.id=2;
+        if(crouch){defender.bodyHalfHeight=60;defender.eyeHeight=54;}
+        attacker.reset({-180,0,88},{},t);defender.reset({0,0,crouch?60.:88.},{0,pitch},t);
+        attacker.start({},t);attacker.advance(t.StrikeWindup+t.StrikeRelease*.5,t);
+        attacker.traces={trace};sim.actors={&attacker,&defender};sim.resolve();
+        return defender.hitsTaken;
+    };
+    const Segment head{{0,-80,165},{0,80,165}},legs{{0,-80,24},{0,80,24}};
+    expect(contact(0,head)==1,"Upright target occupies the original head line");
+    for(double pitch:{-85.,85.}){
+        expect(contact(pitch,head)==0,"Duck and leanback move the head out of a real resolving trace");
+        expect(contact(pitch,legs)==1,"Lean retains lower-body collision coverage");
+        const double x=pitch<0?54.:-54.;
+        const Segment torso{{x,-80,111},{x,80,111}};
+        expect(contact(0,torso)==0&&contact(pitch,torso)==1,"Moved torso can be struck where upright capsule was absent");
+        Combatant d;d.reset({0,0,88},{43,pitch},t);
+        const auto frame=d.bodyFrame();const Vec headPoint=frame.transform(d.position+Vec{0,0,76});
+        expect(d.region(Resolution::Hit,headPoint)==ContactRegion::Head,"Head feedback follows the leaned head");
+        expect(d.region(Resolution::Hit,d.position-Vec{0,0,50})==ContactRegion::Body,"Grounded leg remains a body contact");
+        expect(d.region(Resolution::Parry,headPoint)==ContactRegion::None,"Defense cannot emit head impact classification");
+        near((frame.eye()-frame.hip).length(),BodyFrame::HipToEye,1e-8,"Hip arc keeps torso length fixed");
+        near((frame.untransform(headPoint)-(d.position+Vec{0,0,76})).length(),0,1e-8,"Lean inverse preserves contact coordinates");
+    }
+    expect(contact(0,head,true)==0&&contact(85,legs,true)==1,"Crouch lowers the eye and preserves the feet");
+    // A thin obstruction can lie between clear endpoint poses.
+    const double fraction=clearLeanFraction([](double a,double b){return b<.37||a>.41;});
+    expect(fraction<.37&&fraction>.369,"Clearance stops at the first intermediate obstruction");
+    near(clearLeanFraction([](double,double){return false;}),0,1e-8,"Fully blocked lean falls back to upright");
+    near(clearLeanFraction([](double,double){return true;}),1,1e-8,"Unobstructed lean uses its full arc");
+    Vec expectedEye,expectedTip;
+    for(int fps:{30,60,144,240}){
+        CombatSimulation sim;Combatant s;s.externalView=false;s.reset({0,0,88},{},t);sim.actors={&s};s.start({},t);
+        int calls=0;double clock=0;
+        sim.beforeStep=[&](double dt){clock+=dt;s.view.pitch=60*std::sin(clock*2);s.desired=s.view;};
+        sim.constrainLean=[&](const Combatant&){++calls;return .4;};
+        for(int i=0;i<fps;++i)sim.advance(1./fps);
+        expect(calls==240&&s.leanFraction==.4,"World clearance runs before every fixed-step weapon and body update");
+        near(s.bodyFrame().torso.pitch,s.view.pitch*t.TorsoPitchScale*.4,1e-8,"Obstruction constrains shared torso and camera");
+        if(fps==30){expectedEye=s.eye();expectedTip=s.weapon.tip;}
+        else {near((s.eye()-expectedEye).length(),0,1e-7,"Lean is frame-rate independent");near((s.weapon.tip-expectedTip).length(),0,1e-7,"Constrained blade is frame-rate independent");}
+    }
+    Combatant guard;guard.reset({0,0,88},{0,45},t);guard.parry(t);guard.advance(.01,t);
+    const auto original=ParryGeometry::make(guard.position,guard.guard,t);
+    near((guard.defense.center-original.center-(guard.eye()-guard.uprightEye())).length(),0,1e-8,"Guard translates with lean while retaining its angle and size");
+    near(guard.defense.boxRotation.pitch,original.boxRotation.pitch,1e-8,"Lean does not double-rotate parry geometry");
+    t.TorsoPitchScale=0;guard.advance(.01,t);
+    near((guard.eye()-guard.uprightEye()).length(),0,1e-8,"Live tuning can restore the upright baseline");
+}
+
+int main(int argc,char** argv)
+{
+    try{if(argc==2&&std::string(argv[1])=="--timing-only"){stateTests();comboTests();stanceTests();std::cout<<"PASS timing: "<<checks<<" checks (double parries excluded)\n";return 0;}leanTests();stateTests();comboTests();stanceTests();chamberTests();geometryTests();spatialTests();defenseIntegration();robustnessTests();flinchAndRiposteTests();newStateTimingTests();doubleParryTimingTests();movementTests();
         std::cout<<"PASS: "<<checks<<" checks\n";return 0;}
     catch(const std::exception& e){std::cerr<<"FAIL after "<<checks<<" checks: "<<e.what()<<'\n';return 1;}
 }

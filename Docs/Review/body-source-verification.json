@@ -1,0 +1,500 @@
+{
+  "source_sha256": "67eeee22bd652e3ede89942a12621cd4dea103d9ca58309710adb158a1cfc319",
+  "audit": {
+    "0": {
+      "vertices": 30000,
+      "triangles": 59996,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "inconsistent_winding_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0,
+      "duplicate_faces": 0,
+      "nonadjacent_intersections": 0,
+      "opposed_custom_normal_faces": 0,
+      "unweighted_vertices": 0
+    },
+    "1": {
+      "vertices": 15001,
+      "triangles": 29998,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "inconsistent_winding_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0,
+      "duplicate_faces": 0,
+      "nonadjacent_intersections": 0,
+      "opposed_custom_normal_faces": 0,
+      "unweighted_vertices": 0
+    },
+    "2": {
+      "vertices": 6001,
+      "triangles": 11998,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "inconsistent_winding_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0,
+      "duplicate_faces": 0,
+      "nonadjacent_intersections": 0,
+      "opposed_custom_normal_faces": 0,
+      "unweighted_vertices": 0
+    },
+    "3": {
+      "vertices": 2001,
+      "triangles": 3998,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "inconsistent_winding_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0,
+      "duplicate_faces": 0,
+      "nonadjacent_intersections": 0,
+      "opposed_custom_normal_faces": 0,
+      "unweighted_vertices": 0
+    }
+  },
+  "captures": [
+    {
+      "lod": 0,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\LOD0\\front.png",
+      "camera": {
+        "name": "front",
+        "location": [
+          0.0,
+          -4.0,
+          0.9100000262260437
+        ],
+        "rotation": [
+          1.5707964897155762,
+          -0.0,
+          0.0
+        ],
+        "target": [
+          0,
+          0,
+          0.91
+        ],
+        "orthographic_scale": 2.05
+      },
+      "frame": 1
+    },
+    {
+      "lod": 0,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\LOD0\\rear.png",
+      "camera": {
+        "name": "rear",
+        "location": [
+          0.0,
+          4.0,
+          0.9100000262260437
+        ],
+        "rotation": [
+          -1.570796251296997,
+          3.141592502593994,
+          -0.0
+        ],
+        "target": [
+          0,
+          0,
+          0.91
+        ],
+        "orthographic_scale": 2.05
+      },
+      "frame": 1
+    },
+    {
+      "lod": 0,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\LOD0\\left.png",
+      "camera": {
+        "name": "left",
+        "location": [
+          4.0,
+          0.0,
+          0.9100000262260437
+        ],
+        "rotation": [
+          1.5707963705062866,
+          -0.0,
+          1.5707963705062866
+        ],
+        "target": [
+          0,
+          0,
+          0.91
+        ],
+        "orthographic_scale": 2.05
+      },
+      "frame": 1
+    },
+    {
+      "lod": 0,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\LOD0\\right.png",
+      "camera": {
+        "name": "right",
+        "location": [
+          -4.0,
+          0.0,
+          0.9100000262260437
+        ],
+        "rotation": [
+          1.5707963705062866,
+          -0.0,
+          -1.5707963705062866
+        ],
+        "target": [
+          0,
+          0,
+          0.91
+        ],
+        "orthographic_scale": 2.05
+      },
+      "frame": 1
+    },
+    {
+      "lod": 1,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\LOD1\\front.png",
+      "camera": {
+        "name": "front",
+        "location": [
+          0.0,
+          -4.0,
+          0.9100000262260437
+        ],
+        "rotation": [
+          1.5707964897155762,
+          -0.0,
+          0.0
+        ],
+        "target": [
+          0,
+          0,
+          0.91
+        ],
+        "orthographic_scale": 2.05
+      },
+      "frame": 1
+    },
+    {
+      "lod": 1,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\LOD1\\rear.png",
+      "camera": {
+        "name": "rear",
+        "location": [
+          0.0,
+          4.0,
+          0.9100000262260437
+        ],
+        "rotation": [
+          -1.570796251296997,
+          3.141592502593994,
+          -0.0
+        ],
+        "target": [
+          0,
+          0,
+          0.91
+        ],
+        "orthographic_scale": 2.05
+      },
+      "frame": 1
+    },
+    {
+      "lod": 1,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\LOD1\\left.png",
+      "camera": {
+        "name": "left",
+        "location": [
+          4.0,
+          0.0,
+          0.9100000262260437
+        ],
+        "rotation": [
+          1.5707963705062866,
+          -0.0,
+          1.5707963705062866
+        ],
+        "target": [
+          0,
+          0,
+          0.91
+        ],
+        "orthographic_scale": 2.05
+      },
+      "frame": 1
+    },
+    {
+      "lod": 1,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\LOD1\\right.png",
+      "camera": {
+        "name": "right",
+        "location": [
+          -4.0,
+          0.0,
+          0.9100000262260437
+        ],
+        "rotation": [
+          1.5707963705062866,
+          -0.0,
+          -1.5707963705062866
+        ],
+        "target": [
+          0,
+          0,
+          0.91
+        ],
+        "orthographic_scale": 2.05
+      },
+      "frame": 1
+    },
+    {
+      "lod": 2,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\LOD2\\front.png",
+      "camera": {
+        "name": "front",
+        "location": [
+          0.0,
+          -4.0,
+          0.9100000262260437
+        ],
+        "rotation": [
+          1.5707964897155762,
+          -0.0,
+          0.0
+        ],
+        "target": [
+          0,
+          0,
+          0.91
+        ],
+        "orthographic_scale": 2.05
+      },
+      "frame": 1
+    },
+    {
+      "lod": 2,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\LOD2\\rear.png",
+      "camera": {
+        "name": "rear",
+        "location": [
+          0.0,
+          4.0,
+          0.9100000262260437
+        ],
+        "rotation": [
+          -1.570796251296997,
+          3.141592502593994,
+          -0.0
+        ],
+        "target": [
+          0,
+          0,
+          0.91
+        ],
+        "orthographic_scale": 2.05
+      },
+      "frame": 1
+    },
+    {
+      "lod": 2,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\LOD2\\left.png",
+      "camera": {
+        "name": "left",
+        "location": [
+          4.0,
+          0.0,
+          0.9100000262260437
+        ],
+        "rotation": [
+          1.5707963705062866,
+          -0.0,
+          1.5707963705062866
+        ],
+        "target": [
+          0,
+          0,
+          0.91
+        ],
+        "orthographic_scale": 2.05
+      },
+      "frame": 1
+    },
+    {
+      "lod": 2,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\LOD2\\right.png",
+      "camera": {
+        "name": "right",
+        "location": [
+          -4.0,
+          0.0,
+          0.9100000262260437
+        ],
+        "rotation": [
+          1.5707963705062866,
+          -0.0,
+          -1.5707963705062866
+        ],
+        "target": [
+          0,
+          0,
+          0.91
+        ],
+        "orthographic_scale": 2.05
+      },
+      "frame": 1
+    },
+    {
+      "lod": 3,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\LOD3\\front.png",
+      "camera": {
+        "name": "front",
+        "location": [
+          0.0,
+          -4.0,
+          0.9100000262260437
+        ],
+        "rotation": [
+          1.5707964897155762,
+          -0.0,
+          0.0
+        ],
+        "target": [
+          0,
+          0,
+          0.91
+        ],
+        "orthographic_scale": 2.05
+      },
+      "frame": 1
+    },
+    {
+      "lod": 3,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\LOD3\\rear.png",
+      "camera": {
+        "name": "rear",
+        "location": [
+          0.0,
+          4.0,
+          0.9100000262260437
+        ],
+        "rotation": [
+          -1.570796251296997,
+          3.141592502593994,
+          -0.0
+        ],
+        "target": [
+          0,
+          0,
+          0.91
+        ],
+        "orthographic_scale": 2.05
+      },
+      "frame": 1
+    },
+    {
+      "lod": 3,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\LOD3\\left.png",
+      "camera": {
+        "name": "left",
+        "location": [
+          4.0,
+          0.0,
+          0.9100000262260437
+        ],
+        "rotation": [
+          1.5707963705062866,
+          -0.0,
+          1.5707963705062866
+        ],
+        "target": [
+          0,
+          0,
+          0.91
+        ],
+        "orthographic_scale": 2.05
+      },
+      "frame": 1
+    },
+    {
+      "lod": 3,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\LOD3\\right.png",
+      "camera": {
+        "name": "right",
+        "location": [
+          -4.0,
+          0.0,
+          0.9100000262260437
+        ],
+        "rotation": [
+          1.5707963705062866,
+          -0.0,
+          -1.5707963705062866
+        ],
+        "target": [
+          0,
+          0,
+          0.91
+        ],
+        "orthographic_scale": 2.05
+      },
+      "frame": 1
+    },
+    {
+      "lod": 0,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\arms\\rear-left.png",
+      "camera": {
+        "name": "rear-left",
+        "location": [
+          3.0,
+          4.0,
+          1.4800000190734863
+        ],
+        "rotation": [
+          1.5108683109283447,
+          4.036535372620165e-08,
+          2.498091697692871
+        ],
+        "target": [
+          0,
+          0,
+          1.18
+        ],
+        "orthographic_scale": 1.3
+      },
+      "frame": 1
+    },
+    {
+      "lod": 0,
+      "path": "Saved\\WorkingBodyRepair\\source-current\\arms\\rear-right.png",
+      "camera": {
+        "name": "rear-right",
+        "location": [
+          -3.0,
+          4.0,
+          1.4800000190734863
+        ],
+        "rotation": [
+          1.5108683109283447,
+          -4.036535372620165e-08,
+          -2.498091697692871
+        ],
+        "target": [
+          0,
+          0,
+          1.18
+        ],
+        "orthographic_scale": 1.3
+      },
+      "frame": 1
+    }
+  ],
+  "bones_unchanged": 118,
+  "lod012_topology_uvs_unchanged": true,
+  "changed_skin_weight_vertices": {
+    "0": 5901,
+    "1": 2916,
+    "2": 1164
+  },
+  "lod3": "Regenerated from repaired LOD0; interpolated original skin weights",
+  "visual_review": "Inspected named front/rear/left/right textured captures of all four LODs and rear arm close-ups; rest surface only. No universal deformation or continuous-playback pass."
+}

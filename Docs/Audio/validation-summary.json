@@ -1,0 +1,12 @@
+{
+  "date": "2026-09-06",
+  "native_checks": 296,
+  "native_address_sanitizer": true,
+  "unreal_asset_bank": "passed",
+  "asset_count": 18,
+  "import_errors": 0,
+  "import_warnings": 0,
+  "runtime_smoke_exit": 0,
+  "automated_listening_review": false,
+  "worktree": "D:/MeleeCombatLab-MEL7"
+}

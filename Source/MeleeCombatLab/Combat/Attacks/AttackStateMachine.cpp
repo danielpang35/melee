@@ -1,6 +1,23 @@
 #include "AttackStateMachine.h"
 namespace mcl
 {
+void AttackStateMachine::selectMotion(const Tuning& t)
+{
+    exActive=exEnabled&&attack.kind==AttackKind::Strike&&std::abs(wrap(attack.angle))<.001&&
+        resolvedStance(attack)==Stance::Right&&!isCombo&&!isRiposte&&!morphed;
+    if(exActive)definition={62./60.-.30,t.EXReleaseDuration,73./60.,0.,1.};
+}
+double AttackStateMachine::boundary(const Tuning& t) const
+{
+    if(phase==Phase::Idle||phase==Phase::Dead)return 1e30;
+    double end=duration();
+    if(phase==Phase::Parry)end=t.ParryDuration;
+    if(phase==Phase::ParryRecovery)end=t.ParryRecovery;
+    if(phase==Phase::Flinch)end=t.FlinchDuration;
+    if(phase==Phase::Release)for(double p:{definition.damageStart,definition.damageEnd})
+        if(p*definition.release>elapsed+1e-10)end=std::min(end,p*definition.release);
+    return std::max(0.,end-elapsed);
+}
 double AttackStateMachine::duration() const
 {
     switch(phase){case Phase::Windup:return definition.windup;case Phase::Release:return definition.release;
@@ -21,19 +38,28 @@ bool AttackStateMachine::damaging() const{return phase==Phase::Release&&progress
 bool AttackStateMachine::start(AttackIntent intent,const Tuning& t)
 {
     if(canCombo(t)){
-        if(std::cos(intent.angle*Rad)*std::cos(attack.angle*Rad)>=0){
+        const Stance nextSide=oppositeStance(resolvedStance(attack));
+        // Preserve legacy angle selection for Auto inputs in the six ordinary
+        // directions. Explicit stance callers select angle independently.
+        // Vertical reflection leaves the cut vertical; stance still alternates.
+        if(intent.stance==Stance::Auto&&resolvedStance(intent)!=nextSide){
             intent.angle=wrap(180.-intent.angle);intent.rawAngle=wrap(180.-intent.rawAngle);
         }
+        intent.stance=nextSide;
         queued=intent;comboQueued=true;return true;
     }
     if(canMorph(t)&&attack.kind!=intent.kind){
         if(!spend(t.MorphCost))return false;
+        // A morph changes attack kind inside the committed body-side action.
+        // Retain that stance even if the caller supplies a different side.
+        intent.stance=resolvedStance(attack);
         attack=intent;isRiposte=false;
         definition=AttackDefinition::make(intent.kind,t);definition.windup+=t.MorphAdditionalWindup;
-        elapsed=0;morphed=true;last=Resolution::Morph;return true;
+        elapsed=0;morphed=true;selectMotion(t);last=Resolution::Morph;return true;
     }
     if(phase!=Phase::Idle||feintRecoveryRemaining>1e-10)return false;
 
+    intent.stance=resolvedStance(intent);
     attack=intent;definition=AttackDefinition::make(intent.kind,t);
     isRiposte=riposteRemaining>0;
     if(isRiposte){definition.windup=t.RiposteWindup;last=Resolution::Riposte;}
@@ -41,7 +67,7 @@ bool AttackStateMachine::start(AttackIntent intent,const Tuning& t)
 
     phase=Phase::Windup;elapsed=attackAge=releaseRotation=0;
     comboQueued=isCombo=morphed=hitSomeone=false;
-    riposteRemaining=0;++serial;return true;
+    riposteRemaining=0;selectMotion(t);comboBaseWindup=definition.windup;++serial;return true;
 }
 bool AttackStateMachine::feint(const Tuning& t)
 {
@@ -99,7 +125,7 @@ void AttackStateMachine::cancel(Resolution result)
     if(result==Resolution::Chamber){chambered();return;}
     phase=Phase::Recovery;elapsed=0;comboQueued=false;last=result;
 }
-void AttackStateMachine::advance(double dt,const Tuning& t)
+void AttackStateMachine::advance(double dt,const Tuning& t,bool deferTransitions)
 {
     lastSpend+=dt;
     if(lastSpend>t.StaminaDelay)stamina=std::min(100.,stamina+t.StaminaRegen*dt);
@@ -109,6 +135,7 @@ void AttackStateMachine::advance(double dt,const Tuning& t)
     if(phase==Phase::Idle||phase==Phase::Dead)return;
 
     elapsed+=dt;attackAge+=dt;
+    if(deferTransitions)return;
     for(int transitions=0;transitions<8;++transitions){
         double limit=duration();
         if(phase==Phase::Parry)limit=t.ParryDuration;
@@ -121,9 +148,11 @@ void AttackStateMachine::advance(double dt,const Tuning& t)
         else if(phase==Phase::Release){
             if(!hitSomeone){spend(t.MissCost);last=Resolution::Miss;}
             if(comboQueued){
-                attack=queued;definition=AttackDefinition::make(attack.kind,t);definition.windup=t.ComboWindup;
+                attack=queued;definition=AttackDefinition::make(attack.kind,t);
+                // Combo timing is explicit, including after an authored EX opener.
+                definition.windup=t.ComboWindup;
                 phase=Phase::Windup;attackAge=elapsed;isCombo=true;isRiposte=false;
-                comboQueued=morphed=hitSomeone=false;++serial;last=Resolution::Combo;
+                comboQueued=morphed=hitSomeone=false;selectMotion(t);++serial;last=Resolution::Combo;
             }
             else phase=Phase::Recovery;
         }

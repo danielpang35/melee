@@ -15,6 +15,7 @@ struct LocomotionInput
     Vec forward{1,0,0};
     double dt=0;
     double attackProgress=0;
+    double inheritedForward=0;
     bool sprintRequested=false;
     bool crouched=false;
     bool grounded=true;
@@ -31,6 +32,7 @@ struct LocomotionOutput
     double speedNormalized=0;
     double reversalSeverity=0;
     double targetSpeed=0;
+    Vec driveVelocity,inheritedVelocity;
     Gait gait=Gait::Idle;
     CombatMovementState combatState=CombatMovementState::Neutral;
 };
@@ -121,10 +123,16 @@ struct LocomotionModel
         if(input.crouched)targetSpeed*=t.CrouchMoveScale;
 
         Vec target=direction*targetSpeed;
-        if(hasIntent&&input.phase==Phase::Release&&localDirection.x>0){
-            const double p=clamp(input.attackProgress/.82,0.,1.);
+        if(hasIntent&&input.grounded&&input.phase==Phase::Release&&localDirection.x>0){
+            const double p=clamp(input.attackProgress/t.ReleaseDriveEnd,0.,1.);
             const double envelope=std::sin(Pi*p);
-            target+=forward*(t.ReleaseForwardBias*localDirection.x*magnitude*envelope*envelope);
+            out.driveVelocity=forward*(t.ReleaseDriveSpeed*localDirection.x*magnitude*envelope*envelope*(input.crouched?.5:1.));
+            target+=out.driveVelocity;
+        }
+        if(hasIntent&&input.grounded&&localDirection.x>0&&
+            (input.phase==Phase::Windup||input.phase==Phase::Release)){
+            out.inheritedVelocity=forward*(input.inheritedForward*localDirection.x);
+            target+=out.inheritedVelocity;
         }
 
         Vec planar=input.velocity;planar.z=0;
@@ -147,6 +155,10 @@ struct LocomotionModel
         }
 
         const Vec next=moveTowards(planar,target,authority*input.dt);
+        const Vec withoutDrive=moveTowards(planar,target-out.driveVelocity,authority*input.dt);
+        const Vec withoutCarry=moveTowards(planar,target-out.driveVelocity-out.inheritedVelocity,authority*input.dt);
+        out.driveVelocity=next-withoutDrive;
+        out.inheritedVelocity=withoutDrive-withoutCarry;
         out.velocity={next.x,next.y,input.velocity.z};
         out.acceleration=(next-planar)/input.dt;
         out.targetSpeed=target.length();

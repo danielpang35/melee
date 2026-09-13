@@ -1,0 +1,239 @@
+{
+  "source": "ArtSource\\Kimodo\\RH_20260913\\B_reference_extended_v003\\B_ArmLoad_v004.blend",
+  "source_sha256": "a27fc7b3c2e43072e71711baa5724c4f7c0f21113a64605ea6aa6bea71c35cad",
+  "fps": 30.0,
+  "frames": [
+    1,
+    92
+  ],
+  "playback_rate": 1,
+  "cameras": {
+    "primary": [
+      3.1,
+      -5.4,
+      2.6
+    ],
+    "rear-quarter": [
+      -3.1,
+      5.4,
+      2.6
+    ],
+    "front": [
+      0,
+      -5.4,
+      1.0
+    ],
+    "rear": [
+      0,
+      5.4,
+      1.0
+    ],
+    "left": [
+      5.4,
+      0,
+      1.0
+    ],
+    "right": [
+      -5.4,
+      0,
+      1.0
+    ]
+  },
+  "still_frames_views": [
+    [
+      "front",
+      30
+    ],
+    [
+      "rear",
+      30
+    ],
+    [
+      "left",
+      30
+    ],
+    [
+      "right",
+      30
+    ],
+    [
+      "primary",
+      1
+    ],
+    [
+      "rear-quarter",
+      1
+    ],
+    [
+      "primary",
+      7
+    ],
+    [
+      "rear-quarter",
+      7
+    ],
+    [
+      "primary",
+      13
+    ],
+    [
+      "rear-quarter",
+      13
+    ],
+    [
+      "primary",
+      22
+    ],
+    [
+      "rear-quarter",
+      22
+    ],
+    [
+      "primary",
+      30
+    ],
+    [
+      "rear-quarter",
+      30
+    ],
+    [
+      "primary",
+      36
+    ],
+    [
+      "rear-quarter",
+      36
+    ],
+    [
+      "primary",
+      40
+    ],
+    [
+      "rear-quarter",
+      40
+    ],
+    [
+      "primary",
+      44
+    ],
+    [
+      "rear-quarter",
+      44
+    ],
+    [
+      "primary",
+      46
+    ],
+    [
+      "rear-quarter",
+      46
+    ],
+    [
+      "primary",
+      47
+    ],
+    [
+      "rear-quarter",
+      47
+    ],
+    [
+      "primary",
+      51
+    ],
+    [
+      "rear-quarter",
+      51
+    ],
+    [
+      "primary",
+      55
+    ],
+    [
+      "rear-quarter",
+      55
+    ],
+    [
+      "primary",
+      61
+    ],
+    [
+      "rear-quarter",
+      61
+    ],
+    [
+      "primary",
+      67
+    ],
+    [
+      "rear-quarter",
+      67
+    ],
+    [
+      "primary",
+      78
+    ],
+    [
+      "rear-quarter",
+      78
+    ],
+    [
+      "primary",
+      86
+    ],
+    [
+      "rear-quarter",
+      86
+    ],
+    [
+      "primary",
+      92
+    ],
+    [
+      "rear-quarter",
+      92
+    ]
+  ],
+  "outputs": {
+    "primary.mp4": "8f030b9b6f54335e080fafae24fa9de4f9c4d66323ae289060df44b5f8ef79a8",
+    "rear-quarter.mp4": "0fa2c7542ba87102be965f74e3f1612122144ec94a37a4f6afbf15cfda1a0164",
+    "front-0030.png": "a76f2e7d7ce8b1db9c42408866b67e74d2718e2707bb0e569e1e21fb0cd6e3b5",
+    "rear-0030.png": "df6c3e6f2bd7b7419d98a60066d37136bb67b07f5594435a0f19d364384c02e9",
+    "left-0030.png": "06712c7d293abbfd76ac1c3564c74198ddc101f232e51809d4c9b9208e4dc8b6",
+    "right-0030.png": "b4ed7961f383c5dd4385a34befedeac89439e7a886c4631eb3678bcff55d472c",
+    "primary-0001.png": "c13970a3230c313db527d2d0b77bf4f35dce49794420bb268ef1e178ea73569a",
+    "rear-quarter-0001.png": "a5fda02a1ee08d384df6c47723399ddc42551926eca1a6e9cc20e658570417c3",
+    "primary-0007.png": "36f5ea389035faeeebf40a81dd734d3b4ec819b47ba2424c3bc6be4cd2887567",
+    "rear-quarter-0007.png": "9d8330c7339f19775aaac1c64b3687e13fea3f5f2920f7ed8bb48a67b7f2d683",
+    "primary-0013.png": "f8770970b1898a84e56f756b67b024a60f01c0b2419997005d9403b0c7eaa1c8",
+    "rear-quarter-0013.png": "65e630a0a85b541970ff69b67fa0c2dc85940ee29ee58eb400de9147eb5725bb",
+    "primary-0022.png": "233b4e49dd3fb29141b5d19fbc562bd574ccf347b03529aa0ca531fa626ed251",
+    "rear-quarter-0022.png": "caa86fdc4d1b63ff77fa5ed326546165e3632f795db1b2e80183ed5feb678cd6",
+    "primary-0030.png": "167bad8dbb27d7c9ba93d690579f9d6a1aac743e2b976e0000b024168d002ca5",
+    "rear-quarter-0030.png": "d4d818a201130ea227f181698b14e9cc03e40af188a67d87456802cb2edb23c6",
+    "primary-0036.png": "6fd0a91d4ba5052c763582d61a981c949b479b7eeb5903150cfff9ef430cc25e",
+    "rear-quarter-0036.png": "deb5e2d6d588f3bcf26b88ef6dadf1fe852f72289fc243a287e9028220ab9c89",
+    "primary-0040.png": "ccdf4cbdb5ae2cc82306f51456b4137c3b80d6c56eaeff990dbeb4cc07673a20",
+    "rear-quarter-0040.png": "6bbc942d031f49cd28d85b5c526e34ffee3de0a8187bb62be0b55efbf2a2b437",
+    "primary-0044.png": "20f5b6d100df44f418bc9c68a00f59b22b996342d30b4ec493f986f66c672d06",
+    "rear-quarter-0044.png": "1e04c585bc140a3955695e587c4499dd211466e2883c3e915db881f3a3a00120",
+    "primary-0046.png": "fe9d330bf65619e3c04c658e0e5d80cd9dc52be3fcb16a09fff0da08528834de",
+    "rear-quarter-0046.png": "aeb0c03fa724b4839c061857c81be1a51386d7aafb6fd6b33d2e0d5b8000a349",
+    "primary-0047.png": "19165b4fb9b1f49b7ed654385e1cd65ca47a4234f5b038528ccf9265b9945fe6",
+    "rear-quarter-0047.png": "2681828889363702d562ef1b5cb44aa2f1e22dbca5c46f8e669c1d07814a3f4f",
+    "primary-0051.png": "d9a230ea3ce6c958686476163a6c64b98320c02179406ee244da41c8b3c3d102",
+    "rear-quarter-0051.png": "c9d7fab7639af0ac3f9177145203a29807b22c56a5675442d57824482bfa2f8c",
+    "primary-0055.png": "5b02b14d101148bb8133604d6169c15f096c3d2a0be4a962576a67bd0abdff5f",
+    "rear-quarter-0055.png": "1ee3b3f4d32d9b79958abfdeb089e46080d4c9878abbdd0c4c2d4089be764ec6",
+    "primary-0061.png": "a0fffaf5cb311106d0202516495ea2cb0fe344405ce00921204f490e2570b72a",
+    "rear-quarter-0061.png": "8076f1f0695e58ed85870266381899a0e88a3e4a1aede9271b9d199b03c77d71",
+    "primary-0067.png": "fa3cce9f566b9c915be16dfb5f5dd8a4d4b58d08ffcac0561ab10242d970f5f5",
+    "rear-quarter-0067.png": "685a160965a952c52f979614fc14d442ce8fb32843c279fa4ac0e436089ac4d4",
+    "primary-0078.png": "693fc85170fe28e9679c5d3d338d8ab6645a5a2c1ba1d950bbd7279593a7f732",
+    "rear-quarter-0078.png": "19ce1c9c8344859a4bd615aea5543c787c9ae0679772b929c1f67719680cbb59",
+    "primary-0086.png": "fb70e7e213f8a655a5d7c3f34796fcac9f5ef5df3ec25ea86a147d9d5f9c127c",
+    "rear-quarter-0086.png": "6a5b6becd6676036a2fab75a3868b0d7365cbe59ecfd0b5f23a567361f41e20f",
+    "primary-0092.png": "8af543f6d68c0f2406c7cf752cab3be49beb7bb91b38e8bcb2cbe4e8949933ca",
+    "rear-quarter-0092.png": "fd95139ea2710768d9c5040d0d3753a7464635b8fdf671537163341a57eb441f"
+  },
+  "evidence_limit": "Generated media only; no continuous viewing or human acceptance established"
+}

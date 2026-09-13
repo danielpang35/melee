@@ -39,6 +39,9 @@ UMeleeCharacterMovementComponent::UMeleeCharacterMovementComponent()
     GroundFriction=8.f;
     BrakingFrictionFactor=1.f;
     MaxWalkSpeedCrouched=210.f;
+    // Keep the 87.35 cm hip-to-eye torso above ground while crouched.
+    // UE's default 40 cm half-height would place this rig's hips below the floor.
+    SetCrouchedHalfHeight(60.f);
     MaxSimulationTimeStep=static_cast<float>(mcl::LocomotionModel::MaxSimulationStep);
     MaxSimulationIterations=8;
     GetNavAgentPropertiesRef().bCanCrouch=true;
@@ -54,6 +57,7 @@ void UMeleeCharacterMovementComponent::ResetCombatMovement()
     Momentum={};
     Lunge={};
     MovementSignals={};
+    DriveSerial=0;InheritedForward=0;bDriveCancelled=false;
 }
 
 float UMeleeCharacterMovementComponent::GetMaxSpeed() const
@@ -69,7 +73,7 @@ float UMeleeCharacterMovementComponent::GetMaxSpeed() const
     // here so CharacterMovement never clips the release bias after CalcVelocity.
     if(IsMovingOnGround()){
         return static_cast<float>(std::max({T.ForwardSpeed,T.LateralSpeed,T.BackwardSpeed,T.SprintSpeed})+
-            T.ReleaseForwardBias);
+            T.ReleaseDriveSpeed+T.SprintSpeed*T.AttackMomentumCarry);
     }
 
     const FVector Desired=Acceleration.GetSafeNormal2D();
@@ -129,7 +133,16 @@ void UMeleeCharacterMovementComponent::CalcVelocity(float Dt,float Friction,bool
     In.grounded=true;
     In.phase=State.phase;
 
-    const auto Out=mcl::LocomotionModel::step(In,T);
+    if(DriveSerial!=State.serial){
+        DriveSerial=State.serial;bDriveCancelled=false;
+        InheritedForward=FMath::Max(0.,FVector::DotProduct(Velocity,Forward)-T.ForwardSpeed*T.WindupMoveScale)*T.AttackMomentumCarry;
+    }
+    if(FVector::DotProduct(InputIntent,Forward)<-.15f)bDriveCancelled=true;
+    InheritedForward*=FMath::Exp(-Dt/0.65);
+    In.inheritedForward=bDriveCancelled?0.:InheritedForward;
+    auto DriveTuning=T;if(bDriveCancelled)DriveTuning.ReleaseDriveSpeed=0;
+
+    const auto Out=mcl::LocomotionModel::step(In,DriveTuning);
     Velocity.X=static_cast<float>(Out.velocity.x);
     Velocity.Y=static_cast<float>(Out.velocity.y);
 
@@ -148,20 +161,24 @@ void UMeleeCharacterMovementComponent::CalcVelocity(float Dt,float Friction,bool
     MovementSignals.CombatState=ToUnrealCombatState(Out.combatState);
     MovementSignals.bGrounded=true;
 
-    // Keep legacy diagnostics/playtest probes alive without letting them influence movement.
+    C->Combat->Simulation.lungeVelocity=Out.driveVelocity;
+    C->Combat->Simulation.inheritedVelocity=Out.inheritedVelocity;
     Momentum.value=MovementSignals.SpeedNormalized;
     Momentum.turnRate=MovementSignals.ReversalSeverity*180.;
     Momentum.loss=MovementSignals.BrakingIntensity;
     if(State.phase==mcl::Phase::Release){
-        Lunge.velocity=FMath::Max(0.f,FVector::DotProduct(Velocity,Forward));
+        Lunge.velocity=Out.driveVelocity.length();
         Lunge.displacement+=Lunge.velocity*Dt;
     }else Lunge={};
+    C->Combat->Simulation.lungeDisplacement=Lunge.displacement;
 }
 
 void UMeleeCharacterMovementComponent::UpdateFallbackSignals(const FVector& PreviousVelocity,float Dt)
 {
     auto* C=Cast<AMeleeCharacter>(CharacterOwner);
     if(!C||!C->Combat)return;
+    C->Combat->Simulation.lungeVelocity=C->Combat->Simulation.inheritedVelocity={};
+    C->Combat->Simulation.lungeDisplacement=0;Lunge={};
 
     const FRotator Yaw(0,C->GetActorRotation().Yaw,0);
     const FVector Accel=Dt>SMALL_NUMBER?(Velocity-PreviousVelocity)/Dt:FVector::ZeroVector;

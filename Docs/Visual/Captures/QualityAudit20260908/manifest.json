@@ -1,0 +1,64 @@
+{
+  "date": "2026-09-08",
+  "method": "Existing recorded evidence, sampled frames; not fresh live play, not continuous audio/video evaluation.",
+  "entries": [
+    {
+      "id": "G-FP",
+      "source": "Saved/MEL15/EX_fp_review.mp4",
+      "sha256": "a29b13ebca29e5cd92159809ebd66512b7729a0a6bc4593eccd90194fbde262a",
+      "dimensions": [
+        640,
+        360
+      ],
+      "sample_seconds": [
+        0,
+        0.8,
+        1.15,
+        3.967,
+        6.5,
+        9.5,
+        10.783,
+        11.3,
+        13.45
+      ]
+    },
+    {
+      "id": "G-TP",
+      "source": "Saved/MEL15/TP_block13_defender_v001.mp4",
+      "sha256": "287949087410040c82927bfeb33ae9dd3e31585000369a47bef95b7da340e134",
+      "dimensions": [
+        960,
+        720
+      ],
+      "sample_seconds": [
+        0,
+        0.5,
+        1,
+        1.5,
+        2,
+        2.5,
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "id": "G-MAT",
+      "source": "Saved/ArtReview/UnrealStyle/USP_v016/Review/evidence/daylight_combined_matched.png",
+      "sha256": "91ea81f3d1378678be73782cf634f4ccae031945786865df4158032c1c2e8168",
+      "file": "G-MAT.png"
+    },
+    {
+      "id": "G-MAT-DIST",
+      "source": "Saved/ArtReview/UnrealStyle/USP_v016/Review/evidence/daylight_combined_gameplay.png",
+      "sha256": "7e38ce193b0e3a96a5ffdb181f2e39f6d2f3a04c5c672401072ac416ec52c959",
+      "file": "G-MAT-DIST.png"
+    },
+    {
+      "id": "G-DRAFT",
+      "source": "Saved/TPCompactRefinement/D-whole-motion.jpg",
+      "sha256": "5ec54c513dd51ea8c07f698f46b4f579ff83d668d193b99869a4abc22e0ecd27",
+      "file": "G-DRAFT.jpg"
+    }
+  ]
+}

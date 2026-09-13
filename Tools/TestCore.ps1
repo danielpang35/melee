@@ -1,4 +1,4 @@
-param([switch]$Sanitize,[switch]$PresentationOnly,[switch]$MovementOnly)
+param([switch]$TimingOnly,[switch]$Sanitize,[switch]$PresentationOnly,[switch]$MovementOnly,[switch]$SwingOnly,[switch]$PerformanceOnly)
 $ErrorActionPreference = 'Stop'
 if ($PresentationOnly -and $MovementOnly) { throw 'Choose either -PresentationOnly or -MovementOnly.' }
 $projectRoot = Split-Path -Parent $PSScriptRoot
@@ -14,7 +14,7 @@ try {
     $source = Join-Path $projectRoot 'Source\MeleeCombatLab'
     $flags = @('/nologo','/std:c++20','/EHsc','/W4','/WX','/Zi','/Od',"/I$source")
     if ($Sanitize) { $flags += '/fsanitize=address' }
-    $testSource=if($MovementOnly){'MovementTests'}elseif($PresentationOnly){'PresentationTests'}else{'CombatTests'}
+    $testSource=if($PerformanceOnly){'PerformanceTests'}elseif($SwingOnly){'SwingTests'}elseif($MovementOnly){'MovementTests'}elseif($PresentationOnly){'PresentationTests'}else{'CombatTests'}
     $sources=@((Join-Path $projectRoot "Tests\$testSource.cpp"))
     if (!$MovementOnly) {
         $sources += (Join-Path $source 'Combat\Attacks\AttackStateMachine.cpp')
@@ -22,6 +22,7 @@ try {
     }
     & cl.exe @flags @sources "/Fe:$testSource.exe"
     if ($LASTEXITCODE -ne 0) { throw "Native $testSource compilation failed." }
-    & ".\$testSource.exe"
+    if($TimingOnly){ & ".\$testSource.exe" --timing-only }
+    else { & ".\$testSource.exe" }
     if ($LASTEXITCODE -ne 0) { throw "Native $testSource tests failed." }
 } finally { Pop-Location }

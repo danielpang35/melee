@@ -1,0 +1,15 @@
+{
+  "candidate": "B_reference_extended_v003",
+  "purpose": "attack",
+  "frame_count": 92,
+  "duration_seconds": 3.066666666666667,
+  "seed": 91362,
+  "attack_timing": {
+    "fps": 30,
+    "release_start_index": 39,
+    "release_end_index": 54,
+    "required_release_seconds": 0.5
+  },
+  "constraints": "constraints.json",
+  "prompt": "A standing person performs one powerful two-handed sword slash from right to left. The person makes an exaggerated wide arm-led windup, extending both arms farther to the right and backward while keeping the torso upright, drives a weighty horizontal strike across the front, absorbs the follow-through through the hips and bent knees, and returns to the same ready stance. Both hands hold one sword handle together."
+}

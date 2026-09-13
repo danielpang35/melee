@@ -1,0 +1,84 @@
+{
+  "source": "C:\\Users\\Daniel Pang\\OneDrive\\Documents\\ChatGPT\\swingmanipulation\\Saved\\ReferenceVideos\\Mordhau_KMA2nf278No\\source.mp4",
+  "bytes": 317703603,
+  "sha256": "2dad4192f6892ba121f735554b773328787388138b4566879e918ace41ee3266",
+  "method": "Decoded PTS; 0.5 s overview samples; frame-sequence visual inspection, not continuous playback",
+  "windows": [
+    [
+      "LH-A",
+      28,
+      36
+    ],
+    [
+      "LH-D",
+      56,
+      64
+    ],
+    [
+      "XR-A",
+      82,
+      90
+    ],
+    [
+      "XR-B",
+      112,
+      120
+    ],
+    [
+      "RH-A",
+      142,
+      150
+    ],
+    [
+      "RH-D",
+      170,
+      178
+    ],
+    [
+      "RO-A",
+      198,
+      206
+    ],
+    [
+      "RO-D",
+      226,
+      234
+    ],
+    [
+      "LO-A",
+      254,
+      262
+    ],
+    [
+      "XL-A",
+      282,
+      290
+    ],
+    [
+      "XL-D",
+      312,
+      320
+    ],
+    [
+      "RU-A",
+      340,
+      348
+    ],
+    [
+      "RU-D",
+      368,
+      376
+    ],
+    [
+      "LU-A",
+      398,
+      406
+    ],
+    [
+      "LU-D",
+      432,
+      440
+    ]
+  ],
+  "samples": 240
+}

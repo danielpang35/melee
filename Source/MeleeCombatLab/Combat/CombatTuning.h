@@ -3,13 +3,19 @@
 
 // Single registry used by simulation, Slate, JSON persistence and native tests.
 #define MCL_TUNABLES(X) \
- X(StrikeWindup,.65,.15,1.5,"Strike") \
+ X(StrikeWindup,.575,.15,1.5,"Strike") \
+ X(RightCutLoadBack,10.,0.,24.,"Strike") \
+ X(RightCutLoadSide,-2.,-12.,12.,"Strike") \
+ X(RightCutLoadLift,14.,0.,24.,"Strike") \
  X(StrikeRelease,.50,.15,1.5,"Strike") \
+ /* 0.30 retains the accepted native EX benchmark; project defaults select the feel candidate. */ \
+ X(EXReleaseDuration,.30,.15,.60,"Strike") \
  X(StrikeRecovery,.675,.1,1.5,"Strike") \
  X(StabWindup,.565,.15,1.5,"Stab") \
  X(StabRelease,.35,.15,1.5,"Stab") \
  X(StabRecovery,.675,.1,1.5,"Stab") \
- X(ComboWindup,.70,.15,1.5,"Strike") \
+ /* Combo transfers must always wind up slower than a normal strike or stab. */ \
+ X(ComboWindup,.80,.15,1.5,"Strike") \
  X(ComboStart,.50,0,1,"Strike") \
  X(ComboEnd,.96,0,1,"Strike") \
  X(DamageStart,.05,0,.45,"Strike") \
@@ -30,19 +36,22 @@
  X(ReleaseEarlyCap,255,30,600,"Swing") \
  X(ReleaseMidCap,245,30,600,"Swing") \
  X(ReleaseLateCap,220,30,600,"Swing") \
- X(StrikeReleaseFrontLoad,.45,0,1.25,"Swing") \
- X(PitchCap,220,30,600,"Swing") \
+ X(StrikeReleaseAcceleration,.85,0,1,"Swing") \
+ X(StrikeArcStart,78,55,100,"Swing") \
+ X(StrikeArcEnd,-82,-110,-55,"Swing") \
+ X(PitchCap,185,30,600,"Swing") \
  X(AntiSpinThreshold,175,60,300,"Swing") \
  X(MouseSensitivity,.70,.01,1,"Input") \
  X(MouseWindow,.095,.02,.2,"Input") \
  X(MouseDeadzone,2,0,20,"Input") \
  X(ParryDuration,.365,.1,.7,"Parry") \
- X(ParryRecovery,.55,.1,1.2,"Parry") \
+ X(ParryRecovery,.60,.1,1.2,"Parry") \
  X(ParryWidth,80,40,220,"Parry") \
  X(ParryHeight,110,70,260,"Parry") \
  X(ParryDepth,32,10,100,"Parry") \
  X(ParryForward,58,20,110,"Parry") \
  X(ParryVertical,0,-60,60,"Parry") \
+ X(GuardChestOffset,18,0,30,"Parry") \
  X(BoxPitchInfluence,-.30,-1,1,"Parry") \
  X(BoxZInfluence,-.70,-2,2,"Parry") \
  X(BoxForwardInfluence,.15,-1,1,"Parry") \
@@ -69,13 +78,16 @@
  X(PrecisionSpeedThreshold,120,20,250,"Movement") \
  X(SprintForwardRequirement,.55,.2,.95,"Movement") \
  X(CrouchMoveScale,.58,.3,.8,"Movement") \
+ X(TorsoPitchScale,.75,0,1,"Movement") \
  X(WindupMoveScale,.96,.65,1.1,"Movement") \
  X(ReleaseMoveScale,.90,.6,1.1,"Movement") \
  X(RecoveryMoveScale,.94,.65,1.1,"Movement") \
  X(ParryMoveScale,.92,.6,1.1,"Movement") \
  X(ParryRecoveryMoveScale,.86,.5,1.05,"Movement") \
  X(FlinchMoveScale,.72,.2,1,"Movement") \
- X(ReleaseForwardBias,35,0,120,"Movement") \
+ X(ReleaseDriveSpeed,95,0,160,"Movement") \
+ X(ReleaseDriveEnd,.72,.35,1,"Movement") \
+ X(AttackMomentumCarry,.60,0,1,"Movement") \
  X(GravityScale,1.4,.5,3,"Movement") \
  X(JumpSpeed,500,250,750,"Movement") \
  X(FeintCost,10,0,30,"Stamina") \

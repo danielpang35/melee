@@ -1,0 +1,21 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\Daniel Pang\Videos\Captures\Counter Strike 2 Anubis Ranked Gameplay 4K - YouTube - Google Chrome 2026-09-08 10-51-58.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp41isom
+    creation_time   : 2026-09-08T14:52:31.000000Z
+    artist          : Microsoft Game DVR
+    title           : Counter Strike 2 Anubis Ranked Gameplay 4K - YouTube - Google Chrome
+  Duration: 00:00:32.82, start: 0.000000, bitrate: 12874 kb/s
+  Stream #0:0[0x1](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(progressive), 1920x1080 [SAR 1:1 DAR 16:9], 12494 kb/s, 36.09 fps, 59.94 tbr, 30k tbn (default)
+      Metadata:
+        creation_time   : 2026-09-08T14:52:31.000000Z
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : AVC Coding
+  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 133 kb/s (default)
+      Metadata:
+        creation_time   : 2026-09-08T14:52:31.000000Z
+        handler_name    : SoundHandler
+        vendor_id       : [0][0][0][0]
+At least one output file must be specified

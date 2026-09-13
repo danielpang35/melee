@@ -1,0 +1,14 @@
+[
+  {
+    "source": "D:\\Kronktage v18.mp4",
+    "bytes": 65144770,
+    "sha256": "aa6a776f5daec84e6de593a3573e7367c1b78770711a151d2bbdd17a2ff03ec3",
+    "probe": "Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'D:\\Kronktage v18.mp4':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    encoder         : Lavf62.12.101\n  Duration: 00:03:49.72, start: 0.000000, bitrate: 2268 kb/s\n  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1280x720 [SAR 1:1 DAR 16:9], 2134 kb/s, 30 fps, 30 tbr, 15360 tbn (default)\n      Metadata:\n        handler_name    : ISO Media file produced by Google Inc.\n        vendor_id       : [0][0][0][0]\n  Stream #0:1[0x2](eng): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 127 kb/s (default)\n      Metadata:\n        handler_name    : ISO Media file produced by Google Inc.\n        vendor_id       : [0][0][0][0]\nAt least one output file must be specified\n"
+  },
+  {
+    "source": "D:\\Kronktage v14.mp4",
+    "bytes": 96436654,
+    "sha256": "e76c20f6db1eee15a483e575984fbc353334578a5e0758d8a174d5277b08c9f3",
+    "probe": "Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'D:\\Kronktage v14.mp4':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    encoder         : Lavf62.12.101\n  Duration: 00:05:50.02, start: 0.000000, bitrate: 2204 kb/s\n  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1280x720 [SAR 1:1 DAR 16:9], 2069 kb/s, 30 fps, 30 tbr, 15360 tbn (default)\n      Metadata:\n        handler_name    : ISO Media file produced by Google Inc.\n        vendor_id       : [0][0][0][0]\n  Stream #0:1[0x2](eng): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 127 kb/s (default)\n      Metadata:\n        handler_name    : ISO Media file produced by Google Inc.\n        vendor_id       : [0][0][0][0]\nAt least one output file must be specified\n"
+  }
+]

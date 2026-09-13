@@ -1,0 +1,10 @@
+{
+  "source": "ArtSource\\Kimodo\\RH_20260913\\B_reference_extended_v003\\B_ArmLoad_v004.blend",
+  "source_sha256": "a27fc7b3c2e43072e71711baa5724c4f7c0f21113a64605ea6aa6bea71c35cad",
+  "parent_sha256": "44ac5c8f2f873127b38b801cf67a5293b82b95f721fa008da98a002f657ebc5c",
+  "max_hilt_tip_change_m": 5.945021770786637e-06,
+  "max_right_elbow_change_m": 0.12383871162310421,
+  "loaded_right_elbow_change_m": 0.1234129016110301,
+  "scope": "All92 source samples; preserves parent draft blade path, not proof of gameplay contact compatibility",
+  "human_acceptance": false
+}

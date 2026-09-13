@@ -1,0 +1,22 @@
+{
+  "source_fp_visual_approved": true,
+  "export_visual_parity": false,
+  "skeleton_weapon_roundtrip_passed": true,
+  "source_identity_preserved": true,
+  "source_projection_preview_pixel_identical": true,
+  "source_vertex_position_reference_exact_readback": true,
+  "source_vertex_reference_is_standalone_playable_geometry": false,
+  "collision_authority_accepted": false,
+  "engine_integration_tested": false,
+  "exporter_sha256": "28160add28eafac265c45b5eed5d3030a2590c7e907e069016999caa25a2e88c",
+  "fbx_surface_peak_among_eight_checked_frames": {
+    "frame": 81,
+    "mesh": "EX02_FP_Arms",
+    "source_vertices": 16078,
+    "imported_vertices": 16078,
+    "topology_count_matches": true,
+    "max_vertex_error_m": 0.042165527372463485
+  },
+  "verified_frames": 154,
+  "limitations": "See MEL15-HANDOFF.md; raw import requires translated bones disconnected; source post-armature subdivision differs from FBX skinning."
+}

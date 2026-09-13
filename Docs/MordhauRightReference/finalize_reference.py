@@ -1,0 +1,20 @@
+from pathlib import Path
+import sys,subprocess,json,shutil
+sys.path.insert(0,'Saved/VideoRuntime');import imageio_ffmpeg
+from PIL import Image,ImageDraw
+base=Path('Docs/MordhauRightReference');out=base/'confirmed';pts=json.loads((out/'pts.json').read_text());source=r'C:/Users/Daniel Pang/Videos/Captures/MORDHAU   2026-09-07 12-27-58.mp4'
+# Manual 2D readings from native images, not recovered bone positions.
+rows=[(72,'last near-idle',[.51,.80],[.50,.84],None,[.80,0],'up-right; tip clipped'),(76,'rightward load',[.88,.70],[.88,.76],None,None,'right/up; tip clipped'),(79,'edge load',None,None,None,None,'hands partly clipped at right; blade invisible'),(89,'offscreen load',None,None,None,None,'weapon and palms offscreen right; sleeve lower right'),(98,'delivery reentry',[.98,.66],[.92,.66],None,None,'blade offscreen right; close broad sleeve'),(100,'right passage',[.70,.59],[.68,.58],None,[1,.50],'blade right, tip clipped'),(102,'central passage',[.53,.56],[.52,.55],None,[.61,.49],'foreshortened blade up-right'),(106,'left passage',[.23,.66],[.22,.65],None,[.30,.56],'blade up-right, shortened by perspective'),(109,'exit',None,None,None,None,'hands and blade offscreen left; sleeve lower left'),(128,'clear hold',None,None,None,None,'weapon and arms essentially clear'),(132,'return blade',None,None,None,[.34,.04],'blade rises from lower-left; hilt clipped'),(144,'near idle return',[.51,.80],[.50,.84],None,[.74,.08],'diagonal up-right')]
+keys=[]
+for n,label,h,p,l,tip,ori in rows:
+ keys.append(dict(native_extract_index=n,source_pts_s=pts[n-1],relative_to_observed_onset_s=round(pts[n-1]-15.775733,6),beat=label,hilt_guard_center_uv=h,right_visible_grip_center_uv=p,left_palm_center_uv=l,blade_visible_end_uv=tip,orientation_visibility=ori))
+r={'source':source,'source_bytes':34324182,'width':1920,'height':1080,'timing':{'container_reported_duration_s':20.84,'metadata_avg_fps':36.26,'metadata_tbr':59.94,'native_timebase':'1/30000','frame_timing':'VFR; use source_pts_s; chosen interval approximately 36 frames/s','onset_bracket_s':[15.747967,15.775733],'observed_onset_s':15.775733,'near_idle_return_s':17.7755,'excerpt_in_s':15.470167,'excerpt_out_exclusive_s':18.025767,'engine_release_observed':False,'stats_crosscheck':'Build26.1 normal strike 0.575 windup/0.500 release/0.700 recovery are external values, not observed phase boundaries'},'classification':{'weapon':'Greatsword','direction':'RIGHT','attack':'horizontal','basis':'User explicitly identifies capture sequence; complete neutral repetition visibly corroborated','confidence':'high with user provenance'},'repeat':{'onset_approx_s':12.831333,'delivery_s':[13.553533,13.803533],'near_idle_return_s':14.886867,'finding':'same right/offscreen load, center passage, left exit and delayed left return'},'excluded':'opening partial left, moving/combo section, final right feint beginning around18.220133','coordinates':'u=x/1920 v=y/1080; manual approximate ±0.03 UV; null=not independently visible; visible blade end may be frame boundary not tip; palms overlap so left palm unmeasurable','camera':'stone skyline and horizon essentially stable during selected swing; no camera subtraction applied','keys':keys}
+(base/'reference.json').write_text(json.dumps(r,indent=2))
+s=Image.new('RGB',(1920,1548));d=ImageDraw.Draw(s)
+for j,(n,label,*_) in enumerate(rows):
+ x=j%3*640;y=j//3*387;s.paste(Image.open(out/f'key-{n:03d}.jpg').resize((640,360)),(x,y+27));d.text((x+5,y+6),f'{pts[n-1]:.6f}s {label}',fill='white')
+s.save(out/'matching-keys.jpg',quality=92)
+shutil.copy2(base/'REFERENCE.md',base/'PROVISIONAL_REFERENCE.md')
+ff=imageio_ffmpeg.get_ffmpeg_exe()
+p=subprocess.run([ff,'-hide_banner','-loglevel','error','-i',source,'-vf','trim=start=15.470167:end=18.025767,setpts=PTS-STARTPTS','-an','-fps_mode','passthrough','-enc_time_base','1:30000','-c:v','libx264','-crf','16','-y',str(out/'neutral-right-source-speed.mp4')],capture_output=True,text=True);p.check_returncode()
+print('Contract, aspect-correct keys and source-PTS-speed excerpt written.')

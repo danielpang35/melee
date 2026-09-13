@@ -48,22 +48,50 @@ inline Orientation approach(Orientation a,Orientation b,double yawRate,double pi
         clamp(a.pitch+clamp(b.pitch-a.pitch,-pitchRate*dt,pitchRate*dt),-85.,85.)};
 }
 struct Segment { Vec a,b; };
-struct Pose { Vec hilt,tip; Segment blade() const { return {hilt,tip}; } };
+// Edge is the unit world-space cutting-plane axis. Empty marks legacy manual poses.
+struct Pose { Vec hilt,tip,edge{}; Segment blade() const { return {hilt,tip}; } };
+inline Vec weaponEdge(Vec axis,Orientation reference,double rollDegrees=0.)
+{
+    axis=axis.normal();
+    if(axis.length()<.5)axis=reference.forward();
+    // Same shortest-arc frame previously reconstructed in presentation. The
+    // exact antipode needs a finite convention; authored cuts avoid that pole.
+    const Vec forward=reference.forward(),right=reference.right();
+    const Vec turn=forward.cross(axis);
+    const double cosine=forward.dot(axis);
+    Vec edge=cosine>-.9999?right+turn.cross(right)+turn.cross(turn.cross(right))/(1.+cosine):right;
+    edge=(edge-axis*edge.dot(axis)).normal();
+    const double roll=rollDegrees*Rad;
+    return edge*std::cos(roll)+axis.cross(edge)*std::sin(roll);
+}
 inline double pointSegmentDistance(Vec p,Segment s)
 {
     Vec d=s.b-s.a; double n=d.dot(d);
     return (p-(s.a+d*(n>1e-12?clamp((p-s.a).dot(d)/n,0.,1.):0.))).length();
 }
-inline double segmentDistance(Segment p,Segment q)
+inline Vec closestPointOnFirst(Segment p,Segment q)
 {
     Vec u=p.b-p.a,v=q.b-q.a,w=p.a-q.a;
     double a=u.dot(u),b=u.dot(v),c=v.dot(v),d=u.dot(w),e=v.dot(w);
-    if(a<1e-10)return pointSegmentDistance(p.a,q);
-    if(c<1e-10)return pointSegmentDistance(q.a,p);
+    if(a<1e-10)return p.a;
+    if(c<1e-10)return p.a+u*clamp(-d/a,0.,1.);
     double den=a*c-b*b,s=den>1e-10?clamp((b*e-c*d)/den,0.,1.):0.;
     double t=(b*s+e)/c;
     if(t<0){t=0;s=clamp(-d/a,0.,1.);} else if(t>1){t=1;s=clamp((b-d)/a,0.,1.);}
-    return (w+u*s-v*t).length();
+    return p.a+u*s;
+}
+inline double segmentDistance(Segment p,Segment q){return pointSegmentDistance(closestPointOnFirst(p,q),q);}
+// Entry point of a sweep segment into an inflated capsule, after intersection
+// has already been established. Used for spatial feedback, not hit eligibility.
+inline Vec capsuleContactPoint(Segment sweep,Segment axis,double radius)
+{
+    if(pointSegmentDistance(sweep.a,axis)<=radius)return sweep.a;
+    const Vec delta=sweep.b-sweep.a;
+    double lo=0,hi=delta.dot(delta)>1e-12?
+        clamp((closestPointOnFirst(sweep,axis)-sweep.a).dot(delta)/delta.dot(delta),0.,1.):0.;
+    for(int i=0;i<18;++i){const double mid=(lo+hi)*.5;
+        if(pointSegmentDistance(lerp(sweep.a,sweep.b,mid),axis)<=radius)hi=mid;else lo=mid;}
+    return lerp(sweep.a,sweep.b,hi);
 }
 inline bool segmentBox(Segment s,Vec center,Orientation rotation,Vec half,double radius=0)
 {

@@ -1,0 +1,30 @@
+{
+  "source": "C:\\Users\\Daniel Pang\\Videos\\Captures\\MORDHAU   2026-09-08 01-36-39.mp4",
+  "source_bytes": 26452970,
+  "sha256": "7d660e1dea557a8b053f12206f466d16d6f9ab7f7454daf5496402a8b657b4b0",
+  "source_frame_size": [
+    1920,
+    1080
+  ],
+  "selection": {
+    "clip": "A",
+    "start": 5.38,
+    "end": 7.3,
+    "step": 0.0,
+    "name": "neutral-native",
+    "crop": "400,420,1160,660",
+    "columns": 4,
+    "tile_width": 480
+  },
+  "frames": 67,
+  "first_pts_s": 5.3839,
+  "last_pts_s": 7.278233,
+  "sheets": [
+    "C:\\Users\\Daniel Pang\\OneDrive\\Documents\\ChatGPT\\swingmanipulation\\Docs\\ThirdPersonReference20260908\\A\\neutral-native\\sheet-01.jpg",
+    "C:\\Users\\Daniel Pang\\OneDrive\\Documents\\ChatGPT\\swingmanipulation\\Docs\\ThirdPersonReference20260908\\A\\neutral-native\\sheet-02.jpg",
+    "C:\\Users\\Daniel Pang\\OneDrive\\Documents\\ChatGPT\\swingmanipulation\\Docs\\ThirdPersonReference20260908\\A\\neutral-native\\sheet-03.jpg",
+    "C:\\Users\\Daniel Pang\\OneDrive\\Documents\\ChatGPT\\swingmanipulation\\Docs\\ThirdPersonReference20260908\\A\\neutral-native\\sheet-04.jpg",
+    "C:\\Users\\Daniel Pang\\OneDrive\\Documents\\ChatGPT\\swingmanipulation\\Docs\\ThirdPersonReference20260908\\A\\neutral-native\\sheet-05.jpg"
+  ],
+  "method": "Decode source frames with FFmpeg select; labels are decoded source PTS, not index/fps. Aspect ratio preserved; optional fixed crop."
+}

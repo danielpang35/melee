@@ -1,0 +1,89 @@
+{
+  "policy": "MCL-DEV-2026-09-08",
+  "protected_files": {
+    "Config/EXPreview.json": "fbb2cae992bcb7daff8a2398893cb23e7593611203e095bc4d6e854f7e282205",
+    "Config/CombatDefaults.json": "bd783445230985e0aa2b26f2dcb2841ebcd83dd57bba77884d92e61a7bbe9ce6",
+    "Config/WorkingCharacter.json": "975d8ab42d3800e653bd93d6f03438e21bdb161ac623a46f0f7b195efdff7b55",
+    "ArtSource/CharacterReset/EX_v002/EX_v002_MordhauRight.blend": "1615b76b69fe19dab8973ef7a4cea6ebf6589fe5c05fc4674a089a2230b1c49e",
+    "ArtSource/CharacterReset/EX_v002/Export/EX_v002_WeaponMotion.json": "0a4043319d1c493a66d0a2d437cc80f6c115339a68ed04f1b0c5c57203380085",
+    "Binaries/Win64/UnrealEditor-MeleeCombatLab.dll": "9eadc9bff4bed821db8fc96d371cd69e809ac4b28971fd956a0a08ad4e59f4f4",
+    "ArtSource/UserMaleBody/MB_v005_SurfaceRepair/Male_Body_SurfaceRepair.blend": "67eeee22bd652e3ede89942a12621cd4dea103d9ca58309710adb158a1cfc319"
+  },
+  "protected_unchanged": true,
+  "candidates": [
+    {
+      "candidate": "A_reference_upright_v003",
+      "take": "ReferencePullback",
+      "source": "ArtSource\\Kimodo\\RH_20260913\\A_reference_upright_v003\\ReferencePullback.blend",
+      "sha256": "ac5742a4f1929db58261fb5e31473da6ad8aaacc7673a5decd36aba8a9a41604",
+      "preview": "Saved\\Kimodo\\RH_20260913\\A_reference_upright_v003\\ReferencePullback",
+      "release_seconds": 0.5,
+      "max_excess_reach_m": 0.0,
+      "max_support_gap_m": 1.2338530392705793e-06,
+      "save_reopen_matrix_error": 2.384185791015625e-07
+    },
+    {
+      "candidate": "B_reference_extended_v003",
+      "take": "ReferencePullback",
+      "source": "ArtSource\\Kimodo\\RH_20260913\\B_reference_extended_v003\\ReferencePullback.blend",
+      "sha256": "44ac5c8f2f873127b38b801cf67a5293b82b95f721fa008da98a002f657ebc5c",
+      "preview": "Saved\\Kimodo\\RH_20260913\\B_reference_extended_v003\\ReferencePullback",
+      "release_seconds": 0.5,
+      "max_excess_reach_m": 0.0,
+      "max_support_gap_m": 1.4340964549035296e-06,
+      "save_reopen_matrix_error": 5.960464477539063e-08
+    },
+    {
+      "candidate": "C_reference_bent_v003",
+      "take": "ReferencePullback",
+      "source": "ArtSource\\Kimodo\\RH_20260913\\C_reference_bent_v003\\ReferencePullback.blend",
+      "sha256": "36c1b452830739573acf1607ddbfdf740d4922fc2eadd449c4001980721dbd1d",
+      "preview": "Saved\\Kimodo\\RH_20260913\\C_reference_bent_v003\\ReferencePullback",
+      "release_seconds": 0.5,
+      "max_excess_reach_m": 0.0,
+      "max_support_gap_m": 1.3608480871228765e-06,
+      "save_reopen_matrix_error": 3.814697265625e-06
+    },
+    {
+      "candidate": "B_reference_extended_v003",
+      "take": "B_ArmLoad_v004",
+      "source": "ArtSource\\Kimodo\\RH_20260913\\B_reference_extended_v003\\B_ArmLoad_v004.blend",
+      "sha256": "a27fc7b3c2e43072e71711baa5724c4f7c0f21113a64605ea6aa6bea71c35cad",
+      "preview": "Saved\\Kimodo\\RH_20260913\\B_reference_extended_v003\\B_ArmLoad_v004",
+      "release_seconds": 0.5,
+      "max_excess_reach_m": 0.0,
+      "max_support_gap_m": 1.3768866463329207e-06,
+      "save_reopen_matrix_error": 0.0
+    }
+  ],
+  "provisional_art_lead": {
+    "candidate": "B_reference_extended_v003",
+    "take": "B_ArmLoad_v004",
+    "source": "ArtSource\\Kimodo\\RH_20260913\\B_reference_extended_v003\\B_ArmLoad_v004.blend",
+    "sha256": "a27fc7b3c2e43072e71711baa5724c4f7c0f21113a64605ea6aa6bea71c35cad",
+    "preview": "Saved\\Kimodo\\RH_20260913\\B_reference_extended_v003\\B_ArmLoad_v004",
+    "release_seconds": 0.5,
+    "max_excess_reach_m": 0.0,
+    "max_support_gap_m": 1.3768866463329207e-06,
+    "save_reopen_matrix_error": 0.0
+  },
+  "runtime_selection_changed": false,
+  "comparison": "Saved/Kimodo/RH_20260913/reference-comparison/comparison.json",
+  "observation": "Original batch:16 ordered frames per main angle and four body angles each. Refinement:12 ordered affected/whole-action frames per angle and four body angles. Sampled still inspection only.",
+  "ranking": "B > A > C for requested arm winding: B opens farther while upright; A is restrained; C adds a torso bend without a clear arm-readability gain.",
+  "refinement": "Keep B_ArmLoad_v004 provisionally: wider right-elbow silhouette in winding, native blade path preserved to5.95 micrometers; native torso/legs unchanged.",
+  "limitations": [
+    "Finger seating remains rough",
+    "Lower-body support and carry are restrained",
+    "Photograph fidelity and weight/rhythm are not established by sampled stills",
+    "No source-to-gameplay contact compatibility or human acceptance"
+  ],
+  "efficiency_corrections": [
+    "Checked wider shared pose premise before model loading",
+    "Reused one loaded model for3 jobs",
+    "Serialized transfers/renders",
+    "Reuse timing/grip/persistence receipts; no build or duplicate contract tests"
+  ],
+  "token_usage": "Unmeasured; no allowance-charge claim",
+  "human_acceptance": false
+}

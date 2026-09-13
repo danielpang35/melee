@@ -1,0 +1,89 @@
+{
+  "devices": [
+    {
+      "deviceName": "DANIEL-COMPUTER",
+      "instance": "0FAC7A0C466D207B04D03EB23BB90AC1",
+      "instanceName": "DANIEL-COMPUTER-23100",
+      "platform": "WindowsEditor",
+      "oSVersion": "Windows 10 (22H2) [10.0.19045.7663] ",
+      "model": "Default",
+      "gPU": "NVIDIA GeForce RTX 5070",
+      "cPUModel": "AMD Ryzen 5 1600 Six-Core Processor            ",
+      "rAMInGB": 16,
+      "renderMode": "SM6",
+      "rHI": "",
+      "appInstanceLog": ""
+    }
+  ],
+  "reportCreatedOn": "2026.09.06-18.04.50",
+  "succeeded": 4,
+  "succeededWithWarnings": 0,
+  "failed": 0,
+  "notRun": 0,
+  "inProcess": 0,
+  "totalDuration": 0.6248568892478943,
+  "comparisonExported": false,
+  "comparisonExportDirectory": "",
+  "tests": [
+    {
+      "testDisplayName": "AssetBank",
+      "fullTestPath": "MeleeCombatLab.Audio.AssetBank",
+      "tags": [],
+      "state": "Success",
+      "deviceInstance": [
+        "0FAC7A0C466D207B04D03EB23BB90AC1"
+      ],
+      "duration": 0.1890673041343689,
+      "dateTime": "2026.09.06-18.04.50",
+      "entries": [],
+      "warnings": 0,
+      "errors": 0,
+      "artifacts": []
+    },
+    {
+      "testDisplayName": "AssetContract",
+      "fullTestPath": "MeleeCombatLab.Citadel.AssetContract",
+      "tags": [],
+      "state": "Success",
+      "deviceInstance": [
+        "0FAC7A0C466D207B04D03EB23BB90AC1"
+      ],
+      "duration": 0.37502679228782654,
+      "dateTime": "2026.09.06-18.04.50",
+      "entries": [],
+      "warnings": 0,
+      "errors": 0,
+      "artifacts": []
+    },
+    {
+      "testDisplayName": "FrameRates",
+      "fullTestPath": "MeleeCombatLab.FrameRates",
+      "tags": [],
+      "state": "Success",
+      "deviceInstance": [
+        "0FAC7A0C466D207B04D03EB23BB90AC1"
+      ],
+      "duration": 0.0505438968539238,
+      "dateTime": "2026.09.06-18.04.50",
+      "entries": [],
+      "warnings": 0,
+      "errors": 0,
+      "artifacts": []
+    },
+    {
+      "testDisplayName": "StateFlow",
+      "fullTestPath": "MeleeCombatLab.StateFlow",
+      "tags": [],
+      "state": "Success",
+      "deviceInstance": [
+        "0FAC7A0C466D207B04D03EB23BB90AC1"
+      ],
+      "duration": 0.010218899697065353,
+      "dateTime": "2026.09.06-18.04.50",
+      "entries": [],
+      "warnings": 0,
+      "errors": 0,
+      "artifacts": []
+    }
+  ]
+}
